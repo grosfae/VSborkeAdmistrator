@@ -23,6 +23,54 @@ namespace VSborkeAdmistrator.Pages
         public LoginPage()
         {
             InitializeComponent();
+            if (Properties.Settings.Default.Email != null)
+                TbEmail.Text = Properties.Settings.Default.Email;
+            if (Properties.Settings.Default.Password != null)
+                PbPassword.Password = Properties.Settings.Default.Password;
+        }
+
+        private void EnterBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var user = App.DB.User.FirstOrDefault(x => x.Email == TbEmail.Text);
+            if (TbEmail.Text == String.Empty & PbPassword.Password == String.Empty)
+            {
+                MessageBox.Show("Все поля должны быть заполнены");
+                return;
+            }
+            if (TbEmail.Text == String.Empty)
+            {
+                MessageBox.Show("Электронная почта должна быть заполена");
+                return;
+            }
+            if (user == null)
+            {
+                MessageBox.Show("Логин неверный");
+                return;
+            }
+            if (user.Password != PbPassword.Password)
+            {
+                MessageBox.Show("Пароль неверный");
+                return;
+            }
+            if (user.IsBanned == true)
+            {
+                MessageBox.Show("Пользователь заблокирован");
+                return;
+            }
+            if (SaveCb.IsChecked == true)
+            {
+                Properties.Settings.Default.Email = TbEmail.Text;
+                Properties.Settings.Default.Password = PbPassword.Password;
+                Properties.Settings.Default.Save();
+            }
+            else
+            {
+                Properties.Settings.Default.Email = null;
+                Properties.Settings.Default.Password = null;
+                Properties.Settings.Default.Save();
+            }
+            App.LoggedUser = user;
+            NavigationService.Navigate(new MenuPage());
         }
     }
 }
