@@ -103,8 +103,6 @@
             </Image>
         </Grid>
 
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1">
-
-        </Frame>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
     </Grid>
 </Page>
