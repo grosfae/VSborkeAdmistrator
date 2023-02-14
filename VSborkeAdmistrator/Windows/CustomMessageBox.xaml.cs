@@ -28,20 +28,74 @@ namespace VSborkeAdmistrator.Windows
         }
 
         static CustomMessageBox customMessageBox;
-        static DialogResult result = System.Windows.Forms.DialogResult.OK;
+        static DialogResult result = System.Windows.Forms.DialogResult.No;
+        public enum CustomMessageBoxButton
+        {
+            Ok,
+            Нет,
+            Да,
+            Отмена,
+            Confirm
+        }
+        public enum CustomMessageBoxTitle
+        {
+            Error,
+            Warning,
+        }
+        public static DialogResult Show(string message, CustomMessageBoxTitle title, CustomMessageBoxButton btnOk, CustomMessageBoxButton btnNo)
+        {
+            customMessageBox = new CustomMessageBox();
+            customMessageBox.txtMessage.Text = message;
+            customMessageBox.OkBtn.Content = customMessageBox.GetMessageButton(btnOk);
+            customMessageBox.CancelBtn.Content = customMessageBox.GetMessageButton(btnNo);
+            customMessageBox.txtTitle.Text = customMessageBox.GetTitle(title);
+
+            switch (title)
+            {
+                case CustomMessageBoxTitle.Error:
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/AlertMessage.png"));
+                    break;
+
+                case CustomMessageBoxTitle.Warning:
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/WarningMessage.png"));
+                    customMessageBox.CancelBtn.Visibility= Visibility.Collapsed;
+                    customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
+                    break;
+            }
+            customMessageBox.ShowDialog();
+            return result;
+        }
+        public string GetTitle(CustomMessageBoxTitle value)
+        {
+            return Enum.GetName(typeof(CustomMessageBoxTitle), value);
+        }
+
+        public string GetMessageButton(CustomMessageBoxButton value)
+        {
+            return Enum.GetName(typeof(CustomMessageBoxButton), value);
+        }
 
         private void CloseButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            result = System.Windows.Forms.DialogResult.No;
+            customMessageBox.Close();
         }
 
-        private void EnterBtn_Click(object sender, RoutedEventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            result = System.Windows.Forms.DialogResult.Yes;
+            customMessageBox.Close();
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            result = System.Windows.Forms.DialogResult.No;
+            customMessageBox.Close();
         }
     }
 }

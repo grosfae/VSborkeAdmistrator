@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VSborkeAdmistrator.Windows;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -24,9 +27,14 @@ namespace VSborkeAdmistrator.Pages
         {
             InitializeComponent();
             if (Properties.Settings.Default.Email != null)
+            {
                 TbEmail.Text = Properties.Settings.Default.Email;
+            }
             if (Properties.Settings.Default.Password != null)
+            {
                 PbPassword.Password = Properties.Settings.Default.Password;
+            }
+            
         }
 
         private void EnterBtn_Click(object sender, RoutedEventArgs e)
@@ -34,27 +42,37 @@ namespace VSborkeAdmistrator.Pages
             var user = App.DB.User.FirstOrDefault(x => x.Email == TbEmail.Text);
             if (TbEmail.Text == String.Empty & PbPassword.Password == String.Empty)
             {
-                MessageBox.Show("Все поля должны быть заполнены");
+                DialogResult result = CustomMessageBox.Show("Все поля должны быть заполнены", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (TbEmail.Text == String.Empty)
             {
-                MessageBox.Show("Электронная почта должна быть заполена");
+                DialogResult result = CustomMessageBox.Show("Электронная почта должна быть заполена", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                return;
+            }
+            if (PbPassword.Password == String.Empty)
+            {
+                DialogResult result = CustomMessageBox.Show("Пароль должен быть заполнен", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user == null)
             {
-                MessageBox.Show("Логин неверный");
+                DialogResult result = CustomMessageBox.Show("Такого пользователя не существует", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                return;
+            }
+            if (user.Role.Name != "Администратор")
+            {
+                DialogResult result = CustomMessageBox.Show("Вы входите не под учетной записью администратора", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user.Password != PbPassword.Password)
             {
-                MessageBox.Show("Пароль неверный");
+                DialogResult result = CustomMessageBox.Show("Пароль неверный", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user.IsBanned == true)
             {
-                MessageBox.Show("Пользователь заблокирован");
+                DialogResult result = CustomMessageBox.Show("Пользователь заблокирован", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (SaveCb.IsChecked == true)
@@ -72,5 +90,6 @@ namespace VSborkeAdmistrator.Pages
             App.LoggedUser = user;
             NavigationService.Navigate(new MenuPage());
         }
+
     }
 }

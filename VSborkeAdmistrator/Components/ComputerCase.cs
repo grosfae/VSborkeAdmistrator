@@ -32,7 +32,7 @@ namespace VSborkeAdmistrator.Components
         public decimal Weight { get; set; }
         public decimal MetalWeight { get; set; }
         public Nullable<bool> GlassOnFrontPanel { get; set; }
-        public Nullable<int> GlassOnFrontPanelMateralId { get; set; }
+        public Nullable<int> GlassOnFrontPanelMaterialId { get; set; }
         public Nullable<bool> WindowOnSide { get; set; }
         public Nullable<int> WindowMaterialId { get; set; }
         public int AlignmentPowerBlockId { get; set; }

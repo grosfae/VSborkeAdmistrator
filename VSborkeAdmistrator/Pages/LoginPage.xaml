@@ -16,7 +16,7 @@
             <PasswordBox x:Name="PbPassword" Height="35"  FontSize="25"  MaxLength="20"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="30" Margin="10">
                 <Viewbox>
-                    <CheckBox x:Name="SaveCb" Content="Запомнить меня" Style="{StaticResource CbContent}" BorderBrush="#FF3881EF"/>
+                    <CheckBox x:Name="SaveCb" Content="Запомнить меня" Style="{StaticResource CbContent}" BorderBrush="#FF3881EF" IsChecked="True"/>
                 </Viewbox>
             </StackPanel>
             <Button x:Name="EnterBtn" Width="150" Height="35" Style="{StaticResource BorderBtn}" Content="Войти" Click="EnterBtn_Click"/>

@@ -281,6 +281,7 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MessageBoxImages\WarningMessage.png" />
     <Resource Include="Resources\MessageBoxImages\AlertMessage.png" />
     <SplashScreen Include="Resources\ScreenSplash.png" />
   </ItemGroup>

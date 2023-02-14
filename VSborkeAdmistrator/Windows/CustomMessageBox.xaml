@@ -14,19 +14,21 @@
         AllowsTransparency="True"
         Background="Transparent"
         
+        ResizeMode="NoResize"
+        
         WindowStartupLocation="CenterScreen"
         >
     <Window.Clip>
-        <RectangleGeometry Rect="0, 0, 300, 150" RadiusX="20" RadiusY="20"/>
+        <RectangleGeometry Rect="0, 0, 300, 150" />
     </Window.Clip>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="34*"/>
-            <RowDefinition Height="77*"/>
+            <RowDefinition Height="17*"/>
             <RowDefinition Height="35*"/>
+            <RowDefinition Height="21*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" x:Name="Header" Background="White" Grid.Row="0">
-            <TextBlock Text="Сообщение" Style="{StaticResource Header}" FontSize="24" Height="30" FontWeight="Medium" Margin="10 0 0 0"/>
+            <TextBlock x:Name="txtTitle" Text="Сообщение" Style="{StaticResource Header}" FontSize="24" Height="30" FontWeight="Medium" Margin="10 0 0 0"/>
         </StackPanel>
         <Line X1="1" Y1="30" X2="300" Y2="30" Stroke="#FF3881EF" StrokeThickness="2"/>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="250">
@@ -52,9 +54,16 @@
                 <ColumnDefinition Width="19*"/>
                 <ColumnDefinition Width="55*"/>
             </Grid.ColumnDefinitions>
-            <Image Source="/Resources/MessageBoxImages/AlertMessage.png" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image x:Name="iconMsg" Source="/Resources/MessageBoxImages/AlertMessage.png" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <TextBlock x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14"/>
         </Grid>
-        <Button x:Name="EnterBtn" Style="{StaticResource BorderBtn}" Content="Ок" FontSize="20" Width="60" Height="30" Grid.Row="2" Click="EnterBtn_Click"/>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Width="140" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="OkBtn" Style="{StaticResource MessageOkBtn}" Content="Ok" FontSize="20" Width="60" Height="30" Click="OkBtn_Click" Grid.Column="0" Margin="5"/>
+            <Button x:Name="CancelBtn" Style="{StaticResource MessageCancelBtn}" Content="Отмена" FontSize="20" Width="60" Height="30" Click="CancelBtn_Click" Grid.Column="1" Margin="5"/>
+        </Grid>
     </Grid>
 </Window>

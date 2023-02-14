@@ -51,7 +51,8 @@ namespace VSborkeAdmistrator.Pages
 
         private void ExitBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            App.LoggedUser = null;
+            NavigationService.Navigate(new LoginPage());
         }
     }
 }

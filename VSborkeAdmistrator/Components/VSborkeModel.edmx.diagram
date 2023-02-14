@@ -5,51 +5,51 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ee40d9695e3a4b518f982e0c20fb62ac" Name="Diagram1" ZoomLevel="51">
-        <EntityTypeShape EntityType="VSborkeBaseModel.AlignmentPowerBlock" Width="1.5" PointX="0.75" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.ColorId" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.ColorRGB" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.ComputerCase" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.ComputerCaseImages" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.CoolerSize" Width="1.5" PointX="0.75" PointY="18.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.CustomConfiguration" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.FormFactor" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.FormFactorMotherboard" Width="1.5" PointX="5.25" PointY="10.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.IOPanel" Width="1.5" PointX="0.75" PointY="23.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.LiquidCoolingSize" Width="1.5" PointX="0.75" PointY="26.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Manufacturer" Width="1.5" PointX="0.75" PointY="28.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Material" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Order" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.OrientationMotherboard" Width="1.5" PointX="0.75" PointY="31" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Role" Width="1.5" PointX="0.75" PointY="41.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.SidePanelFixation" Width="1.5" PointX="0.75" PointY="33.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Status" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.TypeRGB" Width="1.5" PointX="0.75" PointY="35.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.User" Width="1.5" PointX="3" PointY="40.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.WindowMaterial" Width="1.5" PointX="0.75" PointY="38.125" IsExpanded="true" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_AlignmentPowerBlock" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorId" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorId1" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorRGB" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ComputerCaseImages" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_CoolerSize1" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_FormFactor" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_IOPanel" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_LiquidCoolingSize" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_Manufacturer" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_OrientationMotherboard" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_SidePanelFixation" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_TypeRGB" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_WindowMaterial" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_WindowMaterial1" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_CustomConfiguration_ComputerCase" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_CustomConfiguration_User" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_Order_CustomConfiguration" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_Order_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_Order_User" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_User_Role" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.FormFactorMotherboardComputerCase" ManuallyRouted="false" />
-        <AssociationConnector Association="VSborkeBaseModel.MaterialComputerCase" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.AlignmentPowerBlock" Width="1.5" PointX="0.75" PointY="10.875" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.ColorId" Width="1.5" PointX="0.75" PointY="15.625" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.ColorRGB" Width="1.5" PointX="0.75" PointY="20.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.ComputerCase" Width="1.5" PointX="3" PointY="1.5" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.ComputerCaseImages" Width="1.5" PointX="0.75" PointY="25.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.CoolerSize" Width="1.5" PointX="0.75" PointY="28.5" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.CustomConfiguration" Width="1.5" PointX="5.25" PointY="6.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.FormFactor" Width="1.5" PointX="0.75" PointY="36.125" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.FormFactorMotherboard" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.IOPanel" Width="1.5" PointX="0.75" PointY="30.875" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.LiquidCoolingSize" Width="1.5" PointX="0.75" PointY="33.625" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Manufacturer" Width="1.5" PointX="0.75" PointY="23" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Material" Width="1.5" PointX="5.25" PointY="12.5" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Order" Width="1.5" PointX="7.5" PointY="6.125" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.OrientationMotherboard" Width="1.5" PointX="0.75" PointY="13.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Role" Width="1.5" PointX="0.75" PointY="41.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.SidePanelFixation" Width="1.5" PointX="0.75" PointY="18.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Status" Width="1.5" PointX="5.25" PointY="2.625" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.TypeRGB" Width="1.5" PointX="0.75" PointY="38.5" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.User" Width="1.5" PointX="3" PointY="40.875" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.WindowMaterial" Width="1.5" PointX="0.75" PointY="7.625" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_AlignmentPowerBlock" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorId" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorId1" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorRGB" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ComputerCaseImages" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_CoolerSize1" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_FormFactor" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_IOPanel" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_LiquidCoolingSize" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_Manufacturer" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_OrientationMotherboard" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_SidePanelFixation" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_TypeRGB" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_WindowMaterial2" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_WindowMaterial3" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_CustomConfiguration_ComputerCase" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_CustomConfiguration_User" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_Order_CustomConfiguration" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_Order_Status" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_Order_User" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_User_Role" />
+        <AssociationConnector Association="VSborkeBaseModel.FormFactorMotherboardComputerCase" />
+        <AssociationConnector Association="VSborkeBaseModel.MaterialComputerCase" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
