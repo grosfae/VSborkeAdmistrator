@@ -11,25 +11,25 @@
     <Grid Background="#FFEEF0F2">
         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Профиль пользователя" FontSize="46" Margin="50 0 0 0"/>
         <Line X1="430" Y1="30" X2="1080" Y2="30" Stroke="#FF3881EF" StrokeThickness="2"/>
-        <StackPanel Orientation="Horizontal" Height="300" Background="White" Width="1030">
+        <StackPanel Orientation="Horizontal" Height="400" Background="White" Width="1030">
             <StackPanel Width="300">
-                <Image x:Name="ProfImg"  Width="200" Height="200"/>
-            </StackPanel>
-            <StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock Style="{StaticResource Header}" Text="Имя:" FontSize="40"/>
-                    <TextBlock x:Name="TbName" Style="{StaticResource Header}" FontSize="40" Margin="10 0 0 0"/>
+                <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" x:Name="ProfImg"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                    <TextBlock x:Name="TbName" Style="{StaticResource  ProfileInfo}" FontSize="30"/>
+                    <TextBlock x:Name="TbSurname" Style="{StaticResource  ProfileInfo}" FontSize="30" Margin="10 0 0 0"/>
                 </StackPanel>
-                <TextBlock Style="{StaticResource Header}" Text="Фамилия:" FontSize="40"/>
-                <TextBlock Style="{StaticResource Header}" Text="Отчество:" FontSize="40"/>
-                <TextBlock Style="{StaticResource Header}" Text="Адрес:" FontSize="40"/>
-                <TextBlock Style="{StaticResource Header}" Text="Статус:" FontSize="40"/>
-
-                <StackPanel>
-                    <TextBlock x:Name="TbSurname" Style="{StaticResource Header}" FontSize="40" Grid.Row="1" Grid.Column="1" Margin="10 0 0 20"/>
-                    <TextBlock x:Name="TbPatronumic" Style="{StaticResource Header}" FontSize="40" Grid.Row="2" Grid.Column="1" Margin="10 0 0 20"/>
-                    <TextBlock x:Name="TbAddress" Style="{StaticResource Header}" FontSize="40" Grid.Row="3" Grid.Column="1" Margin="10 0 0 20"/>
-                    <TextBlock x:Name="TbStatus" Style="{StaticResource Header}" FontSize="40" Grid.Row="4" Grid.Column="1"/>
+                <TextBlock x:Name="TbPatronymic" Style="{StaticResource  ProfileInfo}" FontSize="30" Margin="0 10 0 0" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Line X1="0" Y1="400" X2="0" Y2="0" Stroke="#FFEEF0F2" StrokeThickness="3"/>
+            <StackPanel Width="730">
+                <StackPanel Height="100">
+                    <StackPanel Margin="0 30 0 0">
+                        <TextBlock Style="{StaticResource  ProfileInfo}" FontSize="30" Text="Пол:"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

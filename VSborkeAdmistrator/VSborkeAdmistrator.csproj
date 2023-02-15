@@ -217,6 +217,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\Lena.ttf" />
     <Resource Include="Resources\Fonts\Agency FB Cyrillic.ttf" />
     <Resource Include="Resources\Fonts\Lozung Caps Black.otf" />
   </ItemGroup>
