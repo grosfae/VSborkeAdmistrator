@@ -224,9 +224,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Exit\ExitActive.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
@@ -242,39 +239,6 @@
     <Resource Include="Resources\Header\ActiveBar.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Profile\ProfileActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Profile\ProfileNoneActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Accounts\AccountsActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Accounts\AccountsNoneActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\ComputerList\ComputerActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\ComputerList\ComputerNoneActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Info\InfoNoneActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Info\InfoActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Config\ConfigNoneActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Config\ConfigActive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Exit\ExitNoneActive.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Components\PartialClass\" />
   </ItemGroup>
   <ItemGroup>
@@ -288,8 +252,18 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MenuIcons\Info\InfoActive.ico" />
+    <Resource Include="Resources\MenuIcons\Info\InfoWhite.ico" />
+    <Resource Include="Resources\MenuIcons\Exit\ExitWhite.ico" />
+    <Resource Include="Resources\MenuIcons\Exit\ExitActive.ico" />
+    <Resource Include="Resources\MenuIcons\Config\ConfigActive.ico" />
+    <Resource Include="Resources\MenuIcons\Config\ConfigWhite.ico" />
+    <Resource Include="Resources\MenuIcons\ComputerList\ComputerActive.ico" />
+    <Resource Include="Resources\MenuIcons\ComputerList\ComputerWhite.ico" />
+    <Resource Include="Resources\MenuIcons\Accounts\AccountsActive.ico" />
+    <Resource Include="Resources\MenuIcons\Accounts\AccountsWhite.ico" />
+    <Resource Include="Resources\MenuIcons\Profile\ProfileActive.ico" />
     <Resource Include="Resources\MenuIcons\Profile\ProfileWhite.ico" />
-    <Resource Include="Resources\MenuIcons\Profile\ProfileWhite.png" />
     <Resource Include="Resources\MessageBoxImages\WarningMessage.png" />
     <Resource Include="Resources\MessageBoxImages\AlertMessage.png" />
     <SplashScreen Include="Resources\ScreenSplash.png" />

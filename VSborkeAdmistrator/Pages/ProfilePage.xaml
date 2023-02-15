@@ -5,13 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="579" d:DesignWidth="905"
+      d:DesignHeight="579" d:DesignWidth="1130"
       Title="ProfilePage">
 
     <Grid Background="#FFEEF0F2">
-        <TextBlock Style="{StaticResource Header}" Text="Профиль" FontSize="60" HorizontalAlignment="Center" />
-        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="300">
-            <Image x:Name="ProfImg"  Width="200" Height="200" Margin="150 0 100 0"/>
+        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Профиль пользователя" FontSize="46" Margin="50 0 0 0"/>
+        <Line X1="430" Y1="30" X2="1080" Y2="30" Stroke="#FF3881EF" StrokeThickness="2"/>
+        <StackPanel Orientation="Horizontal" Height="300" Background="White" Width="1030">
+            <StackPanel Width="300">
+                <Image x:Name="ProfImg"  Width="200" Height="200"/>
+            </StackPanel>
             <StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Style="{StaticResource Header}" Text="Имя:" FontSize="40"/>

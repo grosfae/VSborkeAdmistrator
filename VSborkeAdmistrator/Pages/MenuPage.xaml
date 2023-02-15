@@ -10,27 +10,19 @@
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="21*"/>
-            <ColumnDefinition Width="379*"/>
+            <ColumnDefinition Width="70"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="#FF3881EF">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Background="#FF3881EF">
             <Button x:Name="ProfileBtn" Style="{StaticResource MenuBtn}" Click="ProfileBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="60" Width="60">
+                    <Image Height="50" Width="50">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileWhite.ico"/>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProfileBtn}" Value="True">
-                                        <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileActive.png"/>
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileActive.ico"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -39,72 +31,91 @@
                 </StackPanel>
             </Button>
 
-            <Image x:Name="AccountListBtn" MouseLeftButtonDown="AccountListBtn_MouseLeftButtonDown" Height="600" Width="60" Grid.Row="1">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Resources/MenuIcons/Accounts/AccountsNoneActive.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=AccountListBtn}" Value="True">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/Accounts/AccountsActive.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <Button x:Name="AccountBtn" Style="{StaticResource MenuBtn}" Click="AccountBtn_Click" Height="60">
+                <StackPanel>
+                    <Image Height="50" Width="50">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Resources/MenuIcons/Accounts/AccountsWhite.ico"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=AccountBtn}" Value="True">
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/Accounts/AccountsActive.ico"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
 
-            <Image x:Name="ComputerListBtn" MouseLeftButtonDown="ComputerListBtn_MouseLeftButtonDown" Height="70" Width="70" Grid.Row="2">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerNoneActive.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ComputerListBtn}" Value="True">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerActive.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <Button x:Name="ComputerListBtn" Style="{StaticResource MenuBtn}" Click="ComputerListBtn_Click" Height="60">
+                <StackPanel>
+                    <Image Height="50" Width="50">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerWhite.ico"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ComputerListBtn}" Value="True">
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerActive.ico"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
 
-            <Image x:Name="ConfigBtn" MouseLeftButtonDown="ConfigBtn_MouseLeftButtonDown" Height="70" Width="70" Grid.Row="3">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Resources/MenuIcons/Config/ConfigNoneActive.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ConfigBtn}" Value="True">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/Config/ConfigActive.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <Button x:Name="ConfigBtn" Style="{StaticResource MenuBtn}" Click="ConfigBtn_Click" Height="60">
+                <StackPanel>
+                    <Image Height="50" Width="50">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Resources/MenuIcons/Config/ConfigWhite.ico"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ConfigBtn}" Value="True">
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/Config/ConfigActive.ico"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
 
-            <Image x:Name="InfoShowBtn" MouseLeftButtonDown="InfoShowBtn_MouseLeftButtonDown" Height="70" Width="70" Grid.Row="4">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoNoneActive.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=InfoShowBtn}" Value="True">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoActive.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <Button x:Name="InfoShowBtn" Style="{StaticResource MenuBtn}" Click="InfoShowBtn_Click" Height="60">
+                <StackPanel>
+                    <Image Height="50" Width="50">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoWhite.ico"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=InfoShowBtn}" Value="True">
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoActive.ico"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
 
-            <Image x:Name="ExitBtn" MouseLeftButtonDown="ExitBtn_MouseLeftButtonDown" Height="70" Width="70" Grid.Row="5">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Resources/MenuIcons/Exit/ExitNoneActive.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitBtn}" Value="True">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/Exit/ExitActive.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
-        </Grid>
-
+            <Button x:Name="ExitBtn" Style="{StaticResource MenuBtn}" Click="ExitBtn_Click" Height="60">
+                <StackPanel>
+                    <Image Height="50" Width="50">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Resources/MenuIcons/Exit/ExitWhite.ico"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ExitBtn}" Value="True">
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/Exit/ExitActive.ico"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
+        </StackPanel>
         <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Column="1"/>
     </Grid>
 </Page>

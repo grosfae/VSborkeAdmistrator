@@ -24,40 +24,36 @@ namespace VSborkeAdmistrator.Pages
         {
             InitializeComponent();
         }
-        private void ProfileBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        
+        private void ProfileBtn_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new ProfilePage());
         }
 
-        private void AccountListBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void AccountBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void ComputerListBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ComputerListBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void InfoShowBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ConfigBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void ConfigBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void InfoShowBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void ExitBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void ExitBtn_Click(object sender, RoutedEventArgs e)
         {
             App.LoggedUser = null;
             NavigationService.Navigate(new LoginPage());
-        }
-
-        private void ProfileBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
