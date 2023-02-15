@@ -5,16 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="579" d:DesignWidth="1000"
+      d:DesignHeight="579" d:DesignWidth="1200"
       Title="MenuPage">
 
     <Grid Background="White">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="51*"/>
-            <ColumnDefinition Width="490*"/>
+            <ColumnDefinition Width="21*"/>
+            <ColumnDefinition Width="379*"/>
         </Grid.ColumnDefinitions>
-        <Line Grid.Row="1" X1="90" Y1="580" X2="90" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
-        <Grid Grid.Column="0" Margin="0,10,0,0">
+        <Grid Grid.Column="0" Background="#FF3881EF">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -23,21 +22,24 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Polygon Fill="#FF3881EF" Points="12,12,12,525,0,540,0,0" Grid.RowSpan="6"/>
-            <Image x:Name="ProfileBtn" MouseLeftButtonDown="ProfileBtn_MouseLeftButtonDown" Height="70" Width="70">
-                <Image.Style>
-                    <Style TargetType="{x:Type Image}">
-                        <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileNoneActive.png"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProfileBtn}" Value="True">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileActive.png"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Image.Style>
-            </Image>
+            <Button x:Name="ProfileBtn" Style="{StaticResource MenuBtn}" Click="ProfileBtn_Click" Height="60">
+                <StackPanel>
+                    <Image Height="60" Width="60">
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileWhite.ico"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ProfileBtn}" Value="True">
+                                        <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileActive.png"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </StackPanel>
+            </Button>
 
-            <Image x:Name="AccountListBtn" MouseLeftButtonDown="AccountListBtn_MouseLeftButtonDown" Height="70" Width="70" Grid.Row="1">
+            <Image x:Name="AccountListBtn" MouseLeftButtonDown="AccountListBtn_MouseLeftButtonDown" Height="600" Width="60" Grid.Row="1">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property="Source" Value="/Resources/MenuIcons/Accounts/AccountsNoneActive.png"/>

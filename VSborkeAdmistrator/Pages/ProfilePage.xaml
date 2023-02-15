@@ -8,8 +8,27 @@
       d:DesignHeight="579" d:DesignWidth="905"
       Title="ProfilePage">
 
-    <Grid Background="White">
-        <TextBlock Style="{StaticResource Header}" Text="Профиль" FontSize="60" HorizontalAlignment="Center"/>
-        
+    <Grid Background="#FFEEF0F2">
+        <TextBlock Style="{StaticResource Header}" Text="Профиль" FontSize="60" HorizontalAlignment="Center" />
+        <StackPanel VerticalAlignment="Center" Orientation="Horizontal" Height="300">
+            <Image x:Name="ProfImg"  Width="200" Height="200" Margin="150 0 100 0"/>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource Header}" Text="Имя:" FontSize="40"/>
+                    <TextBlock x:Name="TbName" Style="{StaticResource Header}" FontSize="40" Margin="10 0 0 0"/>
+                </StackPanel>
+                <TextBlock Style="{StaticResource Header}" Text="Фамилия:" FontSize="40"/>
+                <TextBlock Style="{StaticResource Header}" Text="Отчество:" FontSize="40"/>
+                <TextBlock Style="{StaticResource Header}" Text="Адрес:" FontSize="40"/>
+                <TextBlock Style="{StaticResource Header}" Text="Статус:" FontSize="40"/>
+
+                <StackPanel>
+                    <TextBlock x:Name="TbSurname" Style="{StaticResource Header}" FontSize="40" Grid.Row="1" Grid.Column="1" Margin="10 0 0 20"/>
+                    <TextBlock x:Name="TbPatronumic" Style="{StaticResource Header}" FontSize="40" Grid.Row="2" Grid.Column="1" Margin="10 0 0 20"/>
+                    <TextBlock x:Name="TbAddress" Style="{StaticResource Header}" FontSize="40" Grid.Row="3" Grid.Column="1" Margin="10 0 0 20"/>
+                    <TextBlock x:Name="TbStatus" Style="{StaticResource Header}" FontSize="40" Grid.Row="4" Grid.Column="1"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

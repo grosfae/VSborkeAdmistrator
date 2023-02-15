@@ -288,6 +288,8 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MenuIcons\Profile\ProfileWhite.ico" />
+    <Resource Include="Resources\MenuIcons\Profile\ProfileWhite.png" />
     <Resource Include="Resources\MessageBoxImages\WarningMessage.png" />
     <Resource Include="Resources\MessageBoxImages\AlertMessage.png" />
     <SplashScreen Include="Resources\ScreenSplash.png" />

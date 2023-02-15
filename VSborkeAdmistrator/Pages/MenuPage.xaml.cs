@@ -26,7 +26,7 @@ namespace VSborkeAdmistrator.Pages
         }
         private void ProfileBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            MainFrame.Navigate(new ProfilePage());
         }
 
         private void AccountListBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -53,6 +53,11 @@ namespace VSborkeAdmistrator.Pages
         {
             App.LoggedUser = null;
             NavigationService.Navigate(new LoginPage());
+        }
+
+        private void ProfileBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

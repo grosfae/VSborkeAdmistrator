@@ -23,6 +23,11 @@ namespace VSborkeAdmistrator.Pages
         public ProfilePage()
         {
             InitializeComponent();
+            TbName.Text = App.LoggedUser.Name;
+            TbSurname.Text = App.LoggedUser.Surname;
+            TbPatronumic.Text = App.LoggedUser.Patronymic;
+            TbAddress.Text = App.LoggedUser.Address;
+            TbStatus.Text = App.LoggedUser.Role.Name;
         }
     }
 }
