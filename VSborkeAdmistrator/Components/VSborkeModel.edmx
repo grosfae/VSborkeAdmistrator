@@ -105,7 +105,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="IsPublic" Type="bit" />
@@ -132,6 +131,13 @@
           </Key>
           <Property Name="FormFactorMotherboardId" Type="int" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="7" />
         </EntityType>
         <EntityType Name="IOPanel">
           <Key>
@@ -235,10 +241,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="Surname" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="Surname" Type="varchar" MaxLength="20" />
           <Property Name="Patronymic" Type="varchar" MaxLength="20" />
-          <Property Name="Nickname" Type="varchar" MaxLength="10" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="Phone" Type="varchar" MaxLength="11" />
           <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Address" Type="varchar" MaxLength="100" />
@@ -540,6 +547,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Gender">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -563,6 +582,7 @@
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactorMotherboard" EntityType="Self.FormFactorMotherboard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactorMotherboardComputerCase" EntityType="Self.FormFactorMotherboardComputerCase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IOPanel" EntityType="Self.IOPanel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LiquidCoolingSize" EntityType="Self.LiquidCoolingSize" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Manufacturer" EntityType="Self.Manufacturer" Schema="dbo" store:Type="Tables" />
@@ -673,6 +693,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
@@ -692,6 +716,7 @@
           <EntitySet Name="CustomConfiguration" EntityType="VSborkeBaseModel.CustomConfiguration" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
           <EntitySet Name="FormFactorMotherboard" EntityType="VSborkeBaseModel.FormFactorMotherboard" />
+          <EntitySet Name="Gender" EntityType="VSborkeBaseModel.Gender" />
           <EntitySet Name="IOPanel" EntityType="VSborkeBaseModel.IOPanel" />
           <EntitySet Name="LiquidCoolingSize" EntityType="VSborkeBaseModel.LiquidCoolingSize" />
           <EntitySet Name="Manufacturer" EntityType="VSborkeBaseModel.Manufacturer" />
@@ -776,6 +801,10 @@
           <AssociationSet Name="FK_Order_CustomConfiguration" Association="VSborkeBaseModel.FK_Order_CustomConfiguration">
             <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
             <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Gender" Association="VSborkeBaseModel.FK_User_Gender">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Status" Association="VSborkeBaseModel.FK_Order_Status">
             <End Role="Status" EntitySet="Status" />
@@ -922,7 +951,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="IsPublic" Type="Boolean" />
@@ -946,6 +974,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FormFactorMotherboardComputerCase" FromRole="FormFactorMotherboard" ToRole="ComputerCase" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_User_Gender" FromRole="Gender" ToRole="User" />
         </EntityType>
         <EntityType Name="IOPanel">
           <Key>
@@ -1053,16 +1089,18 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Surname" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Patronymic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Nickname" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsBanned" Type="Boolean" />
           <NavigationProperty Name="CustomConfiguration" Relationship="VSborkeBaseModel.FK_CustomConfiguration_User" FromRole="User" ToRole="CustomConfiguration" />
+          <NavigationProperty Name="Gender" Relationship="VSborkeBaseModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="Order" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Role" Relationship="VSborkeBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
@@ -1291,6 +1329,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Gender">
+          <End Type="VSborkeBaseModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Status">
           <End Type="VSborkeBaseModel.Status" Role="Status" Multiplicity="1" />
           <End Type="VSborkeBaseModel.Order" Role="Order" Multiplicity="*" />
@@ -1449,7 +1499,6 @@
                 <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1465,6 +1514,14 @@
           <EntitySetMapping Name="FormFactorMotherboard">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FormFactorMotherboard">
               <MappingFragment StoreEntitySet="FormFactorMotherboard">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gender">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1578,7 +1635,8 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Nickname" ColumnName="Nickname" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

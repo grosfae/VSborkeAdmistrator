@@ -26,6 +26,48 @@ namespace VSborkeAdmistrator.Pages
             TbName.Text = App.LoggedUser.Name;
             TbSurname.Text = App.LoggedUser.Surname;
             TbPatronymic.Text = App.LoggedUser.Patronymic;
+            TbAddress.Text = App.LoggedUser.Address;
+            TbEmail.Text = App.LoggedUser.Email;
+            TbPhone.Text = App.LoggedUser.Phone;
+            TbGender.Text = App.LoggedUser.Gender.Name;
+            TbRole.Text = App.LoggedUser.Role.Name;
+
+            int progress = 0;
+            if(TbName.Text != String.Empty)
+            {
+                progress += 17;
+            }
+            if (TbSurname.Text != String.Empty)
+            {
+                progress += 17;
+            }
+            if (TbGender.Text != String.Empty)
+            {
+                progress += 17;
+            }
+            if (TbPhone.Text != String.Empty)
+            {
+                progress += 17;
+            }
+            if (TbEmail.Text != String.Empty)
+            {
+                progress += 17;
+            }
+            if (TbAddress.Text != String.Empty)
+            {
+                progress += 17;
+            }
+            if (progress > 100)
+            {
+                progress = 100;
+            }
+            TbCountProgress.Text = $"{progress}%";
+            PbProfileProgress.Value = progress;
+        }
+
+        private void ProfileEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

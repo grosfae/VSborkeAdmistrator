@@ -20,7 +20,7 @@
         Icon="Resources/Logo.png"
         >
     <Window.Clip>
-        <RectangleGeometry Rect="0, 0, 1200, 650" RadiusX="20" RadiusY="20"/>
+        <RectangleGeometry Rect="0, 0, 1200, 650" RadiusX="30" RadiusY="30"/>
     </Window.Clip>
     <Grid Background="White" ShowGridLines="False">
         <Grid.RowDefinitions>

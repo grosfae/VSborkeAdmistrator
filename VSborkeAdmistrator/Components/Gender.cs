@@ -12,23 +12,18 @@ namespace VSborkeAdmistrator.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomConfiguration
+    public partial class Gender
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public CustomConfiguration()
+        public Gender()
         {
-            this.Order = new HashSet<Order>();
+            this.User = new HashSet<User>();
         }
     
         public int Id { get; set; }
-        public int ComputerCaseId { get; set; }
-        public int UserId { get; set; }
-        public Nullable<bool> IsPublic { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
+        public string Name { get; set; }
     
-        public virtual ComputerCase ComputerCase { get; set; }
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Order> Order { get; set; }
+        public virtual ICollection<User> User { get; set; }
     }
 }
