@@ -17,7 +17,6 @@ namespace VSborkeAdmistrator.Components
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ComputerCase()
         {
-            this.CustomConfiguration = new HashSet<CustomConfiguration>();
             this.FormFactorMotherboard = new HashSet<FormFactorMotherboard>();
             this.Material = new HashSet<Material>();
         }
@@ -93,8 +92,6 @@ namespace VSborkeAdmistrator.Components
         public virtual User User { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
         public virtual WindowMaterial WindowMaterial1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CustomConfiguration> CustomConfiguration { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormFactorMotherboard> FormFactorMotherboard { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

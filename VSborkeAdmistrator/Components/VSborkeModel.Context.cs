@@ -31,7 +31,6 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
         public virtual DbSet<ComputerCaseImages> ComputerCaseImages { get; set; }
         public virtual DbSet<CoolerSize> CoolerSize { get; set; }
-        public virtual DbSet<CustomConfiguration> CustomConfiguration { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
         public virtual DbSet<FormFactorMotherboard> FormFactorMotherboard { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }

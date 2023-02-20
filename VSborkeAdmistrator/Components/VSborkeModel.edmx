@@ -104,16 +104,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Value" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="CustomConfiguration">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ComputerCaseId" Type="int" Nullable="false" />
-          <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="IsPublic" Type="bit" />
-          <Property Name="IsDelete" Type="bit" />
-        </EntityType>
         <EntityType Name="FormFactor">
           <Key>
             <PropertyRef Name="Id" />
@@ -256,8 +246,10 @@
           <Property Name="Phone" Type="varchar" MaxLength="11" />
           <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ProfileImage" Type="image" />
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="BannedReason" Type="varchar" MaxLength="100" />
           <Property Name="IsBanned" Type="bit" />
         </EntityType>
         <EntityType Name="WindowMaterial">
@@ -459,30 +451,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CustomConfiguration_ComputerCase">
-          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
-          <End Role="CustomConfiguration" Type="Self.CustomConfiguration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ComputerCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomConfiguration">
-              <PropertyRef Name="ComputerCaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomConfiguration_User">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="CustomConfiguration" Type="Self.CustomConfiguration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomConfiguration">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_FormFactorMotherboardComputerCase_ComputerCase">
           <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
           <End Role="FormFactorMotherboardComputerCase" Type="Self.FormFactorMotherboardComputerCase" Multiplicity="*" />
@@ -528,18 +496,6 @@
             </Principal>
             <Dependent Role="MaterialComputerCase">
               <PropertyRef Name="MaterialId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_CustomConfiguration">
-          <End Role="CustomConfiguration" Type="Self.CustomConfiguration" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomConfiguration">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ComputerCaseId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -598,7 +554,6 @@
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComputerCaseImages" EntityType="Self.ComputerCaseImages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerSize" EntityType="Self.CoolerSize" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomConfiguration" EntityType="Self.CustomConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactorMotherboard" EntityType="Self.FormFactorMotherboard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactorMotherboardComputerCase" EntityType="Self.FormFactorMotherboardComputerCase" Schema="dbo" store:Type="Tables" />
@@ -681,14 +636,6 @@
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
-          <AssociationSet Name="FK_CustomConfiguration_ComputerCase" Association="Self.FK_CustomConfiguration_ComputerCase">
-            <End Role="ComputerCase" EntitySet="ComputerCase" />
-            <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomConfiguration_User" Association="Self.FK_CustomConfiguration_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
-          </AssociationSet>
           <AssociationSet Name="FK_FormFactorMotherboardComputerCase_ComputerCase" Association="Self.FK_FormFactorMotherboardComputerCase_ComputerCase">
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="FormFactorMotherboardComputerCase" EntitySet="FormFactorMotherboardComputerCase" />
@@ -704,10 +651,6 @@
           <AssociationSet Name="FK_MaterialComputerCase_Material" Association="Self.FK_MaterialComputerCase_Material">
             <End Role="Material" EntitySet="Material" />
             <End Role="MaterialComputerCase" EntitySet="MaterialComputerCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_CustomConfiguration" Association="Self.FK_Order_CustomConfiguration">
-            <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
             <End Role="Status" EntitySet="Status" />
@@ -737,7 +680,6 @@
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
           <EntitySet Name="ComputerCaseImages" EntityType="VSborkeBaseModel.ComputerCaseImages" />
           <EntitySet Name="CoolerSize" EntityType="VSborkeBaseModel.CoolerSize" />
-          <EntitySet Name="CustomConfiguration" EntityType="VSborkeBaseModel.CustomConfiguration" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
           <EntitySet Name="FormFactorMotherboard" EntityType="VSborkeBaseModel.FormFactorMotherboard" />
           <EntitySet Name="Gender" EntityType="VSborkeBaseModel.Gender" />
@@ -817,18 +759,6 @@
           <AssociationSet Name="FK_ComputerCase_WindowMaterial3" Association="VSborkeBaseModel.FK_ComputerCase_WindowMaterial3">
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomConfiguration_ComputerCase" Association="VSborkeBaseModel.FK_CustomConfiguration_ComputerCase">
-            <End Role="ComputerCase" EntitySet="ComputerCase" />
-            <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
-          </AssociationSet>
-          <AssociationSet Name="FK_CustomConfiguration_User" Association="VSborkeBaseModel.FK_CustomConfiguration_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_CustomConfiguration" Association="VSborkeBaseModel.FK_Order_CustomConfiguration">
-            <End Role="CustomConfiguration" EntitySet="CustomConfiguration" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="VSborkeBaseModel.FK_User_Gender">
             <End Role="Gender" EntitySet="Gender" />
@@ -955,7 +885,6 @@
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="ComputerCase" ToRole="User" />
           <NavigationProperty Name="WindowMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowMaterial2" FromRole="ComputerCase" ToRole="WindowMaterial" />
           <NavigationProperty Name="WindowMaterial1" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowMaterial3" FromRole="ComputerCase" ToRole="WindowMaterial" />
-          <NavigationProperty Name="CustomConfiguration" Relationship="VSborkeBaseModel.FK_CustomConfiguration_ComputerCase" FromRole="ComputerCase" ToRole="CustomConfiguration" />
           <NavigationProperty Name="FormFactorMotherboard" Relationship="VSborkeBaseModel.FormFactorMotherboardComputerCase" FromRole="ComputerCase" ToRole="FormFactorMotherboard" />
           <NavigationProperty Name="Material" Relationship="VSborkeBaseModel.MaterialComputerCase" FromRole="ComputerCase" ToRole="Material" />
         </EntityType>
@@ -978,19 +907,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Value" Type="Int32" Nullable="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_CoolerSize1" FromRole="CoolerSize" ToRole="ComputerCase" />
-        </EntityType>
-        <EntityType Name="CustomConfiguration">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <Property Name="IsPublic" Type="Boolean" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_CustomConfiguration_ComputerCase" FromRole="CustomConfiguration" ToRole="ComputerCase" />
-          <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_CustomConfiguration_User" FromRole="CustomConfiguration" ToRole="User" />
-          <NavigationProperty Name="Order" Relationship="VSborkeBaseModel.FK_Order_CustomConfiguration" FromRole="CustomConfiguration" ToRole="Order" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -1066,7 +982,6 @@
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="CommentOrder" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="ReasonReject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="CustomConfiguration" Relationship="VSborkeBaseModel.FK_Order_CustomConfiguration" FromRole="Order" ToRole="CustomConfiguration" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="Order" ToRole="User" />
         </EntityType>
@@ -1133,11 +1048,12 @@
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ProfileImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="BannedReason" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsBanned" Type="Boolean" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="User" ToRole="ComputerCase" />
-          <NavigationProperty Name="CustomConfiguration" Relationship="VSborkeBaseModel.FK_CustomConfiguration_User" FromRole="User" ToRole="CustomConfiguration" />
           <NavigationProperty Name="Gender" Relationship="VSborkeBaseModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="Order" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Role" Relationship="VSborkeBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
@@ -1343,42 +1259,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_CustomConfiguration_ComputerCase">
-          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.CustomConfiguration" Role="CustomConfiguration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ComputerCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomConfiguration">
-              <PropertyRef Name="ComputerCaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_CustomConfiguration_User">
-          <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.CustomConfiguration" Role="CustomConfiguration" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CustomConfiguration">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_CustomConfiguration">
-          <End Type="VSborkeBaseModel.CustomConfiguration" Role="CustomConfiguration" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomConfiguration">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="ComputerCaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Gender">
           <End Type="VSborkeBaseModel.Gender" Role="Gender" Multiplicity="0..1" />
           <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="*" />
@@ -1546,17 +1426,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CustomConfiguration">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.CustomConfiguration">
-              <MappingFragment StoreEntitySet="CustomConfiguration">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="IsPublic" ColumnName="IsPublic" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="FormFactor">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FormFactor">
               <MappingFragment StoreEntitySet="FormFactor">
@@ -1689,8 +1558,10 @@
             <EntityTypeMapping TypeName="VSborkeBaseModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
+                <ScalarProperty Name="BannedReason" ColumnName="BannedReason" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />

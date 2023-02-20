@@ -26,7 +26,6 @@ namespace VSborkeAdmistrator.Components
         public string CommentOrder { get; set; }
         public string ReasonReject { get; set; }
     
-        public virtual CustomConfiguration CustomConfiguration { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
     }

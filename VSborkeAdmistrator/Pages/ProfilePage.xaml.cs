@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace VSborkeAdmistrator.Pages
         public ProfilePage()
         {
             InitializeComponent();
+
             TbName.Text = App.LoggedUser.Name;
             TbSurname.Text = App.LoggedUser.Surname;
             TbPatronymic.Text = App.LoggedUser.Patronymic;
@@ -67,12 +69,13 @@ namespace VSborkeAdmistrator.Pages
 
         private void ProfileEditBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            NavigationService.Navigate(new ProfileEditPage(App.LoggedUser));
         }
 
         private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
         }
+
     }
 }

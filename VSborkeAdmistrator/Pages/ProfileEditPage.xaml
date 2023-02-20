@@ -1,0 +1,85 @@
+﻿<Page x:Class="VSborkeAdmistrator.Pages.ProfileEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="650" d:DesignWidth="1130"
+      Title="ProfileEditPage">
+
+    <Grid Background="#FFEEF0F2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Редактирование профиля" FontSize="46" Margin="50 15 0 20"/>
+            <Line X1="470" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+        </Grid>
+        <StackPanel Orientation="Horizontal" Background="White" Grid.Row="1" Margin="50 0 50 0" Height="400" VerticalAlignment="Top">
+            <StackPanel Width="300">
+                <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
+                    <Border.Background>
+                        <ImageBrush Stretch="Fill" x:Name="ProfImg"/>
+                    </Border.Background>
+                </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                    <Button x:Name="ProfileEditImageBtn" Width="230" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить изображение" Click="ProfileEditImageBtn_Click"/>
+                </StackPanel>
+            </StackPanel>
+            <Line X1="0" Y1="400" X2="0" Y2="0" Stroke="#FFEEF0F2" StrokeThickness="3"/>
+            <StackPanel Width="730">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="134*"/>
+                        <ColumnDefinition Width="231*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="90"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="10 30 0 0" Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Имя: "/>
+                        <TextBox x:Name="TbName" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Row="1">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Фамилия: "/>
+                        <TextBox x:Name="TbSurname" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Row="2">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Отчество: "/>
+                        <TextBox x:Name="TbPatronymic" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 0 0 0" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол: " Margin="0 30 0 0"/>
+                        <ComboBox x:Name="CbGender" DisplayMemberPath="Name" Height="28" FontSize="18" Margin="0 25 0 0"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Column="1" Grid.Row="2">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Статус: "/>
+                        <TextBlock x:Name="TbStatus" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Адрес: "/>
+                        <TextBox x:Name="TbAddress" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="340" Height="25" MaxLength="100" Margin="0 0 0 3"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 30 0 0" Grid.Row="3">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Номер телефона: "/>
+                        <TextBox x:Name="TbPhone" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Width="170" Height="25" MaxLength="11" Margin="0 5 0 0"/>
+                    </StackPanel>
+                    <StackPanel Margin="10 30 0 0" Grid.Row="3" Grid.Column="1">
+                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Электронная почта: "/>
+                        <TextBlock x:Name="TbEmail" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                    </StackPanel>
+
+                </Grid>
+                <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Height="100">
+                    <Button x:Name="ProfileSaveBtn" Width="230" Height="35" Style="{StaticResource BorderBtn}" Content="Сохранить изменения" Click="ProfileSaveBtn_Click"/>
+                    <Button x:Name="ProfileCancelBtn" Margin="40 0 0 0" Width="230" Height="35" Style="{StaticResource BorderBtn}" Content="Отменить изменения" Click="ProfileCancelBtn_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

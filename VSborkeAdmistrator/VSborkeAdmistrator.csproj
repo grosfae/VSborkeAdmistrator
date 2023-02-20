@@ -70,6 +70,9 @@
     </Compile>
     <Compile Include="Components\PartialClass\ComputerCase.cs" />
     <Compile Include="Components\PartialClass\Order.cs" />
+    <Compile Include="Pages\ProfileEditPage.xaml.cs">
+      <DependentUpon>ProfileEditPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
     </Compile>
@@ -103,9 +106,6 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\CoolerSize.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CustomConfiguration.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\FormFactor.cs">
@@ -177,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProfileEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
