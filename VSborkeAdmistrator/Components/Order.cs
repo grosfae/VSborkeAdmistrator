@@ -16,7 +16,11 @@ namespace VSborkeAdmistrator.Components
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public int CustomConfigurationId { get; set; }
+        public System.DateTime OrderDate { get; set; }
+        public decimal FinallyPrice { get; set; }
+        public int Count { get; set; }
+        public Nullable<int> Discount { get; set; }
+        public int ComputerCaseId { get; set; }
         public Nullable<bool> IsReject { get; set; }
         public int StatusId { get; set; }
         public string CommentOrder { get; set; }

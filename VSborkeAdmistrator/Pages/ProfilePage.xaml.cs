@@ -67,6 +67,11 @@ namespace VSborkeAdmistrator.Pages
 
         private void ProfileEditBtn_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
+
+        private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
 
         }
     }

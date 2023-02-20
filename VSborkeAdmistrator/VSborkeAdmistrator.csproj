@@ -68,8 +68,13 @@
     <Compile Include="Components\Gender.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\PartialClass\ComputerCase.cs" />
+    <Compile Include="Components\PartialClass\Order.cs" />
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Windows\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
@@ -179,6 +184,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\UsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\CustomMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -220,6 +229,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\PT_Sans-Web-Regular.ttf" />
     <Resource Include="Resources\Fonts\Raleway-VariableFont_wght.ttf" />
     <Resource Include="Resources\Fonts\Lena.ttf" />
     <Resource Include="Resources\Fonts\Agency FB Cyrillic.ttf" />
@@ -243,9 +253,7 @@
   <ItemGroup>
     <Resource Include="Resources\Header\ActiveBar.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Components\PartialClass\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Components\VSborkeModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -257,6 +265,9 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\TextBoxIcons\SearchBlue.ico" />
+    <Resource Include="Resources\TextBoxIcons\SearchMood.ico" />
+    <Resource Include="Resources\TextBoxIcons\Search.ico" />
     <Resource Include="Resources\MenuIcons\Info\InfoActive.ico" />
     <Resource Include="Resources\MenuIcons\Info\InfoWhite.ico" />
     <Resource Include="Resources\MenuIcons\Exit\ExitWhite.ico" />

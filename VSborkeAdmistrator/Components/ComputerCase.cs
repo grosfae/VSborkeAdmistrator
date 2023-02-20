@@ -25,6 +25,8 @@ namespace VSborkeAdmistrator.Components
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public decimal Price { get; set; }
+        public Nullable<int> Discount { get; set; }
         public int FormFactorId { get; set; }
         public decimal Height { get; set; }
         public decimal Width { get; set; }
@@ -72,6 +74,8 @@ namespace VSborkeAdmistrator.Components
         public Nullable<bool> IsAccessable { get; set; }
         public Nullable<bool> IsDelete { get; set; }
         public string CommentAccessable { get; set; }
+        public Nullable<bool> IsCustom { get; set; }
+        public Nullable<int> UserId { get; set; }
     
         public virtual AlignmentPowerBlock AlignmentPowerBlock { get; set; }
         public virtual ColorId ColorId { get; set; }
@@ -86,6 +90,7 @@ namespace VSborkeAdmistrator.Components
         public virtual OrientationMotherboard OrientationMotherboard { get; set; }
         public virtual SidePanelFixation SidePanelFixation { get; set; }
         public virtual TypeRGB TypeRGB { get; set; }
+        public virtual User User { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
         public virtual WindowMaterial WindowMaterial1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
