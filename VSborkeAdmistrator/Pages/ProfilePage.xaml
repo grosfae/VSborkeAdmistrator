@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="2000" d:DesignWidth="1130"
-      Title="ProfilePage">
+      Title="ProfilePage"
+      Loaded="Page_Loaded">
 
     <Grid Background="#FFEEF0F2">
         <ScrollViewer>
@@ -24,14 +25,14 @@
                         <StackPanel Width="300">
                             <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
                                 <Border.Background>
-                                    <ImageBrush Stretch="Fill" x:Name="ProfImg"/>
+                                    <ImageBrush Stretch="Fill" ImageSource="{Binding ProfileImage}"/>
                                 </Border.Background>
                             </Border>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                                <TextBlock x:Name="TbName" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30"/>
-                                <TextBlock x:Name="TbSurname" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="10 0 0 0"/>
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30"/>
+                                <TextBlock Text="{Binding Surname}" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="10 0 0 0"/>
                             </StackPanel>
-                            <TextBlock x:Name="TbPatronymic" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{Binding Patronymic}" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0" HorizontalAlignment="Center"/>
                         </StackPanel>
                         <Line X1="0" Y1="400" X2="0" Y2="0" Stroke="#FFEEF0F2" StrokeThickness="3"/>
                         <StackPanel Width="730">
@@ -47,23 +48,23 @@
                                 </Grid.RowDefinitions>
                                 <StackPanel Margin="10 30 0 0" Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол: "/>
-                                    <TextBlock x:Name="TbGender" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Gender.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
                                 </StackPanel>
                                 <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Column="1">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Адрес: "/>
-                                    <TextBlock x:Name="TbAddress" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" Width="340"/>
+                                    <TextBlock Text="{Binding Address}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" Width="340"/>
                                 </StackPanel>
                                 <StackPanel Margin="10 30 0 0" Grid.Row="1">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Электронная почта: "/>
-                                    <TextBlock x:Name="TbEmail" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Email}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
                                 </StackPanel>
                                 <StackPanel Margin="10 10 0 0" Orientation="Vertical" Grid.Row="2">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Номер телефона: "/>
-                                    <TextBlock x:Name="TbPhone" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Phone}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
                                 </StackPanel>
                                 <StackPanel Margin="10 30 0 0" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Должность: "/>
-                                    <TextBlock x:Name="TbRole" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Role.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
                                 </StackPanel>
                             </Grid>
                             <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Height="100">

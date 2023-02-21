@@ -27,7 +27,7 @@ namespace VSborkeAdmistrator.Pages
         
         private void ProfileBtn_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new ProfilePage());
+            MainFrame.Navigate(new ProfilePage(App.LoggedUser));
         }
 
         private void AccountBtn_Click(object sender, RoutedEventArgs e)

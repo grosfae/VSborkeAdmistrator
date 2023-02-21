@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VSborkeAdmistrator.Components;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -21,41 +22,35 @@ namespace VSborkeAdmistrator.Pages
     /// </summary>
     public partial class ProfilePage : Page
     {
-        public ProfilePage()
+        User contextUser;
+        public ProfilePage(User user)
         {
             InitializeComponent();
-
-            TbName.Text = App.LoggedUser.Name;
-            TbSurname.Text = App.LoggedUser.Surname;
-            TbPatronymic.Text = App.LoggedUser.Patronymic;
-            TbAddress.Text = App.LoggedUser.Address;
-            TbEmail.Text = App.LoggedUser.Email;
-            TbPhone.Text = App.LoggedUser.Phone;
-            TbGender.Text = App.LoggedUser.Gender.Name;
-            TbRole.Text = App.LoggedUser.Role.Name;
+            contextUser = user;
+            DataContext = contextUser;
 
             int progress = 0;
-            if(TbName.Text != String.Empty)
+            if(contextUser.Name != String.Empty)
             {
                 progress += 17;
             }
-            if (TbSurname.Text != String.Empty)
+            if (contextUser.Surname != String.Empty)
             {
                 progress += 17;
             }
-            if (TbGender.Text != String.Empty)
+            if (contextUser.Gender != null)
             {
                 progress += 17;
             }
-            if (TbPhone.Text != String.Empty)
+            if (contextUser.Phone != String.Empty)
             {
                 progress += 17;
             }
-            if (TbEmail.Text != String.Empty)
+            if (contextUser.Email != String.Empty)
             {
                 progress += 17;
             }
-            if (TbAddress.Text != String.Empty)
+            if (contextUser.Address != String.Empty)
             {
                 progress += 17;
             }
@@ -77,5 +72,44 @@ namespace VSborkeAdmistrator.Pages
 
         }
 
+        public void ProfileInfoProgress()
+        {
+            int progress = 0;
+            if (contextUser.Name != String.Empty)
+            {
+                progress += 17;
+            }
+            if (contextUser.Surname != String.Empty)
+            {
+                progress += 17;
+            }
+            if (contextUser.Gender != null)
+            {
+                progress += 17;
+            }
+            if (contextUser.Phone != String.Empty)
+            {
+                progress += 17;
+            }
+            if (contextUser.Email != String.Empty)
+            {
+                progress += 17;
+            }
+            if (contextUser.Address != String.Empty)
+            {
+                progress += 17;
+            }
+            if (progress > 100)
+            {
+                progress = 100;
+            }
+            TbCountProgress.Text = $"{progress}%";
+            PbProfileProgress.Value = progress;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ProfileInfoProgress();
+        }
     }
 }
