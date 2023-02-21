@@ -269,6 +269,7 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MessageBoxImages\QuestionMessage.png" />
     <Resource Include="Resources\TextBoxIcons\SearchBlue.ico" />
     <Resource Include="Resources\TextBoxIcons\SearchMood.ico" />
     <Resource Include="Resources\TextBoxIcons\Search.ico" />

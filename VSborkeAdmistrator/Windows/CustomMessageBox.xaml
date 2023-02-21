@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VSborkeAdmistrator.Windows"
         mc:Ignorable="d"
-        Title="CustomMessageBox" Height="150" Width="300"
+        Title="CustomMessageBox" Height="200" Width="300"
         
         BorderThickness="2"
         BorderBrush="#FF3881EF"
@@ -19,21 +19,21 @@
         WindowStartupLocation="CenterScreen"
         >
     <Window.Clip>
-        <RectangleGeometry Rect="0, 0, 300, 150" />
+        <RectangleGeometry Rect="0, 0, 300, 200" />
     </Window.Clip>
     <Grid Background="White">
         <Grid.RowDefinitions>
-            <RowDefinition Height="17*"/>
-            <RowDefinition Height="35*"/>
-            <RowDefinition Height="21*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="11*"/>
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" x:Name="Header" Background="White" Grid.Row="0">
             <TextBlock x:Name="txtTitle" Text="Сообщение" Style="{StaticResource Header}" FontSize="24" Height="30" FontWeight="Medium" Margin="10 0 0 0"/>
         </StackPanel>
-        <Line X1="1" Y1="30" X2="300" Y2="30" Stroke="#FF3881EF" StrokeThickness="2"/>
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Height="30" Width="250">
-            <Polygon Fill="#FF3881EF" Points="180,0,250,40, 250,0, 0,0"/>
-            <Image x:Name="CloseButton" Height="15" Width="15" Margin="220 0 0 0" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
+        <Line X1="0" Y1="31" X2="300" Y2="31" Stroke="#FF3881EF" StrokeThickness="2"/>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Height="36" Width="250" Margin="46,0,0,0">
+            <Polygon Fill="#FF3881EF" Points="180,0,250,50, 250,0, 0,0"/>
+            <Image x:Name="CloseButton" Height="15" Width="15" Margin="220 0 0 5" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
                         <Setter Property="Source" Value="/Resources/Header/NoneActiveCross.png"/>

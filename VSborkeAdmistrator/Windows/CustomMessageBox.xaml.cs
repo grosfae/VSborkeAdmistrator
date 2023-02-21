@@ -41,6 +41,7 @@ namespace VSborkeAdmistrator.Windows
         {
             Error,
             Warning,
+            Подтверждение,
         }
         public static DialogResult Show(string message, CustomMessageBoxTitle title, CustomMessageBoxButton btnOk, CustomMessageBoxButton btnNo)
         {
@@ -60,6 +61,9 @@ namespace VSborkeAdmistrator.Windows
                     customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/WarningMessage.png"));
                     customMessageBox.CancelBtn.Visibility= Visibility.Collapsed;
                     customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
+                    break;
+                case CustomMessageBoxTitle.Подтверждение:
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/QuestionMessage.png"));
                     break;
             }
             customMessageBox.ShowDialog();
