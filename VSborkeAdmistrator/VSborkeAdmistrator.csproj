@@ -41,6 +41,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -269,6 +270,11 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\UsersButtons\ReadWhite.ico" />
+    <Resource Include="Resources\UsersButtons\Read.ico" />
+    <Resource Include="Resources\UsersButtons\ReadMore.ico" />
+    <Resource Include="Resources\UsersButtons\StopBlue.ico" />
+    <Resource Include="Resources\UsersButtons\Stop.ico" />
     <Resource Include="Resources\MessageBoxImages\QuestionMessage.png" />
     <Resource Include="Resources\TextBoxIcons\SearchBlue.ico" />
     <Resource Include="Resources\TextBoxIcons\SearchMood.ico" />

@@ -33,6 +33,7 @@ namespace VSborkeAdmistrator.Pages
             CbGender.ItemsSource = App.DB.Gender.ToList();
             contextUser = user;
             DataContext = contextUser;
+            
         }
 
         private void ProfileSaveBtn_Click(object sender, RoutedEventArgs e)

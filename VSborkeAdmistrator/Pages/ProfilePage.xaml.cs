@@ -64,7 +64,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void ProfileEditBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ProfileEditPage(App.LoggedUser));
+            NavigationService.Navigate(new ProfileEditPage(contextUser));
         }
 
         private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

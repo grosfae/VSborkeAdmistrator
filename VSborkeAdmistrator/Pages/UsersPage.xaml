@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1130"
-      Title="UsersPage">
+      Title="UsersPage"
+    xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2">
 
     <Grid Background="#FFEEF0F2">
         <ScrollViewer>
@@ -28,7 +29,7 @@
                                     <ColumnDefinition Width="40"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Введите ФИО пользователя" FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2"/>
-                                <Image Grid.Column="1" x:Name="SearchIcon" MouseLeftButtonDown="SearchIcon_MouseLeftButtonDown" Cursor="Hand" Margin="9,5,8,5">
+                                <Image Grid.Column="1" x:Name="SearchIcon" Cursor="Hand" Margin="9,5,8,5">
                                     <Image.Style>
                                         <Style TargetType="{x:Type Image}">
                                             <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchMood.ico"/>
@@ -41,20 +42,44 @@
                                     </Image.Style>
                                 </Image>
                             </Grid>
+                            <TextBlock Text="Всего пользователей:" Style="{StaticResource Header}" VerticalAlignment="Center" FontSize="28" Margin="430 0 0 0"/>
+                            <TextBlock x:Name="TbCounter" Style="{StaticResource Header}" VerticalAlignment="Center" FontSize="28" Margin="5 0 0 0"/>
                         </StackPanel>
+                        <Line X1="0" Y1="0" X2="1100" Y2="0" Stroke="#FF3881EF" StrokeThickness="3"/>
                         <StackPanel Orientation="Horizontal" Height="540">
                             <StackPanel Width="200">
-                                
+                                <StackPanel Margin="10 10 0 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Сортировка:"/>
+                                    <ComboBox x:Name="CbSort" SelectedIndex="0" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbSort_SelectionChanged">
+                                        <ComboBoxItem>По умолчанию</ComboBoxItem>
+                                        <ComboBoxItem>По возрастанию</ComboBoxItem>
+                                        <ComboBoxItem>По убыванию</ComboBoxItem>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Margin="10 10 0 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол:"/>
+                                    <ComboBox x:Name="CbGender" SelectedItem="{Binding Gender}" DisplayMemberPath="Name" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbGender_SelectionChanged"/>
+                                </StackPanel>
+                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Дата регистрации:" Margin="10 10 0 0"/>
+                                <Viewbox Height="35" Margin="10 10 0 0" HorizontalAlignment="Left">
+                                    <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="17" Width="150"/>
+                                </Viewbox>
+                                <StackPanel Orientation="Horizontal" Margin="10 10 0 0">
+                                    <Viewbox Height="30">
+                                        <CheckBox x:Name="СbBanned" Content="Блокированные" Style="{StaticResource CbContent}" BorderBrush="#FF3881EF"/>
+                                    </Viewbox>
+                                </StackPanel>
                             </StackPanel>
+                            <Line X1="0" Y1="550" X2="0" Y2="0" Stroke="#FF3881EF" StrokeThickness="2"/>
                             <StackPanel Width="892">
-                                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="20 10 0 0">
                                     <TextBlock Style="{StaticResource Header}" Text="#" FontSize="30"/>
                                     <TextBlock Style="{StaticResource Header}" Text="Пользователь" FontSize="30" Margin="50 0 0 0"/>
-                                    <TextBlock Style="{StaticResource Header}" Text="Роль" FontSize="30" Margin="70 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Роль" FontSize="30" Margin="80 0 0 0"/>
                                     <TextBlock Style="{StaticResource Header}" Text="Электронная почта" FontSize="30" Margin="110 0 0 0"/>
-                                    <TextBlock Style="{StaticResource Header}" Text="Действия" FontSize="30" Margin="90 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Действия" FontSize="30" Margin="80 0 0 0"/>
                                 </StackPanel>
-                                <ListView x:Name="LvUsers" Height="505" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                <ListView x:Name="LvUsers" Height="495" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Height="60" Background="White" Width="865" Margin="0 3 0 2">
@@ -74,6 +99,30 @@
                                                 <TextBlock Text="{Binding Name}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="60 17 0 0" Grid.Column="1"/>
                                                 <TextBlock Text="{Binding Role.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="0 17 0 0" Grid.Column="2" HorizontalAlignment="Center"/>
                                                 <TextBlock Text="{Binding Email}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="0 17 0 0" Grid.Column="3" HorizontalAlignment="Center"/>
+                                                <Image Grid.Column="4" x:Name="ReadMoreBtn" MouseLeftButtonDown="ReadMoreBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="0 0 60 0">
+                                                    <Image.Style>
+                                                        <Style TargetType="{x:Type Image}">
+                                                            <Setter Property="Source" Value="/Resources/UsersButtons/Read.ico"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=ReadMoreBtn}" Value="True">
+                                                                    <Setter Property="Source" Value="/Resources/UsersButtons/ReadWhite.ico"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
+                                                <Image Grid.Column="4" x:Name="BanBtn" MouseLeftButtonDown="BanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="50 0 0 0">
+                                                    <Image.Style>
+                                                        <Style TargetType="{x:Type Image}">
+                                                            <Setter Property="Source" Value="/Resources/UsersButtons/StopBlue.ico"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=BanBtn}" Value="True">
+                                                                    <Setter Property="Source" Value="/Resources/UsersButtons/Stop.ico"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Image.Style>
+                                                </Image>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
