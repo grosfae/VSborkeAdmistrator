@@ -46,6 +46,9 @@
                                     <RowDefinition Height="90"/>
                                     <RowDefinition Height="90"/>
                                 </Grid.RowDefinitions>
+                                <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
+                                    <TextBlock Text="{Binding BannedReason, StringFormat='Причина блокировки: {0}'}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                </StackPanel>
                                 <StackPanel Margin="10 30 0 0" Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол: "/>
                                     <TextBlock Text="{Binding Gender.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>

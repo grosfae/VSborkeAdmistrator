@@ -23,6 +23,12 @@ namespace VSborkeAdmistrator.Pages
         public UsersPage()
         {
             InitializeComponent();
+            LvUsers.ItemsSource = App.DB.User.ToList();
+        }
+
+        private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

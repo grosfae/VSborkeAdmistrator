@@ -17,6 +17,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
 using VSborkeAdmistrator.Windows;
+using static System.Net.WebRequestMethods;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -75,9 +76,12 @@ namespace VSborkeAdmistrator.Pages
         private void ProfileEditImageBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog();
+            {
+                dialog.Filter = "*.png|*.png|*.jpg|*.jpg|*.jpeg|*.jpeg";
+            };
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                contextUser.ProfileImage = File.ReadAllBytes(dialog.FileName);
+                contextUser.ProfileImage = System.IO.File.ReadAllBytes(dialog.FileName);
                 DataContext = null;
                 DataContext = contextUser;
             }

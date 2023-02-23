@@ -14,76 +14,73 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
-                        <RowDefinition/>
+                        <RowDefinition Height="600"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Контроль учетных записей" FontSize="46" Margin="50 15 0 20"/>
                         <Line X1="500" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
-                    <ListView Grid.Row="1" d:ItemsSource="{d:SampleData ItemCount=5}">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal" Height="400" Background="White" Width="1030" Grid.Row="1">
-                                    <StackPanel Width="300">
-                                        <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
-                                            <Border.Background>
-                                                <ImageBrush Stretch="Fill" x:Name="ProfImg"/>
-                                            </Border.Background>
-                                        </Border>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
-                                            <TextBlock x:Name="TbName" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30"/>
-                                            <TextBlock x:Name="TbSurname" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="10 0 0 0"/>
-                                        </StackPanel>
-                                        <TextBlock x:Name="TbPatronymic" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                    <Line X1="0" Y1="400" X2="0" Y2="0" Stroke="#FFEEF0F2" StrokeThickness="3"/>
-                                    <StackPanel Width="730">
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="129*"/>
-                                                <ColumnDefinition Width="236*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition Height="90"/>
-                                                <RowDefinition Height="90"/>
-                                            </Grid.RowDefinitions>
-                                            <StackPanel Margin="10 30 0 0" Orientation="Horizontal">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол: "/>
-                                                <TextBlock x:Name="TbGender" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Column="1">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Адрес: "/>
-                                                <TextBlock x:Name="TbAddress" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" Width="340"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="10 30 0 0" Grid.Row="1">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Электронная почта: "/>
-                                                <TextBlock x:Name="TbEmail" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="10 10 0 0" Orientation="Vertical" Grid.Row="2">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Номер телефона: "/>
-                                                <TextBlock x:Name="TbPhone" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="10 30 0 0" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Должность: "/>
-                                                <TextBlock x:Name="TbRole" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
-                                            </StackPanel>
-                                        </Grid>
-                                        <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Height="100">
-                                            <Button x:Name="ProfileEditBtn" Width="230" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить профиль"/>
-                                            <StackPanel Margin="70 0 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Заполнение профиля:"/>
-                                                <Grid Height="35" Margin="0 10 0 0">
-                                                    <ProgressBar Width="400" x:Name="PbProfileProgress" Background="#FFAFAFAF" Foreground="#FF3881EF" HorizontalAlignment="Left"/>
-                                                    <TextBlock x:Name="TbCountProgress" Style="{StaticResource Header}" Foreground="White" HorizontalAlignment="Center" FontSize="30" Text="0%"/>
-                                                </Grid>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
+                    <StackPanel Grid.Row="1" Margin="20 0 0 0" Background="White">
+                        <StackPanel Orientation="Horizontal" Background="White">
+                            <Grid Margin="10 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="310"/>
+                                    <ColumnDefinition Width="40"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Введите ФИО пользователя" FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2"/>
+                                <Image Grid.Column="1" x:Name="SearchIcon" MouseLeftButtonDown="SearchIcon_MouseLeftButtonDown" Cursor="Hand" Margin="9,5,8,5">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchMood.ico"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchIcon}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchBlue.ico"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Height="540">
+                            <StackPanel Width="200">
+                                
+                            </StackPanel>
+                            <StackPanel Width="892">
+                                <StackPanel Orientation="Horizontal" Margin="20 0 0 0">
+                                    <TextBlock Style="{StaticResource Header}" Text="#" FontSize="30"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Пользователь" FontSize="30" Margin="50 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Роль" FontSize="30" Margin="70 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Электронная почта" FontSize="30" Margin="110 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Действия" FontSize="30" Margin="90 0 0 0"/>
                                 </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                                <ListView x:Name="LvUsers" Height="505" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Height="60" Background="White" Width="865" Margin="0 3 0 2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="60"/>
+                                                    <ColumnDefinition Width="180"/>
+                                                    <ColumnDefinition Width="160"/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition Width="180"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding Id}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="10 17 0 0"/>
+                                                <Border CornerRadius="150" Width="40" Height="40" HorizontalAlignment="Left" Margin="10 0 0 0" Grid.Column="1">
+                                                    <Border.Background>
+                                                        <ImageBrush Stretch="Fill" ImageSource="{Binding ProfileImage}"/>
+                                                    </Border.Background>
+                                                </Border>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="60 17 0 0" Grid.Column="1"/>
+                                                <TextBlock Text="{Binding Role.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="0 17 0 0" Grid.Column="2" HorizontalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Email}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="0 17 0 0" Grid.Column="3" HorizontalAlignment="Center"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </ScrollViewer>

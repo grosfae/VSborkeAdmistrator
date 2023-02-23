@@ -21,7 +21,7 @@
             <StackPanel Width="300">
                 <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
                     <Border.Background>
-                        <ImageBrush Stretch="Fill" ImageSource="{Binding ProfileImage}"/>
+                        <ImageBrush Stretch="Fill" x:Name="ProfImg" ImageSource="{Binding ProfileImage}"/>
                     </Border.Background>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">

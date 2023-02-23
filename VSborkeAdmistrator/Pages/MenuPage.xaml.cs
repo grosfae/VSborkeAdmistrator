@@ -32,7 +32,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void AccountBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new UsersPage());
         }
 
         private void ComputerListBtn_Click(object sender, RoutedEventArgs e)

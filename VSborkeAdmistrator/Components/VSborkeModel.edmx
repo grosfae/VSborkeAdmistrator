@@ -243,6 +243,7 @@
           <Property Name="Surname" Type="varchar" MaxLength="20" />
           <Property Name="Patronymic" Type="varchar" MaxLength="20" />
           <Property Name="GenderId" Type="int" />
+          <Property Name="DateRegistration" Type="date" />
           <Property Name="Phone" Type="varchar" MaxLength="11" />
           <Property Name="Email" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="20" Nullable="false" />
@@ -1045,6 +1046,7 @@
           <Property Name="Surname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Patronymic" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="GenderId" Type="Int32" />
+          <Property Name="DateRegistration" Type="DateTime" Precision="0" />
           <Property Name="Phone" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
@@ -1565,6 +1567,7 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DateRegistration" ColumnName="DateRegistration" />
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="Surname" ColumnName="Surname" />
