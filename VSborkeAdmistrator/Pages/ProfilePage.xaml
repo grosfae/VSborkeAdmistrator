@@ -69,7 +69,10 @@
                             </Grid>
                             <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Height="100">
                                 <Button x:Name="ProfileEditBtn" Width="230" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить профиль" Click="ProfileEditBtn_Click"/>
-                                <StackPanel Margin="70 0 0 0">
+                                <StackPanel Margin="70 0 0 0" Height="50" Visibility="{Binding BannedTextVisibility}">
+                                    <TextBlock Text="Пользователь заблокирован" Style="{StaticResource Header}" Foreground="Red" FontSize="40"/>
+                                </StackPanel>
+                                <StackPanel Margin="70 0 0 0" Visibility="{Binding PbVisibility}">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Заполнение профиля:"/>
                                     <Grid Height="35" Margin="0 10 0 0">
                                         <ProgressBar Width="400" x:Name="PbProfileProgress" Background="#FFAFAFAF" Foreground="#FF3881EF" HorizontalAlignment="Left"/>

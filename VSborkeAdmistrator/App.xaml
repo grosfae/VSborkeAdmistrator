@@ -253,30 +253,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
-        
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         <!--ScrollBar Style-->
         
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />

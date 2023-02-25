@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="Components\PartialClass\ComputerCase.cs" />
     <Compile Include="Components\PartialClass\Order.cs" />
+    <Compile Include="Components\PartialClass\User.cs" />
     <Compile Include="Pages\ProfileEditPage.xaml.cs">
       <DependentUpon>ProfileEditPage.xaml</DependentUpon>
     </Compile>
@@ -270,9 +271,13 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\UsersButtons\More.png" />
+    <Resource Include="Resources\UsersButtons\MoreOutline.png" />
+    <Resource Include="Resources\UsersButtons\GreenLock.png" />
+    <Resource Include="Resources\UsersButtons\Lock.png" />
+    <Resource Include="Resources\UsersButtons\RedLock.png" />
     <Resource Include="Resources\UsersButtons\ReadWhite.ico" />
     <Resource Include="Resources\UsersButtons\Read.ico" />
-    <Resource Include="Resources\UsersButtons\ReadMore.ico" />
     <Resource Include="Resources\UsersButtons\StopBlue.ico" />
     <Resource Include="Resources\UsersButtons\Stop.ico" />
     <Resource Include="Resources\MessageBoxImages\QuestionMessage.png" />
