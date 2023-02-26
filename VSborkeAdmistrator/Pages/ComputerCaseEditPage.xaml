@@ -156,7 +156,7 @@
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Способ управления подсветкой: " TextWrapping="Wrap" Width="220" Height="60"/>
-                                                <ComboBox x:Name="CbTypeManagmentRGB" SelectedItem="{Binding ColorRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" />
+                                                <ComboBox x:Name="CbTypeManagmentRGB" SelectedItem="{Binding TypeManagmentRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" />
                                             </StackPanel>
                                         </StackPanel>
                                         <StackPanel Margin="130 10 0 0">
