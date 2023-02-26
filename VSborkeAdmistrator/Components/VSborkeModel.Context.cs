@@ -25,27 +25,30 @@ namespace VSborkeAdmistrator.Components
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
         public virtual DbSet<AlignmentPowerBlock> AlignmentPowerBlock { get; set; }
-        public virtual DbSet<ColorId> ColorId { get; set; }
         public virtual DbSet<ColorRGB> ColorRGB { get; set; }
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
-        public virtual DbSet<ComputerCaseImages> ComputerCaseImages { get; set; }
         public virtual DbSet<CoolerSize> CoolerSize { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
         public virtual DbSet<FormFactorMotherboard> FormFactorMotherboard { get; set; }
+        public virtual DbSet<FrontPanelMaterial> FrontPanelMaterial { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<IOPanel> IOPanel { get; set; }
         public virtual DbSet<LiquidCoolingSize> LiquidCoolingSize { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
-        public virtual DbSet<Material> Material { get; set; }
+        public virtual DbSet<MaterialSet> MaterialSet { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrientationMotherboard> OrientationMotherboard { get; set; }
+        public virtual DbSet<PrimaryColor> PrimaryColor { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<SecondColor> SecondColor { get; set; }
         public virtual DbSet<SidePanelFixation> SidePanelFixation { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TypeRGB> TypeRGB { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<WindowAlignment> WindowAlignment { get; set; }
         public virtual DbSet<WindowMaterial> WindowMaterial { get; set; }
     }
 }

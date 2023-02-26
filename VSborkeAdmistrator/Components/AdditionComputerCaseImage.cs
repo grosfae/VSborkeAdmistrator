@@ -12,18 +12,12 @@ namespace VSborkeAdmistrator.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class WindowMaterial
+    public partial class AdditionComputerCaseImage
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public WindowMaterial()
-        {
-            this.ComputerCase = new HashSet<ComputerCase>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int ComputerCaseId { get; set; }
+        public byte[] AdditionImage { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComputerCase> ComputerCase { get; set; }
+        public virtual ComputerCase ComputerCase { get; set; }
     }
 }

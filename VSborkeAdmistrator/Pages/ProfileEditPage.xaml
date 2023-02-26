@@ -43,15 +43,15 @@
                     </Grid.RowDefinitions>
                     <StackPanel Margin="10 30 0 0" Orientation="Horizontal">
                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Имя: "/>
-                        <TextBox Text="{Binding Name}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3"/>
+                        <TextBox Text="{Binding Name}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3" PreviewTextInput="TextBox_PreviewTextInput"/>
                     </StackPanel>
                     <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Row="1">
                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Фамилия: "/>
-                        <TextBox Text="{Binding Surname}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3"/>
+                        <TextBox Text="{Binding Surname}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3" PreviewTextInput="TextBox_PreviewTextInput"/>
                     </StackPanel>
                     <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Row="2">
                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Отчество: "/>
-                        <TextBox Text="{Binding Patronymic}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3"/>
+                        <TextBox Text="{Binding Patronymic}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" Width="150" Height="25" MaxLength="20" Margin="0 0 0 3" PreviewTextInput="TextBox_PreviewTextInput"/>
                     </StackPanel>
                     <StackPanel Margin="10 0 0 0" Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол: " Margin="0 30 0 0"/>
@@ -67,7 +67,7 @@
                     </StackPanel>
                     <StackPanel Margin="10 30 0 0" Grid.Row="3">
                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Номер телефона: "/>
-                        <TextBox Text="{Binding Phone}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Width="170" Height="25" MaxLength="11" Margin="0 5 0 0"/>
+                        <TextBox Text="{Binding Phone}" Style="{StaticResource ProfileTextEnter}" FontSize="18" FontWeight="SemiBold" HorizontalAlignment="Left" Width="170" Height="25" MaxLength="11" Margin="0 5 0 0" PreviewTextInput="TextBox_PreviewTextInput_1"/>
                     </StackPanel>
                     <StackPanel Margin="10 30 0 0" Grid.Row="3" Grid.Column="1">
                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Электронная почта: "/>

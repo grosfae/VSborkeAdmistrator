@@ -12,10 +12,10 @@ namespace VSborkeAdmistrator.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class FrontPanelMaterial
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Material()
+        public FrontPanelMaterial()
         {
             this.ComputerCase = new HashSet<ComputerCase>();
         }

@@ -25,7 +25,7 @@ namespace VSborkeAdmistrator
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new LoginPage());
+            MainFrame.Navigate(new ComputerCaseEditPage());
         }
 
         private void MinButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

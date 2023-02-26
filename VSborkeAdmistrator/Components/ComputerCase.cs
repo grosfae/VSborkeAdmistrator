@@ -17,8 +17,8 @@ namespace VSborkeAdmistrator.Components
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ComputerCase()
         {
+            this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
             this.FormFactorMotherboard = new HashSet<FormFactorMotherboard>();
-            this.Material = new HashSet<Material>();
         }
     
         public int Id { get; set; }
@@ -27,15 +27,18 @@ namespace VSborkeAdmistrator.Components
         public decimal Price { get; set; }
         public Nullable<int> Discount { get; set; }
         public int FormFactorId { get; set; }
-        public decimal Height { get; set; }
-        public decimal Width { get; set; }
-        public decimal Length { get; set; }
+        public int Height { get; set; }
+        public int Width { get; set; }
+        public int Length { get; set; }
         public decimal Weight { get; set; }
-        public decimal MetalWeight { get; set; }
+        public int MaterialSetId { get; set; }
+        public decimal MetalThickness { get; set; }
         public Nullable<bool> GlassOnFrontPanel { get; set; }
         public Nullable<int> GlassOnFrontPanelMaterialId { get; set; }
         public Nullable<bool> WindowOnSide { get; set; }
+        public Nullable<int> WindowAlignmentId { get; set; }
         public Nullable<int> WindowMaterialId { get; set; }
+        public int FrontPanelMaterialId { get; set; }
         public int AlignmentPowerBlockId { get; set; }
         public Nullable<int> HorizontalAddonsSlots { get; set; }
         public Nullable<int> VerticalAddonsSlots { get; set; }
@@ -66,7 +69,6 @@ namespace VSborkeAdmistrator.Components
         public Nullable<int> ColorRGBId { get; set; }
         public Nullable<bool> HubRGB { get; set; }
         public byte[] MainImage { get; set; }
-        public Nullable<int> ComputerCaseImagesId { get; set; }
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
         public Nullable<bool> SpecialDesign { get; set; }
@@ -76,25 +78,26 @@ namespace VSborkeAdmistrator.Components
         public Nullable<bool> IsCustom { get; set; }
         public Nullable<int> UserId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
         public virtual AlignmentPowerBlock AlignmentPowerBlock { get; set; }
-        public virtual ColorId ColorId { get; set; }
-        public virtual ColorId ColorId1 { get; set; }
         public virtual ColorRGB ColorRGB { get; set; }
-        public virtual ComputerCaseImages ComputerCaseImages { get; set; }
         public virtual CoolerSize CoolerSize { get; set; }
         public virtual FormFactor FormFactor { get; set; }
+        public virtual FrontPanelMaterial FrontPanelMaterial { get; set; }
         public virtual IOPanel IOPanel { get; set; }
         public virtual LiquidCoolingSize LiquidCoolingSize { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
+        public virtual MaterialSet MaterialSet { get; set; }
         public virtual OrientationMotherboard OrientationMotherboard { get; set; }
+        public virtual PrimaryColor PrimaryColor { get; set; }
+        public virtual SecondColor SecondColor { get; set; }
         public virtual SidePanelFixation SidePanelFixation { get; set; }
         public virtual TypeRGB TypeRGB { get; set; }
         public virtual User User { get; set; }
+        public virtual WindowAlignment WindowAlignment { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
-        public virtual WindowMaterial WindowMaterial1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormFactorMotherboard> FormFactorMotherboard { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Material> Material { get; set; }
     }
 }

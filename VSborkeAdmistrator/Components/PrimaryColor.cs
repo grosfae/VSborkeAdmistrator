@@ -12,13 +12,12 @@ namespace VSborkeAdmistrator.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class ColorId
+    public partial class PrimaryColor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ColorId()
+        public PrimaryColor()
         {
             this.ComputerCase = new HashSet<ComputerCase>();
-            this.ComputerCase1 = new HashSet<ComputerCase>();
         }
     
         public int Id { get; set; }
@@ -27,7 +26,5 @@ namespace VSborkeAdmistrator.Components
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComputerCase> ComputerCase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComputerCase> ComputerCase1 { get; set; }
     }
 }
