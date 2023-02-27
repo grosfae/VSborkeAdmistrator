@@ -146,30 +146,17 @@
                                             <Viewbox Height="36" HorizontalAlignment="Left">
                                                 <CheckBox Style="{StaticResource CbContent}" IsChecked="{Binding RGB}" Content="Наличие RGB - подсветки" />
                                             </Viewbox>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Тип подсветки: " Height="28"/>
-                                                <ComboBox x:Name="CbTypeRGB" SelectedItem="{Binding TypeRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                                <ComboBox x:Name="CbTypeRGB" SelectedItem="{Binding TypeRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" Margin="57 0 0 0"/>
                                             </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Цвет подсветки: " Height="28"/>
-                                                <ComboBox x:Name="CbColorRGB" SelectedItem="{Binding ColorRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                                <ComboBox x:Name="CbColorRGB" SelectedItem="{Binding ColorRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="43 0 0 0"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Способ управления подсветкой: " TextWrapping="Wrap" Width="220" Height="60"/>
                                                 <ComboBox x:Name="CbTypeManagmentRGB" SelectedItem="{Binding TypeManagmentRGB}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" />
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Margin="130 10 0 0">
-                                            <Viewbox Height="36">
-                                                <CheckBox Style="{StaticResource CbContent}" IsChecked="{Binding WindowOnSide}" Content="Окно на боковой стенке" />
-                                            </Viewbox>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение окна: " Height="28"/>
-                                                <ComboBox x:Name="CbAаlignmentWindow" SelectedItem="{Binding WindowAlignment}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материалы окна: " Height="28"/>
-                                                <ComboBox x:Name="CbаaterialWindow" SelectedItem="{Binding WindowMaterial}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
