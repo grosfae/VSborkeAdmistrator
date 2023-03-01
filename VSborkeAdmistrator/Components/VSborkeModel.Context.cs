@@ -31,7 +31,6 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
         public virtual DbSet<CoolerSize> CoolerSize { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
-        public virtual DbSet<FormFactorMotherboard> FormFactorMotherboard { get; set; }
         public virtual DbSet<FrontPanelMaterial> FrontPanelMaterial { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<IOPanel> IOPanel { get; set; }
@@ -40,12 +39,14 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<MaterialSet> MaterialSet { get; set; }
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrientationMotherboard> OrientationMotherboard { get; set; }
+        public virtual DbSet<PowerBlockStandartSupport> PowerBlockStandartSupport { get; set; }
         public virtual DbSet<PrimaryColor> PrimaryColor { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<SecondColor> SecondColor { get; set; }
         public virtual DbSet<SidePanelFixation> SidePanelFixation { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TypeManagmentRGB> TypeManagmentRGB { get; set; }
         public virtual DbSet<TypeRGB> TypeRGB { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<WindowAlignment> WindowAlignment { get; set; }

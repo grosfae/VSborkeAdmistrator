@@ -12,10 +12,10 @@ namespace VSborkeAdmistrator.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class FormFactorMotherboard
+    public partial class TypeManagmentRGB
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public FormFactorMotherboard()
+        public TypeManagmentRGB()
         {
             this.ComputerCase = new HashSet<ComputerCase>();
         }

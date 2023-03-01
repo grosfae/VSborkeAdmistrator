@@ -49,6 +49,8 @@
           <Property Name="WindowAlignmentId" Type="int" />
           <Property Name="WindowMaterialId" Type="int" />
           <Property Name="FrontPanelMaterialId" Type="int" Nullable="false" />
+          <Property Name="MotherboardStandartSupport" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="PowerBlockStandartSupportId" Type="int" Nullable="false" />
           <Property Name="AlignmentPowerBlockId" Type="int" Nullable="false" />
           <Property Name="HorizontalAddonsSlots" Type="int" />
           <Property Name="VerticalAddonsSlots" Type="int" />
@@ -77,7 +79,7 @@
           <Property Name="RGB" Type="bit" />
           <Property Name="TypeRGBId" Type="int" />
           <Property Name="ColorRGBId" Type="int" />
-          <Property Name="HubRGB" Type="bit" />
+          <Property Name="TypeManagmentRGBId" Type="int" />
           <Property Name="MainImage" Type="image" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
           <Property Name="DeliverySet" Type="varchar" MaxLength="100" Nullable="false" />
@@ -101,21 +103,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FormFactorMotherboard">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
-        </EntityType>
-        <EntityType Name="FormFactorMotherboardComputerCase">
-          <Key>
-            <PropertyRef Name="FormFactorMotherboardId" />
-            <PropertyRef Name="ComputerCaseId" />
-          </Key>
-          <Property Name="FormFactorMotherboardId" Type="int" Nullable="false" />
-          <Property Name="ComputerCaseId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="FrontPanelMaterial">
           <Key>
@@ -185,6 +172,13 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
+        <EntityType Name="PowerBlockStandartSupport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
         <EntityType Name="PrimaryColor">
           <Key>
             <PropertyRef Name="Id" />
@@ -233,12 +227,19 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TypeManagmentRGB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="TypeRGB">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -404,6 +405,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComputerCase_PowerBlockStandartSupport">
+          <End Role="PowerBlockStandartSupport" Type="Self.PowerBlockStandartSupport" Multiplicity="1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerBlockStandartSupport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="PowerBlockStandartSupportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComputerCase_PrimaryColor">
           <End Role="PrimaryColor" Type="Self.PrimaryColor" Multiplicity="1" />
           <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
@@ -437,6 +450,18 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="SidePanalFixationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_TypeManagmentRGB">
+          <End Role="TypeManagmentRGB" Type="Self.TypeManagmentRGB" Multiplicity="0..1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeManagmentRGB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="TypeManagmentRGBId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -485,30 +510,6 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="WindowMaterialId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormFactorMotherboardComputerCase_ComputerCase">
-          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
-          <End Role="FormFactorMotherboardComputerCase" Type="Self.FormFactorMotherboardComputerCase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ComputerCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FormFactorMotherboardComputerCase">
-              <PropertyRef Name="ComputerCaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormFactorMotherboardComputerCase_FormFactorMotherboard">
-          <End Role="FormFactorMotherboard" Type="Self.FormFactorMotherboard" Multiplicity="1" />
-          <End Role="FormFactorMotherboardComputerCase" Type="Self.FormFactorMotherboardComputerCase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormFactorMotherboard">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="FormFactorMotherboardComputerCase">
-              <PropertyRef Name="FormFactorMotherboardId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -567,8 +568,6 @@
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerSize" EntityType="Self.CoolerSize" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FormFactorMotherboard" EntityType="Self.FormFactorMotherboard" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="FormFactorMotherboardComputerCase" EntityType="Self.FormFactorMotherboardComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FrontPanelMaterial" EntityType="Self.FrontPanelMaterial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IOPanel" EntityType="Self.IOPanel" Schema="dbo" store:Type="Tables" />
@@ -577,12 +576,14 @@
           <EntitySet Name="MaterialSet" EntityType="Self.MaterialSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrientationMotherboard" EntityType="Self.OrientationMotherboard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PowerBlockStandartSupport" EntityType="Self.PowerBlockStandartSupport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrimaryColor" EntityType="Self.PrimaryColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SecondColor" EntityType="Self.SecondColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SidePanelFixation" EntityType="Self.SidePanelFixation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeManagmentRGB" EntityType="Self.TypeManagmentRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeRGB" EntityType="Self.TypeRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WindowAlignment" EntityType="Self.WindowAlignment" Schema="dbo" store:Type="Tables" />
@@ -631,6 +632,10 @@
             <End Role="OrientationMotherboard" EntitySet="OrientationMotherboard" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_PowerBlockStandartSupport" Association="Self.FK_ComputerCase_PowerBlockStandartSupport">
+            <End Role="PowerBlockStandartSupport" EntitySet="PowerBlockStandartSupport" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_PrimaryColor" Association="Self.FK_ComputerCase_PrimaryColor">
             <End Role="PrimaryColor" EntitySet="PrimaryColor" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
@@ -641,6 +646,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_SidePanelFixation" Association="Self.FK_ComputerCase_SidePanelFixation">
             <End Role="SidePanelFixation" EntitySet="SidePanelFixation" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_TypeManagmentRGB" Association="Self.FK_ComputerCase_TypeManagmentRGB">
+            <End Role="TypeManagmentRGB" EntitySet="TypeManagmentRGB" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_TypeRGB" Association="Self.FK_ComputerCase_TypeRGB">
@@ -658,14 +667,6 @@
           <AssociationSet Name="FK_ComputerCase_WindowMaterial" Association="Self.FK_ComputerCase_WindowMaterial">
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormFactorMotherboardComputerCase_ComputerCase" Association="Self.FK_FormFactorMotherboardComputerCase_ComputerCase">
-            <End Role="ComputerCase" EntitySet="ComputerCase" />
-            <End Role="FormFactorMotherboardComputerCase" EntitySet="FormFactorMotherboardComputerCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_FormFactorMotherboardComputerCase_FormFactorMotherboard" Association="Self.FK_FormFactorMotherboardComputerCase_FormFactorMotherboard">
-            <End Role="FormFactorMotherboard" EntitySet="FormFactorMotherboard" />
-            <End Role="FormFactorMotherboardComputerCase" EntitySet="FormFactorMotherboardComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
             <End Role="Status" EntitySet="Status" />
@@ -695,7 +696,6 @@
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
           <EntitySet Name="CoolerSize" EntityType="VSborkeBaseModel.CoolerSize" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
-          <EntitySet Name="FormFactorMotherboard" EntityType="VSborkeBaseModel.FormFactorMotherboard" />
           <EntitySet Name="FrontPanelMaterial" EntityType="VSborkeBaseModel.FrontPanelMaterial" />
           <EntitySet Name="Gender" EntityType="VSborkeBaseModel.Gender" />
           <EntitySet Name="IOPanel" EntityType="VSborkeBaseModel.IOPanel" />
@@ -704,12 +704,14 @@
           <EntitySet Name="MaterialSet" EntityType="VSborkeBaseModel.MaterialSet" />
           <EntitySet Name="Order" EntityType="VSborkeBaseModel.Order" />
           <EntitySet Name="OrientationMotherboard" EntityType="VSborkeBaseModel.OrientationMotherboard" />
+          <EntitySet Name="PowerBlockStandartSupport" EntityType="VSborkeBaseModel.PowerBlockStandartSupport" />
           <EntitySet Name="PrimaryColor" EntityType="VSborkeBaseModel.PrimaryColor" />
           <EntitySet Name="Role" EntityType="VSborkeBaseModel.Role" />
           <EntitySet Name="SecondColor" EntityType="VSborkeBaseModel.SecondColor" />
           <EntitySet Name="SidePanelFixation" EntityType="VSborkeBaseModel.SidePanelFixation" />
           <EntitySet Name="Status" EntityType="VSborkeBaseModel.Status" />
           <EntitySet Name="sysdiagrams" EntityType="VSborkeBaseModel.sysdiagrams" />
+          <EntitySet Name="TypeManagmentRGB" EntityType="VSborkeBaseModel.TypeManagmentRGB" />
           <EntitySet Name="TypeRGB" EntityType="VSborkeBaseModel.TypeRGB" />
           <EntitySet Name="User" EntityType="VSborkeBaseModel.User" />
           <EntitySet Name="WindowAlignment" EntityType="VSborkeBaseModel.WindowAlignment" />
@@ -758,6 +760,10 @@
             <End Role="OrientationMotherboard" EntitySet="OrientationMotherboard" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_PowerBlockStandartSupport" Association="VSborkeBaseModel.FK_ComputerCase_PowerBlockStandartSupport">
+            <End Role="PowerBlockStandartSupport" EntitySet="PowerBlockStandartSupport" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_PrimaryColor" Association="VSborkeBaseModel.FK_ComputerCase_PrimaryColor">
             <End Role="PrimaryColor" EntitySet="PrimaryColor" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
@@ -768,6 +774,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_SidePanelFixation" Association="VSborkeBaseModel.FK_ComputerCase_SidePanelFixation">
             <End Role="SidePanelFixation" EntitySet="SidePanelFixation" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_TypeManagmentRGB" Association="VSborkeBaseModel.FK_ComputerCase_TypeManagmentRGB">
+            <End Role="TypeManagmentRGB" EntitySet="TypeManagmentRGB" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_TypeRGB" Association="VSborkeBaseModel.FK_ComputerCase_TypeRGB">
@@ -801,10 +811,6 @@
           <AssociationSet Name="FK_User_Role" Association="VSborkeBaseModel.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FormFactorMotherboardComputerCase" Association="VSborkeBaseModel.FormFactorMotherboardComputerCase">
-            <End Role="ComputerCase" EntitySet="ComputerCase" />
-            <End Role="FormFactorMotherboard" EntitySet="FormFactorMotherboard" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdditionComputerCaseImage">
@@ -854,6 +860,8 @@
           <Property Name="WindowAlignmentId" Type="Int32" />
           <Property Name="WindowMaterialId" Type="Int32" />
           <Property Name="FrontPanelMaterialId" Type="Int32" Nullable="false" />
+          <Property Name="MotherboardStandartSupport" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="PowerBlockStandartSupportId" Type="Int32" Nullable="false" />
           <Property Name="AlignmentPowerBlockId" Type="Int32" Nullable="false" />
           <Property Name="HorizontalAddonsSlots" Type="Int32" />
           <Property Name="VerticalAddonsSlots" Type="Int32" />
@@ -882,7 +890,7 @@
           <Property Name="RGB" Type="Boolean" />
           <Property Name="TypeRGBId" Type="Int32" />
           <Property Name="ColorRGBId" Type="Int32" />
-          <Property Name="HubRGB" Type="Boolean" />
+          <Property Name="TypeManagmentRGBId" Type="Int32" />
           <Property Name="MainImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <Property Name="DeliverySet" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -903,14 +911,15 @@
           <NavigationProperty Name="Manufacturer" Relationship="VSborkeBaseModel.FK_ComputerCase_Manufacturer" FromRole="ComputerCase" ToRole="Manufacturer" />
           <NavigationProperty Name="MaterialSet" Relationship="VSborkeBaseModel.FK_ComputerCase_MaterialSet" FromRole="ComputerCase" ToRole="MaterialSet" />
           <NavigationProperty Name="OrientationMotherboard" Relationship="VSborkeBaseModel.FK_ComputerCase_OrientationMotherboard" FromRole="ComputerCase" ToRole="OrientationMotherboard" />
+          <NavigationProperty Name="PowerBlockStandartSupport" Relationship="VSborkeBaseModel.FK_ComputerCase_PowerBlockStandartSupport" FromRole="ComputerCase" ToRole="PowerBlockStandartSupport" />
           <NavigationProperty Name="PrimaryColor" Relationship="VSborkeBaseModel.FK_ComputerCase_PrimaryColor" FromRole="ComputerCase" ToRole="PrimaryColor" />
           <NavigationProperty Name="SecondColor" Relationship="VSborkeBaseModel.FK_ComputerCase_SecondColor" FromRole="ComputerCase" ToRole="SecondColor" />
           <NavigationProperty Name="SidePanelFixation" Relationship="VSborkeBaseModel.FK_ComputerCase_SidePanelFixation" FromRole="ComputerCase" ToRole="SidePanelFixation" />
+          <NavigationProperty Name="TypeManagmentRGB" Relationship="VSborkeBaseModel.FK_ComputerCase_TypeManagmentRGB" FromRole="ComputerCase" ToRole="TypeManagmentRGB" />
           <NavigationProperty Name="TypeRGB" Relationship="VSborkeBaseModel.FK_ComputerCase_TypeRGB" FromRole="ComputerCase" ToRole="TypeRGB" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="ComputerCase" ToRole="User" />
           <NavigationProperty Name="WindowAlignment" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowAlignment" FromRole="ComputerCase" ToRole="WindowAlignment" />
           <NavigationProperty Name="WindowMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowMaterial" FromRole="ComputerCase" ToRole="WindowMaterial" />
-          <NavigationProperty Name="FormFactorMotherboard" Relationship="VSborkeBaseModel.FormFactorMotherboardComputerCase" FromRole="ComputerCase" ToRole="FormFactorMotherboard" />
         </EntityType>
         <EntityType Name="CoolerSize">
           <Key>
@@ -927,14 +936,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_FormFactor" FromRole="FormFactor" ToRole="ComputerCase" />
-        </EntityType>
-        <EntityType Name="FormFactorMotherboard">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FormFactorMotherboardComputerCase" FromRole="FormFactorMotherboard" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="FrontPanelMaterial">
           <Key>
@@ -1013,6 +1014,14 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_OrientationMotherboard" FromRole="OrientationMotherboard" ToRole="ComputerCase" />
         </EntityType>
+        <EntityType Name="PowerBlockStandartSupport">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_PowerBlockStandartSupport" FromRole="PowerBlockStandartSupport" ToRole="ComputerCase" />
+        </EntityType>
         <EntityType Name="PrimaryColor">
           <Key>
             <PropertyRef Name="Id" />
@@ -1066,12 +1075,20 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="TypeManagmentRGB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_TypeManagmentRGB" FromRole="TypeManagmentRGB" ToRole="ComputerCase" />
+        </EntityType>
         <EntityType Name="TypeRGB">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_TypeRGB" FromRole="TypeRGB" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="User">
@@ -1244,6 +1261,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComputerCase_PowerBlockStandartSupport">
+          <End Type="VSborkeBaseModel.PowerBlockStandartSupport" Role="PowerBlockStandartSupport" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PowerBlockStandartSupport">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="PowerBlockStandartSupportId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComputerCase_PrimaryColor">
           <End Type="VSborkeBaseModel.PrimaryColor" Role="PrimaryColor" Multiplicity="1" />
           <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
@@ -1277,6 +1306,18 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="SidePanalFixationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_TypeManagmentRGB">
+          <End Type="VSborkeBaseModel.TypeManagmentRGB" Role="TypeManagmentRGB" Multiplicity="0..1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeManagmentRGB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="TypeManagmentRGBId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1376,10 +1417,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FormFactorMotherboardComputerCase">
-          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
-          <End Type="VSborkeBaseModel.FormFactorMotherboard" Role="FormFactorMotherboard" Multiplicity="*" />
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1423,7 +1460,7 @@
                 <ScalarProperty Name="DeliverySet" ColumnName="DeliverySet" />
                 <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
                 <ScalarProperty Name="MainImage" ColumnName="MainImage" />
-                <ScalarProperty Name="HubRGB" ColumnName="HubRGB" />
+                <ScalarProperty Name="TypeManagmentRGBId" ColumnName="TypeManagmentRGBId" />
                 <ScalarProperty Name="ColorRGBId" ColumnName="ColorRGBId" />
                 <ScalarProperty Name="TypeRGBId" ColumnName="TypeRGBId" />
                 <ScalarProperty Name="RGB" ColumnName="RGB" />
@@ -1452,6 +1489,8 @@
                 <ScalarProperty Name="VerticalAddonsSlots" ColumnName="VerticalAddonsSlots" />
                 <ScalarProperty Name="HorizontalAddonsSlots" ColumnName="HorizontalAddonsSlots" />
                 <ScalarProperty Name="AlignmentPowerBlockId" ColumnName="AlignmentPowerBlockId" />
+                <ScalarProperty Name="PowerBlockStandartSupportId" ColumnName="PowerBlockStandartSupportId" />
+                <ScalarProperty Name="MotherboardStandartSupport" ColumnName="MotherboardStandartSupport" />
                 <ScalarProperty Name="FrontPanelMaterialId" ColumnName="FrontPanelMaterialId" />
                 <ScalarProperty Name="WindowMaterialId" ColumnName="WindowMaterialId" />
                 <ScalarProperty Name="WindowAlignmentId" ColumnName="WindowAlignmentId" />
@@ -1484,14 +1523,6 @@
           <EntitySetMapping Name="FormFactor">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FormFactor">
               <MappingFragment StoreEntitySet="FormFactor">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="FormFactorMotherboard">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.FormFactorMotherboard">
-              <MappingFragment StoreEntitySet="FormFactorMotherboard">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
@@ -1573,6 +1604,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PowerBlockStandartSupport">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.PowerBlockStandartSupport">
+              <MappingFragment StoreEntitySet="PowerBlockStandartSupport">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PrimaryColor">
             <EntityTypeMapping TypeName="VSborkeBaseModel.PrimaryColor">
               <MappingFragment StoreEntitySet="PrimaryColor">
@@ -1627,6 +1666,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="TypeManagmentRGB">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.TypeManagmentRGB">
+              <MappingFragment StoreEntitySet="TypeManagmentRGB">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="TypeRGB">
             <EntityTypeMapping TypeName="VSborkeBaseModel.TypeRGB">
               <MappingFragment StoreEntitySet="TypeRGB">
@@ -1670,14 +1717,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FormFactorMotherboardComputerCase" TypeName="VSborkeBaseModel.FormFactorMotherboardComputerCase" StoreEntitySet="FormFactorMotherboardComputerCase">
-            <EndProperty Name="FormFactorMotherboard">
-              <ScalarProperty Name="Id" ColumnName="FormFactorMotherboardId" />
-            </EndProperty>
-            <EndProperty Name="ComputerCase">
-              <ScalarProperty Name="Id" ColumnName="ComputerCaseId" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

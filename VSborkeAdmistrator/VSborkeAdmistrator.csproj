@@ -69,9 +69,6 @@
     <Compile Include="Components\AdditionComputerCaseImage.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\FormFactorMotherboard.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\FrontPanelMaterial.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -84,10 +81,16 @@
     <Compile Include="Components\PartialClass\ComputerCase.cs" />
     <Compile Include="Components\PartialClass\Order.cs" />
     <Compile Include="Components\PartialClass\User.cs" />
+    <Compile Include="Components\PowerBlockStandartSupport.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\PrimaryColor.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SecondColor.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TypeManagmentRGB.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\WindowAlignment.cs">

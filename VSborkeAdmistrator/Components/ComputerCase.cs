@@ -18,7 +18,6 @@ namespace VSborkeAdmistrator.Components
         public ComputerCase()
         {
             this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
-            this.FormFactorMotherboard = new HashSet<FormFactorMotherboard>();
         }
     
         public int Id { get; set; }
@@ -39,6 +38,8 @@ namespace VSborkeAdmistrator.Components
         public Nullable<int> WindowAlignmentId { get; set; }
         public Nullable<int> WindowMaterialId { get; set; }
         public int FrontPanelMaterialId { get; set; }
+        public string MotherboardStandartSupport { get; set; }
+        public int PowerBlockStandartSupportId { get; set; }
         public int AlignmentPowerBlockId { get; set; }
         public Nullable<int> HorizontalAddonsSlots { get; set; }
         public Nullable<int> VerticalAddonsSlots { get; set; }
@@ -67,7 +68,7 @@ namespace VSborkeAdmistrator.Components
         public Nullable<bool> RGB { get; set; }
         public Nullable<int> TypeRGBId { get; set; }
         public Nullable<int> ColorRGBId { get; set; }
-        public Nullable<bool> HubRGB { get; set; }
+        public Nullable<int> TypeManagmentRGBId { get; set; }
         public byte[] MainImage { get; set; }
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
@@ -90,14 +91,14 @@ namespace VSborkeAdmistrator.Components
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual MaterialSet MaterialSet { get; set; }
         public virtual OrientationMotherboard OrientationMotherboard { get; set; }
+        public virtual PowerBlockStandartSupport PowerBlockStandartSupport { get; set; }
         public virtual PrimaryColor PrimaryColor { get; set; }
         public virtual SecondColor SecondColor { get; set; }
         public virtual SidePanelFixation SidePanelFixation { get; set; }
+        public virtual TypeManagmentRGB TypeManagmentRGB { get; set; }
         public virtual TypeRGB TypeRGB { get; set; }
         public virtual User User { get; set; }
         public virtual WindowAlignment WindowAlignment { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FormFactorMotherboard> FormFactorMotherboard { get; set; }
     }
 }
