@@ -69,6 +69,9 @@
     <Compile Include="Components\AdditionComputerCaseImage.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\CoolerInside.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\FrontPanelMaterial.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -132,9 +135,6 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\ComputerCase.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\CoolerSize.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\FormFactor.cs">

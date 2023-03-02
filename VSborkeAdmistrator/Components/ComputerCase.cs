@@ -46,11 +46,10 @@ namespace VSborkeAdmistrator.Components
         public int VerticalAddonSlotId { get; set; }
         public int MaxLengthVideocard { get; set; }
         public int MaxHeightCPUCooler { get; set; }
-        public Nullable<int> CountSlotSDD { get; set; }
-        public Nullable<int> CountSlotHDD { get; set; }
-        public Nullable<bool> CoolerAdd { get; set; }
-        public Nullable<int> CoolerInside { get; set; }
-        public Nullable<int> CoolerSizeId { get; set; }
+        public int CountSlotSSDId { get; set; }
+        public int CountSlotHDDId { get; set; }
+        public int CountSlotXHDDId { get; set; }
+        public int CoolerInsideId { get; set; }
         public Nullable<bool> SupportFrontCooler { get; set; }
         public Nullable<bool> SupportBackCooler { get; set; }
         public Nullable<bool> SupportTopCooler { get; set; }
@@ -84,11 +83,10 @@ namespace VSborkeAdmistrator.Components
         public virtual ICollection<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
         public virtual AlignmentPowerBlock AlignmentPowerBlock { get; set; }
         public virtual ColorRGB ColorRGB { get; set; }
-        public virtual CoolerSize CoolerSize { get; set; }
+        public virtual CoolerInside CoolerInside { get; set; }
         public virtual FormFactor FormFactor { get; set; }
         public virtual FrontPanelMaterial FrontPanelMaterial { get; set; }
         public virtual HorizontalAddonSlot HorizontalAddonSlot { get; set; }
-        public virtual HorizontalAddonSlot HorizontalAddonSlot1 { get; set; }
         public virtual IOPanel IOPanel { get; set; }
         public virtual LiquidCoolingSize LiquidCoolingSize { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }

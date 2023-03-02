@@ -233,6 +233,10 @@
                                             <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вертикальные слоты расширения: "/>
                                             <ComboBox x:Name="CbVerticalAddonSlot" SelectedItem="{Binding VerticalAddonSlot}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
                                         </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 2.5 накопителей: "/>
+                                            <ComboBox x:Name="CbVerfticalAddonSlot" SelectedItem="{Binding VerticalAddonSlot}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                        </StackPanel>
                                     </StackPanel>
                                     <StackPanel Margin="80 0 0 0">
                                         <StackPanel Orientation="Vertical">

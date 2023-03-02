@@ -18,7 +18,6 @@ namespace VSborkeAdmistrator.Components
         public HorizontalAddonSlot()
         {
             this.ComputerCase = new HashSet<ComputerCase>();
-            this.ComputerCase1 = new HashSet<ComputerCase>();
         }
     
         public int Id { get; set; }
@@ -26,7 +25,5 @@ namespace VSborkeAdmistrator.Components
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComputerCase> ComputerCase { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ComputerCase> ComputerCase1 { get; set; }
     }
 }

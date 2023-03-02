@@ -4,43 +4,42 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="ee40d9695e3a4b518f982e0c20fb62ac" Name="Diagram1" ZoomLevel="106">
-        <EntityTypeShape EntityType="VSborkeBaseModel.AdditionComputerCaseImage" Width="1.5" PointX="5.25" PointY="9.125" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.AlignmentPowerBlock" Width="1.5" PointX="0.75" PointY="22" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.ColorRGB" Width="1.5" PointX="0.75" PointY="39.5" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.ComputerCase" Width="1.5" PointX="3" PointY="1.625" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.CoolerSize" Width="1.5" PointX="0.75" PointY="41.75" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.FormFactor" Width="1.5" PointX="0.75" PointY="51.375" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.FrontPanelMaterial" Width="1.5" PointX="0.75" PointY="58.625" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Gender" Width="1.5" PointX="1.5" PointY="34.625" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.HorizontalAddonSlot" Width="1.5" PointX="0.75" PointY="9.125" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.IOPanel" Width="1.5" PointX="0.75" PointY="26.625" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.LiquidCoolingSize" Width="1.5" PointX="0.75" PointY="44.125" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Manufacturer" Width="1.5" PointX="0.75" PointY="63.25" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.MaterialSet" Width="1.5" PointX="0.75" PointY="24.375" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Order" Width="1.5" PointX="3" PointY="29.75" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.OrientationMotherboard" Width="1.5" PointX="0.75" PointY="53.75" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.PowerBlockStandartSupport" Width="1.5" PointX="0.75" PointY="46.625" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.PrimaryColor" Width="1.5" PointX="0.75" PointY="19.5" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Role" Width="1.5" PointX="1.5" PointY="36.875" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.SecondColor" Width="1.5" PointX="0.75" PointY="56" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.SidePanelFixation" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.Status" Width="1.5" PointX="0.75" PointY="5.625" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.TypeManagmentRGB" Width="1.5" PointX="0.75" PointY="60.875" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.TypeRGB" Width="1.5" PointX="0.75" PointY="17.125" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.User" Width="1.5" PointX="0.75" PointY="29.375" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.VerticalAddonSlot" Width="1.5" PointX="0.75" PointY="49" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.WindowAlignment" Width="1.5" PointX="0.75" PointY="12.375" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.WindowMaterial" Width="1.5" PointX="0.75" PointY="65.625" />
+      <Diagram DiagramId="ee40d9695e3a4b518f982e0c20fb62ac" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="VSborkeBaseModel.AdditionComputerCaseImage" Width="1.5" PointX="10.5" PointY="11.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.AlignmentPowerBlock" Width="1.5" PointX="6" PointY="17.875" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.ColorRGB" Width="1.5" PointX="6" PointY="20.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.ComputerCase" Width="1.5" PointX="8.25" PointY="4" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.CoolerInside" Width="1.5" PointX="6" PointY="51.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.FormFactor" Width="1.5" PointX="6" PointY="56.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.FrontPanelMaterial" Width="1.5" PointX="6" PointY="39.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Gender" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.HorizontalAddonSlot" Width="1.5" PointX="6" PointY="15.5" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.IOPanel" Width="1.5" PointX="6" PointY="53.625" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.LiquidCoolingSize" Width="1.5" PointX="6" PointY="46.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Manufacturer" Width="1.5" PointX="6" PointY="24.875" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.MaterialSet" Width="1.5" PointX="6" PointY="58.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Order" Width="1.5" PointX="5.25" PointY="10.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.OrientationMotherboard" Width="1.5" PointX="6" PointY="22.625" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.PowerBlockStandartSupport" Width="1.5" PointX="6" PointY="44.125" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.PrimaryColor" Width="1.5" PointX="6" PointY="29.625" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Role" Width="1.5" PointX="0.75" PointY="8.375" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.SecondColor" Width="1.5" PointX="6" PointY="36.875" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.SidePanelFixation" Width="1.5" PointX="6" PointY="41.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.Status" Width="1.5" PointX="3" PointY="7.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.TypeManagmentRGB" Width="1.5" PointX="6" PointY="27.25" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.TypeRGB" Width="1.5" PointX="6" PointY="32.125" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.User" Width="1.5" PointX="3" PointY="10" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.VerticalAddonSlot" Width="1.5" PointX="6" PointY="34.5" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.WindowAlignment" Width="1.5" PointX="6" PointY="61.125" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.WindowMaterial" Width="1.5" PointX="6" PointY="49" />
         <AssociationConnector Association="VSborkeBaseModel.FK_AdditionComputerCaseImage_ComputerCase" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_AlignmentPowerBlock" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_ColorRGB" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_CoolerSize1" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_CoolerInside" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_FormFactor" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_FrontPanelMaterial" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_HorizontalAddonSlot" />
-        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_HorizontalAddonSlot2" />
+        <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_HorizontalAddonSlot1" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_IOPanel" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_LiquidCoolingSize" />
         <AssociationConnector Association="VSborkeBaseModel.FK_ComputerCase_Manufacturer" />

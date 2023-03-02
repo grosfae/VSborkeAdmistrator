@@ -29,7 +29,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<AlignmentPowerBlock> AlignmentPowerBlock { get; set; }
         public virtual DbSet<ColorRGB> ColorRGB { get; set; }
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
-        public virtual DbSet<CoolerSize> CoolerSize { get; set; }
+        public virtual DbSet<CoolerInside> CoolerInside { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
         public virtual DbSet<FrontPanelMaterial> FrontPanelMaterial { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
