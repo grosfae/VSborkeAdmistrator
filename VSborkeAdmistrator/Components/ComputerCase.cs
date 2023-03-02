@@ -41,8 +41,9 @@ namespace VSborkeAdmistrator.Components
         public string MotherboardStandartSupport { get; set; }
         public int PowerBlockStandartSupportId { get; set; }
         public int AlignmentPowerBlockId { get; set; }
-        public Nullable<int> HorizontalAddonsSlots { get; set; }
-        public Nullable<int> VerticalAddonsSlots { get; set; }
+        public int MaxLengthPowerBlock { get; set; }
+        public int HorizontalAddonSlotId { get; set; }
+        public int VerticalAddonSlotId { get; set; }
         public int MaxLengthVideocard { get; set; }
         public int MaxHeightCPUCooler { get; set; }
         public Nullable<int> CountSlotSDD { get; set; }
@@ -86,6 +87,8 @@ namespace VSborkeAdmistrator.Components
         public virtual CoolerSize CoolerSize { get; set; }
         public virtual FormFactor FormFactor { get; set; }
         public virtual FrontPanelMaterial FrontPanelMaterial { get; set; }
+        public virtual HorizontalAddonSlot HorizontalAddonSlot { get; set; }
+        public virtual HorizontalAddonSlot HorizontalAddonSlot1 { get; set; }
         public virtual IOPanel IOPanel { get; set; }
         public virtual LiquidCoolingSize LiquidCoolingSize { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
@@ -98,6 +101,7 @@ namespace VSborkeAdmistrator.Components
         public virtual TypeManagmentRGB TypeManagmentRGB { get; set; }
         public virtual TypeRGB TypeRGB { get; set; }
         public virtual User User { get; set; }
+        public virtual VerticalAddonSlot VerticalAddonSlot { get; set; }
         public virtual WindowAlignment WindowAlignment { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
     }

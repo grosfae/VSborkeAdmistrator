@@ -75,6 +75,9 @@
     <Compile Include="Components\Gender.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\HorizontalAddonSlot.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\MaterialSet.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -91,6 +94,9 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\TypeManagmentRGB.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\VerticalAddonSlot.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\WindowAlignment.cs">

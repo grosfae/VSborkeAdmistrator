@@ -79,9 +79,12 @@
 
         <Style TargetType="TextBox" x:Key="ProfileTextEnter">
             <Setter Property="FontFamily" Value="Resources/Fonts/#Raleway"/>
-            
         </Style>
-        
+
+        <Style TargetType="TextBox" x:Key="NumbersTextEnter">
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
+        </Style>
+
         <!--Buttons Style-->
         
         <Style TargetType="Button" x:Key="MenuBtn">

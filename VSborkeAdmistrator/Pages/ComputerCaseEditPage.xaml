@@ -38,7 +38,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="10 10 0 0">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Цена: "/>
-                                    <TextBox Text="{Binding Price}" Width="200" Style="{StaticResource  ProfileTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" PreviewTextInput="TextBox_PreviewTextInput_1" MaxLength="6"/>
+                                    <TextBox Text="{Binding Price}" Width="200" Style="{StaticResource  NumbersTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" PreviewTextInput="TextBox_PreviewTextInput_1" MaxLength="6"/>
                                 </StackPanel>
                                 <StackPanel Margin="10 10 0 0">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Производитель: "/>
@@ -58,21 +58,21 @@
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Длина: "/>
-                                                <TextBox Text="{Binding Length}" Width="60" MaxLength="3" Style="{StaticResource  ProfileTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" Margin="18 0 0 0" ToolTip="Указать в мм"/>
+                                                <TextBox Text="{Binding Length}" Width="60" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" Margin="18 0 0 0" ToolTip="Указать в мм"/>
                                             </StackPanel>
                                             <StackPanel Margin="50 10 0 0" Orientation="Horizontal">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Ширина: "/>
-                                                <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Style="{StaticResource  ProfileTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
+                                                <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
                                             </StackPanel>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal">
                                             <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Высота: "/>
-                                                <TextBox Text="{Binding Height}" Width="60" MaxLength="3" Margin="7 0 0 0" Style="{StaticResource  ProfileTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
+                                                <TextBox Text="{Binding Height}" Width="60" MaxLength="3" Margin="7 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
                                             </StackPanel>
                                             <StackPanel Margin="50 20 0 0" Orientation="Horizontal">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вес: "/>
-                                                <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Margin="46 0 0 0" Style="{StaticResource  ProfileTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в кг"/>
+                                                <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Margin="46 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в кг"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>
@@ -114,7 +114,7 @@
                                             </StackPanel>
                                             <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Толщина металла: "/>
-                                                <TextBox Text="{Binding Width}" Width="80" MaxLength="4" Margin="49 0 0 0" Style="{StaticResource  ProfileTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в десятичном виде. Пример: 0.45"/>
+                                                <TextBox Text="{Binding Width}" Width="80" MaxLength="4" Margin="49 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в десятичном виде. Пример: 0.45"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материал передней панели: " TextWrapping="Wrap" Width="230" Height="50"/>
@@ -218,8 +218,30 @@
                                             </StackPanel>
                                             <StackPanel Margin="0 20 0 0" Orientation="Vertical">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная длина блока питания: "/>
-                                                <TextBox Text="{Binding Width}" Width="80" MaxLength="3" Style="{StaticResource  ProfileTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм"/>
+                                                <TextBox Text="{Binding MaxLengthPowerBlock}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм"/>
                                             </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
+                                    <StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Горизонтальные слоты расширения: "/>
+                                            <ComboBox x:Name="CbHorizontalAddonsSlot" SelectedItem="{Binding HorizontalAddonsSlot}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вертикальные слоты расширения: "/>
+                                            <ComboBox x:Name="CbVerticalAddonSlot" SelectedItem="{Binding VerticalAddonSlot}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Margin="80 0 0 0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная длина видеокарты: "/>
+                                            <TextBox Text="{Binding MaxLengthVideocard}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 15 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная высота процессорного кулера: "/>
+                                            <TextBox Text="{Binding MaxHeightCPUCooler}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм" Margin="0 10 0 0"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </StackPanel>

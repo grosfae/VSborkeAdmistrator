@@ -33,6 +33,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<FormFactor> FormFactor { get; set; }
         public virtual DbSet<FrontPanelMaterial> FrontPanelMaterial { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
+        public virtual DbSet<HorizontalAddonSlot> HorizontalAddonSlot { get; set; }
         public virtual DbSet<IOPanel> IOPanel { get; set; }
         public virtual DbSet<LiquidCoolingSize> LiquidCoolingSize { get; set; }
         public virtual DbSet<Manufacturer> Manufacturer { get; set; }
@@ -49,6 +50,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<TypeManagmentRGB> TypeManagmentRGB { get; set; }
         public virtual DbSet<TypeRGB> TypeRGB { get; set; }
         public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<VerticalAddonSlot> VerticalAddonSlot { get; set; }
         public virtual DbSet<WindowAlignment> WindowAlignment { get; set; }
         public virtual DbSet<WindowMaterial> WindowMaterial { get; set; }
     }
