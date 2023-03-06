@@ -46,25 +46,31 @@ namespace VSborkeAdmistrator.Components
         public int VerticalAddonSlotId { get; set; }
         public int MaxLengthVideocard { get; set; }
         public int MaxHeightCPUCooler { get; set; }
-        public int CountSlotSSDId { get; set; }
-        public int CountSlotHDDId { get; set; }
-        public int CountSlotXHDDId { get; set; }
-        public int CoolerInsideId { get; set; }
-        public Nullable<bool> SupportFrontCooler { get; set; }
-        public Nullable<bool> SupportBackCooler { get; set; }
-        public Nullable<bool> SupportTopCooler { get; set; }
-        public Nullable<bool> SupportSideCooler { get; set; }
-        public Nullable<bool> SupportBottomCooler { get; set; }
+        public int SlotSSDId { get; set; }
+        public int SlotHDDId { get; set; }
+        public int SlotXHDDId { get; set; }
+        public int SupportFrontCoolerId { get; set; }
+        public int SupportBackCoolerId { get; set; }
+        public int SupportTopCoolerId { get; set; }
+        public int SupportSideCoolerId { get; set; }
+        public int SupportBottomCoolerId { get; set; }
         public Nullable<bool> SupportLiquidCooling { get; set; }
-        public Nullable<int> LiquidCoolingSizeId { get; set; }
+        public int FrontLiquidCoolingLength { get; set; }
+        public int FrontLiquidCoolingWidth { get; set; }
+        public int BackLiquidCoolingLength { get; set; }
+        public int BackLiquidCoolingWidth { get; set; }
+        public int BottomLiquidCoolingLength { get; set; }
+        public int BottomLiquidCoolingWidth { get; set; }
         public int OrientationMotherboardId { get; set; }
         public Nullable<bool> DustFilter { get; set; }
         public int PrimaryColorId { get; set; }
         public Nullable<int> SecondColorId { get; set; }
+        public int IOPanelAlignmentId { get; set; }
         public int IOPanelId { get; set; }
-        public Nullable<bool> CableManagement { get; set; }
+        public Nullable<bool> CutCPUCooler { get; set; }
+        public Nullable<bool> CableManagementBackSide { get; set; }
         public Nullable<bool> CardReader { get; set; }
-        public int SidePanalFixationId { get; set; }
+        public int SidePanelFixationId { get; set; }
         public Nullable<bool> RGB { get; set; }
         public Nullable<int> TypeRGBId { get; set; }
         public Nullable<int> ColorRGBId { get; set; }
@@ -75,7 +81,6 @@ namespace VSborkeAdmistrator.Components
         public Nullable<bool> SpecialDesign { get; set; }
         public Nullable<bool> IsAccessable { get; set; }
         public Nullable<bool> IsDelete { get; set; }
-        public string CommentAccessable { get; set; }
         public Nullable<bool> IsCustom { get; set; }
         public Nullable<int> UserId { get; set; }
     
@@ -83,12 +88,11 @@ namespace VSborkeAdmistrator.Components
         public virtual ICollection<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
         public virtual AlignmentPowerBlock AlignmentPowerBlock { get; set; }
         public virtual ColorRGB ColorRGB { get; set; }
-        public virtual CoolerInside CoolerInside { get; set; }
         public virtual FormFactor FormFactor { get; set; }
         public virtual FrontPanelMaterial FrontPanelMaterial { get; set; }
         public virtual HorizontalAddonSlot HorizontalAddonSlot { get; set; }
         public virtual IOPanel IOPanel { get; set; }
-        public virtual LiquidCoolingSize LiquidCoolingSize { get; set; }
+        public virtual IOPanelAlignment IOPanelAlignment { get; set; }
         public virtual Manufacturer Manufacturer { get; set; }
         public virtual MaterialSet MaterialSet { get; set; }
         public virtual OrientationMotherboard OrientationMotherboard { get; set; }
@@ -96,6 +100,14 @@ namespace VSborkeAdmistrator.Components
         public virtual PrimaryColor PrimaryColor { get; set; }
         public virtual SecondColor SecondColor { get; set; }
         public virtual SidePanelFixation SidePanelFixation { get; set; }
+        public virtual SlotHDD SlotHDD { get; set; }
+        public virtual SlotSSD SlotSSD { get; set; }
+        public virtual SlotXHDD SlotXHDD { get; set; }
+        public virtual SupportBackCooler SupportBackCooler { get; set; }
+        public virtual SupportBottomCooler SupportBottomCooler { get; set; }
+        public virtual SupportFrontCooler SupportFrontCooler { get; set; }
+        public virtual SupportSideCooler SupportSideCooler { get; set; }
+        public virtual SupportTopCooler SupportTopCooler { get; set; }
         public virtual TypeManagmentRGB TypeManagmentRGB { get; set; }
         public virtual TypeRGB TypeRGB { get; set; }
         public virtual User User { get; set; }

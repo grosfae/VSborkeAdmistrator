@@ -69,9 +69,6 @@
     <Compile Include="Components\AdditionComputerCaseImage.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\CoolerInside.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\FrontPanelMaterial.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -79,6 +76,9 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\HorizontalAddonSlot.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\IOPanelAlignment.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\MaterialSet.cs">
@@ -94,6 +94,30 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SecondColor.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SlotHDD.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SlotSSD.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SlotXHDD.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SupportBackCooler.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SupportBottomCooler.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SupportFrontCooler.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SupportSideCooler.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SupportTopCooler.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\TypeManagmentRGB.cs">
@@ -141,9 +165,6 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\IOPanel.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\LiquidCoolingSize.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\Manufacturer.cs">
