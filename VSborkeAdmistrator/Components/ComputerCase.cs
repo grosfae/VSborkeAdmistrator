@@ -84,6 +84,7 @@ namespace VSborkeAdmistrator.Components
         public byte[] MainImage { get; set; }
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
+        public Nullable<bool> IsAntiVibration { get; set; }
         public Nullable<bool> SpecialDesign { get; set; }
         public Nullable<bool> IsAccessable { get; set; }
         public Nullable<bool> IsDelete { get; set; }

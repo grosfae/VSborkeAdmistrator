@@ -109,6 +109,7 @@
           <Property Name="MainImage" Type="image" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
           <Property Name="DeliverySet" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IsAntiVibration" Type="bit" />
           <Property Name="SpecialDesign" Type="bit" />
           <Property Name="IsAccessable" Type="bit" />
           <Property Name="IsDelete" Type="bit" />
@@ -1279,6 +1280,7 @@
           <Property Name="MainImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <Property Name="DeliverySet" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IsAntiVibration" Type="Boolean" />
           <Property Name="SpecialDesign" Type="Boolean" />
           <Property Name="IsAccessable" Type="Boolean" />
           <Property Name="IsDelete" Type="Boolean" />
@@ -2090,6 +2092,7 @@
                 <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="IsAccessable" ColumnName="IsAccessable" />
                 <ScalarProperty Name="SpecialDesign" ColumnName="SpecialDesign" />
+                <ScalarProperty Name="IsAntiVibration" ColumnName="IsAntiVibration" />
                 <ScalarProperty Name="DeliverySet" ColumnName="DeliverySet" />
                 <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
                 <ScalarProperty Name="MainImage" ColumnName="MainImage" />

@@ -40,5 +40,13 @@ namespace VSborkeAdmistrator.Pages
                 e.Handled = true;
             }
         }
+
+        private void TextBox_PreviewTextInputABC(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[A-zА-я,]") == false)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
