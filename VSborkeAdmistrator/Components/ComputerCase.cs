@@ -38,7 +38,16 @@ namespace VSborkeAdmistrator.Components
         public Nullable<int> WindowAlignmentId { get; set; }
         public Nullable<int> WindowMaterialId { get; set; }
         public int FrontPanelMaterialId { get; set; }
-        public string MotherboardStandartSupport { get; set; }
+        public Nullable<bool> EAtx { get; set; }
+        public Nullable<bool> FlexAtx { get; set; }
+        public Nullable<bool> MicroAtx { get; set; }
+        public Nullable<bool> MiniDtx { get; set; }
+        public Nullable<bool> MiniItx { get; set; }
+        public Nullable<bool> SsiCeb { get; set; }
+        public Nullable<bool> SsiEeb { get; set; }
+        public Nullable<bool> StandartAtx { get; set; }
+        public Nullable<bool> ThinMiniItx { get; set; }
+        public Nullable<bool> XlAtx { get; set; }
         public int PowerBlockStandartSupportId { get; set; }
         public int AlignmentPowerBlockId { get; set; }
         public int MaxLengthPowerBlock { get; set; }
@@ -55,12 +64,9 @@ namespace VSborkeAdmistrator.Components
         public int SupportSideCoolerId { get; set; }
         public int SupportBottomCoolerId { get; set; }
         public Nullable<bool> SupportLiquidCooling { get; set; }
-        public int FrontLiquidCoolingLength { get; set; }
-        public int FrontLiquidCoolingWidth { get; set; }
-        public int BackLiquidCoolingLength { get; set; }
-        public int BackLiquidCoolingWidth { get; set; }
-        public int BottomLiquidCoolingLength { get; set; }
-        public int BottomLiquidCoolingWidth { get; set; }
+        public int FrontLiquidCoolingId { get; set; }
+        public int BackLiquidCoolingId { get; set; }
+        public int BottomLiquidCoolingId { get; set; }
         public int OrientationMotherboardId { get; set; }
         public Nullable<bool> DustFilter { get; set; }
         public int PrimaryColorId { get; set; }
@@ -87,8 +93,11 @@ namespace VSborkeAdmistrator.Components
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
         public virtual AlignmentPowerBlock AlignmentPowerBlock { get; set; }
+        public virtual BackLiquidCooling BackLiquidCooling { get; set; }
+        public virtual BottomLiquidCooling BottomLiquidCooling { get; set; }
         public virtual ColorRGB ColorRGB { get; set; }
         public virtual FormFactor FormFactor { get; set; }
+        public virtual FrontLiquidCooling FrontLiquidCooling { get; set; }
         public virtual FrontPanelMaterial FrontPanelMaterial { get; set; }
         public virtual HorizontalAddonSlot HorizontalAddonSlot { get; set; }
         public virtual IOPanel IOPanel { get; set; }

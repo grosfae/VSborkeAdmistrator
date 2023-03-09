@@ -27,9 +27,12 @@ namespace VSborkeAdmistrator.Components
     
         public virtual DbSet<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
         public virtual DbSet<AlignmentPowerBlock> AlignmentPowerBlock { get; set; }
+        public virtual DbSet<BackLiquidCooling> BackLiquidCooling { get; set; }
+        public virtual DbSet<BottomLiquidCooling> BottomLiquidCooling { get; set; }
         public virtual DbSet<ColorRGB> ColorRGB { get; set; }
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
+        public virtual DbSet<FrontLiquidCooling> FrontLiquidCooling { get; set; }
         public virtual DbSet<FrontPanelMaterial> FrontPanelMaterial { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<HorizontalAddonSlot> HorizontalAddonSlot { get; set; }

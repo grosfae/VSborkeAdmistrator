@@ -20,6 +20,20 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="BackLiquidCooling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BottomLiquidCooling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
         <EntityType Name="ColorRGB">
           <Key>
             <PropertyRef Name="Id" />
@@ -49,7 +63,16 @@
           <Property Name="WindowAlignmentId" Type="int" />
           <Property Name="WindowMaterialId" Type="int" />
           <Property Name="FrontPanelMaterialId" Type="int" Nullable="false" />
-          <Property Name="MotherboardStandartSupport" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EAtx" Type="bit" />
+          <Property Name="FlexAtx" Type="bit" />
+          <Property Name="MicroAtx" Type="bit" />
+          <Property Name="MiniDtx" Type="bit" />
+          <Property Name="MiniItx" Type="bit" />
+          <Property Name="SsiCeb" Type="bit" />
+          <Property Name="SsiEeb" Type="bit" />
+          <Property Name="StandartAtx" Type="bit" />
+          <Property Name="ThinMiniItx" Type="bit" />
+          <Property Name="XlAtx" Type="bit" />
           <Property Name="PowerBlockStandartSupportId" Type="int" Nullable="false" />
           <Property Name="AlignmentPowerBlockId" Type="int" Nullable="false" />
           <Property Name="MaxLengthPowerBlock" Type="int" Nullable="false" />
@@ -66,12 +89,9 @@
           <Property Name="SupportSideCoolerId" Type="int" Nullable="false" />
           <Property Name="SupportBottomCoolerId" Type="int" Nullable="false" />
           <Property Name="SupportLiquidCooling" Type="bit" />
-          <Property Name="FrontLiquidCoolingLength" Type="int" Nullable="false" />
-          <Property Name="FrontLiquidCoolingWidth" Type="int" Nullable="false" />
-          <Property Name="BackLiquidCoolingLength" Type="int" Nullable="false" />
-          <Property Name="BackLiquidCoolingWidth" Type="int" Nullable="false" />
-          <Property Name="BottomLiquidCoolingLength" Type="int" Nullable="false" />
-          <Property Name="BottomLiquidCoolingWidth" Type="int" Nullable="false" />
+          <Property Name="FrontLiquidCoolingId" Type="int" Nullable="false" />
+          <Property Name="BackLiquidCoolingId" Type="int" Nullable="false" />
+          <Property Name="BottomLiquidCoolingId" Type="int" Nullable="false" />
           <Property Name="OrientationMotherboardId" Type="int" Nullable="false" />
           <Property Name="DustFilter" Type="bit" />
           <Property Name="PrimaryColorId" Type="int" Nullable="false" />
@@ -101,6 +121,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FrontLiquidCooling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="3" Nullable="false" />
         </EntityType>
         <EntityType Name="FrontPanelMaterial">
           <Key>
@@ -363,6 +390,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComputerCase_BackLiquidCooling">
+          <End Role="BackLiquidCooling" Type="Self.BackLiquidCooling" Multiplicity="1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BackLiquidCooling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="BackLiquidCoolingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_BottomLiquidCooling">
+          <End Role="BottomLiquidCooling" Type="Self.BottomLiquidCooling" Multiplicity="1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BottomLiquidCooling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="BottomLiquidCoolingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComputerCase_ColorRGB">
           <End Role="ColorRGB" Type="Self.ColorRGB" Multiplicity="0..1" />
           <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
@@ -384,6 +435,18 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="FormFactorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_FrontLiquidCooling">
+          <End Role="FrontLiquidCooling" Type="Self.FrontLiquidCooling" Multiplicity="1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FrontLiquidCooling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="FrontLiquidCoolingId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -738,9 +801,12 @@
         <EntityContainer Name="Хранилище VSborkeBaseModelContainer">
           <EntitySet Name="AdditionComputerCaseImage" EntityType="Self.AdditionComputerCaseImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AlignmentPowerBlock" EntityType="Self.AlignmentPowerBlock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BackLiquidCooling" EntityType="Self.BackLiquidCooling" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BottomLiquidCooling" EntityType="Self.BottomLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColorRGB" EntityType="Self.ColorRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FrontLiquidCooling" EntityType="Self.FrontLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FrontPanelMaterial" EntityType="Self.FrontPanelMaterial" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HorizontalAddonSlot" EntityType="Self.HorizontalAddonSlot" Schema="dbo" store:Type="Tables" />
@@ -779,12 +845,24 @@
             <End Role="AlignmentPowerBlock" EntitySet="AlignmentPowerBlock" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_BackLiquidCooling" Association="Self.FK_ComputerCase_BackLiquidCooling">
+            <End Role="BackLiquidCooling" EntitySet="BackLiquidCooling" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_BottomLiquidCooling" Association="Self.FK_ComputerCase_BottomLiquidCooling">
+            <End Role="BottomLiquidCooling" EntitySet="BottomLiquidCooling" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_ColorRGB" Association="Self.FK_ComputerCase_ColorRGB">
             <End Role="ColorRGB" EntitySet="ColorRGB" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_FormFactor" Association="Self.FK_ComputerCase_FormFactor">
             <End Role="FormFactor" EntitySet="FormFactor" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_FrontLiquidCooling" Association="Self.FK_ComputerCase_FrontLiquidCooling">
+            <End Role="FrontLiquidCooling" EntitySet="FrontLiquidCooling" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_FrontPanelMaterial" Association="Self.FK_ComputerCase_FrontPanelMaterial">
@@ -911,9 +989,12 @@
         <EntityContainer Name="VSborkeBaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AdditionComputerCaseImage" EntityType="VSborkeBaseModel.AdditionComputerCaseImage" />
           <EntitySet Name="AlignmentPowerBlock" EntityType="VSborkeBaseModel.AlignmentPowerBlock" />
+          <EntitySet Name="BackLiquidCooling" EntityType="VSborkeBaseModel.BackLiquidCooling" />
+          <EntitySet Name="BottomLiquidCooling" EntityType="VSborkeBaseModel.BottomLiquidCooling" />
           <EntitySet Name="ColorRGB" EntityType="VSborkeBaseModel.ColorRGB" />
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
+          <EntitySet Name="FrontLiquidCooling" EntityType="VSborkeBaseModel.FrontLiquidCooling" />
           <EntitySet Name="FrontPanelMaterial" EntityType="VSborkeBaseModel.FrontPanelMaterial" />
           <EntitySet Name="Gender" EntityType="VSborkeBaseModel.Gender" />
           <EntitySet Name="HorizontalAddonSlot" EntityType="VSborkeBaseModel.HorizontalAddonSlot" />
@@ -952,12 +1033,24 @@
             <End Role="AlignmentPowerBlock" EntitySet="AlignmentPowerBlock" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_BackLiquidCooling" Association="VSborkeBaseModel.FK_ComputerCase_BackLiquidCooling">
+            <End Role="BackLiquidCooling" EntitySet="BackLiquidCooling" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_BottomLiquidCooling" Association="VSborkeBaseModel.FK_ComputerCase_BottomLiquidCooling">
+            <End Role="BottomLiquidCooling" EntitySet="BottomLiquidCooling" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_ColorRGB" Association="VSborkeBaseModel.FK_ComputerCase_ColorRGB">
             <End Role="ColorRGB" EntitySet="ColorRGB" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_FormFactor" Association="VSborkeBaseModel.FK_ComputerCase_FormFactor">
             <End Role="FormFactor" EntitySet="FormFactor" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_FrontLiquidCooling" Association="VSborkeBaseModel.FK_ComputerCase_FrontLiquidCooling">
+            <End Role="FrontLiquidCooling" EntitySet="FrontLiquidCooling" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_FrontPanelMaterial" Association="VSborkeBaseModel.FK_ComputerCase_FrontPanelMaterial">
@@ -1094,6 +1187,22 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_AlignmentPowerBlock" FromRole="AlignmentPowerBlock" ToRole="ComputerCase" />
         </EntityType>
+        <EntityType Name="BackLiquidCooling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_BackLiquidCooling" FromRole="BackLiquidCooling" ToRole="ComputerCase" />
+        </EntityType>
+        <EntityType Name="BottomLiquidCooling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_BottomLiquidCooling" FromRole="BottomLiquidCooling" ToRole="ComputerCase" />
+        </EntityType>
         <EntityType Name="ColorRGB">
           <Key>
             <PropertyRef Name="Id" />
@@ -1124,7 +1233,16 @@
           <Property Name="WindowAlignmentId" Type="Int32" />
           <Property Name="WindowMaterialId" Type="Int32" />
           <Property Name="FrontPanelMaterialId" Type="Int32" Nullable="false" />
-          <Property Name="MotherboardStandartSupport" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EAtx" Type="Boolean" />
+          <Property Name="FlexAtx" Type="Boolean" />
+          <Property Name="MicroAtx" Type="Boolean" />
+          <Property Name="MiniDtx" Type="Boolean" />
+          <Property Name="MiniItx" Type="Boolean" />
+          <Property Name="SsiCeb" Type="Boolean" />
+          <Property Name="SsiEeb" Type="Boolean" />
+          <Property Name="StandartAtx" Type="Boolean" />
+          <Property Name="ThinMiniItx" Type="Boolean" />
+          <Property Name="XlAtx" Type="Boolean" />
           <Property Name="PowerBlockStandartSupportId" Type="Int32" Nullable="false" />
           <Property Name="AlignmentPowerBlockId" Type="Int32" Nullable="false" />
           <Property Name="MaxLengthPowerBlock" Type="Int32" Nullable="false" />
@@ -1141,12 +1259,9 @@
           <Property Name="SupportSideCoolerId" Type="Int32" Nullable="false" />
           <Property Name="SupportBottomCoolerId" Type="Int32" Nullable="false" />
           <Property Name="SupportLiquidCooling" Type="Boolean" />
-          <Property Name="FrontLiquidCoolingLength" Type="Int32" Nullable="false" />
-          <Property Name="FrontLiquidCoolingWidth" Type="Int32" Nullable="false" />
-          <Property Name="BackLiquidCoolingLength" Type="Int32" Nullable="false" />
-          <Property Name="BackLiquidCoolingWidth" Type="Int32" Nullable="false" />
-          <Property Name="BottomLiquidCoolingLength" Type="Int32" Nullable="false" />
-          <Property Name="BottomLiquidCoolingWidth" Type="Int32" Nullable="false" />
+          <Property Name="FrontLiquidCoolingId" Type="Int32" Nullable="false" />
+          <Property Name="BackLiquidCoolingId" Type="Int32" Nullable="false" />
+          <Property Name="BottomLiquidCoolingId" Type="Int32" Nullable="false" />
           <Property Name="OrientationMotherboardId" Type="Int32" Nullable="false" />
           <Property Name="DustFilter" Type="Boolean" />
           <Property Name="PrimaryColorId" Type="Int32" Nullable="false" />
@@ -1171,8 +1286,11 @@
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="AdditionComputerCaseImage" Relationship="VSborkeBaseModel.FK_AdditionComputerCaseImage_ComputerCase" FromRole="ComputerCase" ToRole="AdditionComputerCaseImage" />
           <NavigationProperty Name="AlignmentPowerBlock" Relationship="VSborkeBaseModel.FK_ComputerCase_AlignmentPowerBlock" FromRole="ComputerCase" ToRole="AlignmentPowerBlock" />
+          <NavigationProperty Name="BackLiquidCooling" Relationship="VSborkeBaseModel.FK_ComputerCase_BackLiquidCooling" FromRole="ComputerCase" ToRole="BackLiquidCooling" />
+          <NavigationProperty Name="BottomLiquidCooling" Relationship="VSborkeBaseModel.FK_ComputerCase_BottomLiquidCooling" FromRole="ComputerCase" ToRole="BottomLiquidCooling" />
           <NavigationProperty Name="ColorRGB" Relationship="VSborkeBaseModel.FK_ComputerCase_ColorRGB" FromRole="ComputerCase" ToRole="ColorRGB" />
           <NavigationProperty Name="FormFactor" Relationship="VSborkeBaseModel.FK_ComputerCase_FormFactor" FromRole="ComputerCase" ToRole="FormFactor" />
+          <NavigationProperty Name="FrontLiquidCooling" Relationship="VSborkeBaseModel.FK_ComputerCase_FrontLiquidCooling" FromRole="ComputerCase" ToRole="FrontLiquidCooling" />
           <NavigationProperty Name="FrontPanelMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_FrontPanelMaterial" FromRole="ComputerCase" ToRole="FrontPanelMaterial" />
           <NavigationProperty Name="HorizontalAddonSlot" Relationship="VSborkeBaseModel.FK_ComputerCase_HorizontalAddonSlot1" FromRole="ComputerCase" ToRole="HorizontalAddonSlot" />
           <NavigationProperty Name="IOPanel" Relationship="VSborkeBaseModel.FK_ComputerCase_IOPanel" FromRole="ComputerCase" ToRole="IOPanel" />
@@ -1206,6 +1324,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_FormFactor" FromRole="FormFactor" ToRole="ComputerCase" />
+        </EntityType>
+        <EntityType Name="FrontLiquidCooling">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_FrontLiquidCooling" FromRole="FrontLiquidCooling" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="FrontPanelMaterial">
           <Key>
@@ -1501,6 +1627,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComputerCase_BackLiquidCooling">
+          <End Type="VSborkeBaseModel.BackLiquidCooling" Role="BackLiquidCooling" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BackLiquidCooling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="BackLiquidCoolingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_BottomLiquidCooling">
+          <End Type="VSborkeBaseModel.BottomLiquidCooling" Role="BottomLiquidCooling" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BottomLiquidCooling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="BottomLiquidCoolingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComputerCase_ColorRGB">
           <End Type="VSborkeBaseModel.ColorRGB" Role="ColorRGB" Multiplicity="0..1" />
           <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
@@ -1522,6 +1672,18 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="FormFactorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_FrontLiquidCooling">
+          <End Type="VSborkeBaseModel.FrontLiquidCooling" Role="FrontLiquidCooling" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FrontLiquidCooling">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="FrontLiquidCoolingId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1896,6 +2058,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BackLiquidCooling">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.BackLiquidCooling">
+              <MappingFragment StoreEntitySet="BackLiquidCooling">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BottomLiquidCooling">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.BottomLiquidCooling">
+              <MappingFragment StoreEntitySet="BottomLiquidCooling">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ColorRGB">
             <EntityTypeMapping TypeName="VSborkeBaseModel.ColorRGB">
               <MappingFragment StoreEntitySet="ColorRGB">
@@ -1929,12 +2107,9 @@
                 <ScalarProperty Name="PrimaryColorId" ColumnName="PrimaryColorId" />
                 <ScalarProperty Name="DustFilter" ColumnName="DustFilter" />
                 <ScalarProperty Name="OrientationMotherboardId" ColumnName="OrientationMotherboardId" />
-                <ScalarProperty Name="BottomLiquidCoolingWidth" ColumnName="BottomLiquidCoolingWidth" />
-                <ScalarProperty Name="BottomLiquidCoolingLength" ColumnName="BottomLiquidCoolingLength" />
-                <ScalarProperty Name="BackLiquidCoolingWidth" ColumnName="BackLiquidCoolingWidth" />
-                <ScalarProperty Name="BackLiquidCoolingLength" ColumnName="BackLiquidCoolingLength" />
-                <ScalarProperty Name="FrontLiquidCoolingWidth" ColumnName="FrontLiquidCoolingWidth" />
-                <ScalarProperty Name="FrontLiquidCoolingLength" ColumnName="FrontLiquidCoolingLength" />
+                <ScalarProperty Name="BottomLiquidCoolingId" ColumnName="BottomLiquidCoolingId" />
+                <ScalarProperty Name="BackLiquidCoolingId" ColumnName="BackLiquidCoolingId" />
+                <ScalarProperty Name="FrontLiquidCoolingId" ColumnName="FrontLiquidCoolingId" />
                 <ScalarProperty Name="SupportLiquidCooling" ColumnName="SupportLiquidCooling" />
                 <ScalarProperty Name="SupportBottomCoolerId" ColumnName="SupportBottomCoolerId" />
                 <ScalarProperty Name="SupportSideCoolerId" ColumnName="SupportSideCoolerId" />
@@ -1951,7 +2126,16 @@
                 <ScalarProperty Name="MaxLengthPowerBlock" ColumnName="MaxLengthPowerBlock" />
                 <ScalarProperty Name="AlignmentPowerBlockId" ColumnName="AlignmentPowerBlockId" />
                 <ScalarProperty Name="PowerBlockStandartSupportId" ColumnName="PowerBlockStandartSupportId" />
-                <ScalarProperty Name="MotherboardStandartSupport" ColumnName="MotherboardStandartSupport" />
+                <ScalarProperty Name="XlAtx" ColumnName="XlAtx" />
+                <ScalarProperty Name="ThinMiniItx" ColumnName="ThinMiniItx" />
+                <ScalarProperty Name="StandartAtx" ColumnName="StandartAtx" />
+                <ScalarProperty Name="SsiEeb" ColumnName="SsiEeb" />
+                <ScalarProperty Name="SsiCeb" ColumnName="SsiCeb" />
+                <ScalarProperty Name="MiniItx" ColumnName="MiniItx" />
+                <ScalarProperty Name="MiniDtx" ColumnName="MiniDtx" />
+                <ScalarProperty Name="MicroAtx" ColumnName="MicroAtx" />
+                <ScalarProperty Name="FlexAtx" ColumnName="FlexAtx" />
+                <ScalarProperty Name="EAtx" ColumnName="EAtx" />
                 <ScalarProperty Name="FrontPanelMaterialId" ColumnName="FrontPanelMaterialId" />
                 <ScalarProperty Name="WindowMaterialId" ColumnName="WindowMaterialId" />
                 <ScalarProperty Name="WindowAlignmentId" ColumnName="WindowAlignmentId" />
@@ -1976,6 +2160,14 @@
           <EntitySetMapping Name="FormFactor">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FormFactor">
               <MappingFragment StoreEntitySet="FormFactor">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FrontLiquidCooling">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.FrontLiquidCooling">
+              <MappingFragment StoreEntitySet="FrontLiquidCooling">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
