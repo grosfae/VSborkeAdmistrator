@@ -36,7 +36,7 @@
         <EntityTypeShape EntityType="VSborkeBaseModel.SupportFrontCooler" Width="1.5" PointX="6" PointY="22.75" />
         <EntityTypeShape EntityType="VSborkeBaseModel.SupportSideCooler" Width="1.5" PointX="6" PointY="34.625" />
         <EntityTypeShape EntityType="VSborkeBaseModel.SupportTopCooler" Width="1.5" PointX="6" PointY="53.375" />
-        <EntityTypeShape EntityType="VSborkeBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="VSborkeBaseModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.875" />
         <EntityTypeShape EntityType="VSborkeBaseModel.TypeManagmentRGB" Width="1.5" PointX="6" PointY="44" />
         <EntityTypeShape EntityType="VSborkeBaseModel.TypeRGB" Width="1.5" PointX="6" PointY="62.875" />
         <EntityTypeShape EntityType="VSborkeBaseModel.User" Width="1.5" PointX="3" PointY="12.375" />
