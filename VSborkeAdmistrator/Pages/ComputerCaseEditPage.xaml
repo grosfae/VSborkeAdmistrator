@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="3730" d:DesignWidth="1130"
+      d:DesignHeight="3900" d:DesignWidth="1130"
       Title="ComputerCaseEditPage">
 
     <Grid Background="#FFEEF0F2">
@@ -25,7 +25,7 @@
                         <StackPanel Orientation="Horizontal">
                             <StackPanel Margin="10 10 0 0">
                                 <Image Width="400" Height="400"/>
-                                <Button x:Name="MainImageBtn" Width="300" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить главное изображение" Margin="0 20 0 0"/>
+                                <Button x:Name="MainImageBtn" Click="MainImageBtn_Click" Width="300" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить главное изображение" Margin="0 20 0 0" Cursor="Hand"/>
                             </StackPanel>
                             <StackPanel>
                                 <StackPanel Margin="10 10 0 0">
@@ -53,7 +53,7 @@
                         </StackPanel>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2" Background="White" Width="1030" Height="3000" Margin="0 20 0 0">
+                    <StackPanel Grid.Row="2" Background="White" Width="1030" Height="3160" Margin="0 20 0 0">
                         <StackPanel Margin="20 0 20 0">
                             <TextBlock Style="{StaticResource ProfileInfo}" Text="Характеристики корпуса" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
                             <StackPanel Margin="0 20 0 0">
@@ -93,7 +93,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                            
+
                             <StackPanel Margin="0 20 0 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Внешний вид" FontWeight="SemiBold" FontSize="22"/>
                                 <StackPanel Orientation="Horizontal">
@@ -167,8 +167,8 @@
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                            
-                            
+
+
                             <StackPanel Margin="0 20 0 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Совместимость" FontWeight="SemiBold" FontSize="22"/>
                                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
@@ -283,7 +283,7 @@
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="0 20 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка верхних вентиляторов: "/>
-                                                <ComboBox x:Name="CbUpperCooler" SelectedItem="{Binding SupportTopCooler}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                                <ComboBox x:Name="CbTopCooler" SelectedItem="{Binding SupportTopCooler}" DisplayMemberPath="Name" Height="28" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
                                             </StackPanel>
                                             <StackPanel Orientation="Vertical" Margin="0 20 0 0">
                                                 <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка нижних вентиляторов: "/>
@@ -337,7 +337,7 @@
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                            
+
                             <StackPanel Margin="0 20 0 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Обслуживание" FontWeight="SemiBold" FontSize="22"/>
                                 <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
@@ -373,7 +373,35 @@
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                            
+
+                            <StackPanel Margin="0 20 0 0">
+                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительные изображения корпуса" FontWeight="SemiBold" FontSize="22"/>
+                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                    <Button Style="{StaticResource BorderBtn}" Click="LeftBtn_Click" Width="30" FontSize="50" Height="140"  x:Name="LeftBtn" Content ="&lt;" Cursor="Hand"/>
+                                    <ListView x:Name="LvAdditionImages" Width="920" BorderBrush="Transparent" Height= "210" ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                        <ListView.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation ="Horizontal"/>
+                                            </ItemsPanelTemplate>
+                                        </ListView.ItemsPanel>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Image Width= "200" Height="200" Margin="15 0 0 0" Source="{Binding AdditionImage}"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                    <Button Style="{StaticResource BorderBtn}" Click="RightBtn_Click" Width="30" FontSize="50"  x:Name="RightBtn" Height="140" Content="&gt;" Margin="5 0 0 0" Cursor="Hand"/>
+                                </StackPanel>
+                                <StackPanel Margin="0 20 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                    <Button x:Name="AdditionImgAdd" Click="" Style="{StaticResource BorderBtn}" Content="Добавить изображение" Width="300" FontSize="33" Cursor="Hand" />
+                                    <Button x:Name="AdditionImgDelete" Click="" Style="{StaticResource BorderBtn}" Content="Удалить изображение" Width="300" FontSize="33" Cursor="Hand" Margin="40 0 0 0"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                        <Line X1="0" Y1="0" X2="1030" Y2="0" Stroke="#FF3881EF" StrokeThickness="2" Margin="0 40 0 0"/>
+                        <StackPanel Margin="0 20 0 0" HorizontalAlignment="Center" Orientation="Horizontal">
+                            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Style="{StaticResource BorderBtn}" Content="Сохранить" Width="200" FontSize="33" Cursor="Hand" />
+                            <Button x:Name="CancelBtn" Click="CancelBtn_Click" Style="{StaticResource BorderBtn}" Content="Отмена" Width="200" FontSize="33" Cursor="Hand" Margin="40 0 0 0"/>
                         </StackPanel>
                     </StackPanel>
                 </Grid>

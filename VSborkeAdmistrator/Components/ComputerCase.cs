@@ -58,6 +58,7 @@ namespace VSborkeAdmistrator.Components
         public int SlotSSDId { get; set; }
         public int SlotHDDId { get; set; }
         public int SlotXHDDId { get; set; }
+        public int CoolerInsideId { get; set; }
         public int SupportFrontCoolerId { get; set; }
         public int SupportBackCoolerId { get; set; }
         public int SupportTopCoolerId { get; set; }
@@ -97,6 +98,7 @@ namespace VSborkeAdmistrator.Components
         public virtual BackLiquidCooling BackLiquidCooling { get; set; }
         public virtual BottomLiquidCooling BottomLiquidCooling { get; set; }
         public virtual ColorRGB ColorRGB { get; set; }
+        public virtual CoolerInside CoolerInside { get; set; }
         public virtual FormFactor FormFactor { get; set; }
         public virtual FrontLiquidCooling FrontLiquidCooling { get; set; }
         public virtual FrontPanelMaterial FrontPanelMaterial { get; set; }

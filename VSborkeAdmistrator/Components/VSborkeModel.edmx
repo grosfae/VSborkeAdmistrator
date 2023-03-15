@@ -18,7 +18,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
         <EntityType Name="BackLiquidCooling">
           <Key>
@@ -83,6 +83,7 @@
           <Property Name="SlotSSDId" Type="int" Nullable="false" />
           <Property Name="SlotHDDId" Type="int" Nullable="false" />
           <Property Name="SlotXHDDId" Type="int" Nullable="false" />
+          <Property Name="CoolerInsideId" Type="int" Nullable="false" />
           <Property Name="SupportFrontCoolerId" Type="int" Nullable="false" />
           <Property Name="SupportBackCoolerId" Type="int" Nullable="false" />
           <Property Name="SupportTopCoolerId" Type="int" Nullable="false" />
@@ -115,6 +116,13 @@
           <Property Name="IsDelete" Type="bit" />
           <Property Name="IsCustom" Type="bit" />
           <Property Name="UserId" Type="int" />
+        </EntityType>
+        <EntityType Name="CoolerInside">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -424,6 +432,18 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="ColorRGBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_CoolerInside">
+          <End Role="CoolerInside" Type="Self.CoolerInside" Multiplicity="1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoolerInside">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="CoolerInsideId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -806,6 +826,7 @@
           <EntitySet Name="BottomLiquidCooling" EntityType="Self.BottomLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColorRGB" EntityType="Self.ColorRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CoolerInside" EntityType="Self.CoolerInside" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FrontLiquidCooling" EntityType="Self.FrontLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FrontPanelMaterial" EntityType="Self.FrontPanelMaterial" Schema="dbo" store:Type="Tables" />
@@ -856,6 +877,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_ColorRGB" Association="Self.FK_ComputerCase_ColorRGB">
             <End Role="ColorRGB" EntitySet="ColorRGB" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_CoolerInside" Association="Self.FK_ComputerCase_CoolerInside">
+            <End Role="CoolerInside" EntitySet="CoolerInside" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_FormFactor" Association="Self.FK_ComputerCase_FormFactor">
@@ -994,6 +1019,7 @@
           <EntitySet Name="BottomLiquidCooling" EntityType="VSborkeBaseModel.BottomLiquidCooling" />
           <EntitySet Name="ColorRGB" EntityType="VSborkeBaseModel.ColorRGB" />
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
+          <EntitySet Name="CoolerInside" EntityType="VSborkeBaseModel.CoolerInside" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
           <EntitySet Name="FrontLiquidCooling" EntityType="VSborkeBaseModel.FrontLiquidCooling" />
           <EntitySet Name="FrontPanelMaterial" EntityType="VSborkeBaseModel.FrontPanelMaterial" />
@@ -1044,6 +1070,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_ColorRGB" Association="VSborkeBaseModel.FK_ComputerCase_ColorRGB">
             <End Role="ColorRGB" EntitySet="ColorRGB" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_CoolerInside" Association="VSborkeBaseModel.FK_ComputerCase_CoolerInside">
+            <End Role="CoolerInside" EntitySet="CoolerInside" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_FormFactor" Association="VSborkeBaseModel.FK_ComputerCase_FormFactor">
@@ -1185,7 +1215,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_AlignmentPowerBlock" FromRole="AlignmentPowerBlock" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="BackLiquidCooling">
@@ -1254,6 +1284,7 @@
           <Property Name="SlotSSDId" Type="Int32" Nullable="false" />
           <Property Name="SlotHDDId" Type="Int32" Nullable="false" />
           <Property Name="SlotXHDDId" Type="Int32" Nullable="false" />
+          <Property Name="CoolerInsideId" Type="Int32" Nullable="false" />
           <Property Name="SupportFrontCoolerId" Type="Int32" Nullable="false" />
           <Property Name="SupportBackCoolerId" Type="Int32" Nullable="false" />
           <Property Name="SupportTopCoolerId" Type="Int32" Nullable="false" />
@@ -1291,6 +1322,7 @@
           <NavigationProperty Name="BackLiquidCooling" Relationship="VSborkeBaseModel.FK_ComputerCase_BackLiquidCooling" FromRole="ComputerCase" ToRole="BackLiquidCooling" />
           <NavigationProperty Name="BottomLiquidCooling" Relationship="VSborkeBaseModel.FK_ComputerCase_BottomLiquidCooling" FromRole="ComputerCase" ToRole="BottomLiquidCooling" />
           <NavigationProperty Name="ColorRGB" Relationship="VSborkeBaseModel.FK_ComputerCase_ColorRGB" FromRole="ComputerCase" ToRole="ColorRGB" />
+          <NavigationProperty Name="CoolerInside" Relationship="VSborkeBaseModel.FK_ComputerCase_CoolerInside" FromRole="ComputerCase" ToRole="CoolerInside" />
           <NavigationProperty Name="FormFactor" Relationship="VSborkeBaseModel.FK_ComputerCase_FormFactor" FromRole="ComputerCase" ToRole="FormFactor" />
           <NavigationProperty Name="FrontLiquidCooling" Relationship="VSborkeBaseModel.FK_ComputerCase_FrontLiquidCooling" FromRole="ComputerCase" ToRole="FrontLiquidCooling" />
           <NavigationProperty Name="FrontPanelMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_FrontPanelMaterial" FromRole="ComputerCase" ToRole="FrontPanelMaterial" />
@@ -1318,6 +1350,14 @@
           <NavigationProperty Name="VerticalAddonSlot" Relationship="VSborkeBaseModel.FK_ComputerCase_VerticalAddonSlot" FromRole="ComputerCase" ToRole="VerticalAddonSlot" />
           <NavigationProperty Name="WindowAlignment" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowAlignment" FromRole="ComputerCase" ToRole="WindowAlignment" />
           <NavigationProperty Name="WindowMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowMaterial" FromRole="ComputerCase" ToRole="WindowMaterial" />
+        </EntityType>
+        <EntityType Name="CoolerInside">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_CoolerInside" FromRole="CoolerInside" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -1662,6 +1702,18 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="ColorRGBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ComputerCase_CoolerInside">
+          <End Type="VSborkeBaseModel.CoolerInside" Role="CoolerInside" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CoolerInside">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="CoolerInsideId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2119,6 +2171,7 @@
                 <ScalarProperty Name="SupportTopCoolerId" ColumnName="SupportTopCoolerId" />
                 <ScalarProperty Name="SupportBackCoolerId" ColumnName="SupportBackCoolerId" />
                 <ScalarProperty Name="SupportFrontCoolerId" ColumnName="SupportFrontCoolerId" />
+                <ScalarProperty Name="CoolerInsideId" ColumnName="CoolerInsideId" />
                 <ScalarProperty Name="SlotXHDDId" ColumnName="SlotXHDDId" />
                 <ScalarProperty Name="SlotHDDId" ColumnName="SlotHDDId" />
                 <ScalarProperty Name="SlotSSDId" ColumnName="SlotSSDId" />
@@ -2155,6 +2208,14 @@
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CoolerInside">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.CoolerInside">
+              <MappingFragment StoreEntitySet="CoolerInside">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
