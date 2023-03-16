@@ -107,6 +107,7 @@
           <Property Name="TypeRGBId" Type="int" />
           <Property Name="ColorRGBId" Type="int" />
           <Property Name="TypeManagmentRGBId" Type="int" />
+          <Property Name="SourceRGBId" Type="int" />
           <Property Name="MainImage" Type="image" />
           <Property Name="ManufacturerId" Type="int" Nullable="false" />
           <Property Name="DeliverySet" Type="varchar" MaxLength="100" Nullable="false" />
@@ -239,7 +240,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="HEXCode" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="HEXCode" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="SidePanelFixation">
           <Key>
@@ -268,6 +269,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SourceRGB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -639,6 +647,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComputerCase_SourceRGB">
+          <End Role="SourceRGB" Type="Self.SourceRGB" Multiplicity="0..1" />
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceRGB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="SourceRGBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComputerCase_SupportBackCooler">
           <End Role="SupportBackCooler" Type="Self.SupportBackCooler" Multiplicity="1" />
           <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="*" />
@@ -846,6 +866,7 @@
           <EntitySet Name="SlotHDD" EntityType="Self.SlotHDD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SlotSSD" EntityType="Self.SlotSSD" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SlotXHDD" EntityType="Self.SlotXHDD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SourceRGB" EntityType="Self.SourceRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupportBackCooler" EntityType="Self.SupportBackCooler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupportBottomCooler" EntityType="Self.SupportBottomCooler" Schema="dbo" store:Type="Tables" />
@@ -947,6 +968,10 @@
             <End Role="SlotXHDD" EntitySet="SlotXHDD" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_SourceRGB" Association="Self.FK_ComputerCase_SourceRGB">
+            <End Role="SourceRGB" EntitySet="SourceRGB" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_SupportBackCooler" Association="Self.FK_ComputerCase_SupportBackCooler">
             <End Role="SupportBackCooler" EntitySet="SupportBackCooler" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
@@ -1039,6 +1064,7 @@
           <EntitySet Name="SlotHDD" EntityType="VSborkeBaseModel.SlotHDD" />
           <EntitySet Name="SlotSSD" EntityType="VSborkeBaseModel.SlotSSD" />
           <EntitySet Name="SlotXHDD" EntityType="VSborkeBaseModel.SlotXHDD" />
+          <EntitySet Name="SourceRGB" EntityType="VSborkeBaseModel.SourceRGB" />
           <EntitySet Name="Status" EntityType="VSborkeBaseModel.Status" />
           <EntitySet Name="SupportBackCooler" EntityType="VSborkeBaseModel.SupportBackCooler" />
           <EntitySet Name="SupportBottomCooler" EntityType="VSborkeBaseModel.SupportBottomCooler" />
@@ -1138,6 +1164,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_SlotXHDD" Association="VSborkeBaseModel.FK_ComputerCase_SlotXHDD">
             <End Role="SlotXHDD" EntitySet="SlotXHDD" />
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ComputerCase_SourceRGB" Association="VSborkeBaseModel.FK_ComputerCase_SourceRGB">
+            <End Role="SourceRGB" EntitySet="SourceRGB" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_SupportBackCooler" Association="VSborkeBaseModel.FK_ComputerCase_SupportBackCooler">
@@ -1308,6 +1338,7 @@
           <Property Name="TypeRGBId" Type="Int32" />
           <Property Name="ColorRGBId" Type="Int32" />
           <Property Name="TypeManagmentRGBId" Type="Int32" />
+          <Property Name="SourceRGBId" Type="Int32" />
           <Property Name="MainImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ManufacturerId" Type="Int32" Nullable="false" />
           <Property Name="DeliverySet" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
@@ -1339,6 +1370,7 @@
           <NavigationProperty Name="SlotHDD" Relationship="VSborkeBaseModel.FK_ComputerCase_SlotHDD" FromRole="ComputerCase" ToRole="SlotHDD" />
           <NavigationProperty Name="SlotSSD" Relationship="VSborkeBaseModel.FK_ComputerCase_SlotSSD" FromRole="ComputerCase" ToRole="SlotSSD" />
           <NavigationProperty Name="SlotXHDD" Relationship="VSborkeBaseModel.FK_ComputerCase_SlotXHDD" FromRole="ComputerCase" ToRole="SlotXHDD" />
+          <NavigationProperty Name="SourceRGB" Relationship="VSborkeBaseModel.FK_ComputerCase_SourceRGB" FromRole="ComputerCase" ToRole="SourceRGB" />
           <NavigationProperty Name="SupportBackCooler" Relationship="VSborkeBaseModel.FK_ComputerCase_SupportBackCooler" FromRole="ComputerCase" ToRole="SupportBackCooler" />
           <NavigationProperty Name="SupportBottomCooler" Relationship="VSborkeBaseModel.FK_ComputerCase_SupportBottomCooler" FromRole="ComputerCase" ToRole="SupportBottomCooler" />
           <NavigationProperty Name="SupportFrontCooler" Relationship="VSborkeBaseModel.FK_ComputerCase_SupportFrontCooler" FromRole="ComputerCase" ToRole="SupportFrontCooler" />
@@ -1489,7 +1521,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="HEXCode" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="HEXCode" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_SecondColor" FromRole="SecondColor" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="SidePanelFixation">
@@ -1523,6 +1555,14 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_SlotXHDD" FromRole="SlotXHDD" ToRole="ComputerCase" />
+        </EntityType>
+        <EntityType Name="SourceRGB">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_SourceRGB" FromRole="SourceRGB" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -1909,6 +1949,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ComputerCase_SourceRGB">
+          <End Type="VSborkeBaseModel.SourceRGB" Role="SourceRGB" Multiplicity="0..1" />
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SourceRGB">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ComputerCase">
+              <PropertyRef Name="SourceRGBId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ComputerCase_SupportBackCooler">
           <End Type="VSborkeBaseModel.SupportBackCooler" Role="SupportBackCooler" Multiplicity="1" />
           <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="*" />
@@ -2148,6 +2200,7 @@
                 <ScalarProperty Name="DeliverySet" ColumnName="DeliverySet" />
                 <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
                 <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="SourceRGBId" ColumnName="SourceRGBId" />
                 <ScalarProperty Name="TypeManagmentRGBId" ColumnName="TypeManagmentRGBId" />
                 <ScalarProperty Name="ColorRGBId" ColumnName="ColorRGBId" />
                 <ScalarProperty Name="TypeRGBId" ColumnName="TypeRGBId" />
@@ -2380,6 +2433,14 @@
           <EntitySetMapping Name="SlotXHDD">
             <EntityTypeMapping TypeName="VSborkeBaseModel.SlotXHDD">
               <MappingFragment StoreEntitySet="SlotXHDD">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SourceRGB">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.SourceRGB">
+              <MappingFragment StoreEntitySet="SourceRGB">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

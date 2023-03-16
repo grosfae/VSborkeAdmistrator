@@ -51,6 +51,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<SlotHDD> SlotHDD { get; set; }
         public virtual DbSet<SlotSSD> SlotSSD { get; set; }
         public virtual DbSet<SlotXHDD> SlotXHDD { get; set; }
+        public virtual DbSet<SourceRGB> SourceRGB { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<SupportBackCooler> SupportBackCooler { get; set; }
         public virtual DbSet<SupportBottomCooler> SupportBottomCooler { get; set; }

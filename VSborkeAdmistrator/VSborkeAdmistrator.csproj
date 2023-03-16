@@ -117,6 +117,9 @@
     <Compile Include="Components\SlotXHDD.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\SourceRGB.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\SupportBackCooler.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>

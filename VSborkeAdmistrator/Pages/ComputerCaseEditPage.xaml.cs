@@ -59,6 +59,7 @@ namespace VSborkeAdmistrator.Pages
             CbSlotHDD.ItemsSource = App.DB.SlotHDD.ToList();
             CbSlotSSD.ItemsSource = App.DB.SlotSSD.ToList();
             CbSlotXHDD.ItemsSource = App.DB.SlotXHDD.ToList();
+            CbSourceRGB.ItemsSource = App.DB.SourceRGB.ToList();
             CbTypeManagmentRGB.ItemsSource = App.DB.TypeManagmentRGB.ToList();
             CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
             CbTopCooler.ItemsSource = App.DB.SupportTopCooler.ToList();

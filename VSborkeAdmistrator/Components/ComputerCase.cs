@@ -82,6 +82,7 @@ namespace VSborkeAdmistrator.Components
         public Nullable<int> TypeRGBId { get; set; }
         public Nullable<int> ColorRGBId { get; set; }
         public Nullable<int> TypeManagmentRGBId { get; set; }
+        public Nullable<int> SourceRGBId { get; set; }
         public byte[] MainImage { get; set; }
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
@@ -115,6 +116,7 @@ namespace VSborkeAdmistrator.Components
         public virtual SlotHDD SlotHDD { get; set; }
         public virtual SlotSSD SlotSSD { get; set; }
         public virtual SlotXHDD SlotXHDD { get; set; }
+        public virtual SourceRGB SourceRGB { get; set; }
         public virtual SupportBackCooler SupportBackCooler { get; set; }
         public virtual SupportBottomCooler SupportBottomCooler { get; set; }
         public virtual SupportFrontCooler SupportFrontCooler { get; set; }
