@@ -30,6 +30,36 @@ namespace VSborkeAdmistrator.Pages
             InitializeComponent();
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
+
+            if(contextComputerCase.Id == 0)
+            {
+                contextComputerCase.CableManagementBackSide = false;
+                contextComputerCase.CardReader = false;
+                contextComputerCase.ThinMiniItx = false;
+                contextComputerCase.MiniItx = false;
+                contextComputerCase.MiniDtx = false;
+                contextComputerCase.EAtx = false;
+                contextComputerCase.StandartAtx = false;
+                contextComputerCase.CutCPUCooler = false;
+                contextComputerCase.DustFilter = false;
+                contextComputerCase.FlexAtx = false;
+                contextComputerCase.GlassOnFrontPanel = false;
+                contextComputerCase.IsAccessable = false;
+                contextComputerCase.IsAntiVibration = false;
+                contextComputerCase.IsCustom = false;
+                contextComputerCase.MicroAtx = false;
+                contextComputerCase.RGB = false;
+                contextComputerCase.SpecialDesign = false;
+                contextComputerCase.XlAtx = false;
+                contextComputerCase.WindowOnSide = false;
+                contextComputerCase.IsDelete = false;
+                contextComputerCase.SupportLiquidCooling = false;
+                contextComputerCase.SsiCeb = false;
+                contextComputerCase.SsiEeb = false;
+            }
+
+            
+
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
             CbAlignmentPowerBlock.ItemsSource = App.DB.AlignmentPowerBlock.ToList();
@@ -64,7 +94,7 @@ namespace VSborkeAdmistrator.Pages
             CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
             CbTopCooler.ItemsSource = App.DB.SupportTopCooler.ToList();
             CbVerticalAddonSlot.ItemsSource = App.DB.VerticalAddonSlot.ToList();
-            
+
         }
         
 
@@ -119,6 +149,71 @@ namespace VSborkeAdmistrator.Pages
             if (Regex.IsMatch(e.Text, @"[A-zА-я,]") == false)
             {
                 e.Handled = true;
+            }
+        }
+
+        private void AdditionImgAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AdditionImgDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CbWindowOnSide_Checked(object sender, RoutedEventArgs e)
+        {
+            CbAlignmentWindow.IsEnabled = true;
+            CbMaterialWindow.IsEnabled = true;
+        }
+
+        private void CbWindowOnSide_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CbAlignmentWindow.IsEnabled = false;
+            CbMaterialWindow.IsEnabled = false;
+            CbAlignmentWindow.SelectedIndex = 0;
+            CbMaterialWindow.SelectedIndex = 0;
+        }
+
+        private void CbSuppLiquid_Checked(object sender, RoutedEventArgs e)
+        {
+            CbBackLiquid.IsEnabled = true;
+            CbBottomLiquid.IsEnabled = true;
+            CbFrontLiquid.IsEnabled = true;
+        }
+
+        private void CbSuppLiquid_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CbBackLiquid.IsEnabled = false;
+            CbBottomLiquid.IsEnabled = false;
+            CbFrontLiquid.IsEnabled = false;
+            CbFrontLiquid.SelectedIndex = 0;
+            CbBackLiquid.SelectedIndex = 0;
+            CbBottomLiquid.SelectedIndex = 0;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (contextComputerCase.Id == 0)
+            {
+                if (CbWindowOnSide.IsChecked == false)
+                {
+                    CbAlignmentWindow.IsEnabled = false;
+                    CbMaterialWindow.IsEnabled = false;
+                    CbAlignmentWindow.SelectedIndex = 0;
+                    CbMaterialWindow.SelectedIndex = 0;
+                }
+
+                if (CbSuppLiquid.IsChecked == false)
+                {
+                    CbBackLiquid.IsEnabled = false;
+                    CbBottomLiquid.IsEnabled = false;
+                    CbFrontLiquid.IsEnabled = false;
+                    CbFrontLiquid.SelectedIndex = 0;
+                    CbBackLiquid.SelectedIndex = 0;
+                    CbBottomLiquid.SelectedIndex = 0;
+                }
             }
         }
     }

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Pages;
+using VSborkeAdmistrator.Components;
 
 namespace VSborkeAdmistrator
 {
@@ -25,7 +26,7 @@ namespace VSborkeAdmistrator
         {
             InitializeComponent();
             Head.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
-            MainFrame.Navigate(new ComputerCaseEditPage());
+            MainFrame.Navigate(new ComputerCaseEditPage(new ComputerCase()));
         }
 
         private void MinButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
