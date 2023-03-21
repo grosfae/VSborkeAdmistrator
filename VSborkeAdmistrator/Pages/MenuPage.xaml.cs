@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VSborkeAdmistrator.Components;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -42,7 +43,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void ConfigBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new ComputerCaseEditPage(new ComputerCase()));
         }
 
         private void InfoShowBtn_Click(object sender, RoutedEventArgs e)

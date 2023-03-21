@@ -9,413 +9,411 @@
       Title="ComputerCaseEditPage"
       Loaded="Page_Loaded">
 
-    <Grid Background="#FFEEF0F2">
-        <ScrollViewer>
-            <StackPanel>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="530"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Менеджмент корпуса" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="410" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
-                    </Grid>
-                    <StackPanel Grid.Row="1" Background="White" Width="1030" Height="530">
-                        <StackPanel Orientation="Horizontal">
+    <Grid Background="#FFEEF0F2" Height="auto">
+        <ScrollViewer Height="auto">
+            <Grid Height="auto">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="530"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Менеджмент корпуса" FontSize="46" Margin="50 15 0 20"/>
+                    <Line X1="410" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                </Grid>
+                <StackPanel Grid.Row="1" Background="White" Width="1030" Height="530">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Margin="10 10 0 0">
+                            <Image Width="400" Height="400"/>
+                            <Button x:Name="MainImageBtn" Click="MainImageBtn_Click" Width="300" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить главное изображение" Margin="0 20 0 0" Cursor="Hand"/>
+                        </StackPanel>
+                        <StackPanel>
                             <StackPanel Margin="10 10 0 0">
-                                <Image Width="400" Height="400"/>
-                                <Button x:Name="MainImageBtn" Click="MainImageBtn_Click" Width="300" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить главное изображение" Margin="0 20 0 0" Cursor="Hand"/>
+                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Название: "/>
+                                <TextBox Text="{Binding Name}" Width="530" Style="{StaticResource  ProfileTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" MaxLength="50"/>
                             </StackPanel>
-                            <StackPanel>
-                                <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Название: "/>
-                                    <TextBox Text="{Binding Name}" Width="530" Style="{StaticResource  ProfileTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" MaxLength="50"/>
+                            <StackPanel Margin="10 10 0 0">
+                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Описание: "/>
+                                <TextBox Text="{Binding Description}" Width="530" Height="200" Style="{StaticResource  ProfileTextEnter}" FontSize="24" HorizontalAlignment="Left" Margin="0 10 0 0" AcceptsReturn="True" TextWrapping="Wrap"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Margin="10 10 100 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Цена: "/>
+                                    <TextBox Text="{Binding Price}" Width="200" Style="{StaticResource  NumbersTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" PreviewTextInput="TextBox_PreviewTextInput_1" MaxLength="6"/>
                                 </StackPanel>
                                 <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Описание: "/>
-                                    <TextBox Text="{Binding Description}" Width="530" Height="200" Style="{StaticResource  ProfileTextEnter}" FontSize="24" HorizontalAlignment="Left" Margin="0 10 0 0" AcceptsReturn="True" TextWrapping="Wrap"/>
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Производитель: "/>
+                                    <ComboBox x:Name="CbManufacturer" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0"/>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Margin="10 10 100 0">
-                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Цена: "/>
-                                        <TextBox Text="{Binding Price}" Width="200" Style="{StaticResource  NumbersTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" PreviewTextInput="TextBox_PreviewTextInput_1" MaxLength="6"/>
-                                    </StackPanel>
-                                    <StackPanel Margin="10 10 0 0">
-                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Производитель: "/>
-                                        <ComboBox x:Name="CbManufacturer" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                    </StackPanel>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Viewbox Height="36" HorizontalAlignment="Left" Margin="10 10 0 0">
-                                        <CheckBox x:Name="CbSpecialDesign" Style="{StaticResource CbContent}" IsChecked="{Binding SpecialDesign}" Content="Особая форма" ToolTip="Ставить галочку, если корпуса имеют не обычную форму" />
-                                    </Viewbox>
-                                    <Viewbox Height="36" HorizontalAlignment="Left" Margin="130 10 0 0">
-                                        <CheckBox x:Name="CbIsAccessable" Style="{StaticResource CbContent}" IsChecked="{Binding IsAccessable}" Content="В наличии" />
-                                    </Viewbox>
-                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Viewbox Height="36" HorizontalAlignment="Left" Margin="10 10 0 0">
+                                    <CheckBox x:Name="CbSpecialDesign" Style="{StaticResource CbContent}" IsChecked="{Binding SpecialDesign}" Content="Особая форма" ToolTip="Ставить галочку, если корпуса имеют не обычную форму" />
+                                </Viewbox>
+                                <Viewbox Height="36" HorizontalAlignment="Left" Margin="130 10 0 0">
+                                    <CheckBox x:Name="CbIsAccessable" Style="{StaticResource CbContent}" IsChecked="{Binding IsAccessable}" Content="В наличии" />
+                                </Viewbox>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>
+                </StackPanel>
 
-                    <StackPanel Grid.Row="2" Background="White" Width="1030" Height="3360" Margin="0 20 0 0">
-                        <StackPanel Margin="20 0 20 0">
-                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Характеристики корпуса" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Форм-фактор и габариты" FontWeight="SemiBold" FontSize="22"/>
+                <StackPanel Grid.Row="2" Background="White" Width="1030" Height="auto" Margin="0 20 0 20">
+                    <StackPanel Margin="20 0 20 0">
+                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Характеристики корпуса" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Форм-фактор и габариты" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Длина: "/>
+                                            <TextBox Text="{Binding Length}" Width="60" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" Margin="18 0 0 0" ToolTip="Указать в мм"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="50 10 0 0" Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Ширина: "/>
+                                            <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Высота: "/>
+                                            <TextBox Text="{Binding Height}" Width="60" MaxLength="3" Margin="7 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="50 20 0 0" Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вес: "/>
+                                            <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Margin="46 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в кг"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="100 0 0 0">
+                                    <StackPanel Margin="10 10 0 0" Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Типоразмер корпуса: " Height="28"/>
+                                        <ComboBox x:Name="CbFormFactor" SelectedItem="{Binding FormFactor}" Margin="122 0 0 0" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22"/>
+                                    </StackPanel>
+                                    <StackPanel Margin="10 10 0 0" Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Ориентация материнской платы: " Height="28"/>
+                                        <ComboBox x:Name="CbOrientationMotherboard" SelectedItem="{Binding OrientationMotherboard}" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Внешний вид" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal">
                                 <StackPanel Orientation="Horizontal">
                                     <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel Margin="0 10 0 0" Orientation="Horizontal">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Длина: "/>
-                                                <TextBox Text="{Binding Length}" Width="60" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" Margin="18 0 0 0" ToolTip="Указать в мм"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="50 10 0 0" Orientation="Horizontal">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Ширина: "/>
-                                                <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal">
-                                            <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Высота: "/>
-                                                <TextBox Text="{Binding Height}" Width="60" MaxLength="3" Margin="7 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в мм"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="50 20 0 0" Orientation="Horizontal">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вес: "/>
-                                                <TextBox Text="{Binding Width}" Width="60" MaxLength="3" Margin="46 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput_1" ToolTip="Указать в кг"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Margin="100 0 0 0">
-                                        <StackPanel Margin="10 10 0 0" Orientation="Horizontal">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Типоразмер корпуса: " Height="28"/>
-                                            <ComboBox x:Name="CbFormFactor" SelectedItem="{Binding FormFactor}" Margin="122 0 0 0" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22"/>
-                                        </StackPanel>
-                                        <StackPanel Margin="10 10 0 0" Orientation="Horizontal">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Ориентация материнской платы: " Height="28"/>
-                                            <ComboBox x:Name="CbOrientationMotherboard" SelectedItem="{Binding OrientationMotherboard}" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Внешний вид" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical">
-                                            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Основной цвет: " Height="28"/>
-                                                <ComboBox x:Name="CbPrimaryColor" SelectedItem="{Binding PrimaryColor}" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22" Margin="75 0 0 0"/>
-                                                <Border Width="40" Height="40" Margin="30 0 0 0" BorderBrush="Black" BorderThickness="1">
-                                                    <Rectangle Height="40" Width="40" Fill="{Binding PrimaryColor.HEXCode}"></Rectangle>
-                                                </Border>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Дополнительный цвет: " Height="28"/>
-                                                <ComboBox x:Name="CbSecondaryColor" SelectedItem="{Binding SecondColor}" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22"/>
-                                                <Border Width="40" Height="40" Margin="30 0 0 0" BorderBrush="Black" BorderThickness="1">
-                                                    <Rectangle Height="40" Width="40" Fill="{Binding SecondColor.HEXCode}"></Rectangle>
-                                                </Border>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материалы корпуса: " Height="28"/>
-                                                <ComboBox x:Name="CbMaterialSet" SelectedItem="{Binding MaterialSet}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" Margin="23 0 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Толщина металла: "/>
-                                                <TextBox Text="{Binding Width}" Width="80" MaxLength="4" Margin="49 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в десятичном виде. Пример: 0.45"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материал передней панели: " TextWrapping="Wrap" Width="230" Height="50"/>
-                                                <ComboBox x:Name="CbFrontPanelMaterial" SelectedItem="{Binding FrontPanelMaterial}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="15 0 0 0"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Margin="130 10 0 0">
-                                            <Viewbox Height="36">
-                                                <CheckBox x:Name="CbWindowOnSide" Style="{StaticResource CbContent}" IsChecked="{Binding WindowOnSide}" Content="Окно на боковой стенке" Checked="CbWindowOnSide_Checked" Unchecked="CbWindowOnSide_Unchecked"/>
-                                            </Viewbox>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение окна: " Height="28"/>
-                                                <ComboBox x:Name="CbAlignmentWindow" SelectedItem="{Binding WindowAlignment}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материалы окна: " Height="28"/>
-                                                <ComboBox x:Name="CbMaterialWindow" SelectedItem="{Binding WindowMaterial}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Подсветка" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical">
-                                            <Viewbox Height="36" HorizontalAlignment="Left">
-                                                <CheckBox Style="{StaticResource CbContent}" IsChecked="{Binding RGB}" Content="Наличие RGB - подсветки" />
-                                            </Viewbox>
-                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Тип подсветки: " Height="28"/>
-                                                <ComboBox x:Name="CbTypeRGB" SelectedItem="{Binding TypeRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" Margin="57 0 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Цвет подсветки: " Height="28"/>
-                                                <ComboBox x:Name="CbColorRGB" SelectedItem="{Binding ColorRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="43 0 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Способ управления подсветкой: " TextWrapping="Wrap" Width="220" Height="60"/>
-                                                <ComboBox x:Name="CbTypeManagmentRGB" SelectedItem="{Binding TypeManagmentRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Источник подсветки: " TextWrapping="Wrap" Width="220" Height="60"/>
-                                                <ComboBox x:Name="CbSourceRGB" SelectedItem="{Binding SourceRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" />
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Совместимость" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Форм-фактор совместимых плат" FontSize="22" Margin="0 0 0 10"/>
-                                            <StackPanel Orientation="Horizontal">
-                                                <StackPanel>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbEatx" IsChecked="{Binding EAtx}" Style="{StaticResource CbContent}" Content="E-ATX" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbFlex" IsChecked="{Binding FlexAtx}" Style="{StaticResource CbContent}" Content="Flex-ATX" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbMicro" IsChecked="{Binding MicroAtx}" Style="{StaticResource CbContent}" Content="Micro-ATX" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbDtx" IsChecked="{Binding MiniDtx}" Style="{StaticResource CbContent}" Content="Mini-DTX" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbItx" IsChecked="{Binding MiniItx}" Style="{StaticResource CbContent}" Content="Mini-ITX" />
-                                                    </Viewbox>
-                                                </StackPanel>
-                                                <StackPanel Margin="30 0 0 0">
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbCeb" IsChecked="{Binding SsiCeb}" Style="{StaticResource CbContent}" Content="SSI-CEB" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbEeb" IsChecked="{Binding SsiEeb}" Style="{StaticResource CbContent}" Content="SSI-EEB" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbStandart" IsChecked="{Binding StandartAtx}" Style="{StaticResource CbContent}" Content="Standart-ATX" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbThin" IsChecked="{Binding ThinMiniItx}" Style="{StaticResource CbContent}" Content="Thin Mini-ITX" />
-                                                    </Viewbox>
-                                                    <Viewbox Height="36" HorizontalAlignment="Left">
-                                                        <CheckBox x:Name="CbXl" IsChecked="{Binding XlAtx}" Style="{StaticResource CbContent}" Content="XL-ATX" />
-                                                    </Viewbox>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Margin="124 0 0 0">
-                                            <StackPanel Orientation="Vertical">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Форм-фактор совместимого блока питания: "/>
-                                                <ComboBox x:Name="CbFormPowerBlock" SelectedItem="{Binding PowerBlockStandartSupport}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 10 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение блока питания: "/>
-                                                <ComboBox x:Name="CbAlignmentPowerBlock" SelectedItem="{Binding AlignmentPowerBlock}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Margin="0 20 0 0" Orientation="Vertical">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная длина блока питания: "/>
-                                                <TextBox Text="{Binding MaxLengthPowerBlock}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                                <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
-                                    <StackPanel>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Горизонтальные слоты расширения: "/>
-                                            <ComboBox x:Name="CbHorizontalAddonsSlot" SelectedItem="{Binding HorizontalAddonsSlot}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вертикальные слоты расширения: "/>
-                                            <ComboBox x:Name="CbVerticalAddonSlot" SelectedItem="{Binding VerticalAddonSlot}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 2.5 накопителей: "/>
-                                            <ComboBox x:Name="CbSlotSSD" SelectedItem="{Binding SlotSSD}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 3.5 накопителей: "/>
-                                            <ComboBox x:Name="CbSlotHDD" SelectedItem="{Binding SlotHDD}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 5.25 накопителей: "/>
-                                            <ComboBox x:Name="CbSlotXHDD" SelectedItem="{Binding SlotXHDD}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 0"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Margin="60 0 0 0">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная длина видеокарты: "/>
-                                            <TextBox Text="{Binding MaxLengthVideocard}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм" Margin="0 10 0 0"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Vertical" Margin="0 15 0 0">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная высота процессорного кулера: "/>
-                                            <TextBox Text="{Binding MaxHeightCPUCooler}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм" Margin="0 10 0 0"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Охлаждение" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <StackPanel Orientation="Vertical">
-                                            <StackPanel Orientation="Vertical" Margin="0 0 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вентиляторы в комплекте: " Height="28"/>
-                                                <ComboBox x:Name="CbCoolerInside" SelectedItem="{Binding CoolerInside}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка фронтальных вентиляторов: " Height="28"/>
-                                                <ComboBox x:Name="CbFrontCooler" SelectedItem="{Binding SupportFrontCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка тыловых вентиляторов: "/>
-                                                <ComboBox x:Name="CbBackCooler" SelectedItem="{Binding SupportBackCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка верхних вентиляторов: "/>
-                                                <ComboBox x:Name="CbTopCooler" SelectedItem="{Binding SupportTopCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка нижних вентиляторов: "/>
-                                                <ComboBox x:Name="CbBottomCooler" SelectedItem="{Binding SupportBottomCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка боковых вентиляторов: "/>
-                                                <ComboBox x:Name="CbSideCooler" SelectedItem="{Binding SupportSideCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                        <StackPanel Margin="100 10 0 0">
-                                            <Viewbox Height="36" HorizontalAlignment="Left">
-                                                <CheckBox x:Name="CbSuppLiquid" Style="{StaticResource CbContent}" IsChecked="{Binding SupportLiquidCooling}" Content="Возможность установки СЖО" Checked="CbSuppLiquid_Checked" Unchecked="CbSuppLiquid_Unchecked"/>
-                                            </Viewbox>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Фронтальный максимальный размер СЖО: " Height="28"/>
-                                                <ComboBox x:Name="CbFrontLiquid" SelectedItem="{Binding FrontLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Тыловой максимальный размер СЖО: " Height="28"/>
-                                                <ComboBox x:Name="CbBackLiquid" SelectedItem="{Binding BackLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                            <StackPanel Orientation="Vertical" Margin="0 20 0 0">
-                                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Нижний максимальный размер СЖО: " Height="28"/>
-                                                <ComboBox x:Name="CbBottomLiquid" SelectedItem="{Binding BottomLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                            </StackPanel>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Разъемы и интерфейсы лицевой панели" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение I/O панели: " Height="28"/>
-                                            <ComboBox x:Name="CbIoAlignment" SelectedItem="{Binding IOPanelAlignment}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left"/>
-                                        </StackPanel>
-                                        <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Конфигурация разъемов: " Height="28"/>
-                                            <ComboBox x:Name="CbIoConnectors" SelectedItem="{Binding IOPanel}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="21 0 0 0"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Основной цвет: " Height="28"/>
+                                            <ComboBox x:Name="CbPrimaryColor" SelectedItem="{Binding PrimaryColor}" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22" Margin="75 0 0 0"/>
+                                            <Border Width="40" Height="40" Margin="30 0 0 0" BorderBrush="Black" BorderThickness="1">
+                                                <Rectangle Height="40" Width="40" Fill="{Binding PrimaryColor.HEXCode}"></Rectangle>
+                                            </Border>
                                         </StackPanel>
                                         <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Разъемы: " Height="28" />
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="{Binding IOPanel.Connectors}" Height="auto" Margin="10 0 0 0" TextWrapping="Wrap"/>
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Дополнительный цвет: " Height="28"/>
+                                            <ComboBox x:Name="CbSecondaryColor" SelectedItem="{Binding SecondColor}" DisplayMemberPath="Name" Height="35" Width="160" FontSize="22"/>
+                                            <Border Width="40" Height="40" Margin="30 0 0 0" BorderBrush="Black" BorderThickness="1">
+                                                <Rectangle Height="40" Width="40" Fill="{Binding SecondColor.HEXCode}"></Rectangle>
+                                            </Border>
                                         </StackPanel>
-                                        <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
-                                            <CheckBox x:Name="CbCardReader" Style="{StaticResource CbContent}" IsChecked="{Binding CardReader}" Content="Встроенный кард-ридер"/>
-                                        </Viewbox>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Обслуживание" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Фиксация боковых панелей: " Height="28"/>
-                                            <ComboBox x:Name="CbSidePanelFixation" SelectedItem="{Binding SidePanelFixation}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материалы корпуса: " Height="28"/>
+                                            <ComboBox x:Name="CbMaterialSet" SelectedItem="{Binding MaterialSet}" DisplayMemberPath="Name" Height="35" MinWidth="200" FontSize="22" Margin="23 0 0 0"/>
                                         </StackPanel>
-                                        <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
-                                            <CheckBox x:Name="CbCutCpu" Style="{StaticResource CbContent}" IsChecked="{Binding CutCPUCooler}" Content="Вырез в районе крепления кулера CPU"/>
-                                        </Viewbox>
-                                        <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
-                                            <CheckBox x:Name="CbCableManagment" Style="{StaticResource CbContent}" IsChecked="{Binding CableManagementBackSide}" Content="Прокладка кабелей за задней стенкой"/>
-                                        </Viewbox>
-                                        <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
-                                            <CheckBox x:Name="CbDustFilter" Style="{StaticResource CbContent}" IsChecked="{Binding DustFilter}" Content="Пылевой фильтр"/>
-                                        </Viewbox>
-                                    </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительная информация" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <StackPanel Orientation="Vertical">
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Комплект поставки: "/>
-                                            <TextBox Text="{Binding DeliverySet}" Width="460" MaxLength="100" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInputABC"/>
+                                        <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Толщина металла: "/>
+                                            <TextBox Text="{Binding Width}" Width="80" MaxLength="4" Margin="49 0 0 0" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в десятичном виде. Пример: 0.45"/>
                                         </StackPanel>
-                                        <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
-                                            <CheckBox x:Name="CbAntiVibration" Style="{StaticResource CbContent}" IsChecked="{Binding IsAntiVibration}" Content="Малошумный и антивибрационный корпус"/>
-                                        </Viewbox>
+                                        <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материал передней панели: " TextWrapping="Wrap" Width="230" Height="50"/>
+                                            <ComboBox x:Name="CbFrontPanelMaterial" SelectedItem="{Binding FrontPanelMaterial}" DisplayMemberPath="Name" Height="35" MinWidth="200" FontSize="22" HorizontalAlignment="Left" Margin="15 0 0 0"/>
+                                        </StackPanel>
                                     </StackPanel>
-                                </StackPanel>
-                            </StackPanel>
-
-                            <StackPanel Margin="0 20 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительные изображения корпуса" FontWeight="SemiBold" FontSize="22"/>
-                                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
-                                    <Button Style="{StaticResource BorderBtn}" Click="LeftBtn_Click" Width="30" FontSize="50" Height="140"  x:Name="LeftBtn" Content ="&lt;" Cursor="Hand"/>
-                                    <ListView x:Name="LvAdditionImages" Width="920" BorderBrush="Transparent" Height= "210" ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
-                                        <ListView.ItemsPanel>
-                                            <ItemsPanelTemplate>
-                                                <StackPanel Orientation ="Horizontal"/>
-                                            </ItemsPanelTemplate>
-                                        </ListView.ItemsPanel>
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Image Width= "200" Height="200" Margin="15 0 0 0" Source="{Binding AdditionImage}"/>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                    <Button Style="{StaticResource BorderBtn}" Click="RightBtn_Click" Width="30" FontSize="50"  x:Name="RightBtn" Height="140" Content="&gt;" Margin="5 0 0 0" Cursor="Hand"/>
-                                </StackPanel>
-                                <StackPanel Margin="0 20 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button x:Name="AdditionImgAdd" Click="AdditionImgAdd_Click" Style="{StaticResource BorderBtn}" Content="Добавить изображение" Width="300" FontSize="33" Cursor="Hand" />
-                                    <Button x:Name="AdditionImgDelete" Click="AdditionImgDelete_Click" Style="{StaticResource BorderBtn}" Content="Удалить изображение" Width="300" FontSize="33" Cursor="Hand" Margin="40 0 0 0"/>
+                                    <StackPanel Margin="130 10 0 0">
+                                        <Viewbox Height="36">
+                                            <CheckBox x:Name="CbWindowOnSide" Style="{StaticResource CbContent}" IsChecked="{Binding WindowOnSide}" Content="Окно на боковой стенке" Checked="CbWindowOnSide_Checked" Unchecked="CbWindowOnSide_Unchecked"/>
+                                        </Viewbox>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение окна: " Height="28"/>
+                                            <ComboBox x:Name="CbAlignmentWindow" SelectedItem="{Binding WindowAlignment}" DisplayMemberPath="Name" Height="35" MinWidth="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Материалы окна: " Height="28"/>
+                                            <ComboBox x:Name="CbMaterialWindow" SelectedItem="{Binding WindowMaterial}" DisplayMemberPath="Name" Height="35" MinWidth="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <Line X1="0" Y1="0" X2="1030" Y2="0" Stroke="#FF3881EF" StrokeThickness="2" Margin="0 40 0 0"/>
-                        <StackPanel Margin="0 20 0 0" HorizontalAlignment="Center" Orientation="Horizontal">
-                            <Button x:Name="SaveBtn" Click="SaveBtn_Click" Style="{StaticResource BorderBtn}" Content="Сохранить" Width="200" FontSize="33" Cursor="Hand" />
-                            <Button x:Name="CancelBtn" Click="CancelBtn_Click" Style="{StaticResource BorderBtn}" Content="Отмена" Width="200" FontSize="33" Cursor="Hand" Margin="40 0 0 0"/>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Подсветка" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <Viewbox Height="36" HorizontalAlignment="Left">
+                                            <CheckBox x:Name="CbRGB" Style="{StaticResource CbContent}" IsChecked="{Binding RGB}" Content="Наличие RGB - подсветки" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                                        </Viewbox>
+                                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Тип подсветки: " Height="28"/>
+                                            <ComboBox x:Name="CbTypeRGB" SelectedItem="{Binding TypeRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" Margin="57 0 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Цвет подсветки: " Height="28"/>
+                                            <ComboBox x:Name="CbColorRGB" SelectedItem="{Binding ColorRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="43 0 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Способ управления подсветкой: " TextWrapping="Wrap" Width="220" Height="60"/>
+                                            <ComboBox x:Name="CbTypeManagmentRGB" SelectedItem="{Binding TypeManagmentRGB}" DisplayMemberPath="Name" Height="35" MinWidth="200" FontSize="22" HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Источник подсветки: " TextWrapping="Wrap" Width="220" Height="60"/>
+                                            <ComboBox x:Name="CbSourceRGB" SelectedItem="{Binding SourceRGB}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Совместимость" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Форм-фактор совместимых плат" FontSize="22" Margin="0 0 0 10"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <StackPanel>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbEatx" IsChecked="{Binding EAtx}" Style="{StaticResource CbContent}" Content="E-ATX" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbFlex" IsChecked="{Binding FlexAtx}" Style="{StaticResource CbContent}" Content="Flex-ATX" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbMicro" IsChecked="{Binding MicroAtx}" Style="{StaticResource CbContent}" Content="Micro-ATX" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbDtx" IsChecked="{Binding MiniDtx}" Style="{StaticResource CbContent}" Content="Mini-DTX" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbItx" IsChecked="{Binding MiniItx}" Style="{StaticResource CbContent}" Content="Mini-ITX" />
+                                                </Viewbox>
+                                            </StackPanel>
+                                            <StackPanel Margin="30 0 0 0">
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbCeb" IsChecked="{Binding SsiCeb}" Style="{StaticResource CbContent}" Content="SSI-CEB" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbEeb" IsChecked="{Binding SsiEeb}" Style="{StaticResource CbContent}" Content="SSI-EEB" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbStandart" IsChecked="{Binding StandartAtx}" Style="{StaticResource CbContent}" Content="Standart-ATX" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbThin" IsChecked="{Binding ThinMiniItx}" Style="{StaticResource CbContent}" Content="Thin Mini-ITX" />
+                                                </Viewbox>
+                                                <Viewbox Height="36" HorizontalAlignment="Left">
+                                                    <CheckBox x:Name="CbXl" IsChecked="{Binding XlAtx}" Style="{StaticResource CbContent}" Content="XL-ATX" />
+                                                </Viewbox>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Margin="124 0 0 0">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Форм-фактор совместимого блока питания: "/>
+                                            <ComboBox x:Name="CbFormPowerBlock" SelectedItem="{Binding PowerBlockStandartSupport}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 10 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение блока питания: "/>
+                                            <ComboBox x:Name="CbAlignmentPowerBlock" SelectedItem="{Binding AlignmentPowerBlock}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="0 20 0 0" Orientation="Vertical">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная длина блока питания: "/>
+                                            <TextBox Text="{Binding MaxLengthPowerBlock}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                            <StackPanel Margin="0 20 0 0" Orientation="Horizontal">
+                                <StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Горизонтальные слоты расширения: "/>
+                                        <ComboBox x:Name="CbHorizontalAddonsSlot" SelectedItem="{Binding HorizontalAddonsSlot}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вертикальные слоты расширения: "/>
+                                        <ComboBox x:Name="CbVerticalAddonSlot" SelectedItem="{Binding VerticalAddonSlot}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 2.5 накопителей: "/>
+                                        <ComboBox x:Name="CbSlotSSD" SelectedItem="{Binding SlotSSD}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 3.5 накопителей: "/>
+                                        <ComboBox x:Name="CbSlotHDD" SelectedItem="{Binding SlotHDD}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Количество отсеков 5.25 накопителей: "/>
+                                        <ComboBox x:Name="CbSlotXHDD" SelectedItem="{Binding SlotXHDD}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="60 0 0 0">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная длина видеокарты: "/>
+                                        <TextBox Text="{Binding MaxLengthVideocard}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм" Margin="0 10 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Margin="0 15 0 0">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Маскимальная высота процессорного кулера: "/>
+                                        <TextBox Text="{Binding MaxHeightCPUCooler}" Width="80" MaxLength="3" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInput" ToolTip="Указать в мм" Margin="0 10 0 0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Охлаждение" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <StackPanel Orientation="Vertical">
+                                        <StackPanel Orientation="Vertical" Margin="0 0 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вентиляторы в комплекте: " Height="28"/>
+                                            <ComboBox x:Name="CbCoolerInside" SelectedItem="{Binding CoolerInside}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка фронтальных вентиляторов: " Height="28"/>
+                                            <ComboBox x:Name="CbFrontCooler" SelectedItem="{Binding SupportFrontCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка тыловых вентиляторов: "/>
+                                            <ComboBox x:Name="CbBackCooler" SelectedItem="{Binding SupportBackCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка верхних вентиляторов: "/>
+                                            <ComboBox x:Name="CbTopCooler" SelectedItem="{Binding SupportTopCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка нижних вентиляторов: "/>
+                                            <ComboBox x:Name="CbBottomCooler" SelectedItem="{Binding SupportBottomCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Поддержка боковых вентиляторов: "/>
+                                            <ComboBox x:Name="CbSideCooler" SelectedItem="{Binding SupportSideCooler}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <StackPanel Margin="100 10 0 0">
+                                        <Viewbox Height="36" HorizontalAlignment="Left">
+                                            <CheckBox x:Name="CbSuppLiquid" Style="{StaticResource CbContent}" IsChecked="{Binding SupportLiquidCooling}" Content="Возможность установки СЖО" Checked="CbSuppLiquid_Checked" Unchecked="CbSuppLiquid_Unchecked"/>
+                                        </Viewbox>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Фронтальный максимальный размер СЖО: " Height="28"/>
+                                            <ComboBox x:Name="CbFrontLiquid" SelectedItem="{Binding FrontLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Тыловой максимальный размер СЖО: " Height="28"/>
+                                            <ComboBox x:Name="CbBackLiquid" SelectedItem="{Binding BackLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Нижний максимальный размер СЖО: " Height="28"/>
+                                            <ComboBox x:Name="CbBottomLiquid" SelectedItem="{Binding BottomLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Разъемы и интерфейсы лицевой панели" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Расположение I/O панели: " Height="28"/>
+                                        <ComboBox x:Name="CbIoAlignment" SelectedItem="{Binding IOPanelAlignment}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 40 0 0">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Конфигурация разъемов: " Height="28"/>
+                                        <ComboBox x:Name="CbIoConnectors" SelectedItem="{Binding IOPanel}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="21 0 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Разъемы: " Height="28" />
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="{Binding IOPanel.Connectors}" Height="auto" Width="380" Margin="10 0 0 0" TextWrapping="Wrap"/>
+                                    </StackPanel>
+                                    <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
+                                        <CheckBox x:Name="CbCardReader" Style="{StaticResource CbContent}" IsChecked="{Binding CardReader}" Content="Встроенный кард-ридер"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Обслуживание" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Фиксация боковых панелей: " Height="28"/>
+                                        <ComboBox x:Name="CbSidePanelFixation" SelectedItem="{Binding SidePanelFixation}" DisplayMemberPath="Name" Height="35" MinWidth="200" FontSize="22" HorizontalAlignment="Left"/>
+                                    </StackPanel>
+                                    <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
+                                        <CheckBox x:Name="CbCutCpu" Style="{StaticResource CbContent}" IsChecked="{Binding CutCPUCooler}" Content="Вырез в районе крепления кулера CPU"/>
+                                    </Viewbox>
+                                    <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
+                                        <CheckBox x:Name="CbCableManagment" Style="{StaticResource CbContent}" IsChecked="{Binding CableManagementBackSide}" Content="Прокладка кабелей за задней стенкой"/>
+                                    </Viewbox>
+                                    <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
+                                        <CheckBox x:Name="CbDustFilter" Style="{StaticResource CbContent}" IsChecked="{Binding DustFilter}" Content="Пылевой фильтр"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительная информация" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Комплект поставки: "/>
+                                        <TextBox Text="{Binding DeliverySet}" Width="460" MaxLength="100" Style="{StaticResource  NumbersTextEnter}" FontSize="22" HorizontalAlignment="Left" PreviewTextInput="TextBox_PreviewTextInputABC"/>
+                                    </StackPanel>
+                                    <Viewbox Height="36" Margin="0 20 0 0" HorizontalAlignment="Left">
+                                        <CheckBox x:Name="CbAntiVibration" Style="{StaticResource CbContent}" IsChecked="{Binding IsAntiVibration}" Content="Малошумный и антивибрационный корпус"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <StackPanel Margin="0 20 0 0">
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительные изображения корпуса" FontWeight="SemiBold" FontSize="22"/>
+                            <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                                <Button Style="{StaticResource BorderBtn}" Click="LeftBtn_Click" Width="30" FontSize="50" Height="140"  x:Name="LeftBtn" Content ="&lt;" Cursor="Hand"/>
+                                <ListView x:Name="LvAdditionImages" Width="920" BorderBrush="Transparent" Height= "210" ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                    <ListView.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation ="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ListView.ItemsPanel>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Width= "200" Height="200" Margin="15 0 0 0" Source="{Binding AdditionImage}"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                                <Button Style="{StaticResource BorderBtn}" Click="RightBtn_Click" Width="30" FontSize="50"  x:Name="RightBtn" Height="140" Content="&gt;" Margin="5 0 0 0" Cursor="Hand"/>
+                            </StackPanel>
+                            <StackPanel Margin="0 20 0 0" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="AdditionImgAdd" Click="AdditionImgAdd_Click" Style="{StaticResource BorderBtn}" Content="Добавить изображение" Width="300" FontSize="33" Cursor="Hand" />
+                                <Button x:Name="AdditionImgDelete" Click="AdditionImgDelete_Click" Style="{StaticResource BorderBtn}" Content="Удалить изображение" Width="300" FontSize="33" Cursor="Hand" Margin="40 0 0 0"/>
+                            </StackPanel>
                         </StackPanel>
                     </StackPanel>
-                </Grid>
-            </StackPanel>
+                    <Line X1="0" Y1="0" X2="1030" Y2="0" Stroke="#FF3881EF" StrokeThickness="2" Margin="0 40 0 0"/>
+                    <StackPanel Margin="0 20 0 20" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <Button x:Name="SaveBtn" Click="SaveBtn_Click" Style="{StaticResource BorderBtn}" Content="Сохранить" Width="200" FontSize="33" Cursor="Hand" />
+                        <Button x:Name="CancelBtn" Click="CancelBtn_Click" Style="{StaticResource BorderBtn}" Content="Отмена" Width="200" FontSize="33" Cursor="Hand" Margin="40 0 0 0"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
     </Grid>
 </Page>

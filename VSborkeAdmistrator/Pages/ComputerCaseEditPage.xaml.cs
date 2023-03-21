@@ -214,7 +214,41 @@ namespace VSborkeAdmistrator.Pages
                     CbBackLiquid.SelectedIndex = 0;
                     CbBottomLiquid.SelectedIndex = 0;
                 }
+
+                if (CbRGB.IsChecked == false)
+                {
+                    CbColorRGB.IsEnabled = false;
+                    CbSourceRGB.IsEnabled = false;
+                    CbTypeManagmentRGB.IsEnabled = false;
+                    CbTypeRGB.IsEnabled = false;
+
+                    CbColorRGB.SelectedIndex = 0;
+                    CbSourceRGB.SelectedIndex = 0;
+                    CbTypeManagmentRGB.SelectedIndex = 0;
+                    CbTypeRGB.SelectedIndex = 0;
+                }
             }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CbColorRGB.IsEnabled = true;
+            CbSourceRGB.IsEnabled = true;
+            CbTypeManagmentRGB.IsEnabled = true;
+            CbTypeRGB.IsEnabled = true;
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CbColorRGB.IsEnabled = false;
+            CbSourceRGB.IsEnabled = false;
+            CbTypeManagmentRGB.IsEnabled = false;
+            CbTypeRGB.IsEnabled = false;
+
+            CbColorRGB.SelectedIndex= 0;
+            CbSourceRGB.SelectedIndex= 0;
+            CbTypeManagmentRGB.SelectedIndex= 0;
+            CbTypeRGB.SelectedIndex= 0;
         }
     }
 }
