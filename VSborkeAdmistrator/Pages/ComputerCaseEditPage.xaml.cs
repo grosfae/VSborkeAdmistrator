@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -100,7 +101,10 @@ namespace VSborkeAdmistrator.Pages
 
         private void MainImageBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dialog = new OpenFileDialog();
+            var dialog = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|*.jpg|*.jpg|*.jpeg|*.jpeg"
+            };
             if (dialog.ShowDialog().GetValueOrDefault())
             {
                 contextComputerCase.MainImage = File.ReadAllBytes(dialog.FileName);
@@ -111,12 +115,18 @@ namespace VSborkeAdmistrator.Pages
 
         private void LeftBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            numberPage--;
+            if (numberPage < 0)
+                numberPage = 0;
+            Update();
         }
 
         private void RightBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            numberPage++;
+            if (LvAdditionImages.Items.Count < 4)
+                numberPage--;
+            Update();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -154,7 +164,24 @@ namespace VSborkeAdmistrator.Pages
 
         private void AdditionImgAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            if (contextComputerCase.Id == 0)
+            {
+                MessageBox.Show("Нажмите кнопку  ");
+                return;
+            }
+            AdditionComputerCaseImage casePhoto = new AdditionComputerCaseImage();
+            var dialog = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|*.jpg|*.jpg|*.jpeg|*.jpeg"
+            };
+            if (dialog.ShowDialog().GetValueOrDefault())
+            {
+                casePhoto.AdditionImage = File.ReadAllBytes(dialog.FileName);
+                casePhoto.ComputerCaseId = contextComputerCase.Id;
+                App.DB.AdditionComputerCaseImage.Add(casePhoto);
+                App.DB.SaveChanges();
+                LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+            }
         }
 
         private void AdditionImgDelete_Click(object sender, RoutedEventArgs e)
@@ -249,6 +276,16 @@ namespace VSborkeAdmistrator.Pages
             CbSourceRGB.SelectedIndex= 0;
             CbTypeManagmentRGB.SelectedIndex= 0;
             CbTypeRGB.SelectedIndex= 0;
+        }
+
+        int numberPage = 0;
+        int count = 4;
+
+        private void Update()
+        {
+            IEnumerable<AdditionComputerCaseImage> caseImagesList = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id);
+            caseImagesList = caseImagesList.Skip(count * numberPage).Take(count);
+            LvAdditionImages.ItemsSource = caseImagesList;
         }
     }
 }

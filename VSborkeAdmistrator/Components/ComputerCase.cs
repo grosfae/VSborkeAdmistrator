@@ -18,13 +18,14 @@ namespace VSborkeAdmistrator.Components
         public ComputerCase()
         {
             this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
+            this.PlanCase = new HashSet<PlanCase>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public Nullable<int> Discount { get; set; }
+        public int Discount { get; set; }
         public int FormFactorId { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
@@ -32,22 +33,22 @@ namespace VSborkeAdmistrator.Components
         public decimal Weight { get; set; }
         public int MaterialSetId { get; set; }
         public decimal MetalThickness { get; set; }
-        public Nullable<bool> GlassOnFrontPanel { get; set; }
-        public Nullable<int> GlassOnFrontPanelMaterialId { get; set; }
-        public Nullable<bool> WindowOnSide { get; set; }
-        public Nullable<int> WindowAlignmentId { get; set; }
-        public Nullable<int> WindowMaterialId { get; set; }
+        public bool GlassOnFrontPanel { get; set; }
+        public int GlassOnFrontPanelMaterialId { get; set; }
+        public bool WindowOnSide { get; set; }
+        public int WindowAlignmentId { get; set; }
+        public int WindowMaterialId { get; set; }
         public int FrontPanelMaterialId { get; set; }
-        public Nullable<bool> EAtx { get; set; }
-        public Nullable<bool> FlexAtx { get; set; }
-        public Nullable<bool> MicroAtx { get; set; }
-        public Nullable<bool> MiniDtx { get; set; }
-        public Nullable<bool> MiniItx { get; set; }
-        public Nullable<bool> SsiCeb { get; set; }
-        public Nullable<bool> SsiEeb { get; set; }
-        public Nullable<bool> StandartAtx { get; set; }
-        public Nullable<bool> ThinMiniItx { get; set; }
-        public Nullable<bool> XlAtx { get; set; }
+        public bool EAtx { get; set; }
+        public bool FlexAtx { get; set; }
+        public bool MicroAtx { get; set; }
+        public bool MiniDtx { get; set; }
+        public bool MiniItx { get; set; }
+        public bool SsiCeb { get; set; }
+        public bool SsiEeb { get; set; }
+        public bool StandartAtx { get; set; }
+        public bool ThinMiniItx { get; set; }
+        public bool XlAtx { get; set; }
         public int PowerBlockStandartSupportId { get; set; }
         public int AlignmentPowerBlockId { get; set; }
         public int MaxLengthPowerBlock { get; set; }
@@ -64,34 +65,34 @@ namespace VSborkeAdmistrator.Components
         public int SupportTopCoolerId { get; set; }
         public int SupportSideCoolerId { get; set; }
         public int SupportBottomCoolerId { get; set; }
-        public Nullable<bool> SupportLiquidCooling { get; set; }
+        public bool SupportLiquidCooling { get; set; }
         public int FrontLiquidCoolingId { get; set; }
         public int BackLiquidCoolingId { get; set; }
         public int BottomLiquidCoolingId { get; set; }
         public int OrientationMotherboardId { get; set; }
-        public Nullable<bool> DustFilter { get; set; }
+        public bool DustFilter { get; set; }
         public int PrimaryColorId { get; set; }
-        public Nullable<int> SecondColorId { get; set; }
+        public int SecondColorId { get; set; }
         public int IOPanelAlignmentId { get; set; }
         public int IOPanelId { get; set; }
-        public Nullable<bool> CutCPUCooler { get; set; }
-        public Nullable<bool> CableManagementBackSide { get; set; }
-        public Nullable<bool> CardReader { get; set; }
+        public bool CutCPUCooler { get; set; }
+        public bool CableManagementBackSide { get; set; }
+        public bool CardReader { get; set; }
         public int SidePanelFixationId { get; set; }
-        public Nullable<bool> RGB { get; set; }
-        public Nullable<int> TypeRGBId { get; set; }
-        public Nullable<int> ColorRGBId { get; set; }
-        public Nullable<int> TypeManagmentRGBId { get; set; }
-        public Nullable<int> SourceRGBId { get; set; }
+        public bool RGB { get; set; }
+        public int TypeRGBId { get; set; }
+        public int ColorRGBId { get; set; }
+        public int TypeManagmentRGBId { get; set; }
+        public int SourceRGBId { get; set; }
         public byte[] MainImage { get; set; }
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
-        public Nullable<bool> IsAntiVibration { get; set; }
-        public Nullable<bool> SpecialDesign { get; set; }
-        public Nullable<bool> IsAccessable { get; set; }
-        public Nullable<bool> IsDelete { get; set; }
-        public Nullable<bool> IsCustom { get; set; }
-        public Nullable<int> UserId { get; set; }
+        public bool IsAntiVibration { get; set; }
+        public bool SpecialDesign { get; set; }
+        public bool IsAccessable { get; set; }
+        public bool IsDelete { get; set; }
+        public bool IsCustom { get; set; }
+        public int UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdditionComputerCaseImage> AdditionComputerCaseImage { get; set; }
@@ -128,5 +129,7 @@ namespace VSborkeAdmistrator.Components
         public virtual VerticalAddonSlot VerticalAddonSlot { get; set; }
         public virtual WindowAlignment WindowAlignment { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PlanCase> PlanCase { get; set; }
     }
 }
