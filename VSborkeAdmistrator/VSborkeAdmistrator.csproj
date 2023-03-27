@@ -75,6 +75,9 @@
     <Compile Include="Components\BottomLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\ConnectorRGB.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\CoolerInside.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -99,9 +102,6 @@
     <Compile Include="Components\PartialClass\ComputerCase.cs" />
     <Compile Include="Components\PartialClass\Order.cs" />
     <Compile Include="Components\PartialClass\User.cs" />
-    <Compile Include="Components\PlanCase.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\PowerBlockStandartSupport.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -146,6 +146,9 @@
     </Compile>
     <Compile Include="Components\WindowAlignment.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\CasesPage.xaml.cs">
+      <DependentUpon>CasesPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ComputerCaseEditPage.xaml.cs">
       <DependentUpon>ComputerCaseEditPage.xaml</DependentUpon>
@@ -234,6 +237,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\CasesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ComputerCaseEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -299,6 +306,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Resource Include="Resources\Fonts\helvetica_regular.otf" />
     <Resource Include="Resources\Fonts\PT_Sans-Web-Regular.ttf" />
     <Resource Include="Resources\Fonts\Raleway-VariableFont_wght.ttf" />
     <Resource Include="Resources\Fonts\Lena.ttf" />
@@ -335,6 +343,7 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MessageBoxImages\SuccessMessage.png" />
     <Resource Include="Resources\UsersButtons\More.png" />
     <Resource Include="Resources\UsersButtons\MoreOutline.png" />
     <Resource Include="Resources\UsersButtons\GreenLock.png" />

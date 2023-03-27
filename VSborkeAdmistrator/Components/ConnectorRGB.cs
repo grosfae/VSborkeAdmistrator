@@ -12,12 +12,18 @@ namespace VSborkeAdmistrator.Components
     using System;
     using System.Collections.Generic;
     
-    public partial class PlanCase
+    public partial class ConnectorRGB
     {
-        public int Id { get; set; }
-        public int ComputerCaseId { get; set; }
-        public byte[] Blueprint { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ConnectorRGB()
+        {
+            this.ComputerCase = new HashSet<ComputerCase>();
+        }
     
-        public virtual ComputerCase ComputerCase { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ComputerCase> ComputerCase { get; set; }
     }
 }

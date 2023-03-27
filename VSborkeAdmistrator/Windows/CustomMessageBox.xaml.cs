@@ -42,6 +42,8 @@ namespace VSborkeAdmistrator.Windows
             Error,
             Warning,
             Подтверждение,
+            Предупреждение,
+            Успешно
         }
         public static DialogResult Show(string message, CustomMessageBoxTitle title, CustomMessageBoxButton btnOk, CustomMessageBoxButton btnNo)
         {
@@ -64,6 +66,17 @@ namespace VSborkeAdmistrator.Windows
                     break;
                 case CustomMessageBoxTitle.Подтверждение:
                     customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/QuestionMessage.png"));
+                    break;
+                case CustomMessageBoxTitle.Предупреждение:
+                    customMessageBox.iconMsg.Visibility = Visibility.Collapsed;
+                    customMessageBox.CancelBtn.Visibility = Visibility.Collapsed;
+                    customMessageBox.txtMessage.SetValue(Grid.ColumnSpanProperty, 2);
+                    customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
+                    break;
+                case CustomMessageBoxTitle.Успешно:
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/SuccessMessage.png"));
+                    customMessageBox.CancelBtn.Visibility = Visibility.Collapsed;
+                    customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
                     break;
             }
             customMessageBox.ShowDialog();

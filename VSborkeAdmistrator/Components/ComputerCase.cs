@@ -18,23 +18,20 @@ namespace VSborkeAdmistrator.Components
         public ComputerCase()
         {
             this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
-            this.PlanCase = new HashSet<PlanCase>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public decimal Price { get; set; }
+        public int Price { get; set; }
         public int Discount { get; set; }
         public int FormFactorId { get; set; }
         public int Height { get; set; }
         public int Width { get; set; }
         public int Length { get; set; }
-        public decimal Weight { get; set; }
+        public float Weight { get; set; }
         public int MaterialSetId { get; set; }
-        public decimal MetalThickness { get; set; }
-        public bool GlassOnFrontPanel { get; set; }
-        public int GlassOnFrontPanelMaterialId { get; set; }
+        public float MetalThickness { get; set; }
         public bool WindowOnSide { get; set; }
         public int WindowAlignmentId { get; set; }
         public int WindowMaterialId { get; set; }
@@ -84,6 +81,7 @@ namespace VSborkeAdmistrator.Components
         public int ColorRGBId { get; set; }
         public int TypeManagmentRGBId { get; set; }
         public int SourceRGBId { get; set; }
+        public int ConnectorRGBId { get; set; }
         public byte[] MainImage { get; set; }
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
@@ -100,6 +98,7 @@ namespace VSborkeAdmistrator.Components
         public virtual BackLiquidCooling BackLiquidCooling { get; set; }
         public virtual BottomLiquidCooling BottomLiquidCooling { get; set; }
         public virtual ColorRGB ColorRGB { get; set; }
+        public virtual ConnectorRGB ConnectorRGB { get; set; }
         public virtual CoolerInside CoolerInside { get; set; }
         public virtual FormFactor FormFactor { get; set; }
         public virtual FrontLiquidCooling FrontLiquidCooling { get; set; }
@@ -129,7 +128,5 @@ namespace VSborkeAdmistrator.Components
         public virtual VerticalAddonSlot VerticalAddonSlot { get; set; }
         public virtual WindowAlignment WindowAlignment { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PlanCase> PlanCase { get; set; }
     }
 }

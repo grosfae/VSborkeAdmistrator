@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VSborkeAdmistrator.Windows"
         mc:Ignorable="d"
-        Title="CustomMessageBox" Height="auto" MinHeight="170" Width="300" SizeToContent="Height"
+        Title="CustomMessageBox" Height="auto" MinHeight="170" Width="300" SizeToContent="WidthAndHeight"
         
         BorderThickness="2"
         BorderBrush="#FF3881EF"
@@ -28,8 +28,8 @@
         <StackPanel Orientation="Horizontal" x:Name="Header" Background="White" Grid.Row="0">
             <TextBlock x:Name="txtTitle" Text="Сообщение" Style="{StaticResource Header}" FontSize="24" Height="30" FontWeight="Medium" Margin="10 0 0 0"/>
         </StackPanel>
-        <Line X1="0" Y1="34" X2="300" Y2="34" Stroke="#FF3881EF" StrokeThickness="2"/>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Center" Height="36" Width="250" Margin="46,0,0,0">
+        <StackPanel Background="#FF3881EF" Height="2" Margin="0 33 0 0"/>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Height="36" Width="auto">
             <Polygon Fill="#FF3881EF" Points="180,0,250,50, 250,0, 0,0"/>
             <Image x:Name="CloseButton" Height="15" Width="15" Margin="220 0 0 5" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
                 <Image.Style>
@@ -52,8 +52,8 @@
                 <ColumnDefinition Width="19*"/>
                 <ColumnDefinition Width="55*"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="iconMsg" Source="/Resources/MessageBoxImages/AlertMessage.png" Height="50" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <TextBlock x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14"/>
+            <Image x:Name="iconMsg" Source="/Resources/MessageBoxImages/AlertMessage.png" Height="60" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14" Margin="10 5 10 0"/>
         </Grid>
         <Grid Grid.Row="2" HorizontalAlignment="Center" Width="140" >
             <Grid.ColumnDefinitions>
