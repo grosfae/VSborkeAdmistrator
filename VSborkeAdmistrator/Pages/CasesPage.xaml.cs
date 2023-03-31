@@ -104,5 +104,21 @@ namespace VSborkeAdmistrator.Pages
         {
 
         }
+
+        private void NotificBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            NavigationService.Navigate(new ComputerCaseEditPage(selectedCase));
+        }
+
+        private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

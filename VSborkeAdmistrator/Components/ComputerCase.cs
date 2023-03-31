@@ -18,6 +18,7 @@ namespace VSborkeAdmistrator.Components
         public ComputerCase()
         {
             this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
+            this.Favourite = new HashSet<Favourite>();
         }
     
         public int Id { get; set; }
@@ -128,5 +129,7 @@ namespace VSborkeAdmistrator.Components
         public virtual VerticalAddonSlot VerticalAddonSlot { get; set; }
         public virtual WindowAlignment WindowAlignment { get; set; }
         public virtual WindowMaterial WindowMaterial { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Favourite> Favourite { get; set; }
     }
 }

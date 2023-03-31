@@ -131,6 +131,14 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="Favourite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComputerCaseId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="FormFactor">
           <Key>
             <PropertyRef Name="Id" />
@@ -809,6 +817,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Favourite_ComputerCase">
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
+          <End Role="Favourite" Type="Self.Favourite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Favourite">
+              <PropertyRef Name="ComputerCaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favourite_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Favourite" Type="Self.Favourite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Favourite">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_Status">
           <End Role="Status" Type="Self.Status" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -866,6 +898,7 @@
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConnectorRGB" EntityType="Self.ConnectorRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerInside" EntityType="Self.CoolerInside" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Favourite" EntityType="Self.Favourite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FrontLiquidCooling" EntityType="Self.FrontLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FrontPanelMaterial" EntityType="Self.FrontPanelMaterial" Schema="dbo" store:Type="Tables" />
@@ -1039,6 +1072,14 @@
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_Favourite_ComputerCase" Association="Self.FK_Favourite_ComputerCase">
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+            <End Role="Favourite" EntitySet="Favourite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favourite_User" Association="Self.FK_Favourite_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Favourite" EntitySet="Favourite" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_Status" Association="Self.FK_Order_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="Order" EntitySet="Order" />
@@ -1069,6 +1110,7 @@
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
           <EntitySet Name="ConnectorRGB" EntityType="VSborkeBaseModel.ConnectorRGB" />
           <EntitySet Name="CoolerInside" EntityType="VSborkeBaseModel.CoolerInside" />
+          <EntitySet Name="Favourite" EntityType="VSborkeBaseModel.Favourite" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
           <EntitySet Name="FrontLiquidCooling" EntityType="VSborkeBaseModel.FrontLiquidCooling" />
           <EntitySet Name="FrontPanelMaterial" EntityType="VSborkeBaseModel.FrontPanelMaterial" />
@@ -1242,6 +1284,14 @@
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_Favourite_ComputerCase" Association="VSborkeBaseModel.FK_Favourite_ComputerCase">
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+            <End Role="Favourite" EntitySet="Favourite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Favourite_User" Association="VSborkeBaseModel.FK_Favourite_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Favourite" EntitySet="Favourite" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="VSborkeBaseModel.FK_User_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
@@ -1410,6 +1460,7 @@
           <NavigationProperty Name="VerticalAddonSlot" Relationship="VSborkeBaseModel.FK_ComputerCase_VerticalAddonSlot" FromRole="ComputerCase" ToRole="VerticalAddonSlot" />
           <NavigationProperty Name="WindowAlignment" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowAlignment" FromRole="ComputerCase" ToRole="WindowAlignment" />
           <NavigationProperty Name="WindowMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowMaterial" FromRole="ComputerCase" ToRole="WindowMaterial" />
+          <NavigationProperty Name="Favourite" Relationship="VSborkeBaseModel.FK_Favourite_ComputerCase" FromRole="ComputerCase" ToRole="Favourite" />
         </EntityType>
         <EntityType Name="ConnectorRGB">
           <Key>
@@ -1426,6 +1477,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_CoolerInside" FromRole="CoolerInside" ToRole="ComputerCase" />
+        </EntityType>
+        <EntityType Name="Favourite">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Favourite_ComputerCase" FromRole="Favourite" ToRole="ComputerCase" />
+          <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_Favourite_User" FromRole="Favourite" ToRole="User" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -1693,6 +1754,7 @@
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsBanned" Type="Boolean" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="User" ToRole="ComputerCase" />
+          <NavigationProperty Name="Favourite" Relationship="VSborkeBaseModel.FK_Favourite_User" FromRole="User" ToRole="Favourite" />
           <NavigationProperty Name="Gender" Relationship="VSborkeBaseModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
           <NavigationProperty Name="Order" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="User" ToRole="Order" />
           <NavigationProperty Name="Role" Relationship="VSborkeBaseModel.FK_User_Role" FromRole="User" ToRole="Role" />
@@ -2141,6 +2203,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Favourite_ComputerCase">
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.Favourite" Role="Favourite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Favourite">
+              <PropertyRef Name="ComputerCaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Favourite_User">
+          <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.Favourite" Role="Favourite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Favourite">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Gender">
           <End Type="VSborkeBaseModel.Gender" Role="Gender" Multiplicity="0..1" />
           <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="*" />
@@ -2325,6 +2411,15 @@
             <EntityTypeMapping TypeName="VSborkeBaseModel.CoolerInside">
               <MappingFragment StoreEntitySet="CoolerInside">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Favourite">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.Favourite">
+              <MappingFragment StoreEntitySet="Favourite">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

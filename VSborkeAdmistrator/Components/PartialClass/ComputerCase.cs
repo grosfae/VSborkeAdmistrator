@@ -174,5 +174,26 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
+        public Visibility VisibilityBtnOrder
+        {
+            get
+            {
+                if (IsAccessable == false)
+                    return Visibility.Collapsed;
+                else
+                    return Visibility.Visible;
+            }
+        }
+        public Visibility VisibilityBtnNortific
+        {
+            get
+            {
+                if (IsAccessable == true)
+                    return Visibility.Collapsed;
+                else
+                    return Visibility.Visible;
+            }
+        }
+        
     }
 }

@@ -18,6 +18,7 @@ namespace VSborkeAdmistrator.Components
         public User()
         {
             this.ComputerCase = new HashSet<ComputerCase>();
+            this.Favourite = new HashSet<Favourite>();
             this.Order = new HashSet<Order>();
         }
     
@@ -37,6 +38,8 @@ namespace VSborkeAdmistrator.Components
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComputerCase> ComputerCase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Favourite> Favourite { get; set; }
         public virtual Gender Gender { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
