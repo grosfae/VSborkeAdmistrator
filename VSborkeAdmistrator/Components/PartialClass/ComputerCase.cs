@@ -102,7 +102,7 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
-                if (SsiCeb == true)
+                if (StandartAtx == true)
                     return "Standart-ATX, ";
                 else
                     return "";
