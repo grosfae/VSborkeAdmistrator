@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1000" d:DesignWidth="1130"
-      Title="CasesPage">
+      Title="CasesPage"
+      Loaded="Page_Loaded">
 
     <Grid Background="#FFEEF0F2">
         <ScrollViewer>
@@ -45,17 +46,14 @@
                         <Line X1="0" Y1="0" X2="1100" Y2="0" Stroke="#FF3881EF" StrokeThickness="3"/>
                         <StackPanel Orientation="Horizontal" Height="609">
                             <StackPanel Width="200">
-                                <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Сортировка:"/>
-                                    <ComboBox x:Name="CbSort" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbSort_SelectionChanged">
-                                        <ComboBoxItem>По возрастанию</ComboBoxItem>
-                                        <ComboBoxItem>По убыванию</ComboBoxItem>
-                                    </ComboBox>
-                                </StackPanel>
-                                <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол:"/>
-                                    <ComboBox x:Name="CbGender" SelectedItem="{Binding Gender}" DisplayMemberPath="Name" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbGender_SelectionChanged"/>
-                                </StackPanel>
+                                <Expander Header="Цена" Width="180">
+                                    <StackPanel Margin="0 10 0 0">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От:" Margin="0 10 0 0"/>
+                                        <TextBox x:Name="TbStartPrice" FontSize="21" Width="170" HorizontalAlignment="Left" MaxLength="6"/>
+                                        <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="До:" Margin="0 10 0 0"/>
+                                        <TextBox x:Name="TbEndPrice" FontSize="21" Width="170" HorizontalAlignment="Left" MaxLength="6"/>
+                                    </StackPanel>
+                                </Expander>
                                 <StackPanel Margin="10 10 0 0">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Роль:"/>
                                     <ComboBox x:Name="CbRole" SelectedItem="{Binding Role}" DisplayMemberPath="Name" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbRole_SelectionChanged"/>
@@ -71,14 +69,14 @@
                                 </Viewbox>
                                 <StackPanel Orientation="Horizontal" Margin="10 10 0 0">
                                     <Viewbox Height="30">
-                                        <CheckBox x:Name="CbBanned" Content="Блокированные" Style="{StaticResource CbContent}" Checked="СbBanned_Checked" Unchecked="СbBanned_Checked" BorderBrush="#FF3881EF"/>
+                                        <CheckBox x:Name="CbAccess" Content="В наличии" Style="{StaticResource CbContent}" Checked="СbBanned_Checked" Unchecked="СbBanned_Checked" BorderBrush="#FF3881EF"/>
                                     </Viewbox>
                                 </StackPanel>
                                 <Button x:Name="ResetBtn" Width="170" Height="35" Style="{StaticResource BorderBtn}" Content="Сбросить фильтр" BorderThickness="1" FontSize="28" Margin="0 15 0 0" Click="ResetBtn_Click"/>
                             </StackPanel>
                             <Line X1="0" Y1="599" X2="0" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
                             <StackPanel Width="830">
-                                <ListView x:Name="LvUsers" Height="600" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                <ListView x:Name="LvCases" Height="600" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Height="180" Background="White" Width="810" Margin="0 3 0 2">
@@ -89,15 +87,15 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Image Source="{Binding MainImage}" Height="160" Width="160"/>
                                                 <Rectangle Width="50" Height="30" Fill="#FFFF5C52" Visibility="{Binding VisibilityDiscount}" VerticalAlignment="Bottom" RadiusX="15" RadiusY="15" Margin="0 0 0 5" HorizontalAlignment="Left"/>
-                                                <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="4 0 0 8" VerticalAlignment="Bottom"/>
+                                                <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="4 0 0 8" VerticalAlignment="Bottom"/>
                                                 <TextBlock x:Name="TbLinkName" Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource ListLink}" FontSize="20" TextWrapping="Wrap" Height="70" Width="395" Margin="10 15 0 0" FontFamily="PT Sans" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
                                                 <Button x:Name="EditBtn" Width="40" Height="40" Style="{StaticResource BorderBtn}" Content="🖉" BorderThickness="1" FontSize="28" HorizontalAlignment="Left" Margin="10 35 0 0" Click="EditBtn_Click" Grid.Column="1"/>
                                                     <TextBlock Text="{Binding Accesable}" Style="{StaticResource ProfileInfo}" FontSize="18" Margin="10 0 0 10" Grid.Column="1" VerticalAlignment="Bottom"/>
-                                                <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" Style="{StaticResource ForPrice}"  TextDecorations="Strikethrough" FontSize="14" Margin="170 20 10 0" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
-                                                <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" Style="{StaticResource ForPrice}" FontSize="24" Margin="120 35 0 0" Width="auto" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
+                                                <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="170 20 10 0" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
+                                                <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="24" Margin="120 35 0 0" Width="auto" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
                                                 <StackPanel Grid.Column="2" Margin="25 25 0 0" Orientation="Horizontal">
-                                                    <Button x:Name="FavouriteBtn" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="♥️" BorderThickness="1" FontSize="28" Click="ResetBtn_Click" />
-                                                    <Button x:Name="DeFavouriteBtn" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="🗑️" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
+                                                    <Button x:Name="FavouriteBtn" Visibility="{Binding VisibilityAdd}" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="♥️" BorderThickness="1" FontSize="28" Click="FavouriteBtn_Click" />
+                                                    <Button x:Name="DeFavouriteBtn" Visibility="{Binding VisibilityRemove}" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="🗑️" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
                                                     <Button x:Name="BuyBtn" Visibility="{Binding VisibilityBtnOrder}" Width="120" Height="45" Style="{StaticResource BorderBtn}" Content="Заказать" BorderThickness="1" FontSize="30"  Click="BuyBtn_Click" Margin="10 0 0 0"/>
                                                     <Button x:Name="NotificBtn" Visibility="{Binding VisibilityBtnNortific}" Width="120" Height="45" Style="{StaticResource BorderBtn}" Content="Уведомить" BorderThickness="1" FontSize="30" Click="NotificBtn_Click" Margin="10 0 0 0"/>
                                                 </StackPanel>

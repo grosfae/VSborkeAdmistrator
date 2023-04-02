@@ -24,7 +24,9 @@ namespace VSborkeAdmistrator.Pages
         public CasesPage()
         {
             InitializeComponent();
-            LvUsers.ItemsSource = App.DB.ComputerCase.ToList();
+            
+            
+            
 
         }
         private void BanBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -53,7 +55,11 @@ namespace VSborkeAdmistrator.Pages
 
         private void Refresh()
         {
+            IEnumerable<ComputerCase> filterCase = App.DB.ComputerCase.Where(x => x.IsCustom == false);
             
+
+            
+            LvCases.ItemsSource = filterCase.ToList();
         }
 
         private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -118,6 +124,22 @@ namespace VSborkeAdmistrator.Pages
 
         private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
         {
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            var favourite = App.DB.Favourite.SingleOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == selectedCase.Id);
+            App.DB.Favourite.Remove(favourite);
+            App.DB.SaveChanges();
+        }
+
+        private void FavouriteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+
+                App.DB.Favourite.Add(new Favourite()
+                {
+                    ComputerCaseId = selectedCase.Id,
+                    UserId = App.LoggedUser.Id
+                });
+            App.DB.SaveChanges();
 
         }
     }

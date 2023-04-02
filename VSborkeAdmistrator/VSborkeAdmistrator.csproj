@@ -346,16 +346,13 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\FavouriteIcons\Trash.png" />
     <Resource Include="Resources\MessageBoxImages\SuccessMessage.png" />
     <Resource Include="Resources\UsersButtons\More.png" />
     <Resource Include="Resources\UsersButtons\MoreOutline.png" />
     <Resource Include="Resources\UsersButtons\GreenLock.png" />
     <Resource Include="Resources\UsersButtons\Lock.png" />
     <Resource Include="Resources\UsersButtons\RedLock.png" />
-    <Resource Include="Resources\UsersButtons\ReadWhite.ico" />
-    <Resource Include="Resources\UsersButtons\Read.ico" />
-    <Resource Include="Resources\UsersButtons\StopBlue.ico" />
-    <Resource Include="Resources\UsersButtons\Stop.ico" />
     <Resource Include="Resources\MessageBoxImages\QuestionMessage.png" />
     <Resource Include="Resources\TextBoxIcons\SearchBlue.ico" />
     <Resource Include="Resources\TextBoxIcons\SearchMood.ico" />

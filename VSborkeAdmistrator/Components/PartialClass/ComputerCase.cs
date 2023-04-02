@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace VSborkeAdmistrator.Components
 {
@@ -195,5 +197,42 @@ namespace VSborkeAdmistrator.Components
             }
         }
         
+        
+        public Visibility VisibilityAdd
+        {
+            get
+            {
+                var favourite = App.DB.Favourite.FirstOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == Id);
+                if (favourite != null)
+                {
+                    if (favourite.UserId == App.LoggedUser.Id & favourite.ComputerCaseId == Id)
+                        return Visibility.Collapsed;
+                    else
+                        return Visibility.Visible;
+                }
+                else
+                    return Visibility.Visible;
+               
+                
+            }
+        }
+
+        public Visibility VisibilityRemove
+        {
+            get
+            {
+                var favourite = App.DB.Favourite.FirstOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == Id);
+                if (favourite != null)
+                {
+                    if (favourite.UserId == App.LoggedUser.Id & favourite.ComputerCaseId == Id)
+                        return Visibility.Visible;
+                    else
+                        return Visibility.Collapsed;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
     }
 }
