@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1130"
+      d:DesignHeight="1000" d:DesignWidth="1230"
       Title="UsersPage"
       Loaded="Page_Loaded">
 
@@ -19,9 +19,9 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Список пользователей" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="430" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <Line X1="430" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
-                    <StackPanel Grid.Row="1" Width="1030" Height="670" Background="White">
+                    <StackPanel Grid.Row="1" Width="1130" Height="670" Background="White">
                         <StackPanel Orientation="Horizontal" Background="White">
                             <Grid Margin="10 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
@@ -42,39 +42,39 @@
                                     </Image.Style>
                                 </Image>
                             </Grid>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="340 0 0 0">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="410 0 0 0">
                                 <TextBlock Text="Количество пользователей:" Style="{StaticResource Header}" VerticalAlignment="Center" FontSize="28" />
                                 <TextBlock x:Name="TbCounter" Style="{StaticResource Header}" VerticalAlignment="Center" FontSize="28" Margin="5 0 0 0"/>
                             </StackPanel>
                         </StackPanel>
-                        <Line X1="0" Y1="0" X2="1100" Y2="0" Stroke="#FF3881EF" StrokeThickness="3"/>
+                        <Line X1="0" Y1="0" X2="1130" Y2="0" Stroke="#FF3881EF" StrokeThickness="3"/>
                         <StackPanel Orientation="Horizontal" Height="609">
-                            <StackPanel Width="200">
-                                <StackPanel Margin="10 10 0 0">
+                            <StackPanel Width="250">
+                                <StackPanel Margin="20 10 0 0">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Сортировка:"/>
                                     <ComboBox x:Name="CbSort" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbSort_SelectionChanged">
                                         <ComboBoxItem>По возрастанию</ComboBoxItem>
                                         <ComboBoxItem>По убыванию</ComboBoxItem>
                                     </ComboBox>
                                 </StackPanel>
-                                <StackPanel Margin="10 10 0 0">
+                                <StackPanel Margin="20 10 0 0">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол:"/>
                                     <ComboBox x:Name="CbGender" SelectedItem="{Binding Gender}" DisplayMemberPath="Name" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbGender_SelectionChanged"/>
                                 </StackPanel>
-                                <StackPanel Margin="10 10 0 0">
+                                <StackPanel Margin="20 10 0 0">
                                     <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Роль:"/>
                                     <ComboBox x:Name="CbRole" SelectedItem="{Binding Role}" DisplayMemberPath="Name" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbRole_SelectionChanged"/>
                                 </StackPanel>
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Дата регистрации" Margin="10 20 0 0"/>
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От: " Margin="10 10 0 0"/>
-                                <Viewbox Height="35" Margin="10 5 0 0" HorizontalAlignment="Left">
+                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Дата регистрации" Margin="20 20 0 0"/>
+                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От: " Margin="20 10 0 0"/>
+                                <Viewbox Height="35" Margin="20 5 0 0" HorizontalAlignment="Left">
                                     <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="17" Width="150"/>
                                 </Viewbox>
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="По: " Margin="10 10 0 0"/>
-                                <Viewbox Height="35" Margin="10 5 0 0" HorizontalAlignment="Left">
+                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="По: " Margin="20 10 0 0"/>
+                                <Viewbox Height="35" Margin="20 5 0 0" HorizontalAlignment="Left">
                                     <DatePicker x:Name="EndDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="17" Width="150"/>
                                 </Viewbox>
-                                <StackPanel Orientation="Horizontal" Margin="10 10 0 0">
+                                <StackPanel Orientation="Horizontal" Margin="20 10 0 0">
                                     <Viewbox Height="30">
                                         <CheckBox x:Name="CbBanned" Content="Блокированные" Style="{StaticResource CbContent}" Checked="СbBanned_Checked" Unchecked="СbBanned_Checked" BorderBrush="#FF3881EF"/>
                                     </Viewbox>
@@ -82,24 +82,24 @@
                                 <Button x:Name="ResetBtn" Width="170" Height="35" Style="{StaticResource BorderBtn}" Content="Сбросить фильтр" BorderThickness="1" FontSize="28" Margin="0 15 0 0" Click="ResetBtn_Click"/>
                             </StackPanel>
                             <Line X1="0" Y1="605" X2="0" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
-                            <StackPanel Width="830">
+                            <StackPanel Width="870">
                                 <StackPanel Orientation="Horizontal" Margin="20 10 0 0">
                                     <TextBlock Style="{StaticResource Header}" Text="#" FontSize="30"/>
-                                    <TextBlock Style="{StaticResource Header}" Text="Пользователь" FontSize="30" Margin="50 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Пользователь" FontSize="30" Margin="70 0 0 0"/>
                                     <TextBlock Style="{StaticResource Header}" Text="Роль" FontSize="30" Margin="80 0 0 0"/>
-                                    <TextBlock Style="{StaticResource Header}" Text="Электронная почта" FontSize="30" Margin="100 0 0 0"/>
-                                    <TextBlock Style="{StaticResource Header}" Text="Действия" FontSize="30" Margin="30 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Электронная почта" FontSize="30" Margin="110 0 0 0"/>
+                                    <TextBlock Style="{StaticResource Header}" Text="Действия" FontSize="30" Margin="70 0 0 0"/>
                                 </StackPanel>
                                 <ListView x:Name="LvUsers" Height="560" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Height="60" Background="{Binding Color}" Width="810" Margin="0 3 0 2">
+                                            <Grid Height="60" Background="{Binding Color}" Width="855" Margin="0 3 0 2">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="60"/>
-                                                    <ColumnDefinition Width="180"/>
-                                                    <ColumnDefinition Width="160"/>
+                                                    <ColumnDefinition Width="210"/>
+                                                    <ColumnDefinition Width="150"/>
                                                     <ColumnDefinition Width="260"/>
-                                                    <ColumnDefinition Width="120"/>
+                                                    <ColumnDefinition Width="160"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="{Binding Id}" Foreground="{Binding ColorForeground}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="10 17 0 0"/>
                                                 <Border CornerRadius="150" Width="40" Height="40" HorizontalAlignment="Left" Margin="10 0 0 0" Grid.Column="1">
@@ -110,7 +110,7 @@
                                                 <TextBlock Text="{Binding Name}" Foreground="{Binding ColorForeground}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="60 17 0 0" Grid.Column="1"/>
                                                 <TextBlock Text="{Binding Role.Name}" Style="{StaticResource ProfileInfo}" Foreground="{Binding ColorForeground}" FontSize="20" Margin="0 17 0 0" Grid.Column="2" HorizontalAlignment="Center"/>
                                                 <TextBlock Text="{Binding Email}" Style="{StaticResource ProfileInfo}" Foreground="{Binding ColorForeground}" FontSize="20" Margin="0 17 0 0" Grid.Column="3" HorizontalAlignment="Center"/>
-                                                <Image Grid.Column="4" x:Name="ReadMoreBtn" MouseLeftButtonDown="ReadMoreBtn_MouseLeftButtonDown" Cursor="Hand" Height="40" Width="40" Margin="0 0 60 0">
+                                                <Image Grid.Column="4" x:Name="ReadMoreBtn" MouseLeftButtonDown="ReadMoreBtn_MouseLeftButtonDown" Cursor="Hand" Height="40" Width="40" Margin="40 0 60 0">
                                                     <Image.Style>
                                                         <Style TargetType="{x:Type Image}">
                                                             <Setter Property="Source" Value="/Resources/UsersButtons/MoreOutline.png"/>
@@ -122,7 +122,7 @@
                                                         </Style>
                                                     </Image.Style>
                                                 </Image>
-                                                <Image Grid.Column="4" x:Name="BanBtn" MouseLeftButtonDown="BanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="40 0 0 0" Visibility="{Binding BtnRedVisibility}">
+                                                <Image Grid.Column="4" x:Name="BanBtn" MouseLeftButtonDown="BanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="90 0 0 0" Visibility="{Binding BtnRedVisibility}">
                                                     <Image.Style>
                                                         <Style TargetType="{x:Type Image}">
                                                             <Setter Property="Source" Value="/Resources/UsersButtons/Lock.png"/>
@@ -134,7 +134,7 @@
                                                         </Style>
                                                     </Image.Style>
                                                 </Image>
-                                                <Image Grid.Column="4" x:Name="NoBanBtn" MouseLeftButtonDown="NoBanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="40 0 0 0" Visibility="{Binding BtnGreenVisibility}">
+                                                <Image Grid.Column="4" x:Name="NoBanBtn" MouseLeftButtonDown="NoBanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="90 0 0 0" Visibility="{Binding BtnGreenVisibility}">
                                                     <Image.Style>
                                                         <Style TargetType="{x:Type Image}">
                                                             <Setter Property="Source" Value="/Resources/UsersButtons/Lock.png"/>

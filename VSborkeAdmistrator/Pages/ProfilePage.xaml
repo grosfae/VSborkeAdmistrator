@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="2000" d:DesignWidth="1130"
+      d:DesignHeight="2000" d:DesignWidth="1230"
       Title="ProfilePage"
       Loaded="Page_Loaded">
 
@@ -19,9 +19,9 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Профиль пользователя" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="430" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <Line X1="430" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
-                    <StackPanel Orientation="Horizontal" Height="400" Background="White" Width="1030" Grid.Row="1">
+                    <StackPanel Orientation="Horizontal" Height="400" Background="White" Width="1130" Grid.Row="1">
                         <StackPanel Width="300">
                             <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
                                 <Border.Background>
@@ -90,9 +90,9 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Личные заказы" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="320" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <Line X1="320" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
-                    <StackPanel Grid.Row="1" Width="1030">
+                    <StackPanel Grid.Row="1" Width="1130">
                         <StackPanel Orientation="Horizontal" Margin="0 0 0 20" Background="White" Height="80">
                             <Grid Margin="10 0 0 0" Background="#FFEEF0F2" Height="40">
                                 <Grid.ColumnDefinitions>
@@ -128,7 +128,7 @@
                         <ListView Height="500" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel Width="900" Margin="55 20 0 30" Orientation="Vertical">
+                                    <StackPanel Width="1000" Margin="55 20 0 30" Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal" Height="40">
                                             <TextBlock Text="Заказ" Style="{StaticResource ProfileInfo}" FontSize="26" FontWeight="SemiBold"/>
                                             <TextBlock Text="{Binding Id}" Style="{StaticResource ProfileInfo}" FontSize="26" FontWeight="SemiBold" Margin="5 0 0 0"/>
@@ -138,10 +138,10 @@
                                                 <TextBlock Margin="10 15 10 0" Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="35" VerticalAlignment="Center" Style="{StaticResource ProfileInfo}" Foreground="White" />
                                             </StackPanel>
                                         </StackPanel>
-                                        <Line X1="0" Y1="20" X2="900" Y2="20" Stroke="#FF3881EF" StrokeThickness="2" Margin="0 0 0 20"/>
+                                        <Line X1="0" Y1="20" X2="1000" Y2="20" Stroke="#FF3881EF" StrokeThickness="2" Margin="0 0 0 20"/>
                                         <StackPanel Orientation="Horizontal">
                                             <Image Source="{Binding ComputerCase.MainImage}" Height="160" Width="120"/>
-                                            <StackPanel Margin="15 0 0 0" Width="500">
+                                            <StackPanel Margin="15 0 0 0" Width="600">
                                                 <TextBlock Style="{StaticResource OrderList}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.Name}" TextWrapping="Wrap" Height="50" MaxWidth="450" Margin="0 0 0 10"/>
                                                 <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="50"/>
                                                 <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350"/>

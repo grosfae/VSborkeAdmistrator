@@ -5,9 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1130"
+      d:DesignHeight="1000" d:DesignWidth="1230"
       Title="CasesPage"
       Loaded="Page_Loaded">
+    
 
     <Grid Background="#FFEEF0F2">
         <ScrollViewer>
@@ -19,9 +20,9 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Компьютерные корпуса" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="430" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <Line X1="430" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
-                    <StackPanel Grid.Row="1" Width="1030" Height="670" Background="White">
+                    <StackPanel Grid.Row="1" Width="1130" Height="670" Background="White">
                         <StackPanel Orientation="Horizontal" Background="White">
                             <Grid Margin="10 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
@@ -43,30 +44,56 @@
                                 </Image>
                             </Grid>
                         </StackPanel>
-                        <Line X1="0" Y1="0" X2="1100" Y2="0" Stroke="#FF3881EF" StrokeThickness="3"/>
+                        <Line X1="0" Y1="0" X2="1130" Y2="0" Stroke="#FF3881EF" StrokeThickness="2"/>
                         <StackPanel Orientation="Horizontal" Height="609">
-                            <StackPanel Width="200">
-                                <Expander Header="Цена" Width="180">
-                                    <StackPanel Margin="0 10 0 0">
+                            <StackPanel Width="250">
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Header="Цена" Width="250" FontSize="20" >
+                                    <StackPanel Margin="25 5 0 0">
                                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От:" Margin="0 10 0 0"/>
                                         <TextBox x:Name="TbStartPrice" FontSize="21" Width="170" HorizontalAlignment="Left" MaxLength="6"/>
                                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="До:" Margin="0 10 0 0"/>
                                         <TextBox x:Name="TbEndPrice" FontSize="21" Width="170" HorizontalAlignment="Left" MaxLength="6"/>
                                     </StackPanel>
                                 </Expander>
-                                <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Роль:"/>
-                                    <ComboBox x:Name="CbRole" SelectedItem="{Binding Role}" DisplayMemberPath="Name" Height="28" Width="180" FontSize="18" HorizontalAlignment="Left" SelectionChanged="CbRole_SelectionChanged"/>
-                                </StackPanel>
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Дата регистрации" Margin="10 20 0 0"/>
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От: " Margin="10 10 0 0"/>
-                                <Viewbox Height="35" Margin="10 5 0 0" HorizontalAlignment="Left">
-                                    <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="17" Width="150"/>
-                                </Viewbox>
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="По: " Margin="10 10 0 0"/>
-                                <Viewbox Height="35" Margin="10 5 0 0" HorizontalAlignment="Left">
-                                    <DatePicker x:Name="EndDate" SelectedDateChanged="StartDate_SelectedDateChanged" FontSize="17" Width="150"/>
-                                </Viewbox>
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20">
+                                    <Expander.Header>
+                                        <TextBlock Text="Форм-факторы совместимых плат" TextWrapping="Wrap" Width="225" FontSize="20"/>
+                                    </Expander.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="25 5 0 0">
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox Template="{DynamicResource CbsSorts}" x:Name="CbEatx" FontSize="12" Style="{StaticResource CbFilter}" Content="E-ATX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbFlex" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Flex-ATX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbMicro" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Micro-ATX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbMiniDtx" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Mini-DTX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbMiniItx" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Mini-ITX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbSsiCeb" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="SSI-CEB" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbSsiEeb" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="SSI-EEB" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbStandart" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Standart-ATX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbThin" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Thin Mini-ITX" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbXl" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Xl-ATX" />
+                                            </Viewbox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
                                 <StackPanel Orientation="Horizontal" Margin="10 10 0 0">
                                     <Viewbox Height="30">
                                         <CheckBox x:Name="CbAccess" Content="В наличии" Style="{StaticResource CbContent}" Checked="СbBanned_Checked" Unchecked="СbBanned_Checked" BorderBrush="#FF3881EF"/>
@@ -75,11 +102,11 @@
                                 <Button x:Name="ResetBtn" Width="170" Height="35" Style="{StaticResource BorderBtn}" Content="Сбросить фильтр" BorderThickness="1" FontSize="28" Margin="0 15 0 0" Click="ResetBtn_Click"/>
                             </StackPanel>
                             <Line X1="0" Y1="599" X2="0" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
-                            <StackPanel Width="830">
+                            <StackPanel Width="880">
                                 <ListView x:Name="LvCases" Height="600" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Grid Height="180" Background="White" Width="810" Margin="0 3 0 2">
+                                            <Grid Height="180" Background="White" Width="855" Margin="0 3 0 2">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="170"/>
                                                     <ColumnDefinition Width="*"/>
