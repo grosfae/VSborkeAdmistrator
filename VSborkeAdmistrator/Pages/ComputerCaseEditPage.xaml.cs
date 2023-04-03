@@ -80,7 +80,7 @@ namespace VSborkeAdmistrator.Pages
             CbHorizontalAddonsSlot.ItemsSource = App.DB.HorizontalAddonSlot.ToList();
             CbIoAlignment.ItemsSource = App.DB.IOPanelAlignment.ToList();
             CbIoConnectors.ItemsSource = App.DB.IOPanel.ToList();
-            CbManufacturer.ItemsSource= App.DB.Manufacturer.ToList();
+            CbManufacturer.ItemsSource= App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
             CbMaterialSet.ItemsSource = App.DB.MaterialSet.ToList();
             CbMaterialWindow.ItemsSource = App.DB.WindowMaterial.ToList();
             CbOrientationMotherboard.ItemsSource = App.DB.OrientationMotherboard.ToList();

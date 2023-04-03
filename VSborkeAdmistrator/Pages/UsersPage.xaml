@@ -47,7 +47,7 @@
                                 <TextBlock x:Name="TbCounter" Style="{StaticResource Header}" VerticalAlignment="Center" FontSize="28" Margin="5 0 0 0"/>
                             </StackPanel>
                         </StackPanel>
-                        <Line X1="0" Y1="0" X2="1130" Y2="0" Stroke="#FF3881EF" StrokeThickness="3"/>
+                        <Line X1="0" Y1="0" X2="1130" Y2="0" Stroke="#FF3881EF" StrokeThickness="2"/>
                         <StackPanel Orientation="Horizontal" Height="609">
                             <StackPanel Width="250">
                                 <StackPanel Margin="20 10 0 0">

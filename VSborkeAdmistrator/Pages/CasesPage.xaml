@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="1000" d:DesignWidth="1230"
+      d:DesignHeight="800" d:DesignWidth="1230"
       Title="CasesPage"
       Loaded="Page_Loaded">
     
@@ -15,14 +15,14 @@
             <StackPanel>
                 <Grid >
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition Height="670"/>
+                        <RowDefinition Height="87"/>
+                        <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Компьютерные корпуса" FontSize="46" Margin="50 15 0 20"/>
                         <Line X1="430" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
-                    <StackPanel Grid.Row="1" Width="1130" Height="670" Background="White">
+                    <StackPanel Grid.Row="1" Width="1130" Height="auto" Margin="0 0 0 20" Background="White">
                         <StackPanel Orientation="Horizontal" Background="White">
                             <Grid Margin="10 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
                                 <Grid.ColumnDefinitions>
@@ -45,7 +45,14 @@
                             </Grid>
                         </StackPanel>
                         <Line X1="0" Y1="0" X2="1130" Y2="0" Stroke="#FF3881EF" StrokeThickness="2"/>
-                        <StackPanel Orientation="Horizontal" Height="609">
+                        <Grid Height="auto">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="880"/>
+                            </Grid.ColumnDefinitions>
                             <StackPanel Width="250">
                                 <Expander Template="{DynamicResource ExpanderTemplate}" Header="Цена" Width="250" FontSize="20" >
                                     <StackPanel Margin="25 5 0 0">
@@ -94,6 +101,69 @@
                                         </StackPanel>
                                     </StackPanel>
                                 </Expander>
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20">
+                                    <Expander.Header>
+                                        <TextBlock Text="Типоразмер корпуса" TextWrapping="Wrap" Width="225" FontSize="20"/>
+                                    </Expander.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="25 5 0 0">
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox Template="{DynamicResource CbsSorts}" x:Name="CbDesktop" FontSize="12" Style="{StaticResource CbFilter}" Content="Desktop" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbFullTower" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Full-Tower" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbMidTower" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Mid-Tower" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbMiniTower" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Mini-Tower" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbSlim" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Slim" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbSuperTower" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Super/Ultra-Tower" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbSff" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Компактный (SFF)" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbNoneStandart" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Нестандартный" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbOpenCase" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Открытый корпус" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbOpenStand" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Открытый стенд" />
+                                            </Viewbox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20">
+                                    <Expander.Header>
+                                        <TextBlock Text="Размещение блока питания" TextWrapping="Wrap" Width="225" FontSize="20"/>
+                                    </Expander.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="25 5 0 0">
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox Template="{DynamicResource CbsSorts}" x:Name="CbDowner" FontSize="12" Style="{StaticResource CbFilter}" Content="Нижнее" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbUpper" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Верхнее" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbOutsider" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Внешнее" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbHider" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Скрытое" />
+                                            </Viewbox>
+                                            <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
+                                                <CheckBox x:Name="CbConfigure" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Регулируемое" />
+                                            </Viewbox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
                                 <StackPanel Orientation="Horizontal" Margin="10 10 0 0">
                                     <Viewbox Height="30">
                                         <CheckBox x:Name="CbAccess" Content="В наличии" Style="{StaticResource CbContent}" Checked="СbBanned_Checked" Unchecked="СbBanned_Checked" BorderBrush="#FF3881EF"/>
@@ -101,9 +171,9 @@
                                 </StackPanel>
                                 <Button x:Name="ResetBtn" Width="170" Height="35" Style="{StaticResource BorderBtn}" Content="Сбросить фильтр" BorderThickness="1" FontSize="28" Margin="0 15 0 0" Click="ResetBtn_Click"/>
                             </StackPanel>
-                            <Line X1="0" Y1="599" X2="0" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
-                            <StackPanel Width="880">
-                                <ListView x:Name="LvCases" Height="600" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
+                            <Line X1="249" Y1="599" X2="249" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
+                            <StackPanel Width="880" Grid.Column="1">
+                                <ListView x:Name="LvCases" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Height="180" Background="White" Width="855" Margin="0 3 0 2">
@@ -115,7 +185,7 @@
                                                 <Image Source="{Binding MainImage}" Height="160" Width="160"/>
                                                 <Rectangle Width="50" Height="30" Fill="#FFFF5C52" Visibility="{Binding VisibilityDiscount}" VerticalAlignment="Bottom" RadiusX="15" RadiusY="15" Margin="0 0 0 5" HorizontalAlignment="Left"/>
                                                 <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="4 0 0 8" VerticalAlignment="Bottom"/>
-                                                <TextBlock x:Name="TbLinkName" Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource ListLink}" FontSize="20" TextWrapping="Wrap" Height="70" Width="395" Margin="10 15 0 0" FontFamily="PT Sans" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
+                                                <TextBlock x:Name="TbLinkName" Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource ListLink}" FontSize="20" TextWrapping="Wrap" Height="70" Width="440" Margin="5 15 0 0" FontFamily="PT Sans" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
                                                 <Button x:Name="EditBtn" Width="40" Height="40" Style="{StaticResource BorderBtn}" Content="🖉" BorderThickness="1" FontSize="28" HorizontalAlignment="Left" Margin="10 35 0 0" Click="EditBtn_Click" Grid.Column="1"/>
                                                     <TextBlock Text="{Binding Accesable}" Style="{StaticResource ProfileInfo}" FontSize="18" Margin="10 0 0 10" Grid.Column="1" VerticalAlignment="Bottom"/>
                                                 <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="170 20 10 0" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
@@ -131,7 +201,7 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
                     </StackPanel>
                 </Grid>
             </StackPanel>
