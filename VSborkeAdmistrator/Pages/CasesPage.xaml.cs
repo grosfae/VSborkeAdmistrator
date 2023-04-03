@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,33 +25,13 @@ namespace VSborkeAdmistrator.Pages
         public CasesPage()
         {
             InitializeComponent();
-            
-            
-            
+            TbStartPrice.Tag = $"от {App.DB.ComputerCase.Min(x => x.Price)}";
+            TbEndPrice.Tag = $"до {App.DB.ComputerCase.Max(x => x.Price)}";
+            CbManufacturer.ItemsSource = App.DB.Manufacturer.ToList();
+            CbPrimaryColor.ItemsSource = App.DB.PrimaryColor.ToList();
+            CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
 
-        }
-        private void BanBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var selectedUser = (sender as Image).DataContext as User;
-            selectedUser.IsBanned = true;
-            Refresh();
-        }
 
-        private void ReadMoreBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var selectedUser = (sender as Image).DataContext as User;
-
-            NavigationService.Navigate(new ProfilePage(selectedUser));
-        }
-
-        private void CbGender_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void StartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
         }
 
         private void Refresh()
@@ -62,42 +43,63 @@ namespace VSborkeAdmistrator.Pages
             LvCases.ItemsSource = filterCase.ToList();
         }
 
-        private void CbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             Refresh();
         }
 
-        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Refresh();
-        }
-
-        private void СbBanned_Checked(object sender, RoutedEventArgs e)
-        {
-            Refresh();
-        }
 
         private void ResetBtn_Click(object sender, RoutedEventArgs e)
         {
-            
-        }
+            CbAccess.IsChecked = true;
+            CbNoneAccess.IsChecked = false;
+            CbDeleted.IsChecked = false;
 
-        private void NoBanBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var selectedUser = (sender as Image).DataContext as User;
-            selectedUser.IsBanned = false;
-            Refresh();
-        }
+            TbStartPrice.Text = String.Empty;
+            TbEndPrice.Text = String.Empty;
 
-        private void CbRole_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Refresh();
+            TbCpuHeightStart.Text = String.Empty;
+            TbCpuHeightEnd.Text = String.Empty;
+
+            CbManufacturer.SelectedItem = null;
+            CbPrimaryColor.SelectedItem = null;
+            CbTypeRGB.SelectedItem = null;
+
+            CbNoneWindow.IsChecked = false;
+            CbDoubleWindow.IsChecked = false;
+            CbLeftWindow.IsChecked = false;
+            CbRightWindow.IsChecked = false;
+
+            CbDowner.IsChecked = false;
+            CbUpper.IsChecked = false;
+            CbOutsider.IsChecked = false;
+            CbHider.IsChecked = false;
+            CbConfigure.IsChecked = false;
+
+            CbAkrill.IsChecked = false;
+            CbTemperedGlass.IsChecked = false;
+
+            CbEatx.IsChecked = false;
+            CbFlex.IsChecked = false;
+            CbMicro.IsChecked = false;
+            CbMiniDtx.IsChecked = false;
+            CbMiniItx.IsChecked = false;
+            CbSsiCeb.IsChecked = false;
+            CbSsiEeb.IsChecked = false;
+            CbStandart.IsChecked = false;
+            CbThin.IsChecked = false;
+            CbXl.IsChecked = false;
+
+            CbDesktop.IsChecked = false;
+            CbFullTower.IsChecked = false;
+            CbMidTower.IsChecked = false;
+            CbMiniTower.IsChecked = false;
+            CbSlim.IsChecked = false;
+            CbSuperTower.IsChecked = false;
+            CbSff.IsChecked = false;
+            CbNoneStandart.IsChecked = false;
+            CbOpenCase.IsChecked = false;
+            CbOpenStand.IsChecked = false;
         }
 
         private void TbLinkName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -141,6 +143,184 @@ namespace VSborkeAdmistrator.Pages
                 });
             App.DB.SaveChanges();
 
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CbAllMotherboard_Checked(object sender, RoutedEventArgs e)
+        {
+            CbEatx.IsChecked = true;
+            CbFlex.IsChecked = true;
+            CbMicro.IsChecked = true;
+            CbMiniDtx.IsChecked = true;
+            CbMiniItx.IsChecked = true;
+            CbSsiCeb.IsChecked = true;
+            CbSsiEeb.IsChecked = true;
+            CbStandart.IsChecked = true;
+            CbThin.IsChecked = true;
+            CbXl.IsChecked = true;
+        }
+
+        private void CbAllMotherboardOfOne_Checked(object sender, RoutedEventArgs e)
+        {
+            if(CbEatx.IsChecked == true & CbFlex.IsChecked == true & 
+                CbMicro.IsChecked == true & CbMiniDtx.IsChecked == true & 
+                CbMiniItx.IsChecked == true & CbSsiCeb.IsChecked == true & 
+                CbSsiEeb.IsChecked == true & CbStandart.IsChecked == true & 
+                CbThin.IsChecked == true & CbXl.IsChecked == true)
+                CbAllMotherboard.IsChecked = true;
+   
+        }
+        private void CbAllMotherboardOfOne_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbEatx.IsChecked == false || CbFlex.IsChecked == false ||
+                CbMicro.IsChecked == false || CbMiniDtx.IsChecked == false ||
+                CbMiniItx.IsChecked == false || CbSsiCeb.IsChecked == false ||
+                CbSsiEeb.IsChecked == false || CbStandart.IsChecked == false ||
+                CbThin.IsChecked == false || CbXl.IsChecked == false)
+                CbAllMotherboard.IsChecked = false;
+        }
+
+        private void CbAllMotherboard_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbEatx.IsChecked == false || CbFlex.IsChecked == false ||
+                CbMicro.IsChecked == false || CbMiniDtx.IsChecked == false ||
+                CbMiniItx.IsChecked == false || CbSsiCeb.IsChecked == false ||
+                CbSsiEeb.IsChecked == false || CbStandart.IsChecked == false ||
+                CbThin.IsChecked == false || CbXl.IsChecked == false)
+            {
+                CbAllMotherboard.IsChecked = false;
+            }
+            else
+            {
+                CbEatx.IsChecked = false;
+                CbFlex.IsChecked = false;
+                CbMicro.IsChecked = false;
+                CbMiniDtx.IsChecked = false;
+                CbMiniItx.IsChecked = false;
+                CbSsiCeb.IsChecked = false;
+                CbSsiEeb.IsChecked = false;
+                CbStandart.IsChecked = false;
+                CbThin.IsChecked = false;
+                CbXl.IsChecked = false;
+            }
+        }
+
+        private void CbAllCaseForm_Checked(object sender, RoutedEventArgs e)
+        {
+            CbDesktop.IsChecked = true;
+            CbFullTower.IsChecked = true;
+            CbMidTower.IsChecked = true;
+            CbMiniTower.IsChecked = true;
+            CbSlim.IsChecked = true;
+            CbSuperTower.IsChecked = true;
+            CbSff.IsChecked = true;
+            CbNoneStandart.IsChecked = true;
+            CbOpenCase.IsChecked = true;
+            CbOpenStand.IsChecked = true;
+        }
+
+        private void CbAllCaseForm_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbDesktop.IsChecked == false || CbFullTower.IsChecked == false ||
+                CbMidTower.IsChecked == false || CbMiniTower.IsChecked == false ||
+                CbSlim.IsChecked == false || CbSuperTower.IsChecked == false ||
+                CbSff.IsChecked == false || CbNoneStandart.IsChecked == false ||
+                CbOpenCase.IsChecked == false || CbOpenStand.IsChecked == false)
+            {
+                CbAllCaseForm.IsChecked = false;
+            }
+            else
+            {
+                CbDesktop.IsChecked = false;
+                CbFullTower.IsChecked = false;
+                CbMidTower.IsChecked = false;
+                CbMiniTower.IsChecked = false;
+                CbSlim.IsChecked = false;
+                CbSuperTower.IsChecked = false;
+                CbSff.IsChecked = false;
+                CbNoneStandart.IsChecked = false;
+                CbOpenCase.IsChecked = false;
+                CbOpenStand.IsChecked = false;
+            }
+        }
+        private void CbAllCaseFormsOfOne_Checked(object sender, RoutedEventArgs e)
+        {
+            if (CbDesktop.IsChecked == true & CbFullTower.IsChecked == true &
+                CbMidTower.IsChecked == true & CbMiniTower.IsChecked == true &
+                CbSlim.IsChecked == true & CbSuperTower.IsChecked == true &
+                CbSff.IsChecked == true & CbNoneStandart.IsChecked == true &
+                CbOpenCase.IsChecked == true & CbOpenStand.IsChecked == true)
+                CbAllCaseForm.IsChecked = true;
+
+        }
+        private void CbAllCaseFormsOfOne_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (CbDesktop.IsChecked == false || CbFullTower.IsChecked == false ||
+                CbMidTower.IsChecked == false || CbMiniTower.IsChecked == false ||
+                CbSlim.IsChecked == false || CbSuperTower.IsChecked == false ||
+                CbSff.IsChecked == false || CbNoneStandart.IsChecked == false ||
+                CbOpenCase.IsChecked == false || CbOpenStand.IsChecked == false)
+                CbAllCaseForm.IsChecked = false;
+
+        }
+
+        private void Numbers_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (Regex.IsMatch(e.Text, @"[0-9]") == false)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ForSpaces_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void BtnManufacturerClear_Click(object sender, RoutedEventArgs e)
+        {
+            CbManufacturer.SelectedItem = null;
+        }
+
+        private void BtnPrimaryColorClear_Click(object sender, RoutedEventArgs e)
+        {
+            CbPrimaryColor.SelectedItem = null;
+        }
+
+        private void BtnTypeRGBClear_Click(object sender, RoutedEventArgs e)
+        {
+            CbTypeRGB.SelectedItem = null;
+        }
+
+        private void CbManufacturer_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbManufacturer.SelectedItem != null)
+                BtnManufacturerClear.Visibility = Visibility.Visible;
+            else
+                BtnManufacturerClear.Visibility = Visibility.Collapsed;
+        }
+
+        private void CbPrimaryColor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbPrimaryColor.SelectedItem != null)
+                BtnPrimaryColorClear.Visibility = Visibility.Visible;
+            else
+                BtnPrimaryColorClear.Visibility = Visibility.Collapsed;
+        }
+
+        private void CbTypeRGB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbTypeRGB.SelectedItem != null)
+                BtnTypeRGBClear.Visibility = Visibility.Visible;
+            else
+                BtnTypeRGBClear.Visibility = Visibility.Collapsed;
         }
     }
 }

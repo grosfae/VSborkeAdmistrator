@@ -87,7 +87,6 @@ namespace VSborkeAdmistrator.Components
         public int ManufacturerId { get; set; }
         public string DeliverySet { get; set; }
         public bool IsAntiVibration { get; set; }
-        public bool SpecialDesign { get; set; }
         public bool IsAccessable { get; set; }
         public bool IsDelete { get; set; }
         public bool IsCustom { get; set; }

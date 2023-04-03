@@ -51,7 +51,6 @@ namespace VSborkeAdmistrator.Pages
                 contextComputerCase.IsCustom = false;
                 contextComputerCase.MicroAtx = false;
                 contextComputerCase.RGB = false;
-                contextComputerCase.SpecialDesign = false;
                 contextComputerCase.XlAtx = false;
                 contextComputerCase.WindowOnSide = false;
                 contextComputerCase.IsDelete = false;

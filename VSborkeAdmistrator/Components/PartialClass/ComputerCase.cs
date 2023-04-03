@@ -161,7 +161,7 @@ namespace VSborkeAdmistrator.Components
                 if (Discount == 0)
                     return Price;
                 else
-                    return Price * (100-30)/100;
+                    return Price * (100-Discount)/100;
 
             }
         }

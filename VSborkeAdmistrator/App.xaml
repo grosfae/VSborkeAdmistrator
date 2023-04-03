@@ -4,7 +4,21 @@
              xmlns:local="clr-namespace:VSborkeAdmistrator"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        
+
+        <!--Custom Separator-->
+        <Style TargetType="{x:Type Separator}">
+            <Setter Property="Background" Value="#FFEEF0F2"/>
+            <Setter Property="Margin" Value="0,2,0,2"/>
+            <Setter Property="Focusable" Value="false"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Separator}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Height="2" SnapsToDevicePixels="true"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--CheckBox for sort-->
         <Style x:Key="OptionMarkFocusVisual">
                 <Setter Property="Control.Template">
@@ -67,8 +81,8 @@
                     </Trigger>
                 <Trigger Property="IsChecked" Value="true">
                     <Setter Property="Fill" TargetName="optionMark" Value="white"/>
-                    <Setter Property="Fill" TargetName="indeterminateMark" Value="red"/>
                     <Setter Property="Background" Value="#FF3881EF"/>
+                    <Setter Property="BorderBrush" Value="#FF3881EF"/>
                 </Trigger>
             </ControlTemplate.Triggers>
             </ControlTemplate>
@@ -183,7 +197,41 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <!--TextBox PlaceHolderForPrice-->
+
+        <Style x:Key="placeHolderForPrice" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource"
+                                 Background="Transparent" BorderThickness="1"
+                                 Panel.ZIndex="2" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="BorderBrush" Value="#FFEEF0F2"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="#FF757575"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--TextBlocks & CheckBox Styles-->
 
         <Style TargetType="TextBlock" x:Key="Header">
@@ -241,7 +289,7 @@
         </Style>
 
         <!--Buttons Style-->
-        
+
         <Style TargetType="Button" x:Key="MenuBtn">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
@@ -261,7 +309,8 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
+        
+        <!--Default Button-->
         <Style TargetType="Button" x:Key="BorderBtn">
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="Cursor" Value="Hand"/>
@@ -284,6 +333,83 @@
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="Background" Value="#FF3881EF" />
                     <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--For ComboBox Reset Button-->
+        <Style TargetType="Button" x:Key="ComboReset">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FF3881EF" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FF3881EF"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="100" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF3881EF" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <!--ForSortApply Button-->
+        <Style TargetType="Button" x:Key="SortApply">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FF3881EF"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
+            <Setter Property="Background" Value="#FF3881EF"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FF77A8F1" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--ForSortReset Button-->
+        <Style TargetType="Button" x:Key="SortReset">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="#FFD9D9D9"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFE8E6E6" />
                 </Trigger>
             </Style.Triggers>
         </Style>
