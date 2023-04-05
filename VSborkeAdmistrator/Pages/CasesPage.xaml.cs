@@ -37,9 +37,106 @@ namespace VSborkeAdmistrator.Pages
         private void Refresh()
         {
             IEnumerable<ComputerCase> filterCase = App.DB.ComputerCase.Where(x => x.IsCustom == false);
-            
+            if (CbAccess.IsChecked == true & CbNoneAccess.IsChecked == true)
+            {
 
-            
+            }
+            else
+            {
+                if (CbAccess.IsChecked == true)
+                {
+                    filterCase = filterCase.Where(x => x.IsAccessable == true).ToList();
+                }
+                if (CbNoneAccess.IsChecked == true)
+                {
+                    filterCase = filterCase.Where(x => x.IsAccessable == false).ToList();
+                }
+            }
+            if (CbDeleted.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.IsDelete == true).ToList();
+            }
+            if (CbManufacturer.SelectedIndex != -1)
+            {
+                filterCase = filterCase.Where(x => x.Manufacturer == CbManufacturer.SelectedItem).ToList();
+            }
+            if (CbPrimaryColor.SelectedIndex != -1)
+            {
+                filterCase = filterCase.Where(x => x.PrimaryColor == CbPrimaryColor.SelectedItem).ToList();
+            }
+            if (CbTypeRGB.SelectedIndex != -1)
+            {
+                filterCase = filterCase.Where(x => x.TypeRGB == CbTypeRGB.SelectedItem).ToList();
+            }
+
+            if (CbEatx.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.EAtx == true).ToList();
+            }
+            if (CbFlex.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.FlexAtx == true).ToList();
+            }
+            if (CbMicro.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.MicroAtx == true).ToList();
+            }
+            if (CbMiniDtx.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.MiniDtx == true).ToList();
+            }
+            if (CbMiniItx.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.MiniItx == true).ToList();
+            }
+            if (CbSsiCeb.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.SsiCeb == true).ToList();
+            }
+            if (CbSsiEeb.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.SsiEeb == true).ToList();
+            }
+            if (CbStandart.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.StandartAtx == true).ToList();
+            }
+            if (CbThin.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.ThinMiniItx == true).ToList();
+            }
+            if (CbXl.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.XlAtx == true).ToList();
+            }
+
+            if (CbDesktop.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.FormFactor.Name == "Desktop").ToList();
+            }
+            if (CbMidTower.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.FormFactor.Name == "Mid-Tower").ToList();
+            }
+            if (CbFullTower.IsChecked == true)
+            {
+                filterCase =  filterCase.Where(x => x.FormFactor.Name == "Full-Tower").ToList();
+            }
+            if (CbMiniTower.IsChecked == true)            {
+                filterCase = filterCase.Where(x => x.FormFactor.Name == "Mini-Tower").ToList();
+            }
+            if (CbSlim.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.FormFactor.Name == "Slim").ToList();
+            }
+            if (CbSuperTower.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.FormFactor.Name == "Super/Ultra-Tower").ToList();
+            }
+            if (CbMiniTower.IsChecked == true)
+            {
+                filterCase = filterCase.Where(x => x.FormFactor.Name == "Mini-Tower").ToList();
+            }
             LvCases.ItemsSource = filterCase.ToList();
         }
 
@@ -147,7 +244,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void ApplyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            Refresh();
         }
 
         private void CbAllMotherboard_Checked(object sender, RoutedEventArgs e)

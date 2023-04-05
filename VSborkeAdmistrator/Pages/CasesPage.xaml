@@ -292,7 +292,7 @@
                             </StackPanel>
                             <Line X1="250" Y1="599" X2="250" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
                             <StackPanel Width="880" Grid.Column="1">
-                                <ListView x:Name="LvCases" BorderBrush="Transparent" Background="#FFEEF0F2" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                <ListView x:Name="LvCases" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="1940" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Height="180" Background="White" Width="855" Margin="0 3 0 2">
