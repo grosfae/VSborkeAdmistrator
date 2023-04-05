@@ -56,86 +56,110 @@ namespace VSborkeAdmistrator.Pages
             {
                 filterCase = filterCase.Where(x => x.IsDelete == true).ToList();
             }
-            if (CbManufacturer.SelectedIndex != -1)
+            foreach (var child in Checksum_Collection.Children)
             {
-                filterCase = filterCase.Where(x => x.Manufacturer == CbManufacturer.SelectedItem).ToList();
+                var check = child as CheckBox;
+                if (check.IsChecked == true)
+                {
+                    foreach (ComputerCase pc in filterCase)
+                    {
+                        filterCase = filterCase.Where(x =>
+                        x.EAtx && CbEatx.IsChecked == true ||
+                        x.FlexAtx && CbFlex.IsChecked == true ||
+                        x.MicroAtx && CbMicro.IsChecked == true ||
+                        x.MiniDtx && CbMiniDtx.IsChecked == true ||
+                        x.MiniItx && CbMiniItx.IsChecked == true ||
+                        x.SsiCeb && CbSsiCeb.IsChecked == true ||
+                        x.SsiEeb && CbSsiEeb.IsChecked == true ||
+                        x.StandartAtx && CbStandart.IsChecked == true ||
+                        x.ThinMiniItx && CbThin.IsChecked == true ||
+                        x.XlAtx && CbXl.IsChecked == true).ToList();
+                    }
+                }
             }
-            if (CbPrimaryColor.SelectedIndex != -1)
+            foreach (var childTower in ChecksumTower_Collection.Children)
             {
-                filterCase = filterCase.Where(x => x.PrimaryColor == CbPrimaryColor.SelectedItem).ToList();
-            }
-            if (CbTypeRGB.SelectedIndex != -1)
-            {
-                filterCase = filterCase.Where(x => x.TypeRGB == CbTypeRGB.SelectedItem).ToList();
-            }
-
-            if (CbEatx.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.EAtx == true).ToList();
-            }
-            if (CbFlex.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.FlexAtx == true).ToList();
-            }
-            if (CbMicro.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.MicroAtx == true).ToList();
-            }
-            if (CbMiniDtx.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.MiniDtx == true).ToList();
-            }
-            if (CbMiniItx.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.MiniItx == true).ToList();
-            }
-            if (CbSsiCeb.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.SsiCeb == true).ToList();
-            }
-            if (CbSsiEeb.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.SsiEeb == true).ToList();
-            }
-            if (CbStandart.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.StandartAtx == true).ToList();
-            }
-            if (CbThin.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.ThinMiniItx == true).ToList();
-            }
-            if (CbXl.IsChecked == true)
-            {
-                filterCase = filterCase.Where(x => x.XlAtx == true).ToList();
+                var checkTower = childTower as CheckBox;
+                if (checkTower.IsChecked == true)
+                {
+                    foreach (ComputerCase pcTower in filterCase)
+                    {
+                        filterCase = filterCase.Where(x =>
+                        x.FormFactor.Name == "Desktop" && CbDesktop.IsChecked == true ||
+                        x.FormFactor.Name == "Full-Tower" && CbFullTower.IsChecked == true ||
+                        x.FormFactor.Name == "Mid-Tower" && CbMidTower.IsChecked == true ||
+                        x.FormFactor.Name == "Mini-Tower" && CbMiniTower.IsChecked == true ||
+                        x.FormFactor.Name == "Slim" && CbSlim.IsChecked == true ||
+                        x.FormFactor.Name == "Super/Ultra-Tower" && CbSuperTower.IsChecked == true ||
+                        x.FormFactor.Name == "Компактный (SFF)" && CbSff.IsChecked == true ||
+                        x.FormFactor.Name == "Нестандартный" && CbNoneStandart.IsChecked == true ||
+                        x.FormFactor.Name == "Открытый корпус" && CbOpenCase.IsChecked == true ||
+                        x.FormFactor.Name == "Открытый стенд" && CbOpenStand.IsChecked == true).ToList();
+                    }
+                }
             }
 
-            if (CbDesktop.IsChecked == true)
+            foreach (var childPower in Power_Collection.Children)
             {
-                filterCase = filterCase.Where(x => x.FormFactor.Name == "Desktop").ToList();
+                var checkPower = childPower as CheckBox;
+                if (checkPower.IsChecked == true)
+                {
+                    foreach (ComputerCase pcPower in filterCase)
+                    {
+                        filterCase = filterCase.Where(x =>
+                        x.AlignmentPowerBlock.Name == "Нижнее" && CbDowner.IsChecked == true ||
+                        x.AlignmentPowerBlock.Name == "Верхнее" && CbUpper.IsChecked == true ||
+                        x.AlignmentPowerBlock.Name == "Внешнее" && CbOutsider.IsChecked == true ||
+                        x.AlignmentPowerBlock.Name == "Скрытое" && CbHider.IsChecked == true ||
+                        x.AlignmentPowerBlock.Name == "Регулируемое" && CbConfigure.IsChecked == true).ToList();
+                    }
+                }
             }
-            if (CbMidTower.IsChecked == true)
+            foreach (var childWindowMaterial in WindowsMaterial_Collection.Children)
             {
-                filterCase = filterCase.Where(x => x.FormFactor.Name == "Mid-Tower").ToList();
+                var checkWindowMaterial = childWindowMaterial as CheckBox;
+                if (checkWindowMaterial.IsChecked == true)
+                {
+                    foreach (ComputerCase pcWindowMaterial in filterCase)
+                    {
+                        filterCase = filterCase.Where(x =>
+                        x.WindowMaterialId == 2 && CbAkrill.IsChecked == true ||
+                        x.WindowMaterialId == 3 && CbTemperedGlass.IsChecked == true).ToList();
+                    }
+                }
             }
-            if (CbFullTower.IsChecked == true)
+
+            foreach (var childWindowAlignment in WindowAlignment_Collection.Children)
             {
-                filterCase =  filterCase.Where(x => x.FormFactor.Name == "Full-Tower").ToList();
+                var checkWindowAlignmentl = childWindowAlignment as CheckBox;
+                if (checkWindowAlignmentl.IsChecked == true)
+                {
+                    foreach (ComputerCase pcWWindowAlignment in filterCase)
+                    {
+                        filterCase = filterCase.Where(x =>
+                        x.WindowAlignment.Name == "Нет" && CbNoneWindow.IsChecked == true ||
+                        x.WindowAlignment.Name == "С двух сторон" && CbDoubleWindow.IsChecked == true ||
+                        x.WindowAlignment.Name == "Слева" && CbLeftWindow.IsChecked == true ||
+                        x.WindowAlignment.Name == "Справа" && CbRightWindow.IsChecked == true).ToList();
+                    }
+                }
             }
-            if (CbMiniTower.IsChecked == true)            {
-                filterCase = filterCase.Where(x => x.FormFactor.Name == "Mini-Tower").ToList();
-            }
-            if (CbSlim.IsChecked == true)
+
+            if(TbStartPrice.Text.Length > 0)
             {
-                filterCase = filterCase.Where(x => x.FormFactor.Name == "Slim").ToList();
+                filterCase = filterCase.Where(x => x.PriceDiscount >= Convert.ToInt64(TbStartPrice.Text)).ToList();
             }
-            if (CbSuperTower.IsChecked == true)
+            if (TbEndPrice.Text.Length > 0)
             {
-                filterCase = filterCase.Where(x => x.FormFactor.Name == "Super/Ultra-Tower").ToList();
+                filterCase = filterCase.Where(x => x.PriceDiscount <= Convert.ToInt64(TbEndPrice.Text)).ToList();
             }
-            if (CbMiniTower.IsChecked == true)
+            if (TbCpuHeightStart.Text.Length > 0)
             {
-                filterCase = filterCase.Where(x => x.FormFactor.Name == "Mini-Tower").ToList();
+                filterCase = filterCase.Where(x => x.MaxHeightCPUCooler >= Convert.ToInt64(TbCpuHeightStart.Text)).ToList();
+            }
+            if (TbCpuHeightEnd.Text.Length > 0)
+            {
+                filterCase = filterCase.Where(x => x.MaxHeightCPUCooler <= Convert.ToInt64(TbCpuHeightEnd.Text)).ToList();
             }
             LvCases.ItemsSource = filterCase.ToList();
         }
@@ -269,6 +293,7 @@ namespace VSborkeAdmistrator.Pages
                 CbSsiEeb.IsChecked == true & CbStandart.IsChecked == true & 
                 CbThin.IsChecked == true & CbXl.IsChecked == true)
                 CbAllMotherboard.IsChecked = true;
+
    
         }
         private void CbAllMotherboardOfOne_Unchecked(object sender, RoutedEventArgs e)
@@ -418,6 +443,62 @@ namespace VSborkeAdmistrator.Pages
                 BtnTypeRGBClear.Visibility = Visibility.Visible;
             else
                 BtnTypeRGBClear.Visibility = Visibility.Collapsed;
+        }
+
+        private void TbStartPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TbStartPrice.Text == String.Empty)
+            {
+                return;
+            }
+            int value = int.Parse(TbStartPrice.Text);
+            if (value < App.DB.ComputerCase.Min().PriceDiscount)
+            {
+                value = App.DB.ComputerCase.Min().PriceDiscount;
+                TbStartPrice.Text = value.ToString();
+            }
+        }
+
+        private void TbEndPrice_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TbEndPrice.Text == String.Empty)
+            {
+                return;
+            }
+            int value = int.Parse(TbEndPrice.Text);
+            if (value > App.DB.ComputerCase.Max().PriceDiscount)
+            {
+                value = App.DB.ComputerCase.Max().PriceDiscount;
+                TbEndPrice.Text = value.ToString();
+            }
+        }
+
+        private void TbCpuHeightStart_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TbCpuHeightStart.Text == String.Empty)
+            {
+                return;
+            }
+            int value = int.Parse(TbCpuHeightStart.Text);
+            if (value > 260)
+            {
+                value = 260;
+                TbCpuHeightStart.Text = value.ToString();
+            }
+        }
+
+        private void TbCpuHeightEnd_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if(TbCpuHeightEnd.Text == String.Empty)
+            {
+                return;
+            }
+            int value = int.Parse(TbCpuHeightEnd.Text);
+            if(value > 260)
+            {
+                value = 260;
+                TbCpuHeightEnd.Text = value.ToString();
+            }
         }
     }
 }
