@@ -27,16 +27,25 @@ namespace VSborkeAdmistrator.Pages
             InitializeComponent();
             TbStartPrice.Tag = $"от {App.DB.ComputerCase.Min(x => x.Price)}";
             TbEndPrice.Tag = $"до {App.DB.ComputerCase.Max(x => x.Price)}";
-            CbManufacturer.ItemsSource = App.DB.Manufacturer.ToList();
+            CbManufacturer.ItemsSource = App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
             CbPrimaryColor.ItemsSource = App.DB.PrimaryColor.ToList();
             CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
-
+            TbCpuHeightStart.Tag = $"от {App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler)}";
+            TbCpuHeightEnd.Tag = $"до {App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler)}";
 
         }
 
         private void Refresh()
         {
             IEnumerable<ComputerCase> filterCase = App.DB.ComputerCase.Where(x => x.IsCustom == false);
+            if(CbSort.SelectedIndex == 0)
+            {
+                filterCase = filterCase.OrderBy(x => x.PriceDiscount).ToList();
+            }
+            else if (CbSort.SelectedIndex == 1)
+            {
+                filterCase = filterCase.OrderByDescending(x => x.PriceDiscount).ToList();
+            }
             if (CbAccess.IsChecked == true & CbNoneAccess.IsChecked == true)
             {
 
@@ -54,7 +63,22 @@ namespace VSborkeAdmistrator.Pages
             }
             if (CbDeleted.IsChecked == true)
             {
+                CbAccess.IsChecked = false;
+                CbNoneAccess.IsChecked = true;
                 filterCase = filterCase.Where(x => x.IsDelete == true).ToList();
+            }
+
+            if (CbManufacturer.SelectedIndex != -1)
+            {
+                filterCase = filterCase.Where(x => x.Manufacturer == CbManufacturer.SelectedItem).ToList();
+            }
+            if (CbPrimaryColor.SelectedIndex != -1)
+            {
+                filterCase = filterCase.Where(x => x.PrimaryColor == CbPrimaryColor.SelectedItem).ToList();
+            }
+            if (CbTypeRGB.SelectedIndex != -1)
+            {
+                filterCase = filterCase.Where(x => x.TypeRGB == CbTypeRGB.SelectedItem).ToList();
             }
             foreach (var child in Checksum_Collection.Children)
             {
@@ -145,13 +169,13 @@ namespace VSborkeAdmistrator.Pages
                 }
             }
 
-            if(TbStartPrice.Text.Length > 0)
+            if (TbStartPrice.Text.Length > 0)
             {
-                filterCase = filterCase.Where(x => x.PriceDiscount >= Convert.ToInt64(TbStartPrice.Text)).ToList();
+                filterCase = filterCase.Where(x => x.Price >= Convert.ToInt64(TbStartPrice.Text)).ToList();
             }
             if (TbEndPrice.Text.Length > 0)
             {
-                filterCase = filterCase.Where(x => x.PriceDiscount <= Convert.ToInt64(TbEndPrice.Text)).ToList();
+                filterCase = filterCase.Where(x => x.Price <= Convert.ToInt64(TbEndPrice.Text)).ToList();
             }
             if (TbCpuHeightStart.Text.Length > 0)
             {
@@ -160,6 +184,10 @@ namespace VSborkeAdmistrator.Pages
             if (TbCpuHeightEnd.Text.Length > 0)
             {
                 filterCase = filterCase.Where(x => x.MaxHeightCPUCooler <= Convert.ToInt64(TbCpuHeightEnd.Text)).ToList();
+            }
+            if (TbSearch.Text.Length > 0)
+            {
+                filterCase = filterCase.Where(x => x.FullName.ToLower().Contains(TbSearch.Text.ToLower()));
             }
             LvCases.ItemsSource = filterCase.ToList();
         }
@@ -172,6 +200,8 @@ namespace VSborkeAdmistrator.Pages
 
         private void ResetBtn_Click(object sender, RoutedEventArgs e)
         {
+            TbSearch.Text = String.Empty;
+
             CbAccess.IsChecked = true;
             CbNoneAccess.IsChecked = false;
             CbDeleted.IsChecked = false;
@@ -221,6 +251,7 @@ namespace VSborkeAdmistrator.Pages
             CbNoneStandart.IsChecked = false;
             CbOpenCase.IsChecked = false;
             CbOpenStand.IsChecked = false;
+            Refresh();
         }
 
         private void TbLinkName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -251,19 +282,20 @@ namespace VSborkeAdmistrator.Pages
             var favourite = App.DB.Favourite.SingleOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == selectedCase.Id);
             App.DB.Favourite.Remove(favourite);
             App.DB.SaveChanges();
+            Refresh();
         }
 
         private void FavouriteBtn_Click(object sender, RoutedEventArgs e)
         {
             var selectedCase = (sender as Button).DataContext as ComputerCase;
 
-                App.DB.Favourite.Add(new Favourite()
-                {
-                    ComputerCaseId = selectedCase.Id,
-                    UserId = App.LoggedUser.Id
-                });
+            App.DB.Favourite.Add(new Favourite()
+            {
+                ComputerCaseId = selectedCase.Id,
+                UserId = App.LoggedUser.Id
+            });
             App.DB.SaveChanges();
-
+            Refresh();
         }
 
         private void ApplyBtn_Click(object sender, RoutedEventArgs e)
@@ -287,14 +319,14 @@ namespace VSborkeAdmistrator.Pages
 
         private void CbAllMotherboardOfOne_Checked(object sender, RoutedEventArgs e)
         {
-            if(CbEatx.IsChecked == true & CbFlex.IsChecked == true & 
-                CbMicro.IsChecked == true & CbMiniDtx.IsChecked == true & 
-                CbMiniItx.IsChecked == true & CbSsiCeb.IsChecked == true & 
-                CbSsiEeb.IsChecked == true & CbStandart.IsChecked == true & 
+            if (CbEatx.IsChecked == true & CbFlex.IsChecked == true &
+                CbMicro.IsChecked == true & CbMiniDtx.IsChecked == true &
+                CbMiniItx.IsChecked == true & CbSsiCeb.IsChecked == true &
+                CbSsiEeb.IsChecked == true & CbStandart.IsChecked == true &
                 CbThin.IsChecked == true & CbXl.IsChecked == true)
                 CbAllMotherboard.IsChecked = true;
 
-   
+
         }
         private void CbAllMotherboardOfOne_Unchecked(object sender, RoutedEventArgs e)
         {
@@ -396,6 +428,7 @@ namespace VSborkeAdmistrator.Pages
             {
                 e.Handled = true;
             }
+
         }
 
         private void ForSpaces_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -445,60 +478,144 @@ namespace VSborkeAdmistrator.Pages
                 BtnTypeRGBClear.Visibility = Visibility.Collapsed;
         }
 
-        private void TbStartPrice_TextChanged(object sender, TextChangedEventArgs e)
+
+
+        private void TbStartPrice_LostFocus(object sender, RoutedEventArgs e)
         {
             if (TbStartPrice.Text == String.Empty)
             {
                 return;
             }
             int value = int.Parse(TbStartPrice.Text);
-            if (value < App.DB.ComputerCase.Min().PriceDiscount)
+            if (value < App.DB.ComputerCase.Min(x => x.Price))
             {
-                value = App.DB.ComputerCase.Min().PriceDiscount;
+                value = App.DB.ComputerCase.Min(x => x.Price);
                 TbStartPrice.Text = value.ToString();
+            }
+            if (value > App.DB.ComputerCase.Max(x => x.Price))
+            {
+                value = App.DB.ComputerCase.Max(x => x.Price);
+                TbStartPrice.Text = value.ToString();
+            }
+            if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
+            {
+                if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
+                {
+                    TbEndPrice.Text = App.DB.ComputerCase.Max(x => x.Price).ToString();
+                    TbStartPrice.Text = App.DB.ComputerCase.Min(x => x.Price).ToString();
+                }
             }
         }
 
-        private void TbEndPrice_TextChanged(object sender, TextChangedEventArgs e)
+        private void TbEndPrice_LostFocus(object sender, RoutedEventArgs e)
         {
             if (TbEndPrice.Text == String.Empty)
             {
                 return;
             }
             int value = int.Parse(TbEndPrice.Text);
-            if (value > App.DB.ComputerCase.Max().PriceDiscount)
+            if (value < App.DB.ComputerCase.Min(x => x.Price))
             {
-                value = App.DB.ComputerCase.Max().PriceDiscount;
+                value = App.DB.ComputerCase.Min(x => x.Price);
                 TbEndPrice.Text = value.ToString();
+            }
+            if (value > App.DB.ComputerCase.Max(x => x.Price))
+            {
+                value = App.DB.ComputerCase.Max(x => x.Price);
+                TbEndPrice.Text = value.ToString();
+            }
+            if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
+            {
+                if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
+                {
+                    TbEndPrice.Text = App.DB.ComputerCase.Max(x => x.Price).ToString();
+                    TbStartPrice.Text = App.DB.ComputerCase.Min(x => x.Price).ToString();
+                }
+            }
+
+        }
+
+        private void TbCpuHeightEnd_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (TbCpuHeightEnd.Text == String.Empty)
+            {
+                return;
+            }
+            int value = int.Parse(TbCpuHeightEnd.Text);
+            if (value < App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler))
+            {
+                value = App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler);
+                TbCpuHeightEnd.Text = value.ToString();
+            }
+            if (value > App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler))
+            {
+                value = App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler);
+                TbCpuHeightEnd.Text = value.ToString();
+            }
+            if (TbCpuHeightEnd.Text != String.Empty & TbCpuHeightStart.Text != String.Empty)
+            {
+                if (int.Parse(TbCpuHeightEnd.Text) < int.Parse(TbCpuHeightStart.Text))
+                {
+                    TbCpuHeightEnd.Text = App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler).ToString();
+                    TbCpuHeightStart.Text = App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler).ToString();
+                }
             }
         }
 
-        private void TbCpuHeightStart_TextChanged(object sender, TextChangedEventArgs e)
+        private void TbCpuHeightStart_LostFocus(object sender, RoutedEventArgs e)
         {
             if (TbCpuHeightStart.Text == String.Empty)
             {
                 return;
             }
             int value = int.Parse(TbCpuHeightStart.Text);
-            if (value > 260)
+            if (value < App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler))
             {
-                value = 260;
+                value = App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler);
                 TbCpuHeightStart.Text = value.ToString();
+            }
+            if (value > App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler))
+            {
+                value = App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler);
+                TbCpuHeightStart.Text = value.ToString();
+            }
+            if (TbCpuHeightEnd.Text != String.Empty & TbCpuHeightStart.Text != String.Empty)
+            {
+                if (int.Parse(TbCpuHeightEnd.Text) < int.Parse(TbCpuHeightStart.Text))
+                {
+                    TbCpuHeightEnd.Text = App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler).ToString();
+                    TbCpuHeightStart.Text = App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler).ToString();
+                }
             }
         }
 
-        private void TbCpuHeightEnd_TextChanged(object sender, TextChangedEventArgs e)
+        private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if(TbCpuHeightEnd.Text == String.Empty)
-            {
-                return;
-            }
-            int value = int.Parse(TbCpuHeightEnd.Text);
-            if(value > 260)
-            {
-                value = 260;
-                TbCpuHeightEnd.Text = value.ToString();
-            }
+            Refresh();
+        }
+
+        private void RemoveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            selectedCase.IsDelete = true;
+            selectedCase.IsAccessable = false;
+            App.DB.SaveChanges();
+            Refresh();
+
+        }
+
+        private void RecoveryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            selectedCase.IsDelete = false;
+            App.DB.SaveChanges();
+            Refresh();
+        }
+
+        private void CbDeleted_Checked(object sender, RoutedEventArgs e)
+        {
+            CbAccess.IsChecked = false;
+            CbNoneAccess.IsChecked = true;
         }
     }
 }

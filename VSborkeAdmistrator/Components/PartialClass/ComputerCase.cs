@@ -234,5 +234,31 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
+        public Visibility VisibilityRemoveCaseBtn
+        {
+            get
+            {
+                if(IsDelete == false)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility VisibilityRecoverCaseBtn
+        {
+            get
+            {
+                if (IsDelete == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
     }
 }

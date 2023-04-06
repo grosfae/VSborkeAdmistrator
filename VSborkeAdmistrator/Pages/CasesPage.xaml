@@ -43,6 +43,11 @@
                                     </Image.Style>
                                 </Image>
                             </Grid>
+                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Сортировка:" VerticalAlignment="Center"  FontSize="20" Margin="390 0 0 0"/>
+                            <ComboBox x:Name="CbSort" Width="auto" MinWidth="150" VerticalAlignment="Center" SelectedIndex="0" FontSize="20" Margin="5 0 0 0" FontFamily="/Resources/Fonts/#Raleway">
+                                <ComboBoxItem>по возрастанию цены</ComboBoxItem>
+                                <ComboBoxItem>по убыванию цены</ComboBoxItem>
+                            </ComboBox>
                         </StackPanel>
                         <Line X1="0" Y1="0" X2="1130" Y2="0" Stroke="#FF3881EF" StrokeThickness="2"/>
                         <Grid Height="auto">
@@ -68,7 +73,7 @@
                                                     <CheckBox x:Name="CbNoneAccess" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Нет в наличии"/>
                                                 </Viewbox>
                                                 <Viewbox Height="26" HorizontalAlignment="Left" Margin="0 5 0 0">
-                                                    <CheckBox x:Name="CbDeleted" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Удаленные"/>
+                                                    <CheckBox x:Name="CbDeleted" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Удаленные" Checked="CbDeleted_Checked"/>
                                                 </Viewbox>
                                             </StackPanel>
                                         </StackPanel>
@@ -103,16 +108,16 @@
                                     <StackPanel Margin="10 5 0 0" Orientation="Horizontal">
                                         <StackPanel>
                                             <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От:" Margin="0 10 0 0"/>
-                                            <TextBox x:Name="TbStartPrice" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" TextChanged="TbStartPrice_TextChanged"/>
+                                            <TextBox x:Name="TbStartPrice" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbStartPrice_LostFocus"/>
                                         </StackPanel>
                                         <StackPanel Margin="10 0 0 0">
                                             <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="До:" Margin="0 10 0 0"/>
-                                            <TextBox x:Name="TbEndPrice" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" TextChanged="TbEndPrice_TextChanged"/>
+                                            <TextBox x:Name="TbEndPrice" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbEndPrice_LostFocus"/>
                                         </StackPanel>
                                     </StackPanel>
                                 </Expander>
                                 <Separator/>
-                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20" IsExpanded="True">
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20">
                                     <Expander.Header>
                                         <TextBlock Text="Форм-факторы совместимых плат" TextWrapping="Wrap" Width="225" FontSize="20"/>
                                     </Expander.Header>
@@ -226,11 +231,11 @@
                                     <StackPanel Margin="10 5 0 0" Orientation="Horizontal">
                                         <StackPanel>
                                             <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От:" Margin="0 10 0 0"/>
-                                            <TextBox x:Name="TbCpuHeightStart" Style="{StaticResource placeHolderForPrice}" Tag="от 0" FontSize="21" Width="100" HorizontalAlignment="Left" PreviewKeyDown="ForSpaces_PreviewKeyDown"  PreviewTextInput="Numbers_PreviewTextInput" TextChanged="TbCpuHeightStart_TextChanged"/>
+                                            <TextBox x:Name="TbCpuHeightStart" Style="{StaticResource placeHolderForPrice}" Tag="от 0" FontSize="21" Width="100" HorizontalAlignment="Left" PreviewKeyDown="ForSpaces_PreviewKeyDown"  PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbCpuHeightStart_LostFocus"/>
                                         </StackPanel>
                                         <StackPanel Margin="10 0 0 0">
                                             <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="До:" Margin="0 10 0 0"/>
-                                            <TextBox x:Name="TbCpuHeightEnd" Style="{StaticResource placeHolderForPrice}" Tag="до 260" FontSize="21" Width="100" HorizontalAlignment="Left" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" TextChanged="TbCpuHeightEnd_TextChanged"/>
+                                            <TextBox x:Name="TbCpuHeightEnd" Style="{StaticResource placeHolderForPrice}" Tag="до 260" FontSize="21" Width="100" HorizontalAlignment="Left" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbCpuHeightEnd_LostFocus" />
                                         </StackPanel>
                                     </StackPanel>
                                 </Expander>
@@ -254,15 +259,18 @@
                                                 <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="4 0 0 8" VerticalAlignment="Bottom"/>
                                                 <TextBlock x:Name="TbLinkName" Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource ListLink}" FontSize="20" TextWrapping="Wrap" Height="70" Width="440" Margin="5 15 0 0" FontFamily="PT Sans" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
                                                 <Button x:Name="EditBtn" Width="40" Height="40" Style="{StaticResource BorderBtn}" Content="🖉" BorderThickness="1" FontSize="28" HorizontalAlignment="Left" Margin="10 35 0 0" Click="EditBtn_Click" Grid.Column="1"/>
-                                                    <TextBlock Text="{Binding Accesable}" Style="{StaticResource ProfileInfo}" FontSize="18" Margin="10 0 0 10" Grid.Column="1" VerticalAlignment="Bottom"/>
+                                                <Button x:Name="RemoveBtn" Visibility="{Binding VisibilityRemoveCaseBtn}" Width="40"  Height="40" Style="{StaticResource StatusRedBtn}" Content="🗑" BorderThickness="1" FontSize="28" HorizontalAlignment="Left" Margin="60 35 0 0" Click="RemoveBtn_Click" Grid.Column="1"/>
+                                                <Button x:Name="RecoveryBtn" Width="40" Visibility="{Binding VisibilityRecoverCaseBtn}" Height="40" Style="{StaticResource StatusGreenBtn}" Content="⮏" BorderThickness="1" FontSize="28" HorizontalAlignment="Left" Margin="60 35 0 0" Click="RecoveryBtn_Click" Grid.Column="1"/>
+                                              <TextBlock Text="{Binding Accesable}" Style="{StaticResource ProfileInfo}" FontSize="18" Margin="10 0 0 10" Grid.Column="1" VerticalAlignment="Bottom"/>
                                                 <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="170 20 10 0" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
                                                 <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="24" Margin="120 35 0 0" Width="auto" Grid.Column="2" HorizontalAlignment="Center" TextAlignment="Right" />
                                                 <StackPanel Grid.Column="2" Margin="25 25 0 0" Orientation="Horizontal">
                                                     <Button x:Name="FavouriteBtn" Visibility="{Binding VisibilityAdd}" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="♥️" BorderThickness="1" FontSize="28" Click="FavouriteBtn_Click" />
-                                                    <Button x:Name="DeFavouriteBtn" Visibility="{Binding VisibilityRemove}" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="🗑️" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
-                                                    <Button x:Name="BuyBtn" Visibility="{Binding VisibilityBtnOrder}" Width="120" Height="45" Style="{StaticResource BorderBtn}" Content="Заказать" BorderThickness="1" FontSize="30"  Click="BuyBtn_Click" Margin="10 0 0 0"/>
+                                                    <Button x:Name="DeFavouriteBtn" Visibility="{Binding VisibilityRemove}" Width="45" Height="45" Style="{StaticResource OrangeFavBtn}" Content="💔" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
+                                                    <Button x:Name="BuyBtn" Visibility="{Binding VisibilityBtnOrder}" Width="120" Height="45" Style="{StaticResource OrangeBtn}" Content="Заказать" BorderThickness="1" FontSize="30"  Click="BuyBtn_Click" Margin="10 0 0 0"/>
                                                     <Button x:Name="NotificBtn" Visibility="{Binding VisibilityBtnNortific}" Width="120" Height="45" Style="{StaticResource BorderBtn}" Content="Уведомить" BorderThickness="1" FontSize="30" Click="NotificBtn_Click" Margin="10 0 0 0"/>
                                                 </StackPanel>
+                                                <TextBlock Grid.Column="1" Visibility="{Binding  VisibilityRecoverCaseBtn}" Text="Удален" Style="{StaticResource ProfileInfo}" HorizontalAlignment="Right" Background="DarkRed" Foreground="White" Width="120" TextAlignment="Center" Margin="0 0 40 5" Height="32" FontSize="22" VerticalAlignment="Bottom"/>
                                             </Grid>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
