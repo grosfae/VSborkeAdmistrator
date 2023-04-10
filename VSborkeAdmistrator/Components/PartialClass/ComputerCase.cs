@@ -23,6 +23,18 @@ namespace VSborkeAdmistrator.Components
 
             }
         }
+
+        public string ShortName
+        {
+            get
+            {
+                if (Name != null)
+                    return $"{eATX}{flexATX}{microATX}{miniDTX}{miniITX}{ssiCEB}{ssiEEB}{standartATX}{thinminiITX}{xlATX}{Weight} кг";
+                else
+                    return "Данные не заполнены";
+
+            }
+        }
         public string eATX
         {
             get
@@ -252,6 +264,31 @@ namespace VSborkeAdmistrator.Components
             get
             {
                 if (IsDelete == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility VisibilityNoneAccessable
+        {
+            get
+            {
+                if (IsAccessable == false)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+        public Visibility VisibilityAccessable
+        {
+            get
+            {
+                if (IsAccessable == true)
                 {
                     return Visibility.Visible;
                 }

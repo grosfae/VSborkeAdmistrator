@@ -5,63 +5,83 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="4020" d:DesignWidth="1130"
+      d:DesignHeight="3930" d:DesignWidth="1230"
       Title="ViewCasePage">
 
     <Grid Background="#FFEEF0F2" Height="auto">
-        <ScrollViewer Height="auto">
+        <ScrollViewer Height="auto" x:Name="ScrollPage">
             <Grid Height="auto">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
-                    <RowDefinition Height="560"/>
+                    <RowDefinition Height="450"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Корпус" FontSize="46" Margin="50 15 0 20"/>
-                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="{Binding Name}" FontSize="46" Margin="5 15 0 20"/>
-                        <Line X1="410" Y1="45" X2="1070" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="{Binding Name}" FontSize="46" Margin="10 15 0 20"/>
+                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="{Binding PrimaryColor.Name}" FontSize="46" Margin="10 15 0 20"/>
                     </StackPanel>
                 </Grid>
-                <StackPanel Grid.Row="1" Background="White" Width="1030" Height="auto">
+                <StackPanel Grid.Row="1" Background="White" Width="1130" Height="450">
                     <StackPanel Orientation="Horizontal">
-                        <StackPanel Margin="10 10 0 0">
-                            <Image Source="{Binding MainImage}" Width="400" Height="400"/>
-                            <Button x:Name="MainImageBtn" Click="MainImageBtn_Click" Width="300" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить главное изображение" Margin="0 20 0 0" Cursor="Hand"/>
+                        <StackPanel Margin="10 20 0 0"  Orientation="Horizontal">
+                            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden" Height="400">
+                                <StackPanel>
+                                    <Image x:Name="MainImageMini" Source="{Binding MainImage}" Width="50" Height="50" Margin="0 5 0 0" />
+                                    <ListView Width="63" x:Name="LvAdditionImages" ScrollViewer.VerticalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=6}" BorderThickness="0">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <Image Width= "50" Height="50" Source="{Binding AdditionImage}"/>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+                            </ScrollViewer>
+                            <Image x:Name="MainImage" Source="{Binding MainImage}" Width="400" Height="400" Margin="10 0 0 0"/>
                         </StackPanel>
-                        <StackPanel>
-                            <StackPanel Margin="10 10 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Название: "/>
-                                <TextBox Text="{Binding Name}" Width="530" Style="{StaticResource  ProfileTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" MaxLength="50"/>
-                            </StackPanel>
-                            <StackPanel Margin="10 10 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Описание: "/>
-                                <TextBox Text="{Binding Description}" Width="530" Height="200" Style="{StaticResource  ProfileTextEnter}" FontSize="24" HorizontalAlignment="Left" Margin="0 10 0 0" AcceptsReturn="True" TextWrapping="Wrap"/>
-                            </StackPanel>
+                        <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <StackPanel Margin="10 10 20 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Цена без учета скидки: "/>
-                                    <TextBox Text="{Binding Price}" Width="200" Style="{StaticResource  NumbersTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" PreviewTextInput="TextBox_PreviewTextInput_1" MaxLength="6"/>
-                                </StackPanel>
-                                <StackPanel Margin="10 10 0 0">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Производитель: "/>
-                                    <ComboBox x:Name="CbManufacturer" SelectedItem="{Binding Manufacturer}" DisplayMemberPath="Name" Height="35" Width="auto" MinWidth="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
-                                </StackPanel>
+                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding ShortName}" TextWrapping="Wrap" Height="48" Width="500" HorizontalAlignment="Left" FontSize="20"/>
+                                <Image Source="{Binding Manufacturer.Image}" Width="75" Height="48" Margin="45 0 0 0"/>
                             </StackPanel>
-                            <StackPanel Margin="10 10 0 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" FontSize="26" Text="Скидка: "/>
-                                <TextBox Text="{Binding Discount}" Width="200" Style="{StaticResource  NumbersTextEnter}" FontSize="26" HorizontalAlignment="Left" Margin="0 10 0 0" PreviewTextInput="TextBox_PreviewTextInput_1" MaxLength="2"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <Viewbox Height="36" HorizontalAlignment="Left" Margin="8 10 0 0">
-                                    <CheckBox x:Name="CbIsAccessable" Style="{StaticResource CbContent}" IsChecked="{Binding IsAccessable}" Content="В наличии" />
-                                </Viewbox>
-                            </StackPanel>
+                            <Border CornerRadius="10" BorderThickness="1" Margin="0 20 0 0" Background="White">
+                                <Border.Effect>
+                                    <DropShadowEffect Color="Black" BlurRadius="15" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
+                                </Border.Effect>
+                                <Grid Height="140" Width="550" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="250"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Rectangle Width="50" Height="30" Fill="#FFFF5C52" Visibility="{Binding VisibilityDiscount}" VerticalAlignment="Top" RadiusX="15" RadiusY="15" Margin="160 12 0 5" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="165 15 0 8" VerticalAlignment="Top"/>
+                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="12 15 0 0" Height="30" VerticalAlignment="Top">
+                                        <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="24" Width="auto" TextAlignment="Left" />
+                                        <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="10 0 10 0" TextAlignment="Left" />
+                                    </StackPanel>
+                                    <Rectangle Fill="#FFF2F2F2" Height="40" Width="160" VerticalAlignment="Bottom" Visibility="{Binding VisibilityNoneAccessable}" HorizontalAlignment="Left" Margin="10 0 0 40" RadiusY="5" RadiusX="5"/>
+                                    <TextBlock Text="Корпус недоступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityNoneAccessable}" Margin="32 0 0 52" FontSize="13"/>
+                                    
+                                    <Rectangle Fill="#FFF2F2F2" Height="40" Width="160" VerticalAlignment="Bottom" Visibility="{Binding VisibilityAccessable}" HorizontalAlignment="Left" Margin="10 0 0 40" RadiusY="5" RadiusX="5"/>
+                                    <TextBlock Text="Корпус доступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityAccessable}" Foreground="#FF3881EF" Margin="35 0 0 52" FontSize="13"/>
+                                    
+                                    <TextBlock x:Name="TbId" Text="{Binding Id, StringFormat='Код товара: {0}'}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 0 10" FontSize="18" Foreground="#4e4e4e"/>
+                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20 10 0 0" Grid.Column="1" Height="50" VerticalAlignment="Top">
+                                        <Button x:Name="FavouriteBtn" Visibility="{Binding VisibilityAdd}" Width="45" Height="45" Style="{StaticResource BorderBtn}" Content="♥️" BorderThickness="1" FontSize="28" Click="FavouriteBtn_Click" />
+                                        <Button x:Name="DeFavouriteBtn" Visibility="{Binding VisibilityRemove}" Width="45" Height="45" Style="{StaticResource OrangeFavBtn}" Content="💔" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
+                                        <Button x:Name="BuyBtn" Visibility="{Binding VisibilityBtnOrder}" Width="160" Height="45" Style="{StaticResource OrangeBtn}" Content="Заказать" BorderThickness="1" FontSize="30"  Click="BuyBtn_Click" Margin="10 0 0 0"/>
+                                        <Button x:Name="NotificBtn" Visibility="{Binding VisibilityBtnNortific}" Width="160" Height="45" Style="{StaticResource BorderBtn}" Content="Уведомить" BorderThickness="1" FontSize="30" Click="NotificBtn_Click" Margin="10 0 0 0"/>
+                                    </StackPanel>
+                                    <Rectangle Fill="#FFAB0A00" Height="40" Width="160" Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding VisibilityRecoverCaseBtn}" HorizontalAlignment="Left" Margin="75 0 0 20" RadiusY="5" RadiusX="5"/>
+                                    <TextBlock Text="Корпус удален" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Visibility="{Binding VisibilityRecoverCaseBtn}" Foreground="White" Margin="100 0 0 30" FontSize="16"/>
+                                </Grid>
+                            </Border>
                         </StackPanel>
                     </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Row="2" Background="White" Width="1030" Height="auto" Margin="0 20 0 20">
+                <StackPanel Grid.Row="2" Background="White" Width="1130" Height="auto" Margin="0 20 0 20">
                     <StackPanel Margin="20 0 20 0">
                         <TextBlock Style="{StaticResource ProfileInfo}" Text="Характеристики корпуса" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
                         <StackPanel Margin="0 20 0 0">
@@ -396,7 +416,7 @@
                             <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительные изображения корпуса" FontWeight="SemiBold" FontSize="22"/>
                             <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
                                 <Button Style="{StaticResource BorderBtn}" Click="LeftBtn_Click" Width="30" FontSize="50" Height="140"  x:Name="LeftBtn" Content ="&lt;" Cursor="Hand"/>
-                                <ListView x:Name="LvAdditionImages" Width="920" BorderBrush="Transparent" Height= "210" ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
+                                <ListView x:Name="LvAdditionImage" Width="920" BorderBrush="Transparent" Height= "210" ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <StackPanel Orientation ="Horizontal"/>

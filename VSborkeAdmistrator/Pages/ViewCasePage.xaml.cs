@@ -30,33 +30,10 @@ namespace VSborkeAdmistrator.Pages
             InitializeComponent();
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
-            if (contextComputerCase.Id == 0)
-            {
-                contextComputerCase.CableManagementBackSide = false;
-                contextComputerCase.CardReader = false;
-                contextComputerCase.ThinMiniItx = false;
-                contextComputerCase.MiniItx = false;
-                contextComputerCase.MiniDtx = false;
-                contextComputerCase.EAtx = false;
-                contextComputerCase.StandartAtx = false;
-                contextComputerCase.CutCPUCooler = false;
-                contextComputerCase.DustFilter = false;
-                contextComputerCase.FlexAtx = false;
-                contextComputerCase.IsAccessable = false;
-                contextComputerCase.IsAntiVibration = false;
-                contextComputerCase.IsCustom = false;
-                contextComputerCase.MicroAtx = false;
-                contextComputerCase.RGB = false;
-                contextComputerCase.XlAtx = false;
-                contextComputerCase.WindowOnSide = false;
-                contextComputerCase.IsDelete = false;
-                contextComputerCase.SupportLiquidCooling = false;
-                contextComputerCase.SsiCeb = false;
-                contextComputerCase.SsiEeb = false;
-            }
+            
 
 
-
+            LvAdditionImage.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
             CbAlignmentPowerBlock.ItemsSource = App.DB.AlignmentPowerBlock.ToList();
@@ -75,7 +52,6 @@ namespace VSborkeAdmistrator.Pages
             CbHorizontalAddonsSlot.ItemsSource = App.DB.HorizontalAddonSlot.ToList();
             CbIoAlignment.ItemsSource = App.DB.IOPanelAlignment.ToList();
             CbIoConnectors.ItemsSource = App.DB.IOPanel.ToList();
-            CbManufacturer.ItemsSource = App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
             CbMaterialSet.ItemsSource = App.DB.MaterialSet.ToList();
             CbMaterialWindow.ItemsSource = App.DB.WindowMaterial.ToList();
             CbOrientationMotherboard.ItemsSource = App.DB.OrientationMotherboard.ToList();
@@ -458,6 +434,34 @@ namespace VSborkeAdmistrator.Pages
             caseImagesList = caseImagesList.Skip(count * numberPage).Take(count);
             LvAdditionImages.ItemsSource = caseImagesList;
         }
+
+        private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var favourite = App.DB.Favourite.SingleOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == contextComputerCase.Id);
+            App.DB.Favourite.Remove(favourite);
+        }
+
+        private void FavouriteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            App.DB.Favourite.Add(new Favourite()
+            {
+                ComputerCaseId = contextComputerCase.Id,
+                UserId = App.LoggedUser.Id
+            });
+            App.DB.SaveChanges();
+        }
+
+        private void BuyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void NotificBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 
 }

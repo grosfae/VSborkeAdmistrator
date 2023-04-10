@@ -257,7 +257,7 @@ namespace VSborkeAdmistrator.Pages
         private void TbLinkName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var selectedCase = (sender as TextBlock).DataContext as ComputerCase;
-            NavigationService.Navigate(new ComputerCaseEditPage(selectedCase));
+            NavigationService.Navigate(new ViewCasePage(selectedCase));
         }
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
