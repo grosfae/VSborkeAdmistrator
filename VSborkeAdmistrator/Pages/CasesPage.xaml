@@ -254,7 +254,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="230"/>
                                                 </Grid.ColumnDefinitions>
-                                                <Image Source="{Binding MainImage}" Height="160" Width="160"/>
+                                                <Image Source="{Binding MainImage}" Height="160" Width="160" RenderOptions.BitmapScalingMode="HighQuality"/>
                                                 <Rectangle Width="50" Height="30" Fill="#FFFF5C52" Visibility="{Binding VisibilityDiscount}" VerticalAlignment="Bottom" RadiusX="15" RadiusY="15" Margin="0 0 0 5" HorizontalAlignment="Left"/>
                                                 <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="4 0 0 8" VerticalAlignment="Bottom"/>
                                                 <TextBlock x:Name="TbLinkName" Text="{Binding FullName}" Grid.Column="1" VerticalAlignment="Top" Style="{StaticResource ListLink}" FontSize="20" TextWrapping="Wrap" Height="70" Width="440" Margin="5 15 0 0" FontFamily="PT Sans" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>

@@ -32,7 +32,7 @@ namespace VSborkeAdmistrator.Pages
             DataContext = contextComputerCase;
             
 
-
+            LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != computerCase.Id ).ToList().Take(2);
             LvAdditionImage.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
@@ -462,6 +462,10 @@ namespace VSborkeAdmistrator.Pages
 
         }
 
+        private void ButAnalogueBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

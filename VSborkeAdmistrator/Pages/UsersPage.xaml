@@ -110,7 +110,7 @@
                                                 <TextBlock Text="{Binding Name}" Foreground="{Binding ColorForeground}" Style="{StaticResource ProfileInfo}" FontSize="20" Margin="60 17 0 0" Grid.Column="1"/>
                                                 <TextBlock Text="{Binding Role.Name}" Style="{StaticResource ProfileInfo}" Foreground="{Binding ColorForeground}" FontSize="20" Margin="0 17 0 0" Grid.Column="2" HorizontalAlignment="Center"/>
                                                 <TextBlock Text="{Binding Email}" Style="{StaticResource ProfileInfo}" Foreground="{Binding ColorForeground}" FontSize="20" Margin="0 17 0 0" Grid.Column="3" HorizontalAlignment="Center"/>
-                                                <Image Grid.Column="4" x:Name="ReadMoreBtn" MouseLeftButtonDown="ReadMoreBtn_MouseLeftButtonDown" Cursor="Hand" Height="40" Width="40" Margin="40 0 60 0">
+                                                <Image Grid.Column="4" RenderOptions.BitmapScalingMode="HighQuality" x:Name="ReadMoreBtn" MouseLeftButtonDown="ReadMoreBtn_MouseLeftButtonDown" Cursor="Hand" Height="40" Width="40" Margin="40 0 60 0">
                                                     <Image.Style>
                                                         <Style TargetType="{x:Type Image}">
                                                             <Setter Property="Source" Value="/Resources/UsersButtons/MoreOutline.png"/>
@@ -122,7 +122,7 @@
                                                         </Style>
                                                     </Image.Style>
                                                 </Image>
-                                                <Image Grid.Column="4" x:Name="BanBtn" MouseLeftButtonDown="BanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="90 0 0 0" Visibility="{Binding BtnRedVisibility}">
+                                                <Image Grid.Column="4" RenderOptions.BitmapScalingMode="HighQuality" x:Name="BanBtn" MouseLeftButtonDown="BanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="90 0 0 0" Visibility="{Binding BtnRedVisibility}">
                                                     <Image.Style>
                                                         <Style TargetType="{x:Type Image}">
                                                             <Setter Property="Source" Value="/Resources/UsersButtons/Lock.png"/>
@@ -134,7 +134,7 @@
                                                         </Style>
                                                     </Image.Style>
                                                 </Image>
-                                                <Image Grid.Column="4" x:Name="NoBanBtn" MouseLeftButtonDown="NoBanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="90 0 0 0" Visibility="{Binding BtnGreenVisibility}">
+                                                <Image Grid.Column="4" RenderOptions.BitmapScalingMode="HighQuality" x:Name="NoBanBtn" MouseLeftButtonDown="NoBanBtn_MouseLeftButtonDown" Cursor="Hand" Height="45" Width="45" Margin="90 0 0 0" Visibility="{Binding BtnGreenVisibility}">
                                                     <Image.Style>
                                                         <Style TargetType="{x:Type Image}">
                                                             <Setter Property="Source" Value="/Resources/UsersButtons/Lock.png"/>
