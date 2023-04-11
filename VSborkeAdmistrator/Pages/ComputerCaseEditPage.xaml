@@ -248,7 +248,7 @@
                                 <StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Горизонтальные слоты расширения: "/>
-                                        <ComboBox x:Name="CbHorizontalAddonsSlot" SelectedItem="{Binding HorizontalAddonSlot}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
+                                        <ComboBox x:Name="CbHorizontalAddonSlot" SelectedItem="{Binding HorizontalAddonSlot}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 5 0 20"/>
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Вертикальные слоты расширения: "/>
@@ -326,6 +326,14 @@
                                             <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Нижний максимальный размер СЖО: " Height="28"/>
                                             <ComboBox x:Name="CbBottomLiquid" SelectedItem="{Binding BottomLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
                                         </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Боковой максимальный размер СЖО: " Height="28"/>
+                                            <ComboBox x:Name="CbSideLiquid" SelectedItem="{Binding SideLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical" Margin="0 20 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="22" Text="Верхний максимальный размер СЖО: " Height="28"/>
+                                            <ComboBox x:Name="CbTopLiquid" SelectedItem="{Binding TopLiquidCooling}" DisplayMemberPath="Name" Height="35" Width="200" FontSize="22" HorizontalAlignment="Left" Margin="0 10 0 0"/>
+                                        </StackPanel>
                                     </StackPanel>
                                 </StackPanel>
                             </StackPanel>
@@ -397,12 +405,12 @@
                                 <ListView x:Name="LvAdditionImages" Width="920" BorderBrush="Transparent" Height= "210" ScrollViewer.HorizontalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemsPanel>
                                         <ItemsPanelTemplate>
-                                            <StackPanel Orientation ="Horizontal"/>
+                                            <WrapPanel Orientation ="Horizontal"/>
                                         </ItemsPanelTemplate>
                                     </ListView.ItemsPanel>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Image Width= "200" Height="200" Margin="15 0 0 0" Source="{Binding AdditionImage}"/>
+                                            <Image Width= "200" HorizontalAlignment="Center" Height="200" Margin="15 0 0 0" Source="{Binding AdditionImage}"/>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>

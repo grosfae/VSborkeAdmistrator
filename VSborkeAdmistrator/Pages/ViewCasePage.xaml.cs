@@ -30,44 +30,13 @@ namespace VSborkeAdmistrator.Pages
             InitializeComponent();
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
+
             
 
             LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != computerCase.Id ).ToList().Take(2);
-            LvAdditionImage.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
-            CbAlignmentPowerBlock.ItemsSource = App.DB.AlignmentPowerBlock.ToList();
-            CbAlignmentWindow.ItemsSource = App.DB.WindowAlignment.ToList();
-            CbBackCooler.ItemsSource = App.DB.SupportBackCooler.ToList();
-            CbBackLiquid.ItemsSource = App.DB.BackLiquidCooling.ToList();
-            CbBottomCooler.ItemsSource = App.DB.SupportBottomCooler.ToList();
-            CbBottomLiquid.ItemsSource = App.DB.BottomLiquidCooling.ToList();
-            CbColorRGB.ItemsSource = App.DB.ColorRGB.ToList();
-            CbCoolerInside.ItemsSource = App.DB.CoolerInside.ToList();
-            CbFormFactor.ItemsSource = App.DB.FormFactor.ToList();
-            CbFormPowerBlock.ItemsSource = App.DB.PowerBlockStandartSupport.ToList();
-            CbFrontCooler.ItemsSource = App.DB.SupportFrontCooler.ToList();
-            CbFrontLiquid.ItemsSource = App.DB.FrontLiquidCooling.ToList();
-            CbFrontPanelMaterial.ItemsSource = App.DB.FrontPanelMaterial.ToList();
-            CbHorizontalAddonsSlot.ItemsSource = App.DB.HorizontalAddonSlot.ToList();
-            CbIoAlignment.ItemsSource = App.DB.IOPanelAlignment.ToList();
-            CbIoConnectors.ItemsSource = App.DB.IOPanel.ToList();
-            CbMaterialSet.ItemsSource = App.DB.MaterialSet.ToList();
-            CbMaterialWindow.ItemsSource = App.DB.WindowMaterial.ToList();
-            CbOrientationMotherboard.ItemsSource = App.DB.OrientationMotherboard.ToList();
-            CbPrimaryColor.ItemsSource = App.DB.PrimaryColor.ToList();
-            CbSecondaryColor.ItemsSource = App.DB.SecondColor.ToList();
-            CbSideCooler.ItemsSource = App.DB.SupportSideCooler.ToList();
-            CbSidePanelFixation.ItemsSource = App.DB.SidePanelFixation.ToList();
-            CbSlotHDD.ItemsSource = App.DB.SlotHDD.ToList();
-            CbSlotSSD.ItemsSource = App.DB.SlotSSD.ToList();
-            CbSlotXHDD.ItemsSource = App.DB.SlotXHDD.ToList();
-            CbSourceRGB.ItemsSource = App.DB.SourceRGB.ToList();
-            CbTypeManagmentRGB.ItemsSource = App.DB.TypeManagmentRGB.ToList();
-            CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
-            CbTopCooler.ItemsSource = App.DB.SupportTopCooler.ToList();
-            CbVerticalAddonSlot.ItemsSource = App.DB.VerticalAddonSlot.ToList();
-            CbConnectorRGB.ItemsSource = App.DB.ConnectorRGB.ToList();
+            
         }
 
         private void MainImageBtn_Click(object sender, RoutedEventArgs e)
@@ -331,99 +300,7 @@ namespace VSborkeAdmistrator.Pages
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
         }
 
-        private void CbWindowOnSide_Checked(object sender, RoutedEventArgs e)
-        {
-            CbAlignmentWindow.IsEnabled = true;
-            CbMaterialWindow.IsEnabled = true;
-        }
-
-        private void CbWindowOnSide_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CbAlignmentWindow.IsEnabled = false;
-            CbMaterialWindow.IsEnabled = false;
-            CbAlignmentWindow.SelectedIndex = 0;
-            CbMaterialWindow.SelectedIndex = 0;
-        }
-
-        private void CbSuppLiquid_Checked(object sender, RoutedEventArgs e)
-        {
-            CbBackLiquid.IsEnabled = true;
-            CbBottomLiquid.IsEnabled = true;
-            CbFrontLiquid.IsEnabled = true;
-        }
-
-        private void CbSuppLiquid_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CbBackLiquid.IsEnabled = false;
-            CbBottomLiquid.IsEnabled = false;
-            CbFrontLiquid.IsEnabled = false;
-            CbFrontLiquid.SelectedIndex = 0;
-            CbBackLiquid.SelectedIndex = 0;
-            CbBottomLiquid.SelectedIndex = 0;
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (contextComputerCase.Id == 0)
-            {
-                if (CbWindowOnSide.IsChecked == false)
-                {
-                    CbAlignmentWindow.IsEnabled = false;
-                    CbMaterialWindow.IsEnabled = false;
-                    CbAlignmentWindow.SelectedIndex = 0;
-                    CbMaterialWindow.SelectedIndex = 0;
-                }
-
-                if (CbSuppLiquid.IsChecked == false)
-                {
-                    CbBackLiquid.IsEnabled = false;
-                    CbBottomLiquid.IsEnabled = false;
-                    CbFrontLiquid.IsEnabled = false;
-                    CbFrontLiquid.SelectedIndex = 0;
-                    CbBackLiquid.SelectedIndex = 0;
-                    CbBottomLiquid.SelectedIndex = 0;
-                }
-
-                if (CbRGB.IsChecked == false)
-                {
-                    CbColorRGB.IsEnabled = false;
-                    CbSourceRGB.IsEnabled = false;
-                    CbTypeManagmentRGB.IsEnabled = false;
-                    CbTypeRGB.IsEnabled = false;
-                    CbConnectorRGB.IsEnabled = false;
-
-                    CbColorRGB.SelectedIndex = 0;
-                    CbSourceRGB.SelectedIndex = 0;
-                    CbTypeManagmentRGB.SelectedIndex = 0;
-                    CbTypeRGB.SelectedIndex = 0;
-                    CbConnectorRGB.SelectedIndex = 0;
-                }
-            }
-        }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
-        {
-            CbColorRGB.IsEnabled = true;
-            CbSourceRGB.IsEnabled = true;
-            CbTypeManagmentRGB.IsEnabled = true;
-            CbTypeRGB.IsEnabled = true;
-            CbConnectorRGB.IsEnabled = true;
-        }
-
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
-        {
-            CbColorRGB.IsEnabled = false;
-            CbSourceRGB.IsEnabled = false;
-            CbTypeManagmentRGB.IsEnabled = false;
-            CbTypeRGB.IsEnabled = false;
-            CbConnectorRGB.IsEnabled = false;
-
-            CbColorRGB.SelectedIndex = 0;
-            CbSourceRGB.SelectedIndex = 0;
-            CbTypeManagmentRGB.SelectedIndex = 0;
-            CbTypeRGB.SelectedIndex = 0;
-            CbConnectorRGB.SelectedIndex = 0;
-        }
+        
 
         int numberPage = 0;
         int count = 4;

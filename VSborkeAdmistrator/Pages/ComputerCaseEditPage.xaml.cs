@@ -76,7 +76,7 @@ namespace VSborkeAdmistrator.Pages
             CbFrontCooler.ItemsSource = App.DB.SupportFrontCooler.ToList();
             CbFrontLiquid.ItemsSource = App.DB.FrontLiquidCooling.ToList();
             CbFrontPanelMaterial.ItemsSource = App.DB.FrontPanelMaterial.ToList();
-            CbHorizontalAddonsSlot.ItemsSource = App.DB.HorizontalAddonSlot.ToList();
+            CbHorizontalAddonSlot.ItemsSource = App.DB.HorizontalAddonSlot.ToList();
             CbIoAlignment.ItemsSource = App.DB.IOPanelAlignment.ToList();
             CbIoConnectors.ItemsSource = App.DB.IOPanel.ToList();
             CbManufacturer.ItemsSource= App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
@@ -91,6 +91,8 @@ namespace VSborkeAdmistrator.Pages
             CbSlotSSD.ItemsSource = App.DB.SlotSSD.ToList();
             CbSlotXHDD.ItemsSource = App.DB.SlotXHDD.ToList();
             CbSourceRGB.ItemsSource = App.DB.SourceRGB.ToList();
+            CbSideLiquid.ItemsSource = App.DB.SideLiquidCooling.ToList();
+            CbTopLiquid.ItemsSource = App.DB.TopLiquidCooling.ToList();
             CbTypeManagmentRGB.ItemsSource = App.DB.TypeManagmentRGB.ToList();
             CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
             CbTopCooler.ItemsSource = App.DB.SupportTopCooler.ToList();
@@ -380,6 +382,8 @@ namespace VSborkeAdmistrator.Pages
             CbBackLiquid.IsEnabled = true;
             CbBottomLiquid.IsEnabled = true;
             CbFrontLiquid.IsEnabled = true;
+            CbSideLiquid.IsEnabled = true;
+            CbTopLiquid.IsEnabled = true;
         }
 
         private void CbSuppLiquid_Unchecked(object sender, RoutedEventArgs e)
@@ -387,9 +391,13 @@ namespace VSborkeAdmistrator.Pages
             CbBackLiquid.IsEnabled = false;
             CbBottomLiquid.IsEnabled = false;
             CbFrontLiquid.IsEnabled = false;
+            CbSideLiquid.IsEnabled = false;
+            CbTopLiquid.IsEnabled = false;
             CbFrontLiquid.SelectedIndex = 0;
             CbBackLiquid.SelectedIndex = 0;
             CbBottomLiquid.SelectedIndex = 0;
+            CbSideLiquid.SelectedIndex = 0;
+            CbTopLiquid.SelectedIndex = 0;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -409,9 +417,13 @@ namespace VSborkeAdmistrator.Pages
                     CbBackLiquid.IsEnabled = false;
                     CbBottomLiquid.IsEnabled = false;
                     CbFrontLiquid.IsEnabled = false;
+                    CbSideLiquid.IsEnabled = false;
+                    CbTopLiquid.IsEnabled = false;
                     CbFrontLiquid.SelectedIndex = 0;
                     CbBackLiquid.SelectedIndex = 0;
                     CbBottomLiquid.SelectedIndex = 0;
+                    CbSideLiquid.SelectedIndex = 0;
+                    CbTopLiquid.SelectedIndex = 0;
                 }
 
                 if (CbRGB.IsChecked == false)

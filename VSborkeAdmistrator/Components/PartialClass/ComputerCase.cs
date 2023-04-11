@@ -12,6 +12,28 @@ namespace VSborkeAdmistrator.Components
 {
     public partial class ComputerCase
     {
+
+        public string LiquidBool
+        {
+            get
+            {
+                if (SupportLiquidCooling == true)
+                    return "Есть";
+                else
+                    return "Нет";
+
+            }
+        }
+        public string MotherboardList
+        {
+            get
+            {
+                string mothList = $"{eATX}{flexATX}{microATX}{miniDTX}{miniITX}{ssiCEB}{ssiEEB}{standartATX}{thinminiITX}{xlATX}";
+                return mothList.Remove(mothList.Length - 2);
+
+            }
+        }
+
         public string FullName
         {
             get

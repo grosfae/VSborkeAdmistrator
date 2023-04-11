@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
+using VSborkeAdmistrator.Windows;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -262,7 +263,9 @@ namespace VSborkeAdmistrator.Pages
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            var dialog = new PriceChartsWindow(selectedCase);
+            dialog.ShowDialog();
         }
 
         private void NotificBtn_Click(object sender, RoutedEventArgs e)

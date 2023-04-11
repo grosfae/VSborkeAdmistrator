@@ -34,6 +34,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<ConnectorRGB> ConnectorRGB { get; set; }
         public virtual DbSet<CoolerInside> CoolerInside { get; set; }
         public virtual DbSet<Favourite> Favourite { get; set; }
+        public virtual DbSet<FeedBack> FeedBack { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
         public virtual DbSet<FrontLiquidCooling> FrontLiquidCooling { get; set; }
         public virtual DbSet<FrontPanelMaterial> FrontPanelMaterial { get; set; }
@@ -49,6 +50,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<PrimaryColor> PrimaryColor { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<SecondColor> SecondColor { get; set; }
+        public virtual DbSet<SideLiquidCooling> SideLiquidCooling { get; set; }
         public virtual DbSet<SidePanelFixation> SidePanelFixation { get; set; }
         public virtual DbSet<SlotHDD> SlotHDD { get; set; }
         public virtual DbSet<SlotSSD> SlotSSD { get; set; }
@@ -61,6 +63,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<SupportSideCooler> SupportSideCooler { get; set; }
         public virtual DbSet<SupportTopCooler> SupportTopCooler { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TopLiquidCooling> TopLiquidCooling { get; set; }
         public virtual DbSet<TypeManagmentRGB> TypeManagmentRGB { get; set; }
         public virtual DbSet<TypeRGB> TypeRGB { get; set; }
         public virtual DbSet<User> User { get; set; }

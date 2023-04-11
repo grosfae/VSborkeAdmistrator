@@ -19,6 +19,7 @@ namespace VSborkeAdmistrator.Components
         {
             this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
             this.Favourite = new HashSet<Favourite>();
+            this.FeedBack = new HashSet<FeedBack>();
         }
     
         public int Id { get; set; }
@@ -67,6 +68,8 @@ namespace VSborkeAdmistrator.Components
         public int FrontLiquidCoolingId { get; set; }
         public int BackLiquidCoolingId { get; set; }
         public int BottomLiquidCoolingId { get; set; }
+        public int SideLiquidCoolingId { get; set; }
+        public int TopLiquidCoolingId { get; set; }
         public int OrientationMotherboardId { get; set; }
         public bool DustFilter { get; set; }
         public int PrimaryColorId { get; set; }
@@ -112,6 +115,7 @@ namespace VSborkeAdmistrator.Components
         public virtual PowerBlockStandartSupport PowerBlockStandartSupport { get; set; }
         public virtual PrimaryColor PrimaryColor { get; set; }
         public virtual SecondColor SecondColor { get; set; }
+        public virtual SideLiquidCooling SideLiquidCooling { get; set; }
         public virtual SidePanelFixation SidePanelFixation { get; set; }
         public virtual SlotHDD SlotHDD { get; set; }
         public virtual SlotSSD SlotSSD { get; set; }
@@ -122,6 +126,7 @@ namespace VSborkeAdmistrator.Components
         public virtual SupportFrontCooler SupportFrontCooler { get; set; }
         public virtual SupportSideCooler SupportSideCooler { get; set; }
         public virtual SupportTopCooler SupportTopCooler { get; set; }
+        public virtual TopLiquidCooling TopLiquidCooling { get; set; }
         public virtual TypeManagmentRGB TypeManagmentRGB { get; set; }
         public virtual TypeRGB TypeRGB { get; set; }
         public virtual User User { get; set; }
@@ -130,5 +135,7 @@ namespace VSborkeAdmistrator.Components
         public virtual WindowMaterial WindowMaterial { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Favourite> Favourite { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FeedBack> FeedBack { get; set; }
     }
 }

@@ -66,6 +66,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BarsCode\ChartBackground.cs" />
+    <Compile Include="Charts\BarChart.cs" />
+    <Compile Include="Charts\Chart.cs" />
+    <Compile Include="Charts\LineChart.cs" />
+    <Compile Include="Charts\PieChart.cs" />
+    <Compile Include="Common\MyMath.cs" />
     <Compile Include="Components\AdditionComputerCaseImage.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -112,6 +118,9 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SecondColor.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SideLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SlotHDD.cs">
@@ -173,6 +182,9 @@
     </Compile>
     <Compile Include="Windows\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\PriceChartsWindow.xaml.cs">
+      <DependentUpon>PriceChartsWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -283,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\PriceChartsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
