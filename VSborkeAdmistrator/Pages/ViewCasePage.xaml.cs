@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
 using VSborkeAdmistrator.Windows;
+using WpfDrawing.Charts;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Net.WebRequestMethods;
 
@@ -329,6 +330,58 @@ namespace VSborkeAdmistrator.Pages
             image.Freeze();
             MainImage.Source = image;
 
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            // Удаляем прежний график.
+            GridForChart.Children.OfType<Canvas>().ToList().ForEach(p => GridForChart.Children.Remove(p));
+
+            Chart chart = null;
+
+            // Создаём новый график выбранного вида.
+
+            chart = new LineChart();
+
+            // Добавляем новую диаграмму на поле контейнера для графиков.
+            GridForChart.Children.Add(chart.ChartBackground);
+
+            // Принудительно обновляем размеры контейнера для графика.
+            GridForChart.UpdateLayout();
+
+            // Создаём график.
+            CreateChart(chart);
+        }
+
+        private void CreateChart(Chart chart)
+        {
+            chart.Clear();
+            IEnumerable<PriceHistory> priceHistories = App.DB.PriceHistory.Where(x => x.ComputerCaseId == contextComputerCase.Id).OrderBy(x => x.DateHistory);
+
+            foreach (PriceHistory pc in priceHistories)
+            {
+                chart.AddValue(pc.Price);
+            }
+        }
+
+        private void SpecBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            PbSpecifications.Visibility= Visibility.Visible;
+        }
+
+        private void ReviewBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            PbReview.Visibility = Visibility.Visible;
+        }
+
+        private void SpecBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            PbSpecifications.Visibility = Visibility.Hidden;
+        }
+
+        private void ReviewBtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            PbReview.Visibility = Visibility.Hidden;
         }
     }
 

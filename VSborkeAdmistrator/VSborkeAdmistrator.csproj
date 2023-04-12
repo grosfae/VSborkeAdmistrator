@@ -47,6 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -115,6 +116,9 @@
     <Compile Include="Components\PartialClass\Order.cs" />
     <Compile Include="Components\PartialClass\User.cs" />
     <Compile Include="Components\PowerBlockStandartSupport.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\PriceHistory.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\PrimaryColor.cs">
@@ -382,7 +386,6 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\FavouriteIcons\Trash.png" />
     <Resource Include="Resources\MessageBoxImages\SuccessMessage.png" />
     <Resource Include="Resources\UsersButtons\More.png" />
     <Resource Include="Resources\UsersButtons\MoreOutline.png" />

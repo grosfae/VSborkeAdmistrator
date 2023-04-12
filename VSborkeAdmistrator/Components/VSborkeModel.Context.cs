@@ -47,6 +47,7 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<Order> Order { get; set; }
         public virtual DbSet<OrientationMotherboard> OrientationMotherboard { get; set; }
         public virtual DbSet<PowerBlockStandartSupport> PowerBlockStandartSupport { get; set; }
+        public virtual DbSet<PriceHistory> PriceHistory { get; set; }
         public virtual DbSet<PrimaryColor> PrimaryColor { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<SecondColor> SecondColor { get; set; }

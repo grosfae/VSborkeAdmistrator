@@ -28,41 +28,17 @@ namespace VSborkeAdmistrator.Windows
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
         }
-        private void ChartsButton_Click(object sender, RoutedEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Удаляем прежний график.
             GridForChart.Children.OfType<Canvas>().ToList().ForEach(p => GridForChart.Children.Remove(p));
 
             Chart chart = null;
 
-            Button button = sender as Button;
-
             // Создаём новый график выбранного вида.
-            switch (button.Name)
-            {
-                case "BarsButton":
-                    if ((chart is BarChart) == false)
-                    {
-                        chart = new BarChart();
-                    }
-
-                    break;
-                case "LineButton":
-                    if ((chart is LineChart) == false)
-                    {
-                        chart = new LineChart();
-                    }
-
-                    break;
-                case "PieButton":
-                    if ((chart is PieChart) == false)
-                    {
-                        chart = new PieChart();
-                    }
-
-                    break;
-            }
-
+            
+            chart = new LineChart();
+                    
             // Добавляем новую диаграмму на поле контейнера для графиков.
             GridForChart.Children.Add(chart.ChartBackground);
 
@@ -74,15 +50,16 @@ namespace VSborkeAdmistrator.Windows
 
         }
 
-        private static void CreateChart(Chart chart)
+        private void CreateChart(Chart chart)
         {
             chart.Clear();
+            
 
-            Random random = new Random();
-
-            for (int i = 0; i < random.Next(1, 25); i++)
+            IEnumerable<PriceHistory> priceHistories = App.DB.PriceHistory.Where(x => x.ComputerCaseId == contextComputerCase.Id).OrderBy(x =>x.DateHistory);
+            
+            foreach(PriceHistory pc in priceHistories)
             {
-                chart.AddValue(random.Next(0, 2001));
+                chart.AddValue(pc.Price);
             }
         }
 

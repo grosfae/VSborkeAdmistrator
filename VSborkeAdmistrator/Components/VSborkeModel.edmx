@@ -249,6 +249,15 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="PriceHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ComputerCaseId" Type="int" Nullable="false" />
+          <Property Name="DateHistory" Type="date" Nullable="false" />
+          <Property Name="Price" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="PrimaryColor">
           <Key>
             <PropertyRef Name="Id" />
@@ -943,6 +952,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PriceHistory_ComputerCase">
+          <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
+          <End Role="PriceHistory" Type="Self.PriceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PriceHistory">
+              <PropertyRef Name="ComputerCaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -990,6 +1011,7 @@
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrientationMotherboard" EntityType="Self.OrientationMotherboard" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PowerBlockStandartSupport" EntityType="Self.PowerBlockStandartSupport" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PriceHistory" EntityType="Self.PriceHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrimaryColor" EntityType="Self.PrimaryColor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SecondColor" EntityType="Self.SecondColor" Schema="dbo" store:Type="Tables" />
@@ -1185,6 +1207,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
+          <AssociationSet Name="FK_PriceHistory_ComputerCase" Association="Self.FK_PriceHistory_ComputerCase">
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+            <End Role="PriceHistory" EntitySet="PriceHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
@@ -1221,6 +1247,7 @@
           <EntitySet Name="Order" EntityType="VSborkeBaseModel.Order" />
           <EntitySet Name="OrientationMotherboard" EntityType="VSborkeBaseModel.OrientationMotherboard" />
           <EntitySet Name="PowerBlockStandartSupport" EntityType="VSborkeBaseModel.PowerBlockStandartSupport" />
+          <EntitySet Name="PriceHistory" EntityType="VSborkeBaseModel.PriceHistory" />
           <EntitySet Name="PrimaryColor" EntityType="VSborkeBaseModel.PrimaryColor" />
           <EntitySet Name="Role" EntityType="VSborkeBaseModel.Role" />
           <EntitySet Name="SecondColor" EntityType="VSborkeBaseModel.SecondColor" />
@@ -1399,6 +1426,10 @@
           <AssociationSet Name="FK_FeedBack_ComputerCase" Association="VSborkeBaseModel.FK_FeedBack_ComputerCase">
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="FeedBack" EntitySet="FeedBack" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PriceHistory_ComputerCase" Association="VSborkeBaseModel.FK_PriceHistory_ComputerCase">
+            <End Role="ComputerCase" EntitySet="ComputerCase" />
+            <End Role="PriceHistory" EntitySet="PriceHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_Favourite_User" Association="VSborkeBaseModel.FK_Favourite_User">
             <End Role="User" EntitySet="User" />
@@ -1581,6 +1612,7 @@
           <NavigationProperty Name="WindowMaterial" Relationship="VSborkeBaseModel.FK_ComputerCase_WindowMaterial" FromRole="ComputerCase" ToRole="WindowMaterial" />
           <NavigationProperty Name="Favourite" Relationship="VSborkeBaseModel.FK_Favourite_ComputerCase" FromRole="ComputerCase" ToRole="Favourite" />
           <NavigationProperty Name="FeedBack" Relationship="VSborkeBaseModel.FK_FeedBack_ComputerCase" FromRole="ComputerCase" ToRole="FeedBack" />
+          <NavigationProperty Name="PriceHistory" Relationship="VSborkeBaseModel.FK_PriceHistory_ComputerCase" FromRole="ComputerCase" ToRole="PriceHistory" />
         </EntityType>
         <EntityType Name="ConnectorRGB">
           <Key>
@@ -1731,6 +1763,16 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_PowerBlockStandartSupport" FromRole="PowerBlockStandartSupport" ToRole="ComputerCase" />
+        </EntityType>
+        <EntityType Name="PriceHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
+          <Property Name="DateHistory" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Price" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_PriceHistory_ComputerCase" FromRole="PriceHistory" ToRole="ComputerCase" />
         </EntityType>
         <EntityType Name="PrimaryColor">
           <Key>
@@ -2405,6 +2447,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PriceHistory_ComputerCase">
+          <End Type="VSborkeBaseModel.ComputerCase" Role="ComputerCase" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.PriceHistory" Role="PriceHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComputerCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PriceHistory">
+              <PropertyRef Name="ComputerCaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Favourite_User">
           <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="1" />
           <End Type="VSborkeBaseModel.Favourite" Role="Favourite" Multiplicity="*" />
@@ -2745,6 +2799,16 @@
             <EntityTypeMapping TypeName="VSborkeBaseModel.PowerBlockStandartSupport">
               <MappingFragment StoreEntitySet="PowerBlockStandartSupport">
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PriceHistory">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.PriceHistory">
+              <MappingFragment StoreEntitySet="PriceHistory">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="DateHistory" ColumnName="DateHistory" />
+                <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

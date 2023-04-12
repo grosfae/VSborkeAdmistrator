@@ -298,6 +298,15 @@
 
         <!--TextBlocks & CheckBox Styles-->
 
+        <Style TargetType="TextBlock" x:Key="TbToggle">
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Raleway"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF3881EF" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="TextBlock" x:Key="Header">
             <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
             <Setter Property="Foreground" Value="#FF3881EF"/>
@@ -454,6 +463,30 @@
                     <Setter Property="BorderBrush" Value="Transparent"/>
                     <Setter Property="Background" Value="#FF3881EF" />
                     <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!--Toggle Button-->
+        <Style TargetType="ToggleButton" x:Key="BluePolygonBtn">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="#FFD9D9D9"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter  VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF3881EF" />
                 </Trigger>
             </Style.Triggers>
         </Style>

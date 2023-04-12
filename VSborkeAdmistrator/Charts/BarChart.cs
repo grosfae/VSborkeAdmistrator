@@ -6,13 +6,6 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-
-//====================================================
-// Описание работы классов и методов исходника на:
-// https://www.interestprograms.ru
-// Исходные коды программ и игр
-//====================================================
-
 namespace WpfDrawing.Charts
 {
     internal class BarChart : Chart

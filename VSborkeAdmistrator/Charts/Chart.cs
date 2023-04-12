@@ -2,13 +2,6 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-
-//====================================================
-// Описание работы классов и методов исходника на:
-// https://www.interestprograms.ru
-// Исходные коды программ и игр
-//====================================================
-
 namespace WpfDrawing.Charts
 {
     internal abstract class Chart
@@ -64,7 +57,7 @@ namespace WpfDrawing.Charts
 
             // Количество линий по горизонтали и вертикали.
             // По вертикали всего 15 линий, но график только до 10-ой.
-            int numLines = 10;
+            int numLines = 10000;
 
             DrawingBrush brush = new DrawingBrush()
             {
@@ -76,12 +69,12 @@ namespace WpfDrawing.Charts
                 Viewport = new Rect(delta, 0, x / numLines, _factor / numLines),
 
                 // Рисуем прямоугольник, формирующий фоновую сетку.
-                Drawing = new GeometryDrawing()
-                {
-                    Pen = new Pen(Brushes.Black, 0.05),
-                    Brush = new SolidColorBrush(Color.FromRgb(240, 240, 240)),
-                    Geometry = new RectangleGeometry(new Rect(0, 0, 45, 20))
-                }
+                //Drawing = new GeometryDrawing()
+                //{
+                //    Pen = new Pen(Brushes.Black, 0.05),
+                //    Brush = new SolidColorBrush(Color.FromRgb(240, 240, 240)),
+                //    Geometry = new RectangleGeometry(new Rect(0, 0, 45, 20))
+                //}
             };
 
             return brush;

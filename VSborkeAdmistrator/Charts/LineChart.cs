@@ -7,19 +7,12 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 
 
-//====================================================
-// Описание работы классов и методов исходника на:
-// https://www.interestprograms.ru
-// Исходные коды программ и игр
-//====================================================
-
-
 namespace WpfDrawing.Charts
 {
     internal class LineChart : Chart
     {
         private readonly double _lineThickness = 4;
-        private readonly double _sizePoint = 20;
+        private readonly double _sizePoint = 15;
 
 
         public override void AddValue(double value)
@@ -45,7 +38,7 @@ namespace WpfDrawing.Charts
 
             // Инициализация новой ломаной линии.
             Polyline _polyline = new Polyline();
-            _polyline.Stroke = Brushes.BlueViolet;
+            _polyline.Stroke = new SolidColorBrush(Color.FromRgb(56, 129, 239));
             _polyline.StrokeThickness = _lineThickness;
             _polyline.StrokeDashCap = PenLineCap.Flat;
             _polyline.StrokeLineJoin = PenLineJoin.Round;
@@ -98,15 +91,15 @@ namespace WpfDrawing.Charts
         /// <returns></returns>
         private Ellipse CreatePoint(double x, double y, double diameter, double value)
         {
-            Random random = new Random();
+            
 
             Ellipse point = new Ellipse()
             {
                 StrokeThickness = 2,
                 Width = diameter,
                 Height = diameter,
-                Fill = new SolidColorBrush(Color.FromArgb(255, (byte)random.Next(0, 256), (byte)random.Next(0, 256), (byte)random.Next(0, 256))),
-                Stroke = Brushes.White,
+                Fill = Brushes.White,
+                Stroke = new SolidColorBrush(Color.FromRgb(56, 129, 239)),
                 Tag = value
             };
 
@@ -125,13 +118,15 @@ namespace WpfDrawing.Charts
         /// <param name="y">y координата</param>
         /// <param name="value">абсолютное значение выводится как текст</param>
         /// <returns></returns>
-        private Label CreateTitle(double x, double y, double value)
+        public Label CreateTitle(double x, double y, double value)
         {
             Label title = new Label()
             {
                 Content = value,
                 Padding = new Thickness(0, 0, 0, 10)
             };
+
+            
 
             Canvas.SetLeft(title, x);
             // Отсчёт координат графика идёт от нижнего края.
