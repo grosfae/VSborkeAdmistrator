@@ -13,11 +13,71 @@ namespace VSborkeAdmistrator.Components
     public partial class ComputerCase
     {
 
+        public string AntiVibrationBool
+        {
+            get
+            {
+                if (IsAntiVibration == true)
+                    return "Есть";
+                else
+                    return "Нет";
+
+            }
+        }
+
+        public string CpuCoolerBool
+        {
+            get
+            {
+                if (CutCPUCooler == true)
+                    return "Есть";
+                else
+                    return "Нет";
+
+            }
+        }
+
+        public string CabelManagmentBool
+        {
+            get
+            {
+                if (CableManagementBackSide == true)
+                    return "Есть";
+                else
+                    return "Нет";
+
+            }
+        }
+
+        public string DustFilterBool
+        {
+            get
+            {
+                if (DustFilter == true)
+                    return "Есть";
+                else
+                    return "Нет";
+
+            }
+        }
+
         public string LiquidBool
         {
             get
             {
                 if (SupportLiquidCooling == true)
+                    return "Есть";
+                else
+                    return "Нет";
+
+            }
+        }
+
+        public string CardReaderBool
+        {
+            get
+            {
+                if (CardReader == true)
                     return "Есть";
                 else
                     return "Нет";

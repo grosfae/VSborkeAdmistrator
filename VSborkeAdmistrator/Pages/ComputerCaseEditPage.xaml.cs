@@ -346,7 +346,7 @@ namespace VSborkeAdmistrator.Pages
                 casePhoto.ComputerCaseId = contextComputerCase.Id;
                 App.DB.AdditionComputerCaseImage.Add(casePhoto);
                 App.DB.SaveChanges();
-                LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+                Update();
             }
         }
 
@@ -360,7 +360,7 @@ namespace VSborkeAdmistrator.Pages
             }
             App.DB.AdditionComputerCaseImage.Remove(selectedPhoto);
             App.DB.SaveChanges();
-            LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+            Update();
         }
 
         private void CbWindowOnSide_Checked(object sender, RoutedEventArgs e)

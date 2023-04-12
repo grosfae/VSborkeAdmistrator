@@ -16,6 +16,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
 using VSborkeAdmistrator.Windows;
+using static System.Net.Mime.MediaTypeNames;
+using static System.Net.WebRequestMethods;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -47,7 +49,7 @@ namespace VSborkeAdmistrator.Pages
             };
             if (dialog.ShowDialog().GetValueOrDefault())
             {
-                contextComputerCase.MainImage = File.ReadAllBytes(dialog.FileName);
+                contextComputerCase.MainImage = System.IO.File.ReadAllBytes(dialog.FileName);
                 DataContext = null;
                 DataContext = contextComputerCase;
             }
@@ -264,42 +266,6 @@ namespace VSborkeAdmistrator.Pages
                 e.Handled = true;
             }
         }
-
-        private void AdditionImgAdd_Click(object sender, RoutedEventArgs e)
-        {
-            if (contextComputerCase.Id == 0)
-            {
-                CustomMessageBox.Show("Сохраните данные о корпусе перед добавлением доп. изображений", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
-                return;
-            }
-            AdditionComputerCaseImage casePhoto = new AdditionComputerCaseImage();
-            var dialog = new Microsoft.Win32.OpenFileDialog()
-            {
-                Filter = "*.jpg|*.jpg|*.png|*.png|*.jpeg|*.jpeg"
-            };
-            if (dialog.ShowDialog().GetValueOrDefault())
-            {
-                casePhoto.AdditionImage = File.ReadAllBytes(dialog.FileName);
-                casePhoto.ComputerCaseId = contextComputerCase.Id;
-                App.DB.AdditionComputerCaseImage.Add(casePhoto);
-                App.DB.SaveChanges();
-                LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
-            }
-        }
-
-        private void AdditionImgDelete_Click(object sender, RoutedEventArgs e)
-        {
-            var selectedPhoto = LvAdditionImages.SelectedItem as AdditionComputerCaseImage;
-            if (selectedPhoto == null)
-            {
-                CustomMessageBox.Show("Выберите дополнительное изображение", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
-                return;
-            }
-            App.DB.AdditionComputerCaseImage.Remove(selectedPhoto);
-            App.DB.SaveChanges();
-            LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
-        }
-
         
 
         int numberPage = 0;
@@ -341,6 +307,27 @@ namespace VSborkeAdmistrator.Pages
 
         private void ButAnalogueBtn_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void LvAdditionImages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selectedImage = LvAdditionImages.SelectedItem as AdditionComputerCaseImage;
+            var c = selectedImage.AdditionImage;
+
+            var image = new BitmapImage();
+            using (var mem = new MemoryStream(c))
+            {
+                mem.Position = 0;
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = mem;
+                image.EndInit();
+            }
+            image.Freeze();
+            MainImage.Source = image;
 
         }
     }

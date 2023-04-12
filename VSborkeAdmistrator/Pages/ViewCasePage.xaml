@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="3930" d:DesignWidth="1230"
+      d:DesignHeight="3100" d:DesignWidth="1230"
       Title="ViewCasePage">
     
 
@@ -27,18 +27,45 @@
                 <StackPanel Grid.Row="1" Background="White" Width="1130" Height="450">
                     <StackPanel Orientation="Horizontal">
                         <StackPanel Margin="10 20 0 0"  Orientation="Horizontal">
-                            <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden" Height="400">
-                                <StackPanel>
-                                    <Image x:Name="MainImageMini" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding MainImage}" Width="50" Height="50" Margin="0 5 0 0" />
-                                    <ListView Width="63" x:Name="LvAdditionImages" ScrollViewer.VerticalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=6}" BorderThickness="0">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Image Width= "50" Height="50" RenderOptions.BitmapScalingMode="HighQuality"  Source="{Binding AdditionImage}"/>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </StackPanel>
-                            </ScrollViewer>
+                            <StackPanel>
+                                <ListView Width="63" x:Name="LvAdditionImages" ScrollViewer.VerticalScrollBarVisibility="Hidden" d:ItemsSource="{d:SampleData ItemCount=6}" BorderThickness="0" Height="380" SelectionChanged="LvAdditionImages_SelectionChanged">
+                                    
+                                    <ListView.Template>
+                                        <ControlTemplate TargetType="ItemsControl">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="36"/>
+                                                    <RowDefinition/>
+                                                    <RowDefinition Height="36"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Button Grid.Row="0" Style="{StaticResource ListScrollBtn}" Content="⬆" Width="35" Height="35" FontSize="26"
+                                                CommandTarget="{Binding ElementName=ScrollElem}"
+                                                Command="{x:Static ScrollBar.LineUpCommand}"
+                                
+                                                VerticalAlignment="Center"/>
+
+                                                <ScrollViewer HorizontalScrollBarVisibility="Hidden"
+                                                    x:Name="ScrollElem"
+                                                    CanContentScroll="True"
+                                          
+                                                    Grid.Row="1">
+                                                    <ItemsPresenter HorizontalAlignment="Center"/>
+                                                </ScrollViewer>
+
+                                                <Button Grid.Row="2" Style="{StaticResource ListScrollBtn}" Content="⬇" Width="35" Height="35" FontSize="26"      
+                                                CommandTarget="{Binding ElementName=ScrollElem}"
+                                                Command="{x:Static ScrollBar.LineDownCommand}"/>
+                                            </Grid>
+                                        </ControlTemplate>
+                                    </ListView.Template>
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <Image Width= "50" Height="50" RenderOptions.BitmapScalingMode="HighQuality"  Source="{Binding AdditionImage}"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackPanel>
                             <Image x:Name="MainImage" Source="{Binding MainImage}" Width="400" Height="400" Margin="10 0 0 0"/>
                         </StackPanel>
                         <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
@@ -406,6 +433,90 @@
                                     </Grid>
                                 </StackPanel>
 
+                                <StackPanel Margin="0 20 0 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Разъемы и интерфейсы лицевой панели" FontWeight="SemiBold" FontSize="22"/>
+                                    <Grid Margin="0 10 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="470"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Расположение I/O панели" Style="{StaticResource ProfileInfo}" FontSize="22"/>
+                                        <Separator Margin="0 25 0 0"/>
+                                        <TextBlock Text="{Binding IOPanelAlignment.Name}" Grid.Column="1" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 0 0 0"/>
+
+                                        <TextBlock Text="Разъемы" Style="{StaticResource ProfileInfo}" FontSize="22" Grid.Row="1" Margin="0 10 0 0"/>
+                                        <Separator Margin="0 35 0 0" Grid.Row="1"/>
+                                        <TextBlock Text="{Binding IOPanel.Connectors}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 10 0 0"/>
+
+                                        <TextBlock Text="Встроенный кард-ридер" Style="{StaticResource ProfileInfo}" FontSize="22" Grid.Row="2" Margin="0 10 0 0"/>
+                                        <Separator Margin="0 35 0 0" Grid.Row="2"/>
+                                        <TextBlock Text="{Binding CardReaderBool}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 10 0 0"/>
+
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Margin="0 20 0 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Обслуживание" FontWeight="SemiBold" FontSize="22"/>
+                                    <Grid Margin="0 10 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="470"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Фиксация боковых панелей" Style="{StaticResource ProfileInfo}" FontSize="22"/>
+                                        <Separator Margin="0 25 0 0"/>
+                                        <TextBlock Text="{Binding SidePanelFixation.Name}" Grid.Column="1" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 0 0 0"/>
+
+                                        <TextBlock Text="Вырез в районе крепления кулера CPU" Style="{StaticResource ProfileInfo}" FontSize="22" Grid.Row="1" Margin="0 10 0 0"/>
+                                        <Separator Margin="0 35 0 0" Grid.Row="1"/>
+                                        <TextBlock Text="{Binding CpuCoolerBool}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 10 0 0"/>
+
+                                        <TextBlock Text="Прокладка кабелей за задней стенкой" Style="{StaticResource ProfileInfo}" FontSize="22" Grid.Row="2" Margin="0 10 0 0"/>
+                                        <Separator Margin="0 35 0 0" Grid.Row="2"/>
+                                        <TextBlock Text="{Binding CabelManagmentBool}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 10 0 0"/>
+
+                                        <TextBlock Text="Пылевой фильтр" Style="{StaticResource ProfileInfo}" FontSize="22" Grid.Row="3" Margin="0 10 0 0"/>
+                                        <Separator Margin="0 35 0 0" Grid.Row="3"/>
+                                        <TextBlock Text="{Binding DustFilterBool}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 10 0 0"/>
+                                        
+                                    </Grid>
+                                </StackPanel>
+
+                                <StackPanel Margin="0 20 0 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнительная информация" FontWeight="SemiBold" FontSize="22"/>
+                                    <Grid Margin="0 10 0 0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="470"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Text="Малошумные и антивибрационные корпуса" Style="{StaticResource ProfileInfo}" FontSize="22"/>
+                                        <Separator Margin="0 25 0 0"/>
+                                        <TextBlock Text="{Binding AntiVibrationBool}" Grid.Column="1" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 0 0 0"/>
+
+                                        <TextBlock Text="Комплектация" Style="{StaticResource ProfileInfo}" FontSize="22" Grid.Row="1" Margin="0 10 0 0"/>
+                                        <Separator Margin="0 35 0 0" Grid.Row="1"/>
+                                        <TextBlock Text="{Binding DeliverySet}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ProfileInfo}" TextWrapping="Wrap" FontSize="22" Margin="10 10 0 0"/>
+
+                                    </Grid>
+                                </StackPanel>
+                                
                             </StackPanel>
                             <Line X1="0" Y1="0" X2="1030" Y2="0" Stroke="#FF3881EF" StrokeThickness="2" Margin="0 40 0 0"/>
                             <StackPanel Margin="0 20 0 20" HorizontalAlignment="Center" Orientation="Horizontal">

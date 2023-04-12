@@ -90,6 +90,9 @@
     <Compile Include="Components\Favourite.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\FeedBack.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\FrontLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -148,6 +151,9 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SupportTopCooler.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TopLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\TypeManagmentRGB.cs">
