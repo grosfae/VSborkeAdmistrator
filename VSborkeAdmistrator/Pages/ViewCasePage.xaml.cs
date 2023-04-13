@@ -36,7 +36,10 @@ namespace VSborkeAdmistrator.Pages
 
             
 
-            LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != computerCase.Id ).ToList().Take(2);
+            LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != contextComputerCase.Id & x.EAtx == contextComputerCase.EAtx & x.FlexAtx == contextComputerCase.FlexAtx
+            & x.MicroAtx == contextComputerCase.MicroAtx & x.MiniDtx == contextComputerCase.MiniDtx & x.MiniItx == contextComputerCase.MiniItx & x.SsiCeb == contextComputerCase.SsiCeb 
+            & x.SsiEeb == contextComputerCase.SsiEeb & x.StandartAtx == contextComputerCase.StandartAtx & x.ThinMiniItx == contextComputerCase.ThinMiniItx & x.XlAtx == contextComputerCase.XlAtx
+            ).ToList().Take(2);
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
             
@@ -54,190 +57,6 @@ namespace VSborkeAdmistrator.Pages
                 DataContext = null;
                 DataContext = contextComputerCase;
             }
-        }
-
-        private void LeftBtn_Click(object sender, RoutedEventArgs e)
-        {
-            numberPage--;
-            if (numberPage < 0)
-                numberPage = 0;
-            Update();
-        }
-
-        private void RightBtn_Click(object sender, RoutedEventArgs e)
-        {
-            numberPage++;
-            if (LvAdditionImages.Items.Count < 4)
-                numberPage--;
-            Update();
-        }
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            string errorMessage = "";
-            if (string.IsNullOrWhiteSpace(contextComputerCase.Name))
-            {
-                errorMessage += "Введите название\n";
-            }
-            if (string.IsNullOrWhiteSpace(contextComputerCase.Description))
-            {
-                errorMessage += "Введите описание\n";
-            }
-            if (contextComputerCase.Price <= 0)
-            {
-                errorMessage += "Введите корректную цену\n";
-            }
-            if (contextComputerCase.Manufacturer == null)
-            {
-                errorMessage += "Выберите бренд корпуса\n";
-            }
-            if (contextComputerCase.MainImage == null)
-            {
-                errorMessage += "Добавьте главное изображение\n";
-            }
-            if (contextComputerCase.Discount < 0 || contextComputerCase.Discount > 90)
-            {
-                errorMessage += "Введите корректную скидку\n";
-            }
-            if (contextComputerCase.FormFactor == null)
-            {
-                errorMessage += "Выберите форм-фактор корпуса\n";
-            }
-            if (contextComputerCase.Height <= 0)
-            {
-                errorMessage += "Введите высоту\n";
-            }
-            if (contextComputerCase.Width <= 0)
-            {
-                errorMessage += "Введите ширину\n";
-            }
-            if (contextComputerCase.Length <= 0)
-            {
-                errorMessage += "Введите длину\n";
-            }
-            if (contextComputerCase.Weight <= 0 || contextComputerCase.Weight > 50)
-            {
-                errorMessage += "Введите корректный вес\n";
-            }
-            if (contextComputerCase.MaterialSet == null)
-            {
-                errorMessage += "Выберите материалы корпуса\n";
-            }
-            if (contextComputerCase.MetalThickness < 0.4 || contextComputerCase.MetalThickness > 3)
-            {
-                errorMessage += "Введите корректную толщину металла\n";
-            }
-            if (contextComputerCase.FrontPanelMaterial == null)
-            {
-                errorMessage += "Выберите материал фронтальной панели\n";
-            }
-            if (contextComputerCase.EAtx == false & contextComputerCase.FlexAtx == false & contextComputerCase.MicroAtx == false & contextComputerCase.MiniDtx == false & contextComputerCase.MiniItx == false & contextComputerCase.SsiCeb == false & contextComputerCase.SsiEeb == false & contextComputerCase.StandartAtx == false & contextComputerCase.ThinMiniItx == false & contextComputerCase.XlAtx == false)
-            {
-                errorMessage += "Выберите форм-фактор поддерживаемых материнских плат\n";
-            }
-            if (contextComputerCase.OrientationMotherboard == null)
-            {
-                errorMessage += "Выберите ориентацию материнской платы\n";
-            }
-            if (contextComputerCase.PowerBlockStandartSupport == null)
-            {
-                errorMessage += "Выберите форм-фактор блока питания\n";
-            }
-            if (contextComputerCase.AlignmentPowerBlock == null)
-            {
-                errorMessage += "Выберите расположение блока питания\n";
-            }
-            if (contextComputerCase.MaxLengthPowerBlock <= 0)
-            {
-                errorMessage += "Введите максимальную длину блока питания\n";
-            }
-            if (contextComputerCase.HorizontalAddonSlot == null)
-            {
-                errorMessage += "Выберите горизонтальные слоты расширения\n";
-            }
-            if (contextComputerCase.VerticalAddonSlot == null)
-            {
-                errorMessage += "Выберите вертикальные слоты расширения\n";
-            }
-            if (contextComputerCase.MaxLengthVideocard <= 0)
-            {
-                errorMessage += "Введите максимальная длина видеокарты\n";
-            }
-            if (contextComputerCase.MaxHeightCPUCooler <= 0)
-            {
-                errorMessage += "Введите максимальную высоту кулера CPU\n";
-            }
-            if (contextComputerCase.SlotSSD == null)
-            {
-                errorMessage += "Выберите количество 2.5 отсеков накопителей\n";
-            }
-            if (contextComputerCase.SlotHDD == null)
-            {
-                errorMessage += "Выберите количество 3.5 отсеков накопителей\n";
-            }
-            if (contextComputerCase.SlotXHDD == null)
-            {
-                errorMessage += "Выберите количество 5.25 отсеков накопителей\n";
-            }
-            if (contextComputerCase.CoolerInside == null)
-            {
-                errorMessage += "Выберите количество вентиляторов в комплекте\n";
-            }
-            if (contextComputerCase.SupportFrontCooler == null)
-            {
-                errorMessage += "Выберите поддерживаемые фронтальные вентиляторы\n";
-            }
-            if (contextComputerCase.SupportBackCooler == null)
-            {
-                errorMessage += "Выберите поддерживаемые тыловые вентиляторы\n";
-            }
-            if (contextComputerCase.SupportTopCooler == null)
-            {
-                errorMessage += "Выберите поддерживаемые верхние вентиляторы\n";
-            }
-            if (contextComputerCase.SupportSideCooler == null)
-            {
-                errorMessage += "Выберите поддерживаемые боковые вентиляторы\n";
-            }
-            if (contextComputerCase.SupportBottomCooler == null)
-            {
-                errorMessage += "Выберите поддерживаемые нижние вентиляторы\n";
-            }
-            if (contextComputerCase.PrimaryColor == null)
-            {
-                errorMessage += "Выберите основной цвет\n";
-            }
-            if (contextComputerCase.SecondColor == null)
-            {
-                errorMessage += "Выберите дополнительный цвет\n";
-            }
-            if (contextComputerCase.IOPanel == null)
-            {
-                errorMessage += "Выберите разъемы передней панели\n";
-            }
-            if (contextComputerCase.IOPanelAlignment == null)
-            {
-                errorMessage += "Выберите расположение IO-панели\n";
-            }
-            if (contextComputerCase.SidePanelFixation == null)
-            {
-                errorMessage += "Выберите фиксацию боковых панелей\n";
-            }
-            if (contextComputerCase.DeliverySet == null)
-            {
-                errorMessage += "Введите комплект поставки\n";
-            }
-            if (string.IsNullOrWhiteSpace(errorMessage) == false)
-            {
-                CustomMessageBox.Show(errorMessage, CustomMessageBox.CustomMessageBoxTitle.Предупреждение, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
-                return;
-            }
-            if (contextComputerCase.Id == 0)
-            {
-                contextComputerCase.UserId = App.LoggedUser.Id;
-                App.DB.ComputerCase.Add(contextComputerCase);
-            }
-            App.DB.SaveChanges();
-            CustomMessageBox.Show("Сохранение успешно!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -269,20 +88,13 @@ namespace VSborkeAdmistrator.Pages
         }
         
 
-        int numberPage = 0;
-        int count = 4;
-
-        private void Update()
-        {
-            IEnumerable<AdditionComputerCaseImage> caseImagesList = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id);
-            caseImagesList = caseImagesList.Skip(count * numberPage).Take(count);
-            LvAdditionImages.ItemsSource = caseImagesList;
-        }
-
         private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
         {
             var favourite = App.DB.Favourite.SingleOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == contextComputerCase.Id);
             App.DB.Favourite.Remove(favourite);
+            App.DB.SaveChanges();
+            DeFavouriteBtn.Visibility = Visibility.Collapsed;
+            FavouriteBtn.Visibility = Visibility.Visible;
         }
 
         private void FavouriteBtn_Click(object sender, RoutedEventArgs e)
@@ -294,6 +106,8 @@ namespace VSborkeAdmistrator.Pages
                 UserId = App.LoggedUser.Id
             });
             App.DB.SaveChanges();
+            FavouriteBtn.Visibility = Visibility.Collapsed;
+            DeFavouriteBtn.Visibility= Visibility.Visible;
         }
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
@@ -364,24 +178,22 @@ namespace VSborkeAdmistrator.Pages
             }
         }
 
-        private void SpecBtn_Checked(object sender, RoutedEventArgs e)
+        private void SpecBtn_Click(object sender, RoutedEventArgs e)
         {
-            PbSpecifications.Visibility= Visibility.Visible;
+            PbDescription.Visibility = Visibility.Visible;
+            PbSpecs.Visibility = Visibility.Visible;
         }
 
-        private void ReviewBtn_Checked(object sender, RoutedEventArgs e)
+        private void ReviewBtn_Click(object sender, RoutedEventArgs e)
         {
-            PbReview.Visibility = Visibility.Visible;
+            PbDescription.Visibility = Visibility.Collapsed;
+            PbSpecs.Visibility = Visibility.Collapsed;
         }
 
-        private void SpecBtn_Unchecked(object sender, RoutedEventArgs e)
+        private void AnalogBtn_Click(object sender, RoutedEventArgs e)
         {
-            PbSpecifications.Visibility = Visibility.Hidden;
-        }
-
-        private void ReviewBtn_Unchecked(object sender, RoutedEventArgs e)
-        {
-            PbReview.Visibility = Visibility.Hidden;
+            PbDescription.Visibility = Visibility.Collapsed;
+            PbSpecs.Visibility = Visibility.Collapsed;
         }
     }
 

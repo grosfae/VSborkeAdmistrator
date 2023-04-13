@@ -12,6 +12,14 @@ namespace VSborkeAdmistrator.Components
 {
     public partial class ComputerCase
     {
+        public string PriceRange
+        {
+            get
+            {
+                return $"от {App.DB.PriceHistory.Where(x => x.ComputerCaseId == Id).Min(x => x.Price)} ₽ до {App.DB.PriceHistory.Where(x => x.ComputerCaseId == Id).Max(x => x.Price)} ₽";
+
+            }
+        }
 
         public string AntiVibrationBool
         {
