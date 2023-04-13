@@ -5,6 +5,13 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        <!--ProgressBar for Reviews-->
+        <Style TargetType="ProgressBar" x:Key="ForReview">
+            <Setter Property="Background" Value="#FFEEF0F2"/>
+            <Setter Property="Foreground" Value="#FF3881EF"/>
+            
+        </Style>
+        
         <!--Custom Analogue ListBoxItem-->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -305,6 +312,12 @@
                     <Setter Property="Foreground" Value="#FF3881EF" />
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <!--Unicode Stars-->
+        <Style TargetType="TextBlock" x:Key="UnicodeSymbols">
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#FontAwesome"/>
+            <Setter Property="Foreground" Value="#FF3881EF"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="Header">

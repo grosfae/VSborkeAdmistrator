@@ -195,6 +195,13 @@ namespace VSborkeAdmistrator.Pages
             PbDescription.Visibility = Visibility.Collapsed;
             PbSpecs.Visibility = Visibility.Collapsed;
         }
+
+
+        private void TbNameLink_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedCase = (sender as TextBlock).DataContext as ComputerCase;
+            NavigationService.Navigate(new ViewCasePage(selectedCase));
+        }
     }
 
 }
