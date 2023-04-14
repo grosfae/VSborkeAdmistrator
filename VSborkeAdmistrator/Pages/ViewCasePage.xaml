@@ -535,10 +535,10 @@
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Height="auto" Background="White" Margin="0 20 0 20" Width="811" x:Name="SpReview">
+                        <StackPanel Height="auto" Background="White" Margin="0 20 0 20" Width="811" x:Name="SpReviewMarks">
                             <StackPanel Margin="20 0 20 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Отзывы" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
-                                <Grid Margin="0 10 0 0">
+                                <Grid Margin="0 10 0 20">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="140"/>
                                         <ColumnDefinition/>
@@ -589,6 +589,85 @@
                                         <Button  Style="{StaticResource BlueNoBorderBtn}" Content="Добавить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
                                     </StackPanel>
                                 </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                        
+                        
+                        <StackPanel Height="auto" Background="White" Margin="0 20 0 20" Width="811" x:Name="SpReview">
+                            <StackPanel Margin="20 0 20 0">
+                                <StackPanel Orientation="Horizontal">
+                                    <Grid Margin="0 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="310"/>
+                                            <ColumnDefinition Width="40"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Поиск по отзывам..." FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2"/>
+                                        <Image Grid.Column="1" x:Name="SearchIcon" Cursor="Hand" Margin="9,5,8,5">
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchMood.ico"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchIcon}" Value="True">
+                                                            <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchBlue.ico"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </Grid>
+                                    <ComboBox x:Name="CbSortReview" SelectedIndex="0" FontSize="20" Height="40"  Width="220" Margin="200 0 0 0">
+                                        <ComboBoxItem>По дате</ComboBoxItem>
+                                        <ComboBoxItem>По рейтингу</ComboBoxItem>
+                                        <ComboBoxItem>По популярности</ComboBoxItem>
+                                        <ComboBoxItem>По дате изменения</ComboBoxItem>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="0 0 145 0" >
+                                        <Viewbox Height="20">
+                                            <RadioButton x:Name="RbAll" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="Все" FontFamily="/Resources/Fonts/#Raleway" IsChecked="True" Checked="RbAll_Checked"/>
+                                        </Viewbox>
+                                    </Border>
+                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="131" Height="28">
+                                        <Viewbox Height="20">
+                                            <RadioButton x:Name="RbFive" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                        </Viewbox>
+                                    </Border>
+                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="10 0 0 0">
+                                        <Viewbox Height="20">
+                                            <RadioButton x:Name="RbFour" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                        </Viewbox>
+                                    </Border>
+                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="95" Height="28" Margin="10 0 0 0">
+                                        <Viewbox Height="20">
+                                            <RadioButton x:Name="RbThree" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                        </Viewbox>
+                                    </Border>
+                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="75" Height="28" Margin="10 0 0 0">
+                                        <Viewbox Height="20">
+                                            <RadioButton x:Name="RbTwo" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                        </Viewbox>
+                                    </Border>
+                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="55" Height="28" Margin="10 0 0 0">
+                                        <Viewbox Height="20">
+                                            <RadioButton x:Name="RbOne" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005;" Checked="RbAll_Checked"/>
+                                        </Viewbox>
+                                    </Border>
+                                    
+                                </StackPanel>
+                                <Separator Margin="0 10 0 15"/>
+                                <StackPanel>
+                                    <StackPanel>
+                                        <Grid>
+                                            <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
+                                                <Border.Background>
+                                                    <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
+                                                </Border.Background>
+                                            </Border>
+                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding ReviewName}" Margin="50 0 0 0" VerticalAlignment="Center"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </StackPanel>
                             </StackPanel>
                         </StackPanel>
                     </StackPanel>

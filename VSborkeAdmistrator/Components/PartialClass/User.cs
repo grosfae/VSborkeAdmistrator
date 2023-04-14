@@ -8,6 +8,15 @@ namespace VSborkeAdmistrator.Components
 {
     public partial class User
     {
+        public string ReviewName
+        {
+            get
+            {
+                return $"{Name} {Surname}";
+
+            }
+        }
+
         public string Color
         {
             get

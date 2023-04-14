@@ -426,7 +426,17 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
+        
+        <!--Default Button-->
+        <Style TargetType="RadioButton" x:Key="BlueRadioBtn">
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="#FF3881EF" />
+            <Setter Property="BorderBrush" Value="#FF3881EF"/>
+            <Setter Property="FontFamily" Value="/Resources/Fonts/#FontAwesome"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
         <!--ListBox Scroll Button-->
         <Style TargetType="Button" x:Key="ListScrollBtn">
             <Setter Property="FontSize" Value="20"/>

@@ -202,6 +202,11 @@ namespace VSborkeAdmistrator.Pages
             var selectedCase = (sender as TextBlock).DataContext as ComputerCase;
             NavigationService.Navigate(new ViewCasePage(selectedCase));
         }
+
+        private void RbAll_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }
