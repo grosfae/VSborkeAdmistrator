@@ -154,6 +154,8 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
           <Property Name="CounterLikes" Type="int" Nullable="false" />
+          <Property Name="DateOfReview" Type="date" Nullable="false" />
+          <Property Name="DateOfAddition" Type="date" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -1654,6 +1656,8 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
           <Property Name="CounterLikes" Type="Int32" Nullable="false" />
+          <Property Name="DateOfReview" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateOfAddition" Type="DateTime" Precision="0" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_FeedBack_ComputerCase" FromRole="FeedBack" ToRole="ComputerCase" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_FeedBack_User" FromRole="FeedBack" ToRole="User" />
         </EntityType>
@@ -2684,6 +2688,8 @@
           <EntitySetMapping Name="FeedBack">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FeedBack">
               <MappingFragment StoreEntitySet="FeedBack">
+                <ScalarProperty Name="DateOfAddition" ColumnName="DateOfAddition" />
+                <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />
                 <ScalarProperty Name="CounterLikes" ColumnName="CounterLikes" />
                 <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

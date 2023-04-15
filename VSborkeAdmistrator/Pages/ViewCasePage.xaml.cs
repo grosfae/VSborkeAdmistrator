@@ -34,6 +34,8 @@ namespace VSborkeAdmistrator.Pages
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
 
+            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
+            LbReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
             
 
             LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != contextComputerCase.Id & x.EAtx == contextComputerCase.EAtx & x.FlexAtx == contextComputerCase.FlexAtx

@@ -24,6 +24,8 @@ namespace VSborkeAdmistrator.Components
         public int UserId { get; set; }
         public int ComputerCaseId { get; set; }
         public int CounterLikes { get; set; }
+        public System.DateTime DateOfReview { get; set; }
+        public Nullable<System.DateTime> DateOfAddition { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }
         public virtual User User { get; set; }

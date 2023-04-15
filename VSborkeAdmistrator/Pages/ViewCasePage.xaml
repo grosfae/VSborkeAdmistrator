@@ -591,8 +591,92 @@
                                 </Grid>
                             </StackPanel>
                         </StackPanel>
-                        
-                        
+
+                        <StackPanel Height="auto" Background="White" Margin="0 0 0 0" Width="811" x:Name="SpOwnReview">
+                            <StackPanel Margin="20 0 20 0">
+
+                                <StackPanel>
+                                    <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25"/>
+                                    <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Width="750">
+                                                    <Separator Margin="0 10 0 15"/>
+                                                    <Grid>
+                                                        <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
+                                                            <Border.Background>
+                                                                <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
+                                                            </Border.Background>
+                                                        </Border>
+                                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0" Orientation="Horizontal">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding User.ReviewName}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                                                            <Border CornerRadius="5" Background="White" HorizontalAlignment="Left" Height="30" Width="196" Margin="10 0 0 0">
+                                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                                                    <Grid>
+                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf185;" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf058;" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                    </Grid>
+                                                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Реальный покупатель" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                </StackPanel>
+                                                                <Border.Effect>
+                                                                    <DropShadowEffect Color="Black" BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
+                                                                </Border.Effect>
+                                                            </Border>
+                                                        </StackPanel>
+
+                                                        <Label  Content="{Binding DateOfReview}" FontFamily="/Resources/Fonts/#Agency FB Cyrillic" FontSize="19" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF929292"/>
+                                                    </Grid>
+                                                    <StackPanel Margin="0 10 0 20">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <Border CornerRadius="5"  Background="#FFEEF0F2" Width="151" Height="28">
+                                                                <Viewbox Height="20">
+                                                                    <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая: " FontSize="10"/>
+                                                                        <TextBlock Style="{StaticResource UnicodeSymbols}" Text="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" />
+                                                                    </StackPanel>
+                                                                </Viewbox>
+                                                            </Border>
+                                                            <Border CornerRadius="5"  Background="#FFEEF0F2" Width="91" Height="28" Margin="10 0 0 0">
+                                                                <Viewbox Height="20">
+                                                                    <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Качество: " FontSize="10"/>
+                                                                        <TextBlock Style="{StaticResource Sans}" Text="5" FontSize="10"/>
+                                                                    </StackPanel>
+                                                                </Viewbox>
+                                                            </Border>
+                                                            <Border CornerRadius="5"  Background="#FFEEF0F2" Width="110" Height="28" Margin="10 0 0 0">
+                                                                <Viewbox Height="20">
+                                                                    <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Вместимость: " FontSize="10"/>
+                                                                        <TextBlock Style="{StaticResource Sans}" Text="4" FontSize="10"/>
+                                                                    </StackPanel>
+                                                                </Viewbox>
+                                                            </Border>
+                                                        </StackPanel>
+
+                                                        <StackPanel Margin="0 15 0 0">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Достоинства" FontWeight="SemiBold" FontSize="16"/>
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Advantage}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 15 0 0">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="SemiBold" FontSize="16"/>
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Disadvantages}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                        </StackPanel>
+                                                        <StackPanel Margin="0 15 0 0">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="SemiBold" FontSize="16"/>
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Comment}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                        </StackPanel>
+
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+
                         <StackPanel Height="auto" Background="White" Margin="0 20 0 20" Width="811" x:Name="SpReview">
                             <StackPanel Margin="20 0 20 0">
                                 <StackPanel Orientation="Horizontal">
@@ -655,18 +739,84 @@
                                     </Border>
                                     
                                 </StackPanel>
-                                <Separator Margin="0 10 0 15"/>
+                                
                                 <StackPanel>
-                                    <StackPanel>
-                                        <Grid>
-                                            <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
-                                                <Border.Background>
-                                                    <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
-                                                </Border.Background>
-                                            </Border>
-                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding ReviewName}" Margin="50 0 0 0" VerticalAlignment="Center"/>
-                                        </Grid>
-                                    </StackPanel>
+                                    <ListBox x:Name="LbReview" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Width="750">
+                                                    <Separator Margin="0 10 0 15"/>
+                                                    <Grid>
+                                                        <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
+                                                            <Border.Background>
+                                                                <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
+                                                            </Border.Background>
+                                                        </Border>
+                                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0" Orientation="Horizontal">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding User.ReviewName}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                                            
+                                                            <Border CornerRadius="5" Background="White" HorizontalAlignment="Left" Height="30" Width="196" Margin="10 0 0 0">
+                                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                                                    <Grid>
+                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf185;" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf058;" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                    </Grid>
+                                                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Реальный покупатель" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                </StackPanel>
+                                                                <Border.Effect>
+                                                                    <DropShadowEffect Color="Black" BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
+                                                                </Border.Effect>
+                                                            </Border>
+                                                        </StackPanel>
+
+                                                        <Label  Content="{Binding DateOfReview}" FontFamily="/Resources/Fonts/#Agency FB Cyrillic" FontSize="19" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF929292"/>
+                                                    </Grid>
+                                                    <StackPanel Margin="0 10 0 20">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Border CornerRadius="5"  Background="#FFEEF0F2" Width="151" Height="28">
+                                                                    <Viewbox Height="20">
+                                                                        <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая: " FontSize="10"/>
+                                                                            <TextBlock Style="{StaticResource UnicodeSymbols}" Text="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" />
+                                                                        </StackPanel>
+                                                                    </Viewbox>
+                                                                </Border>
+                                                                <Border CornerRadius="5"  Background="#FFEEF0F2" Width="91" Height="28" Margin="10 0 0 0">
+                                                                    <Viewbox Height="20">
+                                                                        <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Качество: " FontSize="10"/>
+                                                                            <TextBlock Style="{StaticResource Sans}" Text="5" FontSize="10"/>
+                                                                        </StackPanel>
+                                                                    </Viewbox>
+                                                                </Border>
+                                                                <Border CornerRadius="5"  Background="#FFEEF0F2" Width="110" Height="28" Margin="10 0 0 0">
+                                                                    <Viewbox Height="20">
+                                                                        <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Вместимость: " FontSize="10"/>
+                                                                            <TextBlock Style="{StaticResource Sans}" Text="4" FontSize="10"/>
+                                                                        </StackPanel>
+                                                                    </Viewbox>
+                                                                </Border>
+                                                            </StackPanel>
+
+                                                            <StackPanel Margin="0 15 0 0">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Достоинства" FontWeight="SemiBold" FontSize="16"/>
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Advantage}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                            <StackPanel Margin="0 15 0 0">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="SemiBold" FontSize="16"/>
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Disadvantages}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                            <StackPanel Margin="0 15 0 0">
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="SemiBold" FontSize="16"/>
+                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Comment}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                        
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
