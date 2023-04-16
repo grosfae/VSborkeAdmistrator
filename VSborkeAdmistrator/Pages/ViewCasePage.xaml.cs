@@ -209,6 +209,16 @@ namespace VSborkeAdmistrator.Pages
         {
 
         }
+
+        private void AddFeedback_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditFeedback_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

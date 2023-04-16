@@ -113,6 +113,7 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\PartialClass\ComputerCase.cs" />
+    <Compile Include="Components\PartialClass\FeedBack.cs" />
     <Compile Include="Components\PartialClass\Order.cs" />
     <Compile Include="Components\PartialClass\User.cs" />
     <Compile Include="Components\PowerBlockStandartSupport.cs">

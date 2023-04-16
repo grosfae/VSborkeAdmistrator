@@ -173,7 +173,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel  Background="White" Width="811" Height="auto" x:Name="PbSpecs" >
+                        <StackPanel  Background="White" Width="811" Margin="0 0 0 20" Height="auto" x:Name="PbSpecs" >
                             <StackPanel Margin="20 0 20 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Характеристики корпуса" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
                                 <StackPanel Margin="0 20 0 0">
@@ -535,7 +535,7 @@
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Height="auto" Background="White" Margin="0 20 0 20" Width="811" x:Name="SpReviewMarks">
+                        <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpReviewMarks">
                             <StackPanel Margin="20 0 20 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Отзывы" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
                                 <Grid Margin="0 10 0 20">
@@ -545,15 +545,11 @@
                                         <ColumnDefinition Width="270"/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel>
-                                        <TextBlock Style="{StaticResource Sans}" Text="4.74" FontSize="60" FontWeight="Bold"/>
+                                        <TextBlock Style="{StaticResource Sans}" x:Name="TbGeneralCaseScore" Text="4.74" FontSize="60" FontWeight="Bold"/>
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="&#xf005;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}"/>
-                                            <TextBlock Text="&#xf005;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="5 0 0 0"/>
-                                            <TextBlock Text="&#xf005;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="5 0 0 0"/>
-                                            <TextBlock Text="&#xf005;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="5 0 0 0"/>
-                                            <TextBlock Text="&#xf123;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="5 0 0 0"/>
+                                            <TextBlock x:Name="TbGeneralCaseStars" Text="&#xf005; &#xf005; &#xf005; &#xf005; &#xf123;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}"/>
                                         </StackPanel>
-                                        <TextBlock Text="216 отзывов" Margin="0 4 0 0"/>
+                                        <TextBlock x:Name="TbReviewCount" Text="216 отзывов" Margin="0 4 0 0"/>
                                     </StackPanel>
 
                                     <Grid Grid.Column="1" Width="340">
@@ -575,18 +571,22 @@
                                         <TextBlock Style="{StaticResource Sans}" Grid.Row="4" Text="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-                                        <ProgressBar Style="{StaticResource ForReview}" Value="80" Height="10" Grid.Column="1"/>
-                                        <ProgressBar Style="{StaticResource ForReview}" Value="57" Height="10" Grid.Column="1" Grid.Row="1"/>
-                                        <ProgressBar Style="{StaticResource ForReview}" Value="45" Height="10" Grid.Column="1" Grid.Row="2"/>
-                                        <ProgressBar Style="{StaticResource ForReview}" Value="40" Height="10" Grid.Column="1" Grid.Row="3"/>
-                                        <ProgressBar Style="{StaticResource ForReview}" Value="23" Height="10" Grid.Column="1" Grid.Row="4"/>
+                                        <ProgressBar x:Name="PbFive" Style="{StaticResource ForReview}" Value="80" Height="10" Grid.Column="1"/>
+                                        <ProgressBar x:Name="PbFour" Style="{StaticResource ForReview}" Value="57" Height="10" Grid.Column="1" Grid.Row="1"/>
+                                        <ProgressBar x:Name="PbThree" Style="{StaticResource ForReview}" Value="45" Height="10" Grid.Column="1" Grid.Row="2"/>
+                                        <ProgressBar x:Name="PbTwo" Style="{StaticResource ForReview}" Value="40" Height="10" Grid.Column="1" Grid.Row="3"/>
+                                        <ProgressBar x:Name="PbFOne" Style="{StaticResource ForReview}" Value="23" Height="10" Grid.Column="1" Grid.Row="4"/>
 
                                     </Grid>
 
-                                    <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityAddFeedback}">
                                         <TextBlock Text="Оставьте отзыв,
                                                    ваш опыт поможет в выборе" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
-                                        <Button  Style="{StaticResource BlueNoBorderBtn}" Content="Добавить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
+                                        <Button  x:Name="AddFeedback" Click="AddFeedback_Click" Style="{StaticResource BlueNoBorderBtn}" Content="Добавить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityEditFeedback}">
+                                        <TextBlock Text="У вас уже есть оставленный отзыв, вы можете его изменить" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
+                                        <Button x:Name="EditFeedback" Click="EditFeedback_Click"  Style="{StaticResource BlueNoBorderBtn}" Content="Изменить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
                                     </StackPanel>
                                 </Grid>
                             </StackPanel>
@@ -596,7 +596,7 @@
                             <StackPanel Margin="20 0 20 0">
 
                                 <StackPanel>
-                                    <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25"/>
+                                    <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25" Margin="0 10 0 0"/>
                                     <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
@@ -633,7 +633,7 @@
                                                                 <Viewbox Height="20">
                                                                     <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
                                                                         <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая: " FontSize="10"/>
-                                                                        <TextBlock Style="{StaticResource UnicodeSymbols}" Text="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" />
+                                                                        <TextBlock Style="{StaticResource UnicodeSymbols}" Text="{Binding CountOfStars}" />
                                                                     </StackPanel>
                                                                 </Viewbox>
                                                             </Border>
@@ -641,7 +641,7 @@
                                                                 <Viewbox Height="20">
                                                                     <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
                                                                         <TextBlock Style="{StaticResource ProfileInfo}" Text="Качество: " FontSize="10"/>
-                                                                        <TextBlock Style="{StaticResource Sans}" Text="5" FontSize="10"/>
+                                                                        <TextBlock Style="{StaticResource Sans}" Text="{Binding QualityStars}" FontSize="10"/>
                                                                     </StackPanel>
                                                                 </Viewbox>
                                                             </Border>
@@ -649,7 +649,7 @@
                                                                 <Viewbox Height="20">
                                                                     <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
                                                                         <TextBlock Style="{StaticResource ProfileInfo}" Text="Вместимость: " FontSize="10"/>
-                                                                        <TextBlock Style="{StaticResource Sans}" Text="4" FontSize="10"/>
+                                                                        <TextBlock Style="{StaticResource Sans}" Text="{Binding CapacityStars}" FontSize="10"/>
                                                                     </StackPanel>
                                                                 </Viewbox>
                                                             </Border>
@@ -777,7 +777,7 @@
                                                                     <Viewbox Height="20">
                                                                         <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
                                                                             <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая: " FontSize="10"/>
-                                                                            <TextBlock Style="{StaticResource UnicodeSymbols}" Text="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" />
+                                                                            <TextBlock Style="{StaticResource UnicodeSymbols}" Text="{Binding CountOfStars}" />
                                                                         </StackPanel>
                                                                     </Viewbox>
                                                                 </Border>
