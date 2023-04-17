@@ -18,14 +18,12 @@ namespace VSborkeAdmistrator.Components
         public string Advantage { get; set; }
         public string Disadvantages { get; set; }
         public string Comment { get; set; }
-        public int QualityStars { get; set; }
-        public int CapacityStars { get; set; }
         public int GeneralStars { get; set; }
         public int UserId { get; set; }
         public int ComputerCaseId { get; set; }
-        public int CounterLikes { get; set; }
         public System.DateTime DateOfReview { get; set; }
         public Nullable<System.DateTime> DateOfAddition { get; set; }
+        public string Addition { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }
         public virtual User User { get; set; }

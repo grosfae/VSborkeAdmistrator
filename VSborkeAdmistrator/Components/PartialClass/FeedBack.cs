@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace VSborkeAdmistrator.Components
 {
@@ -12,21 +13,37 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
+                //Символы из шрифта FontAwesome. Не отображаются системой, но работают.
                 switch (GeneralStars)
                 {
                     case 1:
-                        return "&#xf005; &#xf006; &#xf006; &#xf006; &#xf006;";
+                        return @"    "; //1 полная звезда
                     case 2:
-                        return "&#xf005; &#xf005; &#xf006; &#xf006; &#xf006;";
+                        return @"    "; //2 полные звезды
                     case 3:
-                        return "&#xf005; &#xf005; &#xf005; &#xf006; &#xf006;";
+                        return @"    "; //3 полные звезды
                     case 4:
-                        return "&#xf005; &#xf005; &#xf005; &#xf005; &#xf006;";
+                        return @"    "; //4 полные звезды
                     case 5:
-                        return "&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;";
+                        return @"    "; //5 полных звезд
                 }
-                return "";
+                return "6+";
             }
         }
+
+        public Visibility VisibilityAddition
+        {
+            get
+            {
+                if(Addition != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
+        
     }
 }

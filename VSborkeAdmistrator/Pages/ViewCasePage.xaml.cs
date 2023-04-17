@@ -17,8 +17,6 @@ using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
 using VSborkeAdmistrator.Windows;
 using WpfDrawing.Charts;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Net.WebRequestMethods;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -44,7 +42,21 @@ namespace VSborkeAdmistrator.Pages
             ).ToList().Take(2);
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
-            
+            if (App.DB.ComputerCase.Where(x => x.Id != contextComputerCase.Id & x.EAtx == contextComputerCase.EAtx & x.FlexAtx == contextComputerCase.FlexAtx
+            & x.MicroAtx == contextComputerCase.MicroAtx & x.MiniDtx == contextComputerCase.MiniDtx & x.MiniItx == contextComputerCase.MiniItx & x.SsiCeb == contextComputerCase.SsiCeb
+            & x.SsiEeb == contextComputerCase.SsiEeb & x.StandartAtx == contextComputerCase.StandartAtx & x.ThinMiniItx == contextComputerCase.ThinMiniItx & x.XlAtx == contextComputerCase.XlAtx
+            ).FirstOrDefault() != null)
+            {
+                LvAnalogue.Visibility = Visibility.Visible;
+                TbNoneAnalog.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                LvAnalogue.Visibility = Visibility.Collapsed;
+                TbNoneAnalog.Visibility = Visibility.Visible;
+            }
+
+
         }
 
         private void MainImageBtn_Click(object sender, RoutedEventArgs e)
@@ -167,6 +179,8 @@ namespace VSborkeAdmistrator.Pages
 
             // Создаём график.
             CreateChart(chart);
+
+            FeedbackMarkRefresh();
         }
 
         private void CreateChart(Chart chart)
@@ -180,22 +194,101 @@ namespace VSborkeAdmistrator.Pages
             }
         }
 
+        private void FeedbackMarkRefresh()
+        {
+            double FeedbackCount = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id).Count();
+            TbReviewCount.Text = $"{FeedbackCount} отзывов";
+            if (FeedbackCount == 0)
+            {
+                return;
+            }
+            double FiveCount = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.GeneralStars == 5).Count();
+            double FourCount = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.GeneralStars == 4).Count();
+            double ThreeCount = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.GeneralStars == 3).Count();
+            double TwoCount = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.GeneralStars == 2).Count();
+            double OneCount = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.GeneralStars == 1).Count();
+
+            PbFive.Value = FiveCount / FeedbackCount * 100;
+            PbFour.Value = FourCount / FeedbackCount * 100;
+            PbThree.Value = ThreeCount / FeedbackCount * 100;
+            PbTwo.Value = TwoCount / FeedbackCount * 100;
+            PbOne.Value = OneCount / FeedbackCount * 100;
+
+            double FiveMark = FiveCount * 5 / FeedbackCount;
+            double FourMark = FourCount * 4 / FeedbackCount;
+            double ThreeMark = ThreeCount * 3 / FeedbackCount;
+            double TwoMark = TwoCount * 2 / FeedbackCount;
+            double OneMark = OneCount * 1 / FeedbackCount;
+
+            double result = Math.Round(FiveMark + FourMark + ThreeMark + TwoMark + OneMark, 2, MidpointRounding.AwayFromZero);
+
+            TbGeneralCaseScore.Text = result.ToString();
+
+            if(result == 1)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result >= 1.50 & result < 2)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result == 2)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result >= 2.50 & result < 3)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result == 3)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result >= 3.50 & result < 4)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result == 4)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result >= 4.50 & result < 5)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+            if (result == 5)
+            {
+                TbGeneralCaseStars.Text = @"    ";
+            }
+
+
+        } 
+
         private void SpecBtn_Click(object sender, RoutedEventArgs e)
         {
             PbDescription.Visibility = Visibility.Visible;
             PbSpecs.Visibility = Visibility.Visible;
+            SpReviewMarks.Visibility = Visibility.Collapsed;
+            SpOwnReview.Visibility = Visibility.Collapsed;
+            SpReview.Visibility = Visibility.Collapsed;
         }
 
         private void ReviewBtn_Click(object sender, RoutedEventArgs e)
         {
             PbDescription.Visibility = Visibility.Collapsed;
             PbSpecs.Visibility = Visibility.Collapsed;
+            SpReviewMarks.Visibility = Visibility.Visible;
+            SpOwnReview.Visibility = Visibility.Visible;
+            SpReview.Visibility = Visibility.Visible;
         }
 
         private void AnalogBtn_Click(object sender, RoutedEventArgs e)
         {
             PbDescription.Visibility = Visibility.Collapsed;
             PbSpecs.Visibility = Visibility.Collapsed;
+            SpReviewMarks.Visibility = Visibility.Collapsed;
+            SpOwnReview.Visibility = Visibility.Collapsed;
+            SpReview.Visibility = Visibility.Collapsed;
         }
 
 

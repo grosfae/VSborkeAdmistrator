@@ -414,5 +414,18 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
+        public Visibility VisibilityOwnReview
+        {
+            get
+            {
+                if (App.DB.FeedBack.Where(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == Id).FirstOrDefault() != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
     }
 }

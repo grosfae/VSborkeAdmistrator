@@ -148,14 +148,12 @@
           <Property Name="Advantage" Type="varchar" MaxLength="400" Nullable="false" />
           <Property Name="Disadvantages" Type="varchar" MaxLength="400" Nullable="false" />
           <Property Name="Comment" Type="varchar" MaxLength="400" Nullable="false" />
-          <Property Name="QualityStars" Type="int" Nullable="false" />
-          <Property Name="CapacityStars" Type="int" Nullable="false" />
           <Property Name="GeneralStars" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
-          <Property Name="CounterLikes" Type="int" Nullable="false" />
           <Property Name="DateOfReview" Type="date" Nullable="false" />
           <Property Name="DateOfAddition" Type="date" />
+          <Property Name="Addition" Type="varchar" MaxLength="400" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -1650,14 +1648,12 @@
           <Property Name="Advantage" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="Disadvantages" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
           <Property Name="Comment" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="QualityStars" Type="Int32" Nullable="false" />
-          <Property Name="CapacityStars" Type="Int32" Nullable="false" />
           <Property Name="GeneralStars" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
-          <Property Name="CounterLikes" Type="Int32" Nullable="false" />
           <Property Name="DateOfReview" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateOfAddition" Type="DateTime" Precision="0" />
+          <Property Name="Addition" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_FeedBack_ComputerCase" FromRole="FeedBack" ToRole="ComputerCase" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_FeedBack_User" FromRole="FeedBack" ToRole="User" />
         </EntityType>
@@ -2688,14 +2684,12 @@
           <EntitySetMapping Name="FeedBack">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FeedBack">
               <MappingFragment StoreEntitySet="FeedBack">
+                <ScalarProperty Name="Addition" ColumnName="Addition" />
                 <ScalarProperty Name="DateOfAddition" ColumnName="DateOfAddition" />
                 <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />
-                <ScalarProperty Name="CounterLikes" ColumnName="CounterLikes" />
                 <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="GeneralStars" ColumnName="GeneralStars" />
-                <ScalarProperty Name="CapacityStars" ColumnName="CapacityStars" />
-                <ScalarProperty Name="QualityStars" ColumnName="QualityStars" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Disadvantages" ColumnName="Disadvantages" />
                 <ScalarProperty Name="Advantage" ColumnName="Advantage" />
