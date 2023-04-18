@@ -176,6 +176,9 @@
     <Compile Include="Pages\ComputerCaseEditPage.xaml.cs">
       <DependentUpon>ComputerCaseEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FeedbackAddEdit.xaml.cs">
+      <DependentUpon>FeedbackAddEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
@@ -274,6 +277,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ComputerCaseEditPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\FeedbackAddEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

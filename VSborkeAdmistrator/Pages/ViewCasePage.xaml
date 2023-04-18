@@ -68,7 +68,7 @@
                         </StackPanel>
                         <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding ShortName}" TextWrapping="Wrap" Height="48" Width="500" HorizontalAlignment="Left" FontSize="20"/>
+                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding ShortName}" TextWrapping="Wrap" Height="auto" Width="500" HorizontalAlignment="Left" FontSize="20"/>
                                 <Image Source="{Binding Manufacturer.Image}" Width="75" Height="48" Margin="45 0 0 0"/>
                             </StackPanel>
                             <Border CornerRadius="10" BorderThickness="1" Margin="0 20 0 0" Background="White">
@@ -104,7 +104,7 @@
                                 </Grid>
                             </Border>
                             <TextBlock Text="Аналоги" FontSize="26" Style="{StaticResource ProfileInfo}" Margin="10 10 0 0"/>
-                            <ListBox x:Name="LvAnalogue" Height="150" BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=2}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="3 0 0 0">
+                            <ListBox x:Name="LvAnalogue" Height="120" BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=2}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="3 0 0 0">
                                 <ListBox.ItemsPanel>
                                     <ItemsPanelTemplate>
                                         <WrapPanel Orientation="Horizontal"/>
