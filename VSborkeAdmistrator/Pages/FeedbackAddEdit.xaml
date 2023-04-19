@@ -22,13 +22,20 @@
                 </Grid>
                 <StackPanel Grid.Row="1" Background="White" Width="1130" Height="auto">
                     <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
-                        <StackPanel Margin="10 20 0 0" Width="500">
+                        <StackPanel Margin="10 20 0 0" Width="550">
                             <Border CornerRadius="10" BorderThickness="1" Margin="0 20 0 0" Background="White" Height="55" HorizontalAlignment="Left">
                                 <Border.Effect>
                                     <DropShadowEffect Color="Black" BlurRadius="15" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
                                 </Border.Effect>
                                 <StackPanel Margin="5">
-                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая оценка"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая оценка" VerticalAlignment="Center"/>
+                                        <Border CornerRadius="5" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0">
+                                            <Grid>
+                                                <TextBlock Style="{StaticResource Sans}" Foreground="#FF41D172" Height="auto" Width="auto" Text="+40%" Background="Transparent" Margin="2 0 2 0"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
                                         <TextBlock x:Name="TbOneStar" Text="&#xf006;" FontSize="21" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}"/>
                                         <TextBlock x:Name="TbTwoStar" Text="&#xf006;" FontSize="21" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0"/>
@@ -51,7 +58,7 @@
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" Text="{Binding Advantage}" MinHeight="60" Height="auto" Width="470" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Advantage}" MinHeight="60" Height="auto" Width="550" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
@@ -67,7 +74,7 @@
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" Text="{Binding Disadvantages}" MinHeight="60" Height="auto" Width="470" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Disadvantages}" MinHeight="60" Height="auto" Width="550" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
@@ -83,82 +90,21 @@
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" Text="{Binding Comment}" MinHeight="60" Height="auto" Width="470" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Comment}" MinHeight="60" Height="auto" Width="550" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
 
                         </StackPanel>
                         <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding ShortName}" TextWrapping="Wrap" Height="auto" Width="500" HorizontalAlignment="Left" FontSize="20"/>
-                                <Image Source="{Binding Manufacturer.Image}" Width="75" Height="48" Margin="45 0 0 0"/>
-                            </StackPanel>
-                            <Border CornerRadius="10" BorderThickness="1" Margin="0 20 0 0" Background="White">
-                                <Border.Effect>
-                                    <DropShadowEffect Color="Black" BlurRadius="15" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
-                                </Border.Effect>
-                                <Grid Height="140" Width="550" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="250"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Rectangle Width="50" Height="30" Fill="#FFFF5C52" Visibility="{Binding VisibilityDiscount}" VerticalAlignment="Top" RadiusX="15" RadiusY="15" Margin="160 12 0 5" HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="165 15 0 8" VerticalAlignment="Top"/>
-                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="12 15 0 0" Height="30" VerticalAlignment="Top">
-                                        <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="24" Width="auto" TextAlignment="Left" />
-                                        <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="10 0 10 0" TextAlignment="Left" />
-                                    </StackPanel>
-                                    <Rectangle Fill="#FFF2F2F2" Height="40" Width="160" VerticalAlignment="Bottom" Visibility="{Binding VisibilityNoneAccessable}" HorizontalAlignment="Left" Margin="10 0 0 40" RadiusY="5" RadiusX="5"/>
-                                    <TextBlock Text="Корпус недоступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityNoneAccessable}" Margin="32 0 0 52" FontSize="13"/>
-
-                                    <Rectangle Fill="#FFF2F2F2" Height="40" Width="160" VerticalAlignment="Bottom" Visibility="{Binding VisibilityAccessable}" HorizontalAlignment="Left" Margin="10 0 0 40" RadiusY="5" RadiusX="5"/>
-                                    <TextBlock Text="Корпус доступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityAccessable}" Foreground="#FF3881EF" Margin="35 0 0 52" FontSize="13"/>
-
-                                    <TextBlock x:Name="TbId" Text="{Binding Id, StringFormat='Код товара: {0}'}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 0 10" FontSize="18" Foreground="#4e4e4e"/>
-                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20 10 0 0" Grid.Column="1" Height="50" VerticalAlignment="Top">
-                                        <Button x:Name="FavouriteBtn" Visibility="{Binding VisibilityAdd}" Width="45" Height="45" Style="{StaticResource FavBtn}" Content="♥️" BorderThickness="1" FontSize="28" Click="FavouriteBtn_Click" />
-                                        <Button x:Name="DeFavouriteBtn" Visibility="{Binding VisibilityRemove}" Width="45" Height="45" Style="{StaticResource UnFavBtn}" Content="💔" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
-                                        <Button x:Name="BuyBtn" Visibility="{Binding VisibilityBtnOrder}" Width="160" Height="45" Style="{StaticResource BlueNoBorderBtn}" Content="Заказать" BorderThickness="1" FontSize="30"  Click="BuyBtn_Click" Margin="10 0 0 0"/>
-                                        <Button x:Name="NotificBtn" Visibility="{Binding VisibilityBtnNortific}" Width="160" Height="45" Style="{StaticResource BorderBtn}" Content="Уведомить" BorderThickness="1" FontSize="30" Click="NotificBtn_Click" Margin="10 0 0 0"/>
-                                    </StackPanel>
-                                    <Rectangle Fill="#FFAB0A00" Height="40" Width="160" Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding VisibilityRecoverCaseBtn}" HorizontalAlignment="Left" Margin="75 0 0 20" RadiusY="5" RadiusX="5"/>
-                                    <TextBlock Text="Корпус удален" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Visibility="{Binding VisibilityRecoverCaseBtn}" Foreground="White" Margin="100 0 0 30" FontSize="16"/>
-                                </Grid>
+                            <Border CornerRadius="10" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Center">
+                                <StackPanel Width="350" Height="300">
+                                    
+                                </StackPanel>
                             </Border>
-                            <TextBlock Text="Аналоги" FontSize="26" Style="{StaticResource ProfileInfo}" Margin="10 10 0 0"/>
-                            <ListBox x:Name="LvAnalogue" Height="120" BorderThickness="0" d:ItemsSource="{d:SampleData ItemCount=2}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="3 0 0 0">
-                                <ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel Orientation="Horizontal"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                <ListBox.Template>
-                                    <ControlTemplate>
-                                        <ItemsPresenter />
-                                    </ControlTemplate>
-                                </ListBox.Template>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border CornerRadius="10" Background="#FFEEF0F2">
-                                            <Grid  Height="120" Width="260">
-                                                <TextBlock x:Name="TbNameLink" Style="{StaticResource ListLink}" Text="{Binding Name, StringFormat='Корпус {0}'}" MouseLeftButtonDown="TbNameLink_MouseLeftButtonDown" Margin="10 5 0 0" FontSize="15" TextWrapping="Wrap" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160"/>
-                                                <Button x:Name="ButAnalogueBtn" Style="{StaticResource AnalogueBtn}"  Height="30" Width="80" Content="Заказать" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15 0 0 15"  Click="ButAnalogueBtn_Click"/>
-                                                <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="12" Margin="0 0 50 25" VerticalAlignment="Bottom"  HorizontalAlignment="Right" TextAlignment="Right" />
-                                                <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="16" Margin="0 0 95 20" Width="auto" VerticalAlignment="Bottom" HorizontalAlignment="Right" TextAlignment="Right" />
-                                                <StackPanel Margin="0 15 15 0" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White">
-                                                    <Image Width="60" HorizontalAlignment="Center" Height="60" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding MainImage}" />
-                                                </StackPanel>
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                            <StackPanel  x:Name="TbNoneAnalog" Height="60" Width="520" Background="#FFEEF0F2" Margin="0 5 0 0" Visibility="Collapsed">
-                                <TextBlock Style="{StaticResource ProfileInfo}"  Text="Аналогов нет" VerticalAlignment="Center" Margin="0 17 0 0" TextAlignment="Center" FontSize="23"   />
-                            </StackPanel>
                         </StackPanel>
-                        <Button x:Name="BackBtn" VerticalAlignment="Bottom" Click="CancelBtn_Click" Style="{StaticResource BorderBtn}" Width="40" Height="30" Margin="30 0 0 0" Content="⮪" FontSize="22"/>
+
+
                     </StackPanel>
                 </StackPanel>
 
