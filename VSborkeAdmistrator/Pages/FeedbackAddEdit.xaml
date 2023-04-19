@@ -12,17 +12,16 @@
         <ScrollViewer Height="auto" x:Name="ScrollPage">
             <Grid Height="auto">
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition Height="450"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Мой отзыв" FontSize="46" Margin="50 15 0 20"/>
                     </StackPanel>
                 </Grid>
-                <StackPanel Grid.Row="1" Background="White" Width="1130" Height="450">
-                    <StackPanel Orientation="Horizontal">
+                <StackPanel Grid.Row="1" Background="White" Width="1130" Height="auto">
+                    <StackPanel Orientation="Horizontal" Margin="0 0 0 20">
                         <StackPanel Margin="10 20 0 0" Width="500">
                             <Border CornerRadius="10" BorderThickness="1" Margin="0 20 0 0" Background="White" Height="55" HorizontalAlignment="Left">
                                 <Border.Effect>
@@ -41,21 +40,54 @@
                             </Border>
 
                             <TextBlock Style="{StaticResource ProfileInfo}" Text="Опыт использования" FontWeight="DemiBold" FontSize="14" Margin="0 20 0 0"/>
-                            <StackPanel Margin="0 15 0 0">
+                            <StackPanel Margin="0 15 0 0" Height="auto">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource ProfileInfo}" Text="Достоинства" FontWeight="DemiBold" FontSize="12" Margin="0 1 0 0"/>
                                     <Border CornerRadius="5" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20 0 0 0">
                                         <Grid>
-                                            <TextBox Style="{StaticResource NumbersTextEnter}" Foreground="#FF41D172" Height="auto" Width="auto" Text="+20%" Background="Transparent" BorderBrush="Transparent"/>
+                                            <TextBlock Style="{StaticResource Sans}" Foreground="#FF41D172" Height="auto" Width="auto" Text="+20%" Background="Transparent" Margin="2 0 2 0"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox MinHeight="60" Width="470" Background="Transparent" BorderBrush="Transparent"/>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Advantage}" MinHeight="60" Height="auto" Width="470" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
+                            
+                            <StackPanel Margin="0 15 0 0" Height="auto">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="DemiBold" FontSize="12" Margin="0 1 0 0"/>
+                                    <Border CornerRadius="5" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="27.5 0 0 0">
+                                        <Grid>
+                                            <TextBlock Style="{StaticResource Sans}" Foreground="#FF41D172" Height="auto" Width="auto" Text="+20%" Background="Transparent" Margin="2 0 2 0"/>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                                <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
+                                    <Grid>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Disadvantages}" MinHeight="60" Height="auto" Width="470" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
+                            <StackPanel Margin="0 15 0 0" Height="auto">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="DemiBold" FontSize="12" Margin="0 1 0 0"/>
+                                    <Border CornerRadius="5" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="16 0 0 0">
+                                        <Grid>
+                                            <TextBlock Style="{StaticResource Sans}" Foreground="#FF41D172" Height="auto" Width="auto" Text="+20%" Background="Transparent" Margin="2 0 2 0"/>
+                                        </Grid>
+                                    </Border>
+                                </StackPanel>
+                                <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
+                                    <Grid>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Comment}" MinHeight="60" Height="auto" Width="470" MaxLength="3000" Background="Transparent" BorderBrush="Transparent"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+
                         </StackPanel>
                         <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
