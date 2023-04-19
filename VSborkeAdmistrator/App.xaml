@@ -5,13 +5,15 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
 
+        
+
         <!--ProgressBar for Reviews-->
         <Style TargetType="ProgressBar" x:Key="ForReview">
             <Setter Property="Background" Value="#FFEEF0F2"/>
             <Setter Property="Foreground" Value="#FF3881EF"/>
-            
+
         </Style>
-        
+
         <!--Custom Analogue ListBoxItem-->
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">

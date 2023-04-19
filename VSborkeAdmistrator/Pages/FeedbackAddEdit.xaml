@@ -99,7 +99,17 @@
                         <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
                             <Border CornerRadius="10" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Center">
                                 <StackPanel Width="350" Height="300">
-                                    
+                                    <Grid Height="35" Width="auto" HorizontalAlignment="Left" Margin="20 10 0 0">
+                                        <ProgressBar Width="270" x:Name="PbProfileProgress" Background="#FFAFAFAF" Foreground="#FF3881EF" HorizontalAlignment="Left"/>
+                                        <TextBlock x:Name="TbCountProgress" Style="{StaticResource Header}" Foreground="White" HorizontalAlignment="Center" FontSize="30" Text="0%"/>
+                                    </Grid>
+                                    <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Center" FontSize="16" Margin="0 20 0 0" TextWrapping="Wrap" Text="Заполните все поля, чтобы ваш отзыв был максимально полезен."/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Viewbox Height="25" Width="25">
+                                            <CheckBox/>
+                                        </Viewbox>
+                                        <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Center" FontSize="16" Margin="5 0 0 0" TextWrapping="Wrap" Text="Поставьте оценку"/>
+                                    </StackPanel>
                                 </StackPanel>
                             </Border>
                         </StackPanel>
