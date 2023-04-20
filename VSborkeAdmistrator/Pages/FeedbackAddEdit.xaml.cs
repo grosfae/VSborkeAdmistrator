@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VSborkeAdmistrator.Components;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -20,9 +21,13 @@ namespace VSborkeAdmistrator.Pages
     /// </summary>
     public partial class FeedbackAddEdit : Page
     {
-        public FeedbackAddEdit()
+        FeedBack contextFeedback;
+        public FeedbackAddEdit(FeedBack feedBack)
         {
             InitializeComponent();
+            contextFeedback = feedBack;
+            DataContext = contextFeedback;
+
         }
     }
 }

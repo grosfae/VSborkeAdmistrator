@@ -305,12 +305,20 @@ namespace VSborkeAdmistrator.Pages
 
         private void AddFeedback_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new FeedbackAddEdit(new FeedBack()));
         }
 
         private void EditFeedback_Click(object sender, RoutedEventArgs e)
         {
-
+            var ownFeedBack = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).FirstOrDefault();
+            if (ownFeedBack != null)
+            {
+                NavigationService.Navigate(new FeedbackAddEdit(ownFeedBack));
+            }
+            else
+            {
+                return;
+            }    
         }
     }
 
