@@ -12,25 +12,26 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using VSborkeAdmistrator.Components;
-using WpfDrawing.Charts;
 
-namespace VSborkeAdmistrator.Windows
+namespace VSborkeAdmistrator.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для PriceChartsWindow.xaml
+    /// Логика взаимодействия для PriceGraphMiniPage.xaml
     /// </summary>
-    public partial class PriceChartsWindow : Window
+    public partial class PriceGraphMiniPage : Page
     {
         ComputerCase contextComputerCase;
-        public PriceChartsWindow(ComputerCase computerCase)
+        public PriceGraphMiniPage(ComputerCase computerCase)
         {
             InitializeComponent();
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
-            Header.MouseLeftButtonDown += new MouseButtonEventHandler(Window_MouseDown);
         }
+
         public SeriesCollection SeriesCollection { get; set; }
 
         public string[] Labels { get; set; }
@@ -39,9 +40,6 @@ namespace VSborkeAdmistrator.Windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            TbName.Text = contextComputerCase.NameForWindows;
-            TbCost.Text = $"{contextComputerCase.PriceDiscount} ₽";
-            TbPriceRange.Text = contextComputerCase.PriceRange;
             IEnumerable<PriceHistory> priceHistories = App.DB.PriceHistory.Where(x => x.ComputerCaseId == contextComputerCase.Id).OrderBy(x => x.DateHistory);
             int buf = 0;
             double[] MyPrice = new double[App.DB.PriceHistory.Where(x => x.ComputerCaseId == contextComputerCase.Id).Count()];
@@ -66,24 +64,10 @@ namespace VSborkeAdmistrator.Windows
                 },
 
             };
-
-
             Labels = labels;
             YFormatter = value => value.ToString("C");
 
             DataContext = this;
-
         }
-
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            this.DragMove();
-        }
-
-        private void CloseButton_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            this.Close();
-        }
-
     }
 }

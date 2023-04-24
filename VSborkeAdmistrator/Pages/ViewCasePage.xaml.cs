@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveCharts;
+using LiveCharts.Wpf;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -25,7 +27,11 @@ namespace VSborkeAdmistrator.Pages
     /// </summary>
     public partial class ViewCasePage : Page
     {
+
         ComputerCase contextComputerCase;
+
+        
+
         public ViewCasePage(ComputerCase computerCase)
         {
             InitializeComponent();
@@ -33,7 +39,8 @@ namespace VSborkeAdmistrator.Pages
             DataContext = contextComputerCase;
 
             LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
-            LbReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+
+            
             
 
             LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != contextComputerCase.Id & x.EAtx == contextComputerCase.EAtx & x.FlexAtx == contextComputerCase.FlexAtx
@@ -59,6 +66,104 @@ namespace VSborkeAdmistrator.Pages
 
         }
 
+        int numberPage = 0;
+        int count = 5;
+        int maxPage = 0;
+        int fakePage = 1;
+        private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+            numberPage = 0;
+            Update();
+            fakePage = 1;
+            GeneratePageNumbers();
+        }
+
+        private void BtnPreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+            numberPage--;
+            fakePage--;
+            if (numberPage < 0)
+                numberPage = 0;
+            if (fakePage < 1)
+                fakePage = 1;
+            Update();
+            GeneratePageNumbers();
+        }
+
+        private void BtnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+            numberPage++;
+            fakePage++;
+            if (numberPage == maxPage)
+            {
+                numberPage = maxPage - 1;
+                fakePage--;
+            }
+
+            if (fakePage < maxPage + 1)
+            {
+                Update();
+            }
+            GeneratePageNumbers();
+        }
+
+        private void BtnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+            numberPage = maxPage - 1;
+            fakePage = maxPage;
+            Update();
+            GeneratePageNumbers();
+        }
+        private void Update()
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+            if (fakePage > maxPage)
+            {
+                fakePage = maxPage;
+            }
+
+            IEnumerable<FeedBack> partsList = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id);
+            partsList = partsList.Skip(count * numberPage).Take(count);
+            LbReview.ItemsSource = partsList;
+        }
+        private void GeneratePageNumbers()
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+            SPanelPages.Children.Clear();
+            for (int i = 1; i <= maxPage; i++)
+            {
+                RadioButton btn = new RadioButton();
+                btn.Content = i;
+                btn.Margin = new Thickness(0, 0, 0, 0);
+                btn.Click += PageButton_Click;
+                Style style = this.FindResource("RadioPage") as Style;
+                btn.Style = style;
+                SPanelPages.Children.Add(btn);
+
+                if(int.Parse(btn.Content.ToString()) == fakePage)
+                {
+                    btn.IsChecked= true;
+                }
+            }
+        }
+        private void PageButton_Click(object sender, RoutedEventArgs e)
+        {
+            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+
+            var b = sender as RadioButton;
+            string c = b.Content.ToString();
+            int a = int.Parse(c) - 1;
+            numberPage = a;
+            fakePage = int.Parse(c);
+            Update();
+
+            
+
+        }
         private void MainImageBtn_Click(object sender, RoutedEventArgs e)
         {
             var dialog = new Microsoft.Win32.OpenFileDialog()
@@ -159,39 +264,21 @@ namespace VSborkeAdmistrator.Pages
             MainImage.Source = image;
 
         }
+        public SeriesCollection SeriesCollection { get; set; }
 
+        public string[] Labels { get; set; }
+
+        public Func<double, string> YFormatter { get; set; }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // Удаляем прежний график.
-            GridForChart.Children.OfType<Canvas>().ToList().ForEach(p => GridForChart.Children.Remove(p));
+            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
 
-            Chart chart = null;
-
-            // Создаём новый график выбранного вида.
-
-            chart = new LineChart();
-
-            // Добавляем новую диаграмму на поле контейнера для графиков.
-            GridForChart.Children.Add(chart.ChartBackground);
-
-            // Принудительно обновляем размеры контейнера для графика.
-            GridForChart.UpdateLayout();
-
-            // Создаём график.
-            CreateChart(chart);
-
+            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
             FeedbackMarkRefresh();
-        }
 
-        private void CreateChart(Chart chart)
-        {
-            chart.Clear();
-            IEnumerable<PriceHistory> priceHistories = App.DB.PriceHistory.Where(x => x.ComputerCaseId == contextComputerCase.Id).OrderBy(x => x.DateHistory);
-
-            foreach (PriceHistory pc in priceHistories)
-            {
-                chart.AddValue(pc.Price);
-            }
+            FrameForChart.NavigationService.Navigate(new PriceGraphMiniPage(contextComputerCase));
+            Update();
+            GeneratePageNumbers();
         }
 
         private void FeedbackMarkRefresh()
@@ -268,27 +355,14 @@ namespace VSborkeAdmistrator.Pages
         {
             PbDescription.Visibility = Visibility.Visible;
             PbSpecs.Visibility = Visibility.Visible;
-            SpReviewMarks.Visibility = Visibility.Collapsed;
-            SpOwnReview.Visibility = Visibility.Collapsed;
-            SpReview.Visibility = Visibility.Collapsed;
+            SpReviews.Visibility = Visibility.Collapsed;
         }
 
         private void ReviewBtn_Click(object sender, RoutedEventArgs e)
         {
             PbDescription.Visibility = Visibility.Collapsed;
             PbSpecs.Visibility = Visibility.Collapsed;
-            SpReviewMarks.Visibility = Visibility.Visible;
-            SpOwnReview.Visibility = Visibility.Visible;
-            SpReview.Visibility = Visibility.Visible;
-        }
-
-        private void AnalogBtn_Click(object sender, RoutedEventArgs e)
-        {
-            PbDescription.Visibility = Visibility.Collapsed;
-            PbSpecs.Visibility = Visibility.Collapsed;
-            SpReviewMarks.Visibility = Visibility.Collapsed;
-            SpOwnReview.Visibility = Visibility.Collapsed;
-            SpReview.Visibility = Visibility.Collapsed;
+            SpReviews.Visibility = Visibility.Visible;
         }
 
 
@@ -305,7 +379,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void AddFeedback_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new FeedbackAddEdit(new FeedBack()));
+            NavigationService.Navigate(new FeedbackAddEdit(new FeedBack(), contextComputerCase));
         }
 
         private void EditFeedback_Click(object sender, RoutedEventArgs e)
@@ -313,12 +387,18 @@ namespace VSborkeAdmistrator.Pages
             var ownFeedBack = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).FirstOrDefault();
             if (ownFeedBack != null)
             {
-                NavigationService.Navigate(new FeedbackAddEdit(ownFeedBack));
+                NavigationService.Navigate(new FeedbackAddEdit(ownFeedBack, contextComputerCase));
             }
             else
             {
                 return;
             }    
+        }
+
+        private void PriceGraphBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var dialog = new PriceChartsWindow(contextComputerCase);
+            dialog.ShowDialog();
         }
     }
 

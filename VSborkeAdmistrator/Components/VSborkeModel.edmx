@@ -145,15 +145,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Advantage" Type="varchar" MaxLength="400" Nullable="false" />
-          <Property Name="Disadvantages" Type="varchar" MaxLength="400" Nullable="false" />
-          <Property Name="Comment" Type="varchar" MaxLength="400" Nullable="false" />
+          <Property Name="Advantage" Type="varchar" MaxLength="3000" />
+          <Property Name="Disadvantages" Type="varchar" MaxLength="3000" />
+          <Property Name="Comment" Type="varchar" MaxLength="3000" />
           <Property Name="GeneralStars" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
           <Property Name="DateOfReview" Type="date" Nullable="false" />
           <Property Name="DateOfAddition" Type="date" />
-          <Property Name="Addition" Type="varchar" MaxLength="400" />
+          <Property Name="Addition" Type="varchar" MaxLength="3000" />
+          <Property Name="IsDelete" Type="bit" />
         </EntityType>
         <EntityType Name="FormFactor">
           <Key>
@@ -1645,15 +1646,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Advantage" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="Disadvantages" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
-          <Property Name="Comment" Type="String" Nullable="false" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Advantage" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Disadvantages" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="GeneralStars" Type="Int32" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
           <Property Name="DateOfReview" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DateOfAddition" Type="DateTime" Precision="0" />
-          <Property Name="Addition" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <Property Name="Addition" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="IsDelete" Type="Boolean" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_FeedBack_ComputerCase" FromRole="FeedBack" ToRole="ComputerCase" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_FeedBack_User" FromRole="FeedBack" ToRole="User" />
         </EntityType>
@@ -2684,6 +2686,7 @@
           <EntitySetMapping Name="FeedBack">
             <EntityTypeMapping TypeName="VSborkeBaseModel.FeedBack">
               <MappingFragment StoreEntitySet="FeedBack">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
                 <ScalarProperty Name="Addition" ColumnName="Addition" />
                 <ScalarProperty Name="DateOfAddition" ColumnName="DateOfAddition" />
                 <ScalarProperty Name="DateOfReview" ColumnName="DateOfReview" />

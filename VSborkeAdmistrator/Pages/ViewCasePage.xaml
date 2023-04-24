@@ -4,8 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       mc:Ignorable="d" 
-      d:DesignHeight="4100" d:DesignWidth="1230"
+      d:DesignHeight="6600" d:DesignWidth="1230"
       Title="ViewCasePage" Loaded="Page_Loaded">
 
     <Grid Background="#FFEEF0F2" Height="auto">
@@ -86,6 +87,7 @@
                                         <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="24" Width="auto" TextAlignment="Left" />
                                         <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="10 0 10 0" TextAlignment="Left" />
                                     </StackPanel>
+                                    <TextBlock x:Name="PriceGraphBtn" Text="&#xf05a;" Style="{StaticResource TbBlueInfo}" FontSize="40" VerticalAlignment="Top" Margin="0 14 0 0" TextAlignment="Center" Height="40" Width="40" HorizontalAlignment="Right" MouseLeftButtonDown="PriceGraphBtn_MouseLeftButtonDown"/>
                                     <Rectangle Fill="#FFF2F2F2" Height="40" Width="160" VerticalAlignment="Bottom" Visibility="{Binding VisibilityNoneAccessable}" HorizontalAlignment="Left" Margin="10 0 0 40" RadiusY="5" RadiusX="5"/>
                                     <TextBlock Text="Корпус недоступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityNoneAccessable}" Margin="32 0 0 52" FontSize="13"/>
                                     
@@ -141,7 +143,7 @@
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="40 20 0 0">
                     <StackPanel>
-                        <Grid Background="White" Width="300" Height="300" VerticalAlignment="Top">
+                        <Grid Background="White" Width="300" Height="auto" VerticalAlignment="Top">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="115"/>
                                 <RowDefinition/>
@@ -157,13 +159,14 @@
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="История цены" VerticalAlignment="Center" FontSize="14" Margin="10 0 0 0"/>
                                 <TextBlock Style="{StaticResource Sans}" Text="{Binding PriceRange}" VerticalAlignment="Center" Margin="80 0 0 0"/>
                             </StackPanel>
-                            <Grid Grid.Row="1" x:Name="GridForChart" Height="145" Width="280" VerticalAlignment="Top" Margin="0 30 0 0" Background="White"  />
+                            <Frame Grid.Row="1" x:Name="FrameForChart" NavigationUIVisibility="Hidden" Height="200" Width="290" VerticalAlignment="Top" Margin="0 30 0 10" Background="White">
+                                
+                            </Frame>
                         </Grid>
 
                         <StackPanel Margin="0 15 0 0">
                             <RadioButton x:Name="SpecBtn" Height="50" Style="{StaticResource BluePolygonBtn}" Content="Характеристики" FontSize="20" IsChecked="True" Click="SpecBtn_Click" HorizontalContentAlignment="Left"/>
                             <RadioButton x:Name="ReviewBtn" Height="50" Style="{StaticResource BluePolygonBtn}" Content="Отзывы" FontSize="20" HorizontalContentAlignment="Left" Click="ReviewBtn_Click"/>
-                            <RadioButton x:Name="AnalogBtn" Height="50" Style="{StaticResource BluePolygonBtn}" Content="Аналоги" FontSize="20" HorizontalContentAlignment="Left" Click="AnalogBtn_Click"/>
                         </StackPanel>
                     </StackPanel>
                     
@@ -538,232 +541,101 @@
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>
-                        <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpReviewMarks">
-                            <StackPanel Margin="20 0 20 0">
-                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Отзывы" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
-                                <Grid Margin="0 10 0 20">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="140"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="270"/>
-                                    </Grid.ColumnDefinitions>
-                                    <StackPanel>
-                                        <TextBlock Style="{StaticResource Sans}" x:Name="TbGeneralCaseScore" Text="0" TextAlignment="Center" FontSize="60" FontWeight="Bold"/>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock x:Name="TbGeneralCaseStars" Text="&#xf006; &#xf006; &#xf006; &#xf006; &#xf006;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}"/>
-                                        </StackPanel>
-                                        <TextBlock x:Name="TbReviewCount" Text="0 отзывов" Margin="0 4 0 0"/>
-                                    </StackPanel>
 
-                                    <Grid Grid.Column="1" Width="340">
+                        <StackPanel x:Name="SpReviews" Visibility="Visible">
+                            <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpReviewMarks">
+                                <StackPanel Margin="20 0 20 0">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Отзывы" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0"/>
+                                    <Grid Margin="0 10 0 20">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="140"/>
                                             <ColumnDefinition/>
+                                            <ColumnDefinition Width="270"/>
                                         </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                            <RowDefinition/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Style="{StaticResource Sans}" Text="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock Style="{StaticResource Sans}" Grid.Row="1" Text="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock Style="{StaticResource Sans}" Grid.Row="2" Text="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock Style="{StaticResource Sans}" Grid.Row="3" Text="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        <TextBlock Style="{StaticResource Sans}" Grid.Row="4" Text="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        <StackPanel>
+                                            <TextBlock Style="{StaticResource Sans}" x:Name="TbGeneralCaseScore" Text="0" TextAlignment="Center" FontSize="60" FontWeight="Bold"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock x:Name="TbGeneralCaseStars" Text="&#xf006; &#xf006; &#xf006; &#xf006; &#xf006;" FontSize="18" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}"/>
+                                            </StackPanel>
+                                            <TextBlock x:Name="TbReviewCount" Text="0 отзывов" Margin="0 4 0 0"/>
+                                        </StackPanel>
+
+                                        <Grid Grid.Column="1" Width="340">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Style="{StaticResource Sans}" Text="5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Sans}" Grid.Row="1" Text="4" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Sans}" Grid.Row="2" Text="3" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Sans}" Grid.Row="3" Text="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <TextBlock Style="{StaticResource Sans}" Grid.Row="4" Text="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
 
-                                        <ProgressBar x:Name="PbFive" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1"/>
-                                        <ProgressBar x:Name="PbFour" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="1"/>
-                                        <ProgressBar x:Name="PbThree" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="2"/>
-                                        <ProgressBar x:Name="PbTwo" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="3"/>
-                                        <ProgressBar x:Name="PbOne" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="4"/>
+                                            <ProgressBar x:Name="PbFive" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1"/>
+                                            <ProgressBar x:Name="PbFour" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="1"/>
+                                            <ProgressBar x:Name="PbThree" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="2"/>
+                                            <ProgressBar x:Name="PbTwo" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="3"/>
+                                            <ProgressBar x:Name="PbOne" Style="{StaticResource ForReview}" Value="0" Height="10" Grid.Column="1" Grid.Row="4"/>
 
-                                    </Grid>
+                                        </Grid>
 
-                                    <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityAddFeedback}">
-                                        <TextBlock Text="Оставьте отзыв,
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityAddFeedback}">
+                                            <TextBlock Text="Оставьте отзыв,
                                                    ваш опыт поможет в выборе" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
-                                        <Button  x:Name="AddFeedback" Click="AddFeedback_Click" Style="{StaticResource BlueNoBorderBtn}" Content="Добавить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
-                                    </StackPanel>
-                                    <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityEditFeedback}">
-                                        <TextBlock Text="У вас уже есть оставленный отзыв, вы можете его изменить" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
-                                        <Button x:Name="EditFeedback" Click="EditFeedback_Click"  Style="{StaticResource BlueNoBorderBtn}" Content="Изменить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
-                                    </StackPanel>
-                                </Grid>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpOwnReview" Visibility="{Binding VisibilityOwnReview}">
-                            <StackPanel Margin="20 0 20 0">
-
-                                <StackPanel>
-                                    <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25" Margin="0 10 0 0"/>
-                                    <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Width="750">
-                                                    <Separator Margin="0 10 0 15"/>
-                                                    <Grid>
-                                                        <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
-                                                            <Border.Background>
-                                                                <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
-                                                            </Border.Background>
-                                                        </Border>
-                                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0" Orientation="Horizontal">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding User.ReviewName}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-
-                                                            <Border CornerRadius="5" Background="White" HorizontalAlignment="Left" Height="30" Width="196" Margin="10 0 0 0">
-                                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                                                    <Grid>
-                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf185;" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf058;" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                                    </Grid>
-                                                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Реальный покупатель" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                                </StackPanel>
-                                                                <Border.Effect>
-                                                                    <DropShadowEffect Color="Black" BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
-                                                                </Border.Effect>
-                                                            </Border>
-                                                        </StackPanel>
-
-                                                        <TextBlock  Text="{Binding DateOfReview, StringFormat='dd.MM.yyyy'}" FontFamily="/Resources/Fonts/#Agency FB Cyrillic" FontSize="19" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF929292"/>
-                                                    </Grid>
-                                                    <StackPanel Margin="0 10 0 20">
-                                                        <StackPanel Orientation="Horizontal">
-                                                            <Border CornerRadius="5"  Background="#FFEEF0F2" Width="151" Height="28">
-                                                                <Viewbox Height="20">
-                                                                    <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
-                                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая: " FontSize="10"/>
-                                                                        <TextBlock Style="{StaticResource UnicodeSymbols}" Text="{Binding CountOfStars}" />
-                                                                    </StackPanel>
-                                                                </Viewbox>
-                                                            </Border>
-                                                            
-                                                        </StackPanel>
-
-                                                        <StackPanel Margin="0 15 0 0">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Достоинства" FontWeight="SemiBold" FontSize="16"/>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Advantage}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
-                                                        </StackPanel>
-                                                        <StackPanel Margin="0 15 0 0">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="SemiBold" FontSize="16"/>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Disadvantages}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
-                                                        </StackPanel>
-                                                        <StackPanel Margin="0 15 0 0">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="SemiBold" FontSize="16"/>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Comment}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
-                                                        </StackPanel>
-                                                        <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityAddition}">
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнение от" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="16"/>
-                                                                <TextBlock Text="{Binding DateOfAddition, StringFormat='dd.MM.yyyy'}" FontWeight="SemiBold" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                            </StackPanel>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Addition}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
-                                                        </StackPanel>
-                                                    </StackPanel>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </StackPanel>
-                            </StackPanel>
-                        </StackPanel>
-
-                        <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpReview">
-                            <StackPanel Margin="20 0 20 0">
-                                <StackPanel Orientation="Horizontal">
-                                    <Grid Margin="0 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="310"/>
-                                            <ColumnDefinition Width="40"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Поиск по отзывам..." FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2"/>
-                                        <Image Grid.Column="1" x:Name="SearchIcon" Cursor="Hand" Margin="9,5,8,5">
-                                            <Image.Style>
-                                                <Style TargetType="{x:Type Image}">
-                                                    <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchMood.ico"/>
-                                                    <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchIcon}" Value="True">
-                                                            <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchBlue.ico"/>
-                                                        </DataTrigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Image.Style>
-                                        </Image>
+                                            <Button  x:Name="AddFeedback" Click="AddFeedback_Click" Style="{StaticResource BlueNoBorderBtn}" Content="Добавить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityEditFeedback}">
+                                            <TextBlock Text="У вас уже есть оставленный отзыв, вы можете его изменить" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
+                                            <Button x:Name="EditFeedback" Click="EditFeedback_Click"  Style="{StaticResource BlueNoBorderBtn}" Content="Изменить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
+                                        </StackPanel>
                                     </Grid>
-                                    <ComboBox x:Name="CbSortReview" SelectedIndex="0" FontSize="20" Height="40"  Width="220" Margin="200 0 0 0">
-                                        <ComboBoxItem>По дате</ComboBoxItem>
-                                        <ComboBoxItem>По рейтингу</ComboBoxItem>
-                                    </ComboBox>
                                 </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="0 0 145 0" >
-                                        <Viewbox Height="20">
-                                            <RadioButton x:Name="RbAll" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="Все" FontFamily="/Resources/Fonts/#Raleway" IsChecked="True" Checked="RbAll_Checked"/>
-                                        </Viewbox>
-                                    </Border>
-                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="131" Height="28">
-                                        <Viewbox Height="20">
-                                            <RadioButton x:Name="RbFive" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
-                                        </Viewbox>
-                                    </Border>
-                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="10 0 0 0">
-                                        <Viewbox Height="20">
-                                            <RadioButton x:Name="RbFour" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
-                                        </Viewbox>
-                                    </Border>
-                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="95" Height="28" Margin="10 0 0 0">
-                                        <Viewbox Height="20">
-                                            <RadioButton x:Name="RbThree" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
-                                        </Viewbox>
-                                    </Border>
-                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="75" Height="28" Margin="10 0 0 0">
-                                        <Viewbox Height="20">
-                                            <RadioButton x:Name="RbTwo" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005;" Checked="RbAll_Checked"/>
-                                        </Viewbox>
-                                    </Border>
-                                    <Border CornerRadius="5"  Background="#FFEEF0F2" Width="55" Height="28" Margin="10 0 0 0">
-                                        <Viewbox Height="20">
-                                            <RadioButton x:Name="RbOne" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005;" Checked="RbAll_Checked"/>
-                                        </Viewbox>
-                                    </Border>
-                                    
-                                </StackPanel>
-                                
-                                <StackPanel>
-                                    <ListBox x:Name="LbReview" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel Width="750">
-                                                    <Separator Margin="0 10 0 15"/>
-                                                    <Grid>
-                                                        <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
-                                                            <Border.Background>
-                                                                <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
-                                                            </Border.Background>
-                                                        </Border>
-                                                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0" Orientation="Horizontal">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding User.ReviewName}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                                                            
-                                                            <Border CornerRadius="5" Background="White" HorizontalAlignment="Left" Height="30" Width="196" Margin="10 0 0 0">
-                                                                <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                                                                    <Grid>
-                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf185;" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                                        <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf058;" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                                    </Grid>
-                                                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Реальный покупатель" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Margin="5 0 0 0"/>
-                                                                </StackPanel>
-                                                                <Border.Effect>
-                                                                    <DropShadowEffect Color="Black" BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
-                                                                </Border.Effect>
-                                                            </Border>
-                                                        </StackPanel>
+                            </StackPanel>
 
-                                                        <TextBlock  Text="{Binding DateOfReview, StringFormat='dd.MM.yyyy'}" FontFamily="/Resources/Fonts/#Agency FB Cyrillic" FontSize="19" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF929292"/>
-                                                    </Grid>
-                                                    <StackPanel Margin="0 10 0 20">
+                            <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpOwnReview" Visibility="{Binding VisibilityOwnReview}">
+                                <StackPanel Margin="20 0 20 0">
+
+                                    <StackPanel>
+                                        <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25" Margin="0 10 0 0"/>
+                                        <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Width="750">
+                                                        <Separator Margin="0 10 0 15"/>
+                                                        <Grid>
+                                                            <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
+                                                                <Border.Background>
+                                                                    <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
+                                                                </Border.Background>
+                                                            </Border>
+                                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0" Orientation="Horizontal">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding User.ReviewName}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                                                                <Border CornerRadius="5" Background="White" HorizontalAlignment="Left" Height="30" Width="196" Margin="10 0 0 0">
+                                                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                                                        <Grid>
+                                                                            <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf185;" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                            <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf058;" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                        </Grid>
+                                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Реальный покупатель" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                    </StackPanel>
+                                                                    <Border.Effect>
+                                                                        <DropShadowEffect Color="Black" BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
+                                                                    </Border.Effect>
+                                                                </Border>
+                                                            </StackPanel>
+
+                                                            <TextBlock  Text="{Binding DateOfReview, StringFormat='dd.MM.yyyy'}" FontFamily="/Resources/Fonts/#Agency FB Cyrillic" FontSize="19" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF929292"/>
+                                                        </Grid>
+                                                        <StackPanel Margin="0 10 0 20">
                                                             <StackPanel Orientation="Horizontal">
                                                                 <Border CornerRadius="5"  Background="#FFEEF0F2" Width="151" Height="28">
                                                                     <Viewbox Height="20">
@@ -773,33 +645,179 @@
                                                                         </StackPanel>
                                                                     </Viewbox>
                                                                 </Border>
-                                                                
+
                                                             </StackPanel>
 
-                                                            <StackPanel Margin="0 15 0 0">
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityAdvantage}">
                                                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Достоинства" FontWeight="SemiBold" FontSize="16"/>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Advantage}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Advantage}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
                                                             </StackPanel>
-                                                            <StackPanel Margin="0 15 0 0">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="SemiBold" FontSize="16"/>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Disadvantages}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityDisadvantage}">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="SemiBold" FontSize="16"/>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Disadvantages}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
                                                             </StackPanel>
-                                                            <StackPanel Margin="0 15 0 0">
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="SemiBold" FontSize="16"/>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Comment}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityComment}">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="SemiBold" FontSize="16"/>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Comment}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
                                                             </StackPanel>
-                                                        <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityAddition}">
-                                                            <StackPanel Orientation="Horizontal">
-                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнение от" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="16"/>
-                                                                <Label Content="{Binding DateOfAddition}" FontWeight="SemiBold" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityAddition}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнение от" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="16"/>
+                                                                    <TextBlock Text="{Binding DateOfAddition, StringFormat='dd.MM.yyyy'}" FontWeight="SemiBold" FontSize="16" TextAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                </StackPanel>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Addition}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
                                                             </StackPanel>
-                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Addition}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
                                                         </StackPanel>
                                                     </StackPanel>
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+
+                            <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpReview">
+                                <StackPanel Margin="20 0 20 0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Grid Margin="0 10 0 10" Background="#FFEEF0F2" Height="40" Width="350" HorizontalAlignment="Left">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="310"/>
+                                                <ColumnDefinition Width="40"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Поиск по отзывам..." FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2"/>
+                                            <Image Grid.Column="1" x:Name="SearchIcon" Cursor="Hand" Margin="9,5,8,5">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchMood.ico"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchIcon}" Value="True">
+                                                                <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchBlue.ico"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </Grid>
+                                        <ComboBox x:Name="CbSortReview" SelectedIndex="0" FontSize="20" Height="40"  Width="220" Margin="200 0 0 0">
+                                            <ComboBoxItem>По дате</ComboBoxItem>
+                                            <ComboBoxItem>По рейтингу</ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="0 0 145 0" >
+                                            <Viewbox Height="20">
+                                                <RadioButton x:Name="RbAll" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="Все" FontFamily="/Resources/Fonts/#Raleway" IsChecked="True" Checked="RbAll_Checked"/>
+                                            </Viewbox>
+                                        </Border>
+                                        <Border CornerRadius="5"  Background="#FFEEF0F2" Width="131" Height="28">
+                                            <Viewbox Height="20">
+                                                <RadioButton x:Name="RbFive" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                            </Viewbox>
+                                        </Border>
+                                        <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="10 0 0 0">
+                                            <Viewbox Height="20">
+                                                <RadioButton x:Name="RbFour" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                            </Viewbox>
+                                        </Border>
+                                        <Border CornerRadius="5"  Background="#FFEEF0F2" Width="95" Height="28" Margin="10 0 0 0">
+                                            <Viewbox Height="20">
+                                                <RadioButton x:Name="RbThree" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                            </Viewbox>
+                                        </Border>
+                                        <Border CornerRadius="5"  Background="#FFEEF0F2" Width="75" Height="28" Margin="10 0 0 0">
+                                            <Viewbox Height="20">
+                                                <RadioButton x:Name="RbTwo" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005; &#xf005;" Checked="RbAll_Checked"/>
+                                            </Viewbox>
+                                        </Border>
+                                        <Border CornerRadius="5"  Background="#FFEEF0F2" Width="55" Height="28" Margin="10 0 0 0">
+                                            <Viewbox Height="20">
+                                                <RadioButton x:Name="RbOne" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="&#xf005;" Checked="RbAll_Checked"/>
+                                            </Viewbox>
+                                        </Border>
+
+                                    </StackPanel>
+
+                                    <StackPanel>
+                                        <ListBox x:Name="LbReview" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent" Margin="0 0 0 10">
+                                            <ListBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Width="750">
+                                                        <Separator Margin="0 10 0 15"/>
+                                                        <Grid>
+                                                            <Border CornerRadius="150" HorizontalAlignment="Left" Height="46" Width="46">
+                                                                <Border.Background>
+                                                                    <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}"/>
+                                                                </Border.Background>
+                                                            </Border>
+                                                            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Margin="60 0 0 0" Orientation="Horizontal">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding User.ReviewName}" FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                                                                <Border CornerRadius="5" Background="White" HorizontalAlignment="Left" Height="30" Width="196" Margin="10 0 0 0">
+                                                                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                                                                        <Grid>
+                                                                            <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf185;" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                            <TextBlock Style="{StaticResource  UnicodeSymbols}" Text="&#xf058;" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                        </Grid>
+                                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="Реальный покупатель" HorizontalAlignment="Center" FontSize="14" VerticalAlignment="Center" Margin="5 0 0 0"/>
+                                                                    </StackPanel>
+                                                                    <Border.Effect>
+                                                                        <DropShadowEffect Color="Black" BlurRadius="10" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
+                                                                    </Border.Effect>
+                                                                </Border>
+                                                            </StackPanel>
+
+                                                            <TextBlock  Text="{Binding DateOfReview, StringFormat='dd.MM.yyyy'}" FontFamily="/Resources/Fonts/#Agency FB Cyrillic" FontSize="19" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="#FF929292"/>
+                                                        </Grid>
+                                                        <StackPanel Margin="0 10 0 20">
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <Border CornerRadius="5"  Background="#FFEEF0F2" Width="151" Height="28">
+                                                                    <Viewbox Height="20">
+                                                                        <StackPanel Orientation="Horizontal" Margin="5 0 5 0">
+                                                                            <TextBlock Style="{StaticResource ProfileInfo}" Text="Общая: " FontSize="10"/>
+                                                                            <TextBlock Style="{StaticResource UnicodeSymbols}" Text="{Binding CountOfStars}" />
+                                                                        </StackPanel>
+                                                                    </Viewbox>
+                                                                </Border>
+
+                                                            </StackPanel>
+
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityAdvantage}">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Достоинства" FontWeight="SemiBold" FontSize="16"/>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Advantage}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityDisadvantage}">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="SemiBold" FontSize="16"/>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Disadvantages}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityComment}">
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="Комментарий" FontWeight="SemiBold" FontSize="16"/>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Comment}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                            <StackPanel Margin="0 15 0 0" Visibility="{Binding VisibilityAddition}">
+                                                                <StackPanel Orientation="Horizontal">
+                                                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнение от" FontWeight="SemiBold" VerticalAlignment="Center" FontSize="16"/>
+                                                                    <Label Content="{Binding DateOfAddition, StringFormat='dd.MM.yyyy'}" FontWeight="SemiBold" FontSize="16" VerticalContentAlignment="Center" VerticalAlignment="Center"/>
+                                                                </StackPanel>
+                                                                <TextBlock Style="{StaticResource ProfileInfo}" Text="{Binding Addition}" Margin="0 15 0 0" TextWrapping="Wrap" FontSize="16"/>
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ListBox.ItemTemplate>
+                                        </ListBox>
+                                        <Border Background="White" Height="40" CornerRadius="10" Margin="0 0 0 10" >
+                                            <Border.Effect>
+                                                <DropShadowEffect Color="Black" BlurRadius="5" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
+                                            </Border.Effect>
+                                            <StackPanel  Orientation="Horizontal">
+                                                <Button x:Name="FirstBtn" Content="&#xf100;" Style="{StaticResource PageArrows}" Margin="10 0 0 0" Click="BtnFirstPage_Click"/>
+                                                <Button x:Name="PreviousBtn" Content="&#xf104;" Style="{StaticResource PageArrows}" Click="BtnPreviousPage_Click"/>
+                                                <StackPanel x:Name="SPanelPages" Orientation="Horizontal" Width="550"/>
+                                                <Button x:Name="NextBtn" Content="&#xf105;" Style="{StaticResource PageArrows}"  Click="BtnNextPage_Click"/>
+                                                <Button x:Name="LastBtn" Content="&#xf101;" Style="{StaticResource PageArrows}"  Click="BtnLastPage_Click"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
                         </StackPanel>

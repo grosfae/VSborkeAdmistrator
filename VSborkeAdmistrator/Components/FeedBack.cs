@@ -24,6 +24,7 @@ namespace VSborkeAdmistrator.Components
         public System.DateTime DateOfReview { get; set; }
         public Nullable<System.DateTime> DateOfAddition { get; set; }
         public string Addition { get; set; }
+        public Nullable<bool> IsDelete { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }
         public virtual User User { get; set; }

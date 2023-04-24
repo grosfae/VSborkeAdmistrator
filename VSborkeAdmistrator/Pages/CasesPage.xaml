@@ -243,7 +243,6 @@
                                 <Button x:Name="ApplyBtn" Width="180" Height="45" Style="{StaticResource SortApply}" Content="Применить" BorderThickness="1" FontSize="28" Margin="0 15 0 0" Click="ApplyBtn_Click"/>
                                 <Button x:Name="ResetBtn" Width="180" Height="45" Style="{StaticResource SortReset}" Content="Сбросить" BorderThickness="1" FontSize="28" Margin="0 10 0 20" Click="ResetBtn_Click"/>
                             </StackPanel>
-                            <Line X1="250" Y1="599" X2="250" Y2="0" Stroke="#FF3881EF" StrokeThickness="1"/>
                             <StackPanel Width="880" Grid.Column="1">
                                 <ListView x:Name="LvCases" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="1940" d:ItemsSource="{d:SampleData ItemCount=5}">
                                     <ListView.ItemTemplate>

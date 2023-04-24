@@ -48,6 +48,14 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
+        public string NameForWindows
+        {
+            get
+            {
+                return $"Корпус {Name} {PrimaryColor.Name}";
+            }
+        }
+
         public string AntiVibrationBool
         {
             get

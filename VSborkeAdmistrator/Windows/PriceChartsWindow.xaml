@@ -1,12 +1,70 @@
 ﻿<Window x:Class="VSborkeAdmistrator.Windows.PriceChartsWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VSborkeAdmistrator.Windows"
-        mc:Ignorable="d" Loaded="Window_Loaded"
-        Title="PriceChartsWindow" Height="320" Width="400">
-    <Grid>
-        <Grid x:Name="GridForChart" Height="160" Width="360" VerticalAlignment="Top" Margin="0 20 0 0" Background="White"  />
+        
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        
+        mc:Ignorable="d"
+         BorderThickness="2"
+        BorderBrush="#FF3881EF"
+        
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        
+        ResizeMode="NoResize"
+        
+        WindowStartupLocation="CenterScreen"
+        Title="LiveChartsPrice" SizeToContent="Height" MinHeight="520" Width="400" Loaded="Window_Loaded">
+    <Grid Background="White" Height="auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" x:Name="Header" Background="White" Grid.Row="0">
+            <TextBlock x:Name="TbName" Text="Name" Style="{StaticResource Header}" FontSize="24" Height="30" FontWeight="Medium" Margin="10 0 0 0"/>
+        </StackPanel>
+        <StackPanel Background="#FF3881EF" Height="2" Margin="0 33 0 0"/>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Height="36" Width="auto">
+            <Polygon Fill="#FF3881EF" Points="180,0,250,50, 250,0, 0,0"/>
+            <Image x:Name="CloseButton" Height="15" Width="15" Margin="220 0 0 5" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="/Resources/Header/NoneActiveCross.png"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}" Value="True">
+                                <Setter Property="Source" Value="/Resources/Header/ActiveCross.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.Effect>
+                    <BlurEffect Radius="1"/>
+                </Image.Effect>
+            </Image>
+        </Grid>
+        <Grid Grid.Row="1" Margin="10 0 10 0" VerticalAlignment="Center">
+            <TextBlock Style="{StaticResource ProfileInfo}" Text="Стоимость корпуса:" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <TextBlock x:Name="TbCost" Style="{StaticResource Sans}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Right" Foreground="#FF3881EF" />
+            <Separator Margin="0 40 0 0"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid  Height="23" VerticalAlignment="Top">
+                <TextBlock Style="{StaticResource ProfileInfo}" Text="История цены" VerticalAlignment="Center" FontSize="16" Margin="10 0 0 0"/>
+                <TextBlock x:Name="TbPriceRange" Style="{StaticResource Sans}" Text="PriceRange" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 0" FontSize="16"/>
+            </Grid>
+            <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="0 30 0 20">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis LabelFormatter="{Binding YFormatter}" ShowLabels="True"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels ="{Binding Labels}" Margin="0 0 0 5"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+        </Grid>
     </Grid>
 </Window>

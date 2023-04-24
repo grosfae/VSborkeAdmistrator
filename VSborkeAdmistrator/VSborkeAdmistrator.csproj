@@ -41,6 +41,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>..\packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -76,10 +82,19 @@
     <Compile Include="Components\AdditionComputerCaseImage.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\AlignmentPowerBlock.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\BackLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\BottomLiquidCooling.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ColorRGB.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ComputerCase.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\ConnectorRGB.cs">
@@ -94,6 +109,9 @@
     <Compile Include="Components\FeedBack.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\FormFactor.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\FrontLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -106,10 +124,22 @@
     <Compile Include="Components\HorizontalAddonSlot.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\IOPanel.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\IOPanelAlignment.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\Manufacturer.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\MaterialSet.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Order.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\OrientationMotherboard.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\PartialClass\ComputerCase.cs" />
@@ -125,10 +155,16 @@
     <Compile Include="Components\PrimaryColor.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\Role.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\SecondColor.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SideLiquidCooling.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SidePanelFixation.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SlotHDD.cs">
@@ -141,6 +177,9 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SourceRGB.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Status.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SupportBackCooler.cs">
@@ -158,16 +197,28 @@
     <Compile Include="Components\SupportTopCooler.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\sysdiagrams.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\TopLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\TypeManagmentRGB.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\TypeRGB.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\User.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\VerticalAddonSlot.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\WindowAlignment.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\WindowMaterial.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\CasesPage.xaml.cs">
@@ -181,6 +232,9 @@
     </Compile>
     <Compile Include="Pages\OrderPage.xaml.cs">
       <DependentUpon>OrderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\PriceGraphMiniPage.xaml.cs">
+      <DependentUpon>PriceGraphMiniPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProfileEditPage.xaml.cs">
       <DependentUpon>ProfileEditPage.xaml</DependentUpon>
@@ -208,48 +262,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Components\AlignmentPowerBlock.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ColorRGB.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ComputerCase.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\FormFactor.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\IOPanel.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\Manufacturer.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\Order.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\OrientationMotherboard.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\Role.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\SidePanelFixation.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\Status.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\sysdiagrams.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\TypeRGB.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\User.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\VSborkeModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -264,9 +276,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Components\WindowMaterial.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -293,6 +302,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\PriceGraphMiniPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

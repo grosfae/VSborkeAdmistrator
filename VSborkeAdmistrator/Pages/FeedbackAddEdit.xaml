@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:VSborkeAdmistrator.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="650" d:DesignWidth="1230"
-      Title="FeedbackAddEdit">
+      d:DesignHeight="750" d:DesignWidth="1230"
+      Title="FeedbackAddEdit" Loaded="Page_Loaded">
     <Page.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -103,11 +103,11 @@
                                         </Border>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0 10 0 0">
-                                        <TextBlock x:Name="TbOneStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}"/>
-                                        <TextBlock x:Name="TbTwoStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0"/>
-                                        <TextBlock x:Name="TbThreeStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0"/>
-                                        <TextBlock x:Name="TbFourStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0"/>
-                                        <TextBlock x:Name="TbFiveStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0"/>
+                                        <TextBlock x:Name="TbOneStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" MouseLeftButtonDown="TbOneStar_MouseLeftButtonDown"/>
+                                        <TextBlock x:Name="TbTwoStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0" MouseLeftButtonDown="TbTwoStar_MouseLeftButtonDown"/>
+                                        <TextBlock x:Name="TbThreeStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0" MouseLeftButtonDown="TbThreeStar_MouseLeftButtonDown"/>
+                                        <TextBlock x:Name="TbFourStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0" MouseLeftButtonDown="TbFourStar_MouseLeftButtonDown"/>
+                                        <TextBlock x:Name="TbFiveStar" Text="&#xf006;" FontSize="34" FontWeight="Bold" Style="{StaticResource UnicodeSymbols}" Margin="10 0 0 0" MouseLeftButtonDown="TbFiveStar_MouseLeftButtonDown"/>
                                     </StackPanel>
                                 </StackPanel>
                             </Border>
@@ -124,11 +124,11 @@
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" Text="{Binding Advantage}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Background="Transparent"  Margin="5" BorderThickness="0"/>
+                                        <TextBox x:Name="TbAdvantage" TextWrapping="Wrap" Text="{Binding Advantage}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbAdvantage_TextChanged"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
-                            
+
                             <StackPanel Margin="0 15 0 0" Height="auto">
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{StaticResource ProfileInfo}" Text="Недостатки" FontWeight="DemiBold" FontSize="20" Margin="0 1 0 0"/>
@@ -140,7 +140,7 @@
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" Text="{Binding Disadvantages}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Margin="5" Background="Transparent" BorderThickness="0"/>
+                                        <TextBox x:Name="TbDisadvantage" TextWrapping="Wrap" Text="{Binding Disadvantages}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Margin="5" Background="Transparent" BorderThickness="0" TextChanged="TbDisadvantage_TextChanged"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
@@ -156,28 +156,78 @@
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" Text="{Binding Comment}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Margin="5" Background="Transparent" BorderThickness="0"/>
+                                        <TextBox x:Name="TbComment" TextWrapping="Wrap" Text="{Binding Comment}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Margin="5" Background="Transparent" BorderThickness="0" TextChanged="TbComment_TextChanged"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
 
+                            <StackPanel Margin="0 15 0 0" Height="auto" x:Name="SpAddition">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" Text="Дополнение" FontWeight="DemiBold" FontSize="20" Margin="0 1 0 0"/>
+                                </StackPanel>
+                                <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left">
+                                    <Grid>
+                                        <TextBox TextWrapping="Wrap" Text="{Binding Addition}" AcceptsReturn="True" MinHeight="60" FontSize="18" Height="auto" Width="535" MaxLength="3000" Margin="5" Background="Transparent" BorderThickness="0"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="ReviewSaveBtn" Content="Отправить" Click="ReviewSaveBtn_Click" Style="{StaticResource BlueNoBorderBtn}" Width="150" Height="50" Margin="0 20 0 0" HorizontalAlignment="Left"/>
+                                <Button x:Name="BackBtn" Content="Назад" Click="BackBtn_Click" Style="{StaticResource BlueNoBorderBtn}" Width="150" Height="50" Margin="50 20 0 0" HorizontalAlignment="Left"/>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="10 20 0 0" Width="550" Orientation="Vertical">
                             <Border CornerRadius="10" BorderThickness="1" Background="#FFF2F2F2" HorizontalAlignment="Center">
-                                <StackPanel Width="350" Height="300">
+                                <StackPanel Width="370" Height="300">
                                     <Grid Height="35" Width="auto" HorizontalAlignment="Left" Margin="20 10 0 0">
-                                        <ProgressBar Width="270" x:Name="PbProfileProgress" Background="#FFAFAFAF" Foreground="#FF3881EF" HorizontalAlignment="Left"/>
+                                        <ProgressBar Width="330" x:Name="PbReviewProgress" Background="#FFAFAFAF" Foreground="#FF3881EF" HorizontalAlignment="Left"/>
                                         <TextBlock x:Name="TbCountProgress" Style="{StaticResource Header}" Foreground="White" HorizontalAlignment="Center" FontSize="30" Text="0%"/>
                                     </Grid>
-                                    <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Center" FontSize="16" Margin="0 20 0 0" TextWrapping="Wrap" Text="Заполните все поля, чтобы ваш отзыв был максимально полезен."/>
+                                    <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Center" FontSize="20" Margin="0 20 0 0" TextWrapping="Wrap" Text="Заполните все поля, чтобы ваш отзыв был максимально полезен."/>
                                     <StackPanel Orientation="Horizontal" Margin="15 10 0 0" HorizontalAlignment="Left">
                                         <Viewbox Height="35">
                                             <CheckBox x:Name="CbMark" IsEnabled="False" Style="{DynamicResource CheckBoxCircle}"/>
                                         </Viewbox>
-                                        <TextBlock Text="Поставьте оценку" VerticalAlignment="Center" Style="{StaticResource ProfileInfo}" Margin="5 0 0 0" FontSize="16"/>
-                                        <Border CornerRadius="5" BorderThickness="1" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="40 0 0 0">
+                                        <TextBlock Text="Поставьте оценку" VerticalAlignment="Center" Style="{StaticResource ProfileInfo}" Margin="5 0 0 0" FontSize="20"/>
+                                        <Border CornerRadius="5" BorderThickness="1" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="63 0 0 0">
                                             <Grid>
-                                                <TextBlock Style="{StaticResource Sans}" Foreground="#FF3881EF" FontSize="16" Height="auto" Width="auto" Text="+40%" Background="Transparent" Margin="2 0 2 0"/>
+                                                <TextBlock Style="{StaticResource Sans}" Foreground="#FF3881EF" FontSize="20" Height="auto" Width="auto" Text="+40%" Background="Transparent" Margin="2 0 2 0"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+                                    
+                                    <StackPanel Orientation="Horizontal" Margin="15 10 0 0" HorizontalAlignment="Left">
+                                        <Viewbox Height="35">
+                                            <CheckBox x:Name="CbAdventages" IsEnabled="False" Style="{DynamicResource CheckBoxCircle}"/>
+                                        </Viewbox>
+                                        <TextBlock Text="Опишите достоинства" VerticalAlignment="Center" Style="{StaticResource ProfileInfo}" Margin="5 0 0 0" FontSize="20"/>
+                                        <Border CornerRadius="5" BorderThickness="1" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="22 0 0 0">
+                                            <Grid>
+                                                <TextBlock Style="{StaticResource Sans}" Foreground="#FF3881EF" FontSize="20" Height="auto" Width="auto" Text="+20%" Background="Transparent" Margin="2 0 2 0"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="15 10 0 0" HorizontalAlignment="Left">
+                                        <Viewbox Height="35">
+                                            <CheckBox x:Name="CbDisadventages" IsEnabled="False" Style="{DynamicResource CheckBoxCircle}"/>
+                                        </Viewbox>
+                                        <TextBlock Text="Опишите недостатки" VerticalAlignment="Center" Style="{StaticResource ProfileInfo}" Margin="5 0 0 0" FontSize="20"/>
+                                        <Border CornerRadius="5" BorderThickness="1" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="34 0 0 0">
+                                            <Grid>
+                                                <TextBlock Style="{StaticResource Sans}" Foreground="#FF3881EF" FontSize="20" Height="auto" Width="auto" Text="+20%" Background="Transparent" Margin="2 0 2 0"/>
+                                            </Grid>
+                                        </Border>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Horizontal" Margin="15 10 0 0" HorizontalAlignment="Left">
+                                        <Viewbox Height="35">
+                                            <CheckBox x:Name="CbComment" IsEnabled="False" Style="{DynamicResource CheckBoxCircle}"/>
+                                        </Viewbox>
+                                        <TextBlock Text="Добавьте комментарий" VerticalAlignment="Center" Style="{StaticResource ProfileInfo}" Margin="5 0 0 0" FontSize="20"/>
+                                        <Border CornerRadius="5" BorderThickness="1" Background="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10 0 0 0">
+                                            <Grid>
+                                                <TextBlock Style="{StaticResource Sans}" Foreground="#FF3881EF" FontSize="20" Height="auto" Width="auto" Text="+20%" Background="Transparent" Margin="2 0 2 0"/>
                                             </Grid>
                                         </Border>
                                     </StackPanel>

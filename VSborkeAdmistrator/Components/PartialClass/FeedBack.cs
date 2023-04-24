@@ -43,7 +43,44 @@ namespace VSborkeAdmistrator.Components
                     return Visibility.Collapsed;
             }
         }
+        public Visibility VisibilityAdvantage
+        {
+            get
+            {
+                if (Advantage != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
 
-        
+        public Visibility VisibilityDisadvantage
+        {
+            get
+            {
+                if (Disadvantages != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
+        public Visibility VisibilityComment
+        {
+            get
+            {
+                if (Comment != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                    return Visibility.Collapsed;
+            }
+        }
+
     }
 }
