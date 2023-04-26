@@ -34,6 +34,8 @@ namespace VSborkeAdmistrator.Pages
             TbCpuHeightStart.Tag = $"от {App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler)}";
             TbCpuHeightEnd.Tag = $"до {App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler)}";
 
+            CbAccess.IsChecked = true;
+
         }
 
         private void Refresh()
@@ -47,28 +49,22 @@ namespace VSborkeAdmistrator.Pages
             {
                 filterCase = filterCase.OrderByDescending(x => x.PriceDiscount).ToList();
             }
-            if (CbAccess.IsChecked == true & CbNoneAccess.IsChecked == true)
+            foreach (var child in ChecksumAccess_Collection.Children)
             {
-
-            }
-            else
-            {
-                if (CbAccess.IsChecked == true)
+                var check = child as CheckBox;
+                if (check.IsChecked == true)
                 {
-                    filterCase = filterCase.Where(x => x.IsAccessable == true).ToList();
-                }
-                if (CbNoneAccess.IsChecked == true)
-                {
-                    filterCase = filterCase.Where(x => x.IsAccessable == false).ToList();
+                    foreach (ComputerCase pc in filterCase)
+                    {
+                        filterCase = filterCase.Where(x =>
+                        x.IsAccessable && CbAccess.IsChecked == true ||
+                        x.IsAccessable == false && CbNoneAccess.IsChecked == true ||
+                        x.IsDelete && CbDeleted.IsChecked == true
+                        ).ToList();
+                    }
                 }
             }
-            if (CbDeleted.IsChecked == true)
-            {
-                CbAccess.IsChecked = false;
-                CbNoneAccess.IsChecked = true;
-                filterCase = filterCase.Where(x => x.IsDelete == true).ToList();
-            }
-
+            
             if (CbManufacturer.SelectedIndex != -1)
             {
                 filterCase = filterCase.Where(x => x.Manufacturer == CbManufacturer.SelectedItem).ToList();
@@ -615,10 +611,5 @@ namespace VSborkeAdmistrator.Pages
             Refresh();
         }
 
-        private void CbDeleted_Checked(object sender, RoutedEventArgs e)
-        {
-            CbAccess.IsChecked = false;
-            CbNoneAccess.IsChecked = true;
-        }
     }
 }

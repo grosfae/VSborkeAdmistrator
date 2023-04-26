@@ -605,7 +605,7 @@
 
                                     <StackPanel>
                                         <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25" Margin="0 10 0 0"/>
-                                        <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent">
+                                        <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent" IsEnabled="False" BorderThickness="0">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Width="750">
@@ -684,7 +684,7 @@
                                                 <ColumnDefinition Width="310"/>
                                                 <ColumnDefinition Width="40"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Поиск по отзывам..." FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2"/>
+                                            <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Поиск по отзывам..." FontSize="24" VerticalContentAlignment="Center" Background="Transparent" Grid.ColumnSpan="2" Margin="0,2,40,2" TextChanged="TbSearch_TextChanged"/>
                                             <Image Grid.Column="1" x:Name="SearchIcon" Cursor="Hand" Margin="9,5,8,5">
                                                 <Image.Style>
                                                     <Style TargetType="{x:Type Image}">
@@ -698,7 +698,7 @@
                                                 </Image.Style>
                                             </Image>
                                         </Grid>
-                                        <ComboBox x:Name="CbSortReview" SelectedIndex="0" FontSize="20" Height="40"  Width="220" Margin="200 0 0 0">
+                                        <ComboBox x:Name="CbSortReview" FontSize="20" Height="40"  Width="220" Margin="200 0 0 0" SelectionChanged="CbSortReview_SelectionChanged">
                                             <ComboBoxItem>По дате</ComboBoxItem>
                                             <ComboBoxItem>По рейтингу</ComboBoxItem>
                                         </ComboBox>
@@ -706,7 +706,7 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Border CornerRadius="5"  Background="#FFEEF0F2" Width="115" Height="28" Margin="0 0 145 0" >
                                             <Viewbox Height="20">
-                                                <RadioButton x:Name="RbAll" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="Все" FontFamily="/Resources/Fonts/#Raleway" IsChecked="True" Checked="RbAll_Checked"/>
+                                                <RadioButton x:Name="RbAll" GroupName="Stars" Style="{StaticResource BlueRadioBtn}" Content="Все" FontFamily="/Resources/Fonts/#Raleway" Checked="RbAll_Checked"/>
                                             </Viewbox>
                                         </Border>
                                         <Border CornerRadius="5"  Background="#FFEEF0F2" Width="131" Height="28">
@@ -738,7 +738,7 @@
                                     </StackPanel>
 
                                     <StackPanel>
-                                        <ListBox x:Name="LbReview" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent" Margin="0 0 0 10">
+                                        <ListBox x:Name="LbReview" d:ItemsSource="{d:SampleData ItemCount=5}" BorderBrush="Transparent" Margin="0 0 0 10" IsEnabled="False" BorderThickness="0">
                                             <ListBox.ItemTemplate>
                                                 <DataTemplate>
                                                     <StackPanel Width="750">

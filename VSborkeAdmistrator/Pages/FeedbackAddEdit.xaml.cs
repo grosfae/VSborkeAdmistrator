@@ -53,7 +53,7 @@ namespace VSborkeAdmistrator.Pages
                 contextFeedback.UserId = App.LoggedUser.Id;
                 App.DB.FeedBack.Add(contextFeedback);
             }
-            if (TbAdvantage.Text.Length > 0)
+            if (TbAddition.Text.Length > 0)
             {
                 contextFeedback.DateOfAddition= DateTime.Now;
             }
@@ -318,7 +318,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void TbAdvantage_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TbAdvantage.Text.Length > 0)
+            if (TbAdvantage.Text.Length > 0 & CbAdventages.IsChecked != true)
             {
                 CbAdventages.IsChecked = true;
                 progress += 20;
@@ -334,7 +334,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void TbDisadvantage_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TbDisadvantage.Text.Length > 0)
+            if (TbDisadvantage.Text.Length > 0 & CbDisadventages.IsChecked != true)
             {
                 CbDisadventages.IsChecked = true;
                 progress += 20;
@@ -350,7 +350,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void TbComment_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (TbComment.Text.Length > 0)
+            if (TbComment.Text.Length > 0 & CbComment.IsChecked != true)
             {
                 CbComment.IsChecked = true;
                 progress += 20;

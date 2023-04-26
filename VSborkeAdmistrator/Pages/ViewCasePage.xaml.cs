@@ -30,7 +30,7 @@ namespace VSborkeAdmistrator.Pages
 
         ComputerCase contextComputerCase;
 
-        
+        int maxPage = 0;
 
         public ViewCasePage(ComputerCase computerCase)
         {
@@ -38,13 +38,12 @@ namespace VSborkeAdmistrator.Pages
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
 
-            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
 
-            
-            
+            CbSortReview.SelectedIndex = 0;
+
 
             LvAnalogue.ItemsSource = App.DB.ComputerCase.Where(x => x.Id != contextComputerCase.Id & x.EAtx == contextComputerCase.EAtx & x.FlexAtx == contextComputerCase.FlexAtx
-            & x.MicroAtx == contextComputerCase.MicroAtx & x.MiniDtx == contextComputerCase.MiniDtx & x.MiniItx == contextComputerCase.MiniItx & x.SsiCeb == contextComputerCase.SsiCeb 
+            & x.MicroAtx == contextComputerCase.MicroAtx & x.MiniDtx == contextComputerCase.MiniDtx & x.MiniItx == contextComputerCase.MiniItx & x.SsiCeb == contextComputerCase.SsiCeb
             & x.SsiEeb == contextComputerCase.SsiEeb & x.StandartAtx == contextComputerCase.StandartAtx & x.ThinMiniItx == contextComputerCase.ThinMiniItx & x.XlAtx == contextComputerCase.XlAtx
             ).ToList().Take(2);
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
@@ -62,17 +61,25 @@ namespace VSborkeAdmistrator.Pages
                 LvAnalogue.Visibility = Visibility.Collapsed;
                 TbNoneAnalog.Visibility = Visibility.Visible;
             }
-
+            RbAll.IsChecked = true;
+            LbReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
         }
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
+            maxPage = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).Count();
 
+            FrameForChart.Navigate(new PriceGraphMiniPage(contextComputerCase));
+            FeedbackMarkRefresh();
+            Update();
+        }
         int numberPage = 0;
         int count = 5;
-        int maxPage = 0;
+
         int fakePage = 1;
         private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
             numberPage = 0;
             Update();
             fakePage = 1;
@@ -81,7 +88,6 @@ namespace VSborkeAdmistrator.Pages
 
         private void BtnPreviousPage_Click(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
             numberPage--;
             fakePage--;
             if (numberPage < 0)
@@ -94,7 +100,6 @@ namespace VSborkeAdmistrator.Pages
 
         private void BtnNextPage_Click(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
             numberPage++;
             fakePage++;
             if (numberPage == maxPage)
@@ -112,7 +117,6 @@ namespace VSborkeAdmistrator.Pages
 
         private void BtnLastPage_Click(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
             numberPage = maxPage - 1;
             fakePage = maxPage;
             Update();
@@ -120,19 +124,67 @@ namespace VSborkeAdmistrator.Pages
         }
         private void Update()
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
+
+            IEnumerable<FeedBack> partsList = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id);
+            if (CbSortReview.SelectedIndex == 0)
+            {
+                partsList = partsList.OrderByDescending(x => x.DateOfReview).ToList();
+            }
+            if (CbSortReview.SelectedIndex == 1)
+            {
+                partsList = partsList.OrderByDescending(x => x.GeneralStars).ToList();
+            }
+            if (RbAll.IsChecked == true)
+            {
+
+            }
+            else if (RbFive.IsChecked == true)
+            {
+                partsList = partsList.Where(x => x.GeneralStars == 5).ToList();
+            }
+            else if (RbFour.IsChecked == true)
+            {
+                partsList = partsList.Where(x => x.GeneralStars == 4).ToList();
+            }
+            else if (RbThree.IsChecked == true)
+            {
+                partsList = partsList.Where(x => x.GeneralStars == 3).ToList();
+            }
+            else if (RbTwo.IsChecked == true)
+            {
+                partsList = partsList.Where(x => x.GeneralStars == 2).ToList();
+            }
+            else if (RbOne.IsChecked == true)
+            {
+                partsList = partsList.Where(x => x.GeneralStars == 1).ToList();
+            }
+
+            if (partsList.Count() > count)
+            {
+                maxPage = partsList.Count() / count;
+            }
+            else
+            {
+                maxPage = 1;
+            }
             if (fakePage > maxPage)
             {
                 fakePage = maxPage;
             }
-
-            IEnumerable<FeedBack> partsList = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id);
-            partsList = partsList.Skip(count * numberPage).Take(count);
+            if (TbSearch.Text.Length > 0)
+            {
+                partsList = partsList.Where(x => x.Advantage.ToLower().Contains(TbSearch.Text.ToLower()) || x.Disadvantages.ToLower().Contains(TbSearch.Text.ToLower()) || x.Comment.ToLower().Contains(TbSearch.Text.ToLower()));
+            }
+            partsList = partsList.Skip(count * numberPage).Take(count).ToList();
             LbReview.ItemsSource = partsList;
+            GeneratePageNumbers();
+
+
+
+
         }
         private void GeneratePageNumbers()
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
             SPanelPages.Children.Clear();
             for (int i = 1; i <= maxPage; i++)
             {
@@ -144,16 +196,14 @@ namespace VSborkeAdmistrator.Pages
                 btn.Style = style;
                 SPanelPages.Children.Add(btn);
 
-                if(int.Parse(btn.Content.ToString()) == fakePage)
+                if (int.Parse(btn.Content.ToString()) == fakePage)
                 {
-                    btn.IsChecked= true;
+                    btn.IsChecked = true;
                 }
             }
         }
         private void PageButton_Click(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.FeedBack.Where(x => x.IsDelete != true & x.ComputerCaseId == contextComputerCase.Id).Count() / 5;
-
             var b = sender as RadioButton;
             string c = b.Content.ToString();
             int a = int.Parse(c) - 1;
@@ -161,7 +211,7 @@ namespace VSborkeAdmistrator.Pages
             fakePage = int.Parse(c);
             Update();
 
-            
+
 
         }
         private void MainImageBtn_Click(object sender, RoutedEventArgs e)
@@ -205,7 +255,7 @@ namespace VSborkeAdmistrator.Pages
                 e.Handled = true;
             }
         }
-        
+
 
         private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -226,7 +276,7 @@ namespace VSborkeAdmistrator.Pages
             });
             App.DB.SaveChanges();
             FavouriteBtn.Visibility = Visibility.Collapsed;
-            DeFavouriteBtn.Visibility= Visibility.Visible;
+            DeFavouriteBtn.Visibility = Visibility.Visible;
         }
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
@@ -269,17 +319,7 @@ namespace VSborkeAdmistrator.Pages
         public string[] Labels { get; set; }
 
         public Func<double, string> YFormatter { get; set; }
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
 
-            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
-            FeedbackMarkRefresh();
-
-            FrameForChart.NavigationService.Navigate(new PriceGraphMiniPage(contextComputerCase));
-            Update();
-            GeneratePageNumbers();
-        }
 
         private void FeedbackMarkRefresh()
         {
@@ -311,7 +351,7 @@ namespace VSborkeAdmistrator.Pages
 
             TbGeneralCaseScore.Text = result.ToString();
 
-            if(result == 1)
+            if (result == 1)
             {
                 TbGeneralCaseStars.Text = @"    ";
             }
@@ -349,7 +389,7 @@ namespace VSborkeAdmistrator.Pages
             }
 
 
-        } 
+        }
 
         private void SpecBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -374,7 +414,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void RbAll_Checked(object sender, RoutedEventArgs e)
         {
-
+            Update();
         }
 
         private void AddFeedback_Click(object sender, RoutedEventArgs e)
@@ -392,13 +432,23 @@ namespace VSborkeAdmistrator.Pages
             else
             {
                 return;
-            }    
+            }
         }
 
         private void PriceGraphBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var dialog = new PriceChartsWindow(contextComputerCase);
             dialog.ShowDialog();
+        }
+
+        private void CbSortReview_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
+
+        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Update();
         }
     }
 
