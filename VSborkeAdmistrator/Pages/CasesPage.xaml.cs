@@ -23,6 +23,7 @@ namespace VSborkeAdmistrator.Pages
     /// </summary>
     public partial class CasesPage : Page
     {
+        int maxPage = 0;
         public CasesPage()
         {
             InitializeComponent();
@@ -38,10 +39,63 @@ namespace VSborkeAdmistrator.Pages
 
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            maxPage = App.DB.ComputerCase.Where(x => x.IsAccessable == true).Count();
+            Refresh();
+        }
+        int numberPage = 0;
+        int count = 10;
+
+        int fakePage = 1;
+        private void BtnFirstPage_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage = 0;
+            Refresh();
+            fakePage = 1;
+            GeneratePageNumbers();
+        }
+
+        private void BtnPreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage--;
+            fakePage--;
+            if (numberPage < 0)
+                numberPage = 0;
+            if (fakePage < 1)
+                fakePage = 1;
+            Refresh();
+            GeneratePageNumbers();
+        }
+
+        private void BtnNextPage_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage++;
+            fakePage++;
+            if (numberPage == maxPage)
+            {
+                numberPage = maxPage - 1;
+                fakePage--;
+            }
+
+            if (fakePage < maxPage + 1)
+            {
+                Refresh();
+            }
+            GeneratePageNumbers();
+        }
+
+        private void BtnLastPage_Click(object sender, RoutedEventArgs e)
+        {
+            numberPage = maxPage - 1;
+            fakePage = maxPage;
+            Refresh();
+            GeneratePageNumbers();
+        }
         private void Refresh()
         {
             IEnumerable<ComputerCase> filterCase = App.DB.ComputerCase.Where(x => x.IsCustom == false);
-            if(CbSort.SelectedIndex == 0)
+            if (CbSort.SelectedIndex == 0)
             {
                 filterCase = filterCase.OrderBy(x => x.PriceDiscount).ToList();
             }
@@ -64,7 +118,7 @@ namespace VSborkeAdmistrator.Pages
                     }
                 }
             }
-            
+
             if (CbManufacturer.SelectedIndex != -1)
             {
                 filterCase = filterCase.Where(x => x.Manufacturer == CbManufacturer.SelectedItem).ToList();
@@ -186,13 +240,56 @@ namespace VSborkeAdmistrator.Pages
             {
                 filterCase = filterCase.Where(x => x.FullName.ToLower().Contains(TbSearch.Text.ToLower()));
             }
+            if (filterCase.Count() > count)
+            {
+                maxPage = filterCase.Count() / count;
+            }
+            else
+            {
+                maxPage = 1;
+            }
+            if (fakePage > maxPage)
+            {
+                fakePage = maxPage;
+            }
+
+            filterCase = filterCase.Skip(count * numberPage).Take(count).ToList();
             LvCases.ItemsSource = filterCase.ToList();
+            GeneratePageNumbers();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void GeneratePageNumbers()
         {
-            Refresh();
+            SPanelPages.Children.Clear();
+            for (int i = 1; i <= maxPage; i++)
+            {
+                RadioButton btn = new RadioButton();
+                btn.Content = i;
+                btn.Margin = new Thickness(0, 0, 0, 0);
+                btn.Click += PageButton_Click;
+                Style style = this.FindResource("RadioPage") as Style;
+                btn.Style = style;
+                SPanelPages.Children.Add(btn);
+
+                if (int.Parse(btn.Content.ToString()) == fakePage)
+                {
+                    btn.IsChecked = true;
+                }
+            }
         }
+        private void PageButton_Click(object sender, RoutedEventArgs e)
+        {
+            var b = sender as RadioButton;
+            string c = b.Content.ToString();
+            int a = int.Parse(c) - 1;
+            numberPage = a;
+            fakePage = int.Parse(c);
+            Refresh();
+
+
+
+        }
+
 
 
         private void ResetBtn_Click(object sender, RoutedEventArgs e)

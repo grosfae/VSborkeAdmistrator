@@ -28,13 +28,15 @@ namespace VSborkeAdmistrator.Pages
     public partial class ComputerCaseEditPage : Page
     {
         ComputerCase contextComputerCase;
+
+        int priceLocal = 0;
         public ComputerCaseEditPage(ComputerCase computerCase)
         {
             InitializeComponent();
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
-
-            if(contextComputerCase.Id == 0)
+            priceLocal = contextComputerCase.PriceDiscount;
+            if (contextComputerCase.Id == 0)
             {
                 contextComputerCase.CableManagementBackSide = false;
                 contextComputerCase.CardReader = false;
@@ -59,7 +61,7 @@ namespace VSborkeAdmistrator.Pages
                 contextComputerCase.SsiEeb = false;
             }
 
-            
+
 
             LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
 
@@ -79,7 +81,7 @@ namespace VSborkeAdmistrator.Pages
             CbHorizontalAddonSlot.ItemsSource = App.DB.HorizontalAddonSlot.ToList();
             CbIoAlignment.ItemsSource = App.DB.IOPanelAlignment.ToList();
             CbIoConnectors.ItemsSource = App.DB.IOPanel.ToList();
-            CbManufacturer.ItemsSource= App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
+            CbManufacturer.ItemsSource = App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
             CbMaterialSet.ItemsSource = App.DB.MaterialSet.ToList();
             CbMaterialWindow.ItemsSource = App.DB.WindowMaterial.ToList();
             CbOrientationMotherboard.ItemsSource = App.DB.OrientationMotherboard.ToList();
@@ -97,10 +99,10 @@ namespace VSborkeAdmistrator.Pages
             CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
             CbTopCooler.ItemsSource = App.DB.SupportTopCooler.ToList();
             CbVerticalAddonSlot.ItemsSource = App.DB.VerticalAddonSlot.ToList();
-            CbConnectorRGB.ItemsSource= App.DB.ConnectorRGB.ToList();
+            CbConnectorRGB.ItemsSource = App.DB.ConnectorRGB.ToList();
 
         }
-        
+
 
         private void MainImageBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -131,8 +133,12 @@ namespace VSborkeAdmistrator.Pages
                 numberPage--;
             Update();
         }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+
+
+
             string errorMessage = "";
             if (string.IsNullOrWhiteSpace(contextComputerCase.Name))
             {
@@ -142,7 +148,7 @@ namespace VSborkeAdmistrator.Pages
             {
                 errorMessage += "Введите описание\n";
             }
-            if (contextComputerCase.Price <= 0 )
+            if (contextComputerCase.Price <= 0)
             {
                 errorMessage += "Введите корректную цену\n";
             }
@@ -295,6 +301,16 @@ namespace VSborkeAdmistrator.Pages
             {
                 contextComputerCase.UserId = App.LoggedUser.Id;
                 App.DB.ComputerCase.Add(contextComputerCase);
+            }
+            int priceChanged = contextComputerCase.PriceDiscount;
+            if (priceLocal != priceChanged)
+            {
+                App.DB.PriceHistory.Add(new PriceHistory
+                {
+                    ComputerCaseId = contextComputerCase.Id,
+                    DateHistory = DateTime.Now.Date,
+                    Price = contextComputerCase.PriceDiscount
+                });
             }
             App.DB.SaveChanges();
             CustomMessageBox.Show("Сохранение успешно!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
@@ -460,10 +476,10 @@ namespace VSborkeAdmistrator.Pages
             CbTypeRGB.IsEnabled = false;
             CbConnectorRGB.IsEnabled = false;
 
-            CbColorRGB.SelectedIndex= 0;
-            CbSourceRGB.SelectedIndex= 0;
-            CbTypeManagmentRGB.SelectedIndex= 0;
-            CbTypeRGB.SelectedIndex= 0;
+            CbColorRGB.SelectedIndex = 0;
+            CbSourceRGB.SelectedIndex = 0;
+            CbTypeManagmentRGB.SelectedIndex = 0;
+            CbTypeRGB.SelectedIndex = 0;
             CbConnectorRGB.SelectedIndex = 0;
         }
 
