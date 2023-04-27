@@ -256,6 +256,15 @@ namespace VSborkeAdmistrator.Pages
             filterCase = filterCase.Skip(count * numberPage).Take(count).ToList();
             LvCases.ItemsSource = filterCase.ToList();
             GeneratePageNumbers();
+
+            if (filterCase.Count() == 0)
+            {
+                BoxImageGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BoxImageGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void GeneratePageNumbers()
@@ -290,7 +299,12 @@ namespace VSborkeAdmistrator.Pages
 
         }
 
-
+        private void PriceGraphBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedCase = (sender as TextBlock).DataContext as ComputerCase;
+            var dialog = new PriceChartsWindow(selectedCase);
+            dialog.ShowDialog();
+        }
 
         private void ResetBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -356,9 +370,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedCase = (sender as Button).DataContext as ComputerCase;
-            var dialog = new PriceChartsWindow(selectedCase);
-            dialog.ShowDialog();
+
         }
 
         private void NotificBtn_Click(object sender, RoutedEventArgs e)

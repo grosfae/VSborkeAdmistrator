@@ -408,6 +408,7 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\NothingFindImages\box.png" />
     <Resource Include="Resources\MessageBoxImages\SuccessMessage.png" />
     <Resource Include="Resources\UsersButtons\More.png" />
     <Resource Include="Resources\UsersButtons\MoreOutline.png" />

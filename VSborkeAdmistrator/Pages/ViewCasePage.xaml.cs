@@ -179,6 +179,14 @@ namespace VSborkeAdmistrator.Pages
             LbReview.ItemsSource = partsList;
             GeneratePageNumbers();
 
+            if(partsList.Count() == 0)
+            {
+                BoxImageGrid.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                BoxImageGrid.Visibility = Visibility.Collapsed;
+            }
 
 
 
@@ -449,6 +457,13 @@ namespace VSborkeAdmistrator.Pages
         private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             Update();
+        }
+
+        private void ResetBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CbSortReview.SelectedIndex= 0;
+            RbAll.IsChecked = true;
+            TbSearch.Clear();
         }
     }
 

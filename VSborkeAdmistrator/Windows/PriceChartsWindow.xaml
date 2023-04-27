@@ -18,7 +18,7 @@
         ResizeMode="NoResize"
         
         WindowStartupLocation="CenterScreen"
-        Title="LiveChartsPrice" SizeToContent="Height" MinHeight="520" Width="400" Loaded="Window_Loaded">
+        Title="LiveChartsPrice" SizeToContent="Height" MinHeight="520" Width="700" Loaded="Window_Loaded">
     <Grid Background="White" Height="auto">
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
