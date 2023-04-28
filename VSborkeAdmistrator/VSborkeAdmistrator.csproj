@@ -230,8 +230,8 @@
     <Compile Include="Pages\FeedbackAddEdit.xaml.cs">
       <DependentUpon>FeedbackAddEdit.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\OrderPage.xaml.cs">
-      <DependentUpon>OrderPage.xaml</DependentUpon>
+    <Compile Include="Pages\OrdersPage.xaml.cs">
+      <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PriceGraphMiniPage.xaml.cs">
       <DependentUpon>PriceGraphMiniPage.xaml</DependentUpon>
@@ -301,7 +301,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\OrderPage.xaml">
+    <Page Include="Pages\OrdersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

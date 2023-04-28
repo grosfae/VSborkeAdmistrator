@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace VSborkeAdmistrator.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для OrderPage.xaml
+    /// Логика взаимодействия для OrdersPage.xaml
     /// </summary>
-    public partial class OrderPage : Page
+    public partial class OrdersPage : Page
     {
-        public OrderPage()
+        public OrdersPage()
         {
             InitializeComponent();
         }
