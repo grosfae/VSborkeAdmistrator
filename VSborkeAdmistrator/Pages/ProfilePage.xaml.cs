@@ -111,5 +111,10 @@ namespace VSborkeAdmistrator.Pages
         {
             ProfileInfoProgress();
         }
+
+        private void StBtnDeleteFromHistory_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

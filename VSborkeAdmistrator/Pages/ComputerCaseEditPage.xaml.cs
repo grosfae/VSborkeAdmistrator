@@ -28,7 +28,6 @@ namespace VSborkeAdmistrator.Pages
     public partial class ComputerCaseEditPage : Page
     {
         ComputerCase contextComputerCase;
-
         int priceLocal = 0;
         public ComputerCaseEditPage(ComputerCase computerCase)
         {
@@ -36,6 +35,7 @@ namespace VSborkeAdmistrator.Pages
             contextComputerCase = computerCase;
             DataContext = contextComputerCase;
             priceLocal = contextComputerCase.PriceDiscount;
+
             if (contextComputerCase.Id == 0)
             {
                 contextComputerCase.CableManagementBackSide = false;
@@ -318,6 +318,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+
             NavigationService.GoBack();
         }
         private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)

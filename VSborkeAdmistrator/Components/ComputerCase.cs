@@ -20,6 +20,7 @@ namespace VSborkeAdmistrator.Components
             this.AdditionComputerCaseImage = new HashSet<AdditionComputerCaseImage>();
             this.Favourite = new HashSet<Favourite>();
             this.FeedBack = new HashSet<FeedBack>();
+            this.Order = new HashSet<Order>();
             this.PriceHistory = new HashSet<PriceHistory>();
         }
     
@@ -138,6 +139,8 @@ namespace VSborkeAdmistrator.Components
         public virtual ICollection<Favourite> Favourite { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FeedBack> FeedBack { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PriceHistory> PriceHistory { get; set; }
     }

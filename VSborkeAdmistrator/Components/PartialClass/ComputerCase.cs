@@ -13,31 +13,7 @@ namespace VSborkeAdmistrator.Components
     public partial class ComputerCase
     {
 
-        public Visibility VisibilityEditFeedback
-        {
-            get
-            {
-                var ownReview = App.DB.FeedBack.Where(x => x.ComputerCaseId == Id & UserId == App.LoggedUser.Id).FirstOrDefault();
-                if(ownReview != null)
-                    return Visibility.Visible;
-                else
-                    return Visibility.Collapsed;
-
-            }
-        }
-
-        public Visibility VisibilityAddFeedback
-        {
-            get
-            {
-                var ownReview = App.DB.FeedBack.Where(x => x.ComputerCaseId == Id & UserId == App.LoggedUser.Id).FirstOrDefault();
-                if (ownReview != null)
-                    return Visibility.Collapsed;
-                else
-                    return Visibility.Visible;
-
-            }
-        }
+        
 
         public string PriceRange
         {
@@ -422,18 +398,7 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
-        public Visibility VisibilityOwnReview
-        {
-            get
-            {
-                if (App.DB.FeedBack.Where(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == Id).FirstOrDefault() != null)
-                {
-                    return Visibility.Visible;
-                }
-                else
-                    return Visibility.Collapsed;
-            }
-        }
+        
 
     }
 }

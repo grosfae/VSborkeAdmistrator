@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace VSborkeAdmistrator.Components
 {
@@ -31,5 +33,36 @@ namespace VSborkeAdmistrator.Components
 
             }
         }
+
+        public int PriceDiscountOfCount
+        {
+            get
+            {
+                if (Discount == 0)
+                {
+                    return PricePerUnit;
+                }
+                else
+                {
+                    return PricePerUnit * (100 - Discount) / 100;
+                }
+            }
+        }
+
+        public Visibility VisibilityDiscount
+        {
+            get
+            {
+                if (Discount == 0)
+                {
+                    return Visibility.Collapsed;
+                }
+                else
+                {
+                    return Visibility.Visible;
+                }
+            }
+        }
+
     }
 }

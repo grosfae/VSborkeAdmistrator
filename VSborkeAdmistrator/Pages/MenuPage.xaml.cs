@@ -48,7 +48,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void InfoShowBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new OrdersPage());
         }
 
         private void ExitBtn_Click(object sender, RoutedEventArgs e)

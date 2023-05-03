@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -41,7 +42,6 @@ namespace VSborkeAdmistrator.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.ComputerCase.Where(x => x.IsAccessable == true).Count();
             Refresh();
         }
         int numberPage = 0;
@@ -240,9 +240,18 @@ namespace VSborkeAdmistrator.Pages
             {
                 filterCase = filterCase.Where(x => x.FullName.ToLower().Contains(TbSearch.Text.ToLower()));
             }
+
+            
             if (filterCase.Count() > count)
             {
-                maxPage = filterCase.Count() / count;
+                if (filterCase.Count() % count > 0)
+                {
+                    maxPage = (filterCase.Count() / count) + 1;
+                }
+                else
+                {
+                    maxPage = filterCase.Count() / count;
+                }
             }
             else
             {
@@ -308,6 +317,10 @@ namespace VSborkeAdmistrator.Pages
 
         private void ResetBtn_Click(object sender, RoutedEventArgs e)
         {
+            numberPage = 0;
+            fakePage = 1;
+
+            CbSort.SelectedIndex = 0;
             TbSearch.Text = String.Empty;
 
             CbAccess.IsChecked = true;
@@ -408,6 +421,8 @@ namespace VSborkeAdmistrator.Pages
 
         private void ApplyBtn_Click(object sender, RoutedEventArgs e)
         {
+            numberPage = 0;
+            fakePage = 1;
             Refresh();
         }
 
@@ -699,6 +714,8 @@ namespace VSborkeAdmistrator.Pages
 
         private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            numberPage = 0;
+            fakePage = 1;
             Refresh();
         }
 

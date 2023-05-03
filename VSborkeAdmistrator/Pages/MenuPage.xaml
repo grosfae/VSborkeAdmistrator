@@ -16,7 +16,7 @@
         <StackPanel Grid.Column="0" Background="#FF3881EF">
             <Button x:Name="ProfileBtn" Style="{StaticResource MenuBtn}" Click="ProfileBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="50" Width="50">
+                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/Profile/ProfileWhite.ico"/>
@@ -33,7 +33,7 @@
 
             <Button x:Name="AccountBtn" Style="{StaticResource MenuBtn}" Click="AccountBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="50" Width="50">
+                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/Accounts/AccountsWhite.ico"/>
@@ -50,7 +50,7 @@
 
             <Button x:Name="ComputerListBtn" Style="{StaticResource MenuBtn}" Click="ComputerListBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="50" Width="50">
+                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerWhite.ico"/>
@@ -67,7 +67,7 @@
 
             <Button x:Name="ConfigBtn" Style="{StaticResource MenuBtn}" Click="ConfigBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="50" Width="50">
+                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant"> 
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/Config/ConfigWhite.ico"/>
@@ -84,7 +84,7 @@
 
             <Button x:Name="InfoShowBtn" Style="{StaticResource MenuBtn}" Click="InfoShowBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="50" Width="50">
+                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoWhite.ico"/>
@@ -99,9 +99,9 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="ExitBtn" Style="{StaticResource MenuBtn}" Click="ExitBtn_Click" Height="60">
+            <Button x:Name="ExitBtn" Style="{StaticResource MenuBtn}"  Click="ExitBtn_Click" Height="60">
                 <StackPanel>
-                    <Image Height="50" Width="50">
+                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
                         <Image.Style>
                             <Style TargetType="{x:Type Image}">
                                 <Setter Property="Source" Value="/Resources/MenuIcons/Exit/ExitWhite.ico"/>

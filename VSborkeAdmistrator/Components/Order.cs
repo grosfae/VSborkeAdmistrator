@@ -17,15 +17,17 @@ namespace VSborkeAdmistrator.Components
         public int Id { get; set; }
         public int UserId { get; set; }
         public System.DateTime OrderDate { get; set; }
-        public decimal FinallyPrice { get; set; }
+        public int FinallyPrice { get; set; }
         public int Count { get; set; }
-        public Nullable<int> Discount { get; set; }
+        public int PricePerUnit { get; set; }
+        public int Discount { get; set; }
         public int ComputerCaseId { get; set; }
         public Nullable<bool> IsReject { get; set; }
         public int StatusId { get; set; }
         public string CommentOrder { get; set; }
         public string ReasonReject { get; set; }
     
+        public virtual ComputerCase ComputerCase { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
     }

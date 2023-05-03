@@ -157,7 +157,7 @@
                             </StackPanel>
                             <StackPanel Grid.Row="1" Orientation="Horizontal" Height="23" VerticalAlignment="Top">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="История цены" VerticalAlignment="Center" FontSize="14" Margin="10 0 0 0"/>
-                                <TextBlock Style="{StaticResource Sans}" Text="{Binding PriceRange}" VerticalAlignment="Center" Margin="80 0 0 0"/>
+                                <TextBlock Style="{StaticResource Sans}" Text="{Binding PriceRange}" VerticalAlignment="Center" Margin="75 0 0 0"/>
                             </StackPanel>
                             <Frame Grid.Row="1" x:Name="FrameForChart" NavigationUIVisibility="Hidden" Height="200" Width="290" VerticalAlignment="Top" Margin="0 30 0 10" Background="White">
                                 
@@ -587,12 +587,12 @@
 
                                         </Grid>
 
-                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityAddFeedback}">
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" x:Name="StAddReview" Visibility="Collapsed">
                                             <TextBlock Text="Оставьте отзыв,
                                                    ваш опыт поможет в выборе" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
                                             <Button  x:Name="AddFeedback" Click="AddFeedback_Click" Style="{StaticResource BlueNoBorderBtn}" Content="Добавить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
                                         </StackPanel>
-                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" Visibility="{Binding VisibilityEditFeedback}">
+                                        <StackPanel Grid.Column="2" VerticalAlignment="Center" x:Name="StEditReview" Visibility="Collapsed">
                                             <TextBlock Text="У вас уже есть оставленный отзыв, вы можете его изменить" FontSize="17" TextWrapping="Wrap" Width="240" Style="{StaticResource ProfileInfo}"/>
                                             <Button x:Name="EditFeedback" Click="EditFeedback_Click"  Style="{StaticResource BlueNoBorderBtn}" Content="Изменить отзыв" FontSize="26" Height="40" Width="240" Margin="0 10 0 0"/>
                                         </StackPanel>
@@ -600,7 +600,7 @@
                                 </StackPanel>
                             </StackPanel>
 
-                            <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpOwnReview" Visibility="{Binding VisibilityOwnReview}">
+                            <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpOwnReview" Visibility="Collapsed">
                                 <StackPanel Margin="20 0 20 0">
 
                                     <StackPanel>

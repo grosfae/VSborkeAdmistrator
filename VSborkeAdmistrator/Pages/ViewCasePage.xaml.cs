@@ -46,7 +46,7 @@ namespace VSborkeAdmistrator.Pages
             & x.MicroAtx == contextComputerCase.MicroAtx & x.MiniDtx == contextComputerCase.MiniDtx & x.MiniItx == contextComputerCase.MiniItx & x.SsiCeb == contextComputerCase.SsiCeb
             & x.SsiEeb == contextComputerCase.SsiEeb & x.StandartAtx == contextComputerCase.StandartAtx & x.ThinMiniItx == contextComputerCase.ThinMiniItx & x.XlAtx == contextComputerCase.XlAtx
             ).ToList().Take(2);
-            LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+            LvAdditionImages.ItemsSource = contextComputerCase.AdditionComputerCaseImage.ToList();
 
             if (App.DB.ComputerCase.Where(x => x.Id != contextComputerCase.Id & x.EAtx == contextComputerCase.EAtx & x.FlexAtx == contextComputerCase.FlexAtx
             & x.MicroAtx == contextComputerCase.MicroAtx & x.MiniDtx == contextComputerCase.MiniDtx & x.MiniItx == contextComputerCase.MiniItx & x.SsiCeb == contextComputerCase.SsiCeb
@@ -62,14 +62,27 @@ namespace VSborkeAdmistrator.Pages
                 TbNoneAnalog.Visibility = Visibility.Visible;
             }
             RbAll.IsChecked = true;
-            LbReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+            LbReview.ItemsSource = contextComputerCase.FeedBack.ToList();
 
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
-            maxPage = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).Count();
+            
+            maxPage = contextComputerCase.FeedBack.Count();
 
+            var OwnReview = contextComputerCase.FeedBack.Where(x => x.UserId == App.LoggedUser.Id).FirstOrDefault();
+            if(OwnReview != null)
+            {
+                StEditReview.Visibility = Visibility.Visible;
+                StAddReview.Visibility = Visibility.Collapsed;
+                SpOwnReview.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                StAddReview.Visibility = Visibility.Visible;
+                StEditReview.Visibility = Visibility.Collapsed;
+            }
+            LbOwnReview.ItemsSource = App.DB.FeedBack.Where(x => x.ComputerCaseId == contextComputerCase.Id & x.UserId == App.LoggedUser.Id).ToList();
             FrameForChart.Navigate(new PriceGraphMiniPage(contextComputerCase));
             FeedbackMarkRefresh();
             Update();
@@ -222,22 +235,9 @@ namespace VSborkeAdmistrator.Pages
 
 
         }
-        private void MainImageBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var dialog = new Microsoft.Win32.OpenFileDialog()
-            {
-                Filter = "*.jpg|*.jpg|*.png|*.png|*.jpeg|*.jpeg"
-            };
-            if (dialog.ShowDialog().GetValueOrDefault())
-            {
-                contextComputerCase.MainImage = System.IO.File.ReadAllBytes(dialog.FileName);
-                DataContext = null;
-                DataContext = contextComputerCase;
-            }
-        }
-
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+            
             NavigationService.GoBack();
         }
         private void TextBox_PreviewTextInput_1(object sender, TextCompositionEventArgs e)
