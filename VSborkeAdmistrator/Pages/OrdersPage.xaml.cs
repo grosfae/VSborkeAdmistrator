@@ -91,7 +91,7 @@ namespace VSborkeAdmistrator.Pages
             {
                 filterOrder = filterOrder.OrderByDescending(x => x.FinallyPrice).ToList();
             }
-            
+
             if (TbSearch.Text.Length > 0)
             {
                 filterOrder = filterOrder.Where(x => x.ComputerCase.FullName.Contains(TbSearch.Text.ToLower()));

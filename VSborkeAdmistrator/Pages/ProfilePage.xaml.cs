@@ -116,5 +116,10 @@ namespace VSborkeAdmistrator.Pages
         {
 
         }
+
+        private void TbLinkReview_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

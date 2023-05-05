@@ -64,22 +64,32 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="850" Margin="0 5 0 5" Orientation="Vertical" Background="White">
-                                                <StackPanel Orientation="Horizontal" Height="40" Margin="10 10 0 0">
-                                                    <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource Sans}" FontSize="26" />
-                                                    <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
-                                                    <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
-                                                    <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
-                                                        <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                <Grid>
+                                                    <StackPanel Orientation="Horizontal" Height="40" Margin="10 10 0 0">
+                                                        <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource ListLink}" FontSize="23" Margin="0 1.5 0 0" Cursor="Hand"/>
+                                                        <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
+                                                        <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
+                                                        <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
+                                                            <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                        </StackPanel>
                                                     </StackPanel>
-                                                </StackPanel>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 10 0">
+                                                        <TextBlock Text="{Binding User.ReviewName}" Style="{StaticResource ProfileInfo}" FontSize="17" Margin="0 10 10 0" Grid.Column="1"/>
+                                                        <Border CornerRadius="150" Width="40" Height="40" Margin="0 0 0 0">
+                                                            <Border.Background>
+                                                                <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}" RenderOptions.BitmapScalingMode="Fant"/>
+                                                            </Border.Background>
+                                                        </Border>
+
+                                                    </StackPanel>
+                                                </Grid>
                                                 <Separator  Background="#FF3881EF" Margin="0 5 0 15"/>
                                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
                                                     <Image Source="{Binding ComputerCase.MainImage}" RenderOptions.BitmapScalingMode="Fant" Height="160" Width="160" Margin="10 0 0 0"/>
                                                     <StackPanel Margin="15 0 0 0" Width="440">
                                                         <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10"/>
                                                         <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto"/>
-                                                        <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350" Margin="0 5 0 0"/>
-                                                        <TextBlock x:Name="TbLinkReview" Style="{StaticResource LinkReviewBtn}" FontSize="17" Text="Оставить отзыв" Height="auto" MouseLeftButtonDown="TbLinkReview_MouseLeftButtonDown"/>
+                                                        <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350" Margin="0 15 0 0"/>
                                                     </StackPanel>
                                                     <StackPanel Width="215">
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
