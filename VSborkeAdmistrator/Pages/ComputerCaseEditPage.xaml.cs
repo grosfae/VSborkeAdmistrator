@@ -63,7 +63,7 @@ namespace VSborkeAdmistrator.Pages
 
 
 
-            LvAdditionImages.ItemsSource = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id).ToList();
+            LvAdditionImages.ItemsSource = contextComputerCase.AdditionComputerCaseImage.ToList();
 
             CbAlignmentPowerBlock.ItemsSource = App.DB.AlignmentPowerBlock.ToList();
             CbAlignmentWindow.ItemsSource = App.DB.WindowAlignment.ToList();
@@ -489,7 +489,7 @@ namespace VSborkeAdmistrator.Pages
 
         private void Update()
         {
-            IEnumerable<AdditionComputerCaseImage> caseImagesList = App.DB.AdditionComputerCaseImage.Where(x => x.ComputerCaseId == contextComputerCase.Id);
+            IEnumerable<AdditionComputerCaseImage> caseImagesList = contextComputerCase.AdditionComputerCaseImage;
             caseImagesList = caseImagesList.Skip(count * numberPage).Take(count);
             LvAdditionImages.ItemsSource = caseImagesList;
         }

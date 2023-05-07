@@ -64,5 +64,37 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
+        public Visibility VisibilityAcceptBtn
+        {
+            get
+            {
+                if (Status.Id == 1)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+
+
+
+        }
+        public Visibility VisibilityComment
+        {
+            get
+            {
+                if (CommentOrder != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
     }
 }

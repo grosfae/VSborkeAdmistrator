@@ -28,13 +28,10 @@ namespace VSborkeAdmistrator.Pages
         public CasesPage()
         {
             InitializeComponent();
-            TbStartPrice.Tag = $"от {App.DB.ComputerCase.Min(x => x.Price)}";
-            TbEndPrice.Tag = $"до {App.DB.ComputerCase.Max(x => x.Price)}";
             CbManufacturer.ItemsSource = App.DB.Manufacturer.OrderBy(x => x.Name).ToList();
             CbPrimaryColor.ItemsSource = App.DB.PrimaryColor.ToList();
             CbTypeRGB.ItemsSource = App.DB.TypeRGB.ToList();
-            TbCpuHeightStart.Tag = $"от {App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler)}";
-            TbCpuHeightEnd.Tag = $"до {App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler)}";
+            
 
             CbAccess.IsChecked = true;
 
@@ -42,6 +39,10 @@ namespace VSborkeAdmistrator.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            TbStartPrice.Tag = $"от {App.DB.ComputerCase.Min(x => x.Price)}";
+            TbEndPrice.Tag = $"до {App.DB.ComputerCase.Max(x => x.Price)}";
+            TbCpuHeightStart.Tag = $"от {App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler)}";
+            TbCpuHeightEnd.Tag = $"до {App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler)}";
             Refresh();
         }
         int numberPage = 0;

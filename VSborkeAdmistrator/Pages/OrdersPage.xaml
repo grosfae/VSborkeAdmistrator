@@ -57,39 +57,125 @@
                                 <ColumnDefinition Width="880"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Width="250">
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20" IsExpanded="True">
+                                    <Expander.Header>
+                                        <TextBlock Text="Статус заказа" TextWrapping="Wrap" Width="225" FontSize="20"/>
+                                    </Expander.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="0 5 0 0">
+                                            <Viewbox Height="190" HorizontalAlignment="Left">
+                                                <StackPanel Margin="5 0 0 0" HorizontalAlignment="Left" x:Name="ChecksumStatus_Collection">
+
+                                                    <CheckBox Template="{DynamicResource CbsSorts}" x:Name="CbInProcessing" FontSize="12" Style="{StaticResource CbFilter}" Content="В обработке"/>
+
+                                                    <CheckBox x:Name="CbInAccept" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Принят" />
+
+                                                    <CheckBox x:Name="CbInProgress" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="В процессе" />
+
+                                                    <CheckBox x:Name="CbInStorage" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="На складе" />
+                                                    
+                                                    <CheckBox x:Name="CbInDelivery" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="В доставке" />
+
+                                                    <CheckBox x:Name="CbInFinal" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Завершен" />
+
+                                                    <CheckBox x:Name="CbInReject" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Отменен" />
+                                                </StackPanel>
+                                            </Viewbox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
+                                <Separator/>
+
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20">
+                                    <Expander.Header>
+                                        <TextBlock Text="Период заказа" TextWrapping="Wrap" Width="225" FontSize="20"/>
+                                    </Expander.Header>
+                                    <StackPanel>
+                                        <StackPanel Margin="0 5 0 0">
+                                            <Viewbox Height="130" HorizontalAlignment="Left">
+                                                <StackPanel Margin="10 0 0 0" HorizontalAlignment="Left">
+                                                    <StackPanel>
+                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="От:"/>
+                                                        <DatePicker x:Name="StartDate" FontSize="17" Width="140"/>
+                                                    </StackPanel>
+                                                    <StackPanel Margin="0 5 0 0"> 
+                                                        <TextBlock Style="{StaticResource ProfileInfo}" Text="До:"/>
+                                                        <DatePicker x:Name="EndDate" FontSize="17" Width="140"/>
+                                                    </StackPanel>
+                                                </StackPanel>
+                                            </Viewbox>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
+                                <Separator/>
+
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Header="Цена заказа" Width="250" FontSize="20" IsExpanded="True">
+                                    <StackPanel Margin="10 5 0 0" Orientation="Horizontal">
+                                        <StackPanel>
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От:" Margin="0 10 0 0"/>
+                                            <TextBox x:Name="TbStartPrice" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbStartPrice_LostFocus"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="10 0 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="До:" Margin="0 10 0 0"/>
+                                            <TextBox x:Name="TbEndPrice" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbEndPrice_LostFocus"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
+                                <Separator/>
+
+                                <Expander Template="{DynamicResource ExpanderTemplate}" Header="Корпусов в заказе" Width="250" FontSize="20" >
+                                    <StackPanel Margin="10 5 0 0" Orientation="Horizontal">
+                                        <StackPanel>
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="От:" Margin="0 10 0 0"/>
+                                            <TextBox x:Name="TbStartCount" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbStartCount_LostFocus"/>
+                                        </StackPanel>
+                                        <StackPanel Margin="10 0 0 0">
+                                            <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="До:" Margin="0 10 0 0"/>
+                                            <TextBox x:Name="TbEndCount" FontSize="21" Width="100" HorizontalAlignment="Left" Style="{StaticResource placeHolderForPrice}" PreviewKeyDown="ForSpaces_PreviewKeyDown" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbEndCount_LostFocus"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Expander>
+                                <Separator/>
+                                <Button x:Name="ApplyBtn" Width="180" Height="45" Style="{StaticResource SortApply}" Content="Применить" BorderThickness="1" FontSize="28" Margin="0 15 0 0" Click="ApplyBtn_Click"/>
+                                <Button x:Name="ResetBtn" Width="180" Height="45" Style="{StaticResource SortReset}" Content="Сбросить" BorderThickness="1" FontSize="28" Margin="0 10 0 20" Click="ResetBtn_Click"/>
 
                             </StackPanel>
                             <StackPanel Width="880" Grid.Column="1">
-                                <ListView x:Name="LvOrders" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="1940" d:ItemsSource="{d:SampleData ItemCount=10}">
+                                <ListView x:Name="LvOrders" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="860" d:ItemsSource="{d:SampleData ItemCount=6}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <StackPanel Width="850" Margin="0 5 0 5" Orientation="Vertical" Background="White">
+                                            <StackPanel Width="848" Margin="0 5 0 5" Orientation="Vertical" Background="White">
                                                 <Grid>
                                                     <StackPanel Orientation="Horizontal" Height="40" Margin="10 10 0 0">
-                                                        <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource ListLink}" FontSize="23" Margin="0 1.5 0 0" Cursor="Hand"/>
+                                                        <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource ListLink}" FontSize="23" Margin="0 1.5 0 0" Cursor="Hand" x:Name="LinkOrderView" MouseLeftButtonDown="LinkOrderView_MouseLeftButtonDown"/>
                                                         <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
                                                         <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
                                                         <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
                                                             <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
                                                         </StackPanel>
                                                     </StackPanel>
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 10 0">
-                                                        <TextBlock Text="{Binding User.ReviewName}" Style="{StaticResource ProfileInfo}" FontSize="17" Margin="0 10 10 0" Grid.Column="1"/>
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 10 0" x:Name="StUser"  MouseLeftButtonDown="StUser_MouseLeftButtonDown">
+                                                        <TextBlock Text="{Binding User.ReviewName}" Style="{StaticResource ListLink}" FontFamily="/Resources/Fonts/#Raleway" FontSize="17" Margin="0 10 10 0" Grid.Column="1"/>
                                                         <Border CornerRadius="150" Width="40" Height="40" Margin="0 0 0 0">
                                                             <Border.Background>
                                                                 <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}" RenderOptions.BitmapScalingMode="Fant"/>
                                                             </Border.Background>
                                                         </Border>
-
                                                     </StackPanel>
                                                 </Grid>
                                                 <Separator  Background="#FF3881EF" Margin="0 5 0 15"/>
                                                 <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                                    <Image Source="{Binding ComputerCase.MainImage}" RenderOptions.BitmapScalingMode="Fant" Height="160" Width="160" Margin="10 0 0 0"/>
-                                                    <StackPanel Margin="15 0 0 0" Width="440">
-                                                        <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10"/>
-                                                        <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto"/>
+                                                    <StackPanel Width="165">
+                                                        <Image Source="{Binding ComputerCase.MainImage}" RenderOptions.BitmapScalingMode="Fant" Height="160" Width="160" Margin="5 0 0 0"/>
+                                                        <TextBlock Style="{StaticResource OrderList}" FontSize="15" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto" Margin="5 0 0 0"/>
+                                                    </StackPanel>
+                                                    <StackPanel Margin="10 0 0 0" Width="440">
+                                                        <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
+
                                                         <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350" Margin="0 15 0 0"/>
+
+                                                        <TextBlock Margin="0 10 10 0"  Text="У заказа есть комментарий" FontSize="18" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="#FFBD0000" Visibility="{Binding VisibilityComment}"/>
+
                                                     </StackPanel>
                                                     <StackPanel Width="215">
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
@@ -99,6 +185,16 @@
                                                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PriceDiscountOfCount, StringFormat='{}{0:#,#} ₽'}" Height="30" />
                                                         </StackPanel>
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>
+                                                        <Grid Width="200">
+                                                            <StackPanel  x:Name="AcceptBtnSt" MouseLeftButtonDown="AcceptBtnSt_MouseLeftButtonDown" Visibility="{Binding VisibilityAcceptBtn}" HorizontalAlignment="Left" Cursor="Hand">
+                                                                <TextBlock  Text="Принять" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF05A000" HorizontalAlignment="Center"/>
+                                                                <Separator Background="#FF05A000" Height="1" Width="80"/>
+                                                            </StackPanel>
+                                                            <StackPanel  x:Name="RejectBtnSt" MouseLeftButtonDown="RejectBtnSt_MouseLeftButtonDown" HorizontalAlignment="Right" Cursor="Hand">
+                                                                <TextBlock  Text="Отменить" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center"/>
+                                                                <Separator Background="#FFCA0000" Height="1" Width="90"/>
+                                                            </StackPanel>
+                                                        </Grid>
                                                     </StackPanel>
                                                 </StackPanel>
                                             </StackPanel>

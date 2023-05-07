@@ -174,7 +174,14 @@ namespace VSborkeAdmistrator.Pages
 
             if (partsList.Count() > count)
             {
-                maxPage = partsList.Count() / count;
+                if (partsList.Count() % count > 0)
+                {
+                    maxPage = (partsList.Count() / count) + 1;
+                }
+                else
+                {
+                    maxPage = partsList.Count() / count;
+                }
             }
             else
             {

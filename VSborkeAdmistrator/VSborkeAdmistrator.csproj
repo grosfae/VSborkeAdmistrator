@@ -281,6 +281,9 @@
     <Compile Include="Windows\PriceChartsWindow.xaml.cs">
       <DependentUpon>PriceChartsWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\RejectOrderWindow.xaml.cs">
+      <DependentUpon>RejectOrderWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -357,6 +360,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\PriceChartsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\RejectOrderWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
