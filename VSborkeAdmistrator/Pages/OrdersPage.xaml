@@ -190,7 +190,7 @@
                                                                 <TextBlock  Text="Принять" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF05A000" HorizontalAlignment="Center"/>
                                                                 <Separator Background="#FF05A000" Height="1" Width="80"/>
                                                             </StackPanel>
-                                                            <StackPanel  x:Name="RejectBtnSt" MouseLeftButtonDown="RejectBtnSt_MouseLeftButtonDown" HorizontalAlignment="Right" Cursor="Hand">
+                                                            <StackPanel  x:Name="RejectBtnSt" MouseLeftButtonDown="RejectBtnSt_MouseLeftButtonDown" HorizontalAlignment="Right" Cursor="Hand" Visibility="{Binding VisibilityCancelBtn}">
                                                                 <TextBlock  Text="Отменить" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center"/>
                                                                 <Separator Background="#FFCA0000" Height="1" Width="90"/>
                                                             </StackPanel>

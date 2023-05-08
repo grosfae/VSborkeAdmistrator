@@ -384,7 +384,8 @@ namespace VSborkeAdmistrator.Pages
 
         private void LinkOrderView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            var selectedOrder = (sender as TextBlock).DataContext as Order;
+            NavigationService.Navigate(new OrderView(selectedOrder));
         }
 
         private void TbLinkName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

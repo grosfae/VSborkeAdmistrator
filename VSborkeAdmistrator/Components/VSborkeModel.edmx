@@ -20,14 +20,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <EntityType Name="AttachedProduct">
-          <Key>
-            <PropertyRef Name="MainProductID" />
-            <PropertyRef Name="AttachedProductID" />
-          </Key>
-          <Property Name="MainProductID" Type="int" Nullable="false" />
-          <Property Name="AttachedProductID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="BackLiquidCooling">
           <Key>
             <PropertyRef Name="Id" />
@@ -41,31 +33,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="3" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
-          <Property Name="Birthday" Type="date" />
-          <Property Name="RegistrationDate" Type="datetime" Nullable="false" />
-          <Property Name="Email" Type="nvarchar" MaxLength="255" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" />
-        </EntityType>
-        <EntityType Name="ClientService">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientID" Type="int" Nullable="false" />
-          <Property Name="ServiceID" Type="int" Nullable="false" />
-          <Property Name="StartTime" Type="datetime" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ColorRGB">
           <Key>
@@ -164,14 +131,6 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DocumentByService">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ClientServiceID" Type="int" Nullable="false" />
-          <Property Name="DocumentPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="Favourite">
           <Key>
@@ -275,7 +234,7 @@
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
           <Property Name="IsReject" Type="bit" />
           <Property Name="StatusId" Type="int" Nullable="false" />
-          <Property Name="CommentOrder" Type="varchar" MaxLength="500" />
+          <Property Name="CommentOrder" Type="varchar" MaxLength="1000" />
           <Property Name="ReasonReject" Type="varchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="OrientationMotherboard">
@@ -309,36 +268,6 @@
           <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="HEXCode" Type="varchar" MaxLength="15" Nullable="false" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Cost" Type="money" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="MainImagePath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="IsActive" Type="bit" Nullable="false" />
-          <Property Name="ManufacturerID" Type="int" />
-        </EntityType>
-        <EntityType Name="ProductPhoto">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="nvarchar" MaxLength="1000" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ProductSale">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SaleDate" Type="datetime" Nullable="false" />
-          <Property Name="ProductID" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="ClientServiceID" Type="int" />
-        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -353,28 +282,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
           <Property Name="HEXCode" Type="varchar" MaxLength="15" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Service">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Cost" Type="int" Nullable="false" />
-          <Property Name="DurationInSeconds" Type="int" Nullable="false" />
-          <Property Name="Description" Type="nvarchar(max)" />
-          <Property Name="Discount" Type="float" />
-          <Property Name="MainImagePath" Type="nvarchar" MaxLength="1000" />
-          <Property Name="Logo" Type="varbinary(max)" />
-          <Property Name="IsDelete" Type="bit" />
-        </EntityType>
-        <EntityType Name="ServicePhoto">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ServiceID" Type="int" Nullable="false" />
-          <Property Name="PhotoPath" Type="varbinary(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="SideLiquidCooling">
           <Key>
@@ -471,22 +378,6 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="30" Nullable="false" />
-          <Property Name="Color" Type="nchar" MaxLength="6" Nullable="false" />
-        </EntityType>
-        <EntityType Name="TagOfClient">
-          <Key>
-            <PropertyRef Name="ClientID" />
-            <PropertyRef Name="TagID" />
-          </Key>
-          <Property Name="ClientID" Type="int" Nullable="false" />
-          <Property Name="TagID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="TopLiquidCooling">
           <Key>
             <PropertyRef Name="Id" />
@@ -556,54 +447,6 @@
             </Principal>
             <Dependent Role="AdditionComputerCaseImage">
               <PropertyRef Name="ComputerCaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AttachedProduct_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="AttachedProduct" Type="Self.AttachedProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AttachedProduct">
-              <PropertyRef Name="MainProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_AttachedProduct_Product1">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="AttachedProduct" Type="Self.AttachedProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="AttachedProduct">
-              <PropertyRef Name="AttachedProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientService_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ClientService">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientService_Service">
-          <End Role="Service" Type="Self.Service" Multiplicity="1" />
-          <End Role="ClientService" Type="Self.ClientService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ClientService">
-              <PropertyRef Name="ServiceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1039,18 +882,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DocumentByService_ClientService">
-          <End Role="ClientService" Type="Self.ClientService" Multiplicity="1" />
-          <End Role="DocumentByService" Type="Self.DocumentByService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DocumentByService">
-              <PropertyRef Name="ClientServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Favourite_ComputerCase">
           <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
           <End Role="Favourite" Type="Self.Favourite" Multiplicity="*" />
@@ -1147,90 +978,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_Manufacturer">
-          <End Role="Manufacturer" Type="Self.Manufacturer" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Manufacturer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ManufacturerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductPhoto_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductPhoto" Type="Self.ProductPhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductPhoto">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductSale_ClientService">
-          <End Role="ClientService" Type="Self.ClientService" Multiplicity="0..1" />
-          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductSale">
-              <PropertyRef Name="ClientServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductSale_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="ProductSale" Type="Self.ProductSale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductSale">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ServicePhoto_Service">
-          <End Role="Service" Type="Self.Service" Multiplicity="1" />
-          <End Role="ServicePhoto" Type="Self.ServicePhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ServicePhoto">
-              <PropertyRef Name="ServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TagOfClient_Client">
-          <End Role="Client" Type="Self.Client" Multiplicity="1" />
-          <End Role="TagOfClient" Type="Self.TagOfClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TagOfClient">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_TagOfClient_Tag">
-          <End Role="Tag" Type="Self.Tag" Multiplicity="1" />
-          <End Role="TagOfClient" Type="Self.TagOfClient" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tag">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TagOfClient">
-              <PropertyRef Name="TagID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Gender">
           <End Role="Gender" Type="Self.Gender" Multiplicity="0..1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -1258,16 +1005,12 @@
         <EntityContainer Name="Хранилище VSborkeBaseModelContainer">
           <EntitySet Name="AdditionComputerCaseImage" EntityType="Self.AdditionComputerCaseImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AlignmentPowerBlock" EntityType="Self.AlignmentPowerBlock" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="AttachedProduct" EntityType="Self.AttachedProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BackLiquidCooling" EntityType="Self.BackLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BottomLiquidCooling" EntityType="Self.BottomLiquidCooling" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Client" EntityType="Self.Client" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ClientService" EntityType="Self.ClientService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ColorRGB" EntityType="Self.ColorRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConnectorRGB" EntityType="Self.ConnectorRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerInside" EntityType="Self.CoolerInside" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DocumentByService" EntityType="Self.DocumentByService" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Favourite" EntityType="Self.Favourite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
@@ -1284,13 +1027,8 @@
           <EntitySet Name="PowerBlockStandartSupport" EntityType="Self.PowerBlockStandartSupport" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PriceHistory" EntityType="Self.PriceHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrimaryColor" EntityType="Self.PrimaryColor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductPhoto" EntityType="Self.ProductPhoto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ProductSale" EntityType="Self.ProductSale" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SecondColor" EntityType="Self.SecondColor" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ServicePhoto" EntityType="Self.ServicePhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SideLiquidCooling" EntityType="Self.SideLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SidePanelFixation" EntityType="Self.SidePanelFixation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SlotHDD" EntityType="Self.SlotHDD" Schema="dbo" store:Type="Tables" />
@@ -1304,8 +1042,6 @@
           <EntitySet Name="SupportSideCooler" EntityType="Self.SupportSideCooler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SupportTopCooler" EntityType="Self.SupportTopCooler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tag" EntityType="Self.Tag" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TagOfClient" EntityType="Self.TagOfClient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TopLiquidCooling" EntityType="Self.TopLiquidCooling" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeManagmentRGB" EntityType="Self.TypeManagmentRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TypeRGB" EntityType="Self.TypeRGB" Schema="dbo" store:Type="Tables" />
@@ -1316,22 +1052,6 @@
           <AssociationSet Name="FK_AdditionComputerCaseImage_ComputerCase" Association="Self.FK_AdditionComputerCaseImage_ComputerCase">
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="AdditionComputerCaseImage" EntitySet="AdditionComputerCaseImage" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AttachedProduct_Product" Association="Self.FK_AttachedProduct_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="AttachedProduct" EntitySet="AttachedProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_AttachedProduct_Product1" Association="Self.FK_AttachedProduct_Product1">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="AttachedProduct" EntitySet="AttachedProduct" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientService_Client" Association="Self.FK_ClientService_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="ClientService" EntitySet="ClientService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientService_Service" Association="Self.FK_ClientService_Service">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="ClientService" EntitySet="ClientService" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_AlignmentPowerBlock" Association="Self.FK_ComputerCase_AlignmentPowerBlock">
             <End Role="AlignmentPowerBlock" EntitySet="AlignmentPowerBlock" />
@@ -1477,10 +1197,6 @@
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
-          <AssociationSet Name="FK_DocumentByService_ClientService" Association="Self.FK_DocumentByService_ClientService">
-            <End Role="ClientService" EntitySet="ClientService" />
-            <End Role="DocumentByService" EntitySet="DocumentByService" />
-          </AssociationSet>
           <AssociationSet Name="FK_Favourite_ComputerCase" Association="Self.FK_Favourite_ComputerCase">
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="Favourite" EntitySet="Favourite" />
@@ -1513,34 +1229,6 @@
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="PriceHistory" EntitySet="PriceHistory" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_Manufacturer" Association="Self.FK_Product_Manufacturer">
-            <End Role="Manufacturer" EntitySet="Manufacturer" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductPhoto_Product" Association="Self.FK_ProductPhoto_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductSale_ClientService" Association="Self.FK_ProductSale_ClientService">
-            <End Role="ClientService" EntitySet="ClientService" />
-            <End Role="ProductSale" EntitySet="ProductSale" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductSale_Product" Association="Self.FK_ProductSale_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductSale" EntitySet="ProductSale" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ServicePhoto_Service" Association="Self.FK_ServicePhoto_Service">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="ServicePhoto" EntitySet="ServicePhoto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TagOfClient_Client" Association="Self.FK_TagOfClient_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="TagOfClient" EntitySet="TagOfClient" />
-          </AssociationSet>
-          <AssociationSet Name="FK_TagOfClient_Tag" Association="Self.FK_TagOfClient_Tag">
-            <End Role="Tag" EntitySet="Tag" />
-            <End Role="TagOfClient" EntitySet="TagOfClient" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_Gender" Association="Self.FK_User_Gender">
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
@@ -1559,13 +1247,10 @@
           <EntitySet Name="AlignmentPowerBlock" EntityType="VSborkeBaseModel.AlignmentPowerBlock" />
           <EntitySet Name="BackLiquidCooling" EntityType="VSborkeBaseModel.BackLiquidCooling" />
           <EntitySet Name="BottomLiquidCooling" EntityType="VSborkeBaseModel.BottomLiquidCooling" />
-          <EntitySet Name="Client" EntityType="VSborkeBaseModel.Client" />
-          <EntitySet Name="ClientService" EntityType="VSborkeBaseModel.ClientService" />
           <EntitySet Name="ColorRGB" EntityType="VSborkeBaseModel.ColorRGB" />
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
           <EntitySet Name="ConnectorRGB" EntityType="VSborkeBaseModel.ConnectorRGB" />
           <EntitySet Name="CoolerInside" EntityType="VSborkeBaseModel.CoolerInside" />
-          <EntitySet Name="DocumentByService" EntityType="VSborkeBaseModel.DocumentByService" />
           <EntitySet Name="Favourite" EntityType="VSborkeBaseModel.Favourite" />
           <EntitySet Name="FeedBack" EntityType="VSborkeBaseModel.FeedBack" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
@@ -1582,13 +1267,8 @@
           <EntitySet Name="PowerBlockStandartSupport" EntityType="VSborkeBaseModel.PowerBlockStandartSupport" />
           <EntitySet Name="PriceHistory" EntityType="VSborkeBaseModel.PriceHistory" />
           <EntitySet Name="PrimaryColor" EntityType="VSborkeBaseModel.PrimaryColor" />
-          <EntitySet Name="Product" EntityType="VSborkeBaseModel.Product" />
-          <EntitySet Name="ProductPhoto" EntityType="VSborkeBaseModel.ProductPhoto" />
-          <EntitySet Name="ProductSale" EntityType="VSborkeBaseModel.ProductSale" />
           <EntitySet Name="Role" EntityType="VSborkeBaseModel.Role" />
           <EntitySet Name="SecondColor" EntityType="VSborkeBaseModel.SecondColor" />
-          <EntitySet Name="Service" EntityType="VSborkeBaseModel.Service" />
-          <EntitySet Name="ServicePhoto" EntityType="VSborkeBaseModel.ServicePhoto" />
           <EntitySet Name="SideLiquidCooling" EntityType="VSborkeBaseModel.SideLiquidCooling" />
           <EntitySet Name="SidePanelFixation" EntityType="VSborkeBaseModel.SidePanelFixation" />
           <EntitySet Name="SlotHDD" EntityType="VSborkeBaseModel.SlotHDD" />
@@ -1602,7 +1282,6 @@
           <EntitySet Name="SupportSideCooler" EntityType="VSborkeBaseModel.SupportSideCooler" />
           <EntitySet Name="SupportTopCooler" EntityType="VSborkeBaseModel.SupportTopCooler" />
           <EntitySet Name="sysdiagrams" EntityType="VSborkeBaseModel.sysdiagrams" />
-          <EntitySet Name="Tag" EntityType="VSborkeBaseModel.Tag" />
           <EntitySet Name="TopLiquidCooling" EntityType="VSborkeBaseModel.TopLiquidCooling" />
           <EntitySet Name="TypeManagmentRGB" EntityType="VSborkeBaseModel.TypeManagmentRGB" />
           <EntitySet Name="TypeRGB" EntityType="VSborkeBaseModel.TypeRGB" />
@@ -1625,22 +1304,6 @@
           <AssociationSet Name="FK_ComputerCase_BottomLiquidCooling" Association="VSborkeBaseModel.FK_ComputerCase_BottomLiquidCooling">
             <End Role="BottomLiquidCooling" EntitySet="BottomLiquidCooling" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientService_Client" Association="VSborkeBaseModel.FK_ClientService_Client">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="ClientService" EntitySet="ClientService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ClientService_Service" Association="VSborkeBaseModel.FK_ClientService_Service">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="ClientService" EntitySet="ClientService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DocumentByService_ClientService" Association="VSborkeBaseModel.FK_DocumentByService_ClientService">
-            <End Role="ClientService" EntitySet="ClientService" />
-            <End Role="DocumentByService" EntitySet="DocumentByService" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductSale_ClientService" Association="VSborkeBaseModel.FK_ProductSale_ClientService">
-            <End Role="ClientService" EntitySet="ClientService" />
-            <End Role="ProductSale" EntitySet="ProductSale" />
           </AssociationSet>
           <AssociationSet Name="FK_ComputerCase_ColorRGB" Association="VSborkeBaseModel.FK_ComputerCase_ColorRGB">
             <End Role="ColorRGB" EntitySet="ColorRGB" />
@@ -1802,10 +1465,6 @@
             <End Role="Gender" EntitySet="Gender" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="FK_Product_Manufacturer" Association="VSborkeBaseModel.FK_Product_Manufacturer">
-            <End Role="Manufacturer" EntitySet="Manufacturer" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <AssociationSet Name="FK_Order_Status" Association="VSborkeBaseModel.FK_Order_Status">
             <End Role="Status" EntitySet="Status" />
             <End Role="Order" EntitySet="Order" />
@@ -1814,29 +1473,9 @@
             <End Role="User" EntitySet="User" />
             <End Role="Order" EntitySet="Order" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductPhoto_Product" Association="VSborkeBaseModel.FK_ProductPhoto_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductPhoto" EntitySet="ProductPhoto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductSale_Product" Association="VSborkeBaseModel.FK_ProductSale_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductSale" EntitySet="ProductSale" />
-          </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="VSborkeBaseModel.FK_User_Role">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ServicePhoto_Service" Association="VSborkeBaseModel.FK_ServicePhoto_Service">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="ServicePhoto" EntitySet="ServicePhoto" />
-          </AssociationSet>
-          <AssociationSet Name="AttachedProduct" Association="VSborkeBaseModel.AttachedProduct">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Product1" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="TagOfClient" Association="VSborkeBaseModel.TagOfClient">
-            <End Role="Client" EntitySet="Client" />
-            <End Role="Tag" EntitySet="Tag" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdditionComputerCaseImage">
@@ -1871,37 +1510,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_BottomLiquidCooling" FromRole="BottomLiquidCooling" ToRole="ComputerCase" />
-        </EntityType>
-        <EntityType Name="Client">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Birthday" Type="DateTime" Precision="0" />
-          <Property Name="RegistrationDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="GenderCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="PhotoPath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientService" Relationship="VSborkeBaseModel.FK_ClientService_Client" FromRole="Client" ToRole="ClientService" />
-          <NavigationProperty Name="Tag" Relationship="VSborkeBaseModel.TagOfClient" FromRole="Client" ToRole="Tag" />
-        </EntityType>
-        <EntityType Name="ClientService">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientID" Type="Int32" Nullable="false" />
-          <Property Name="ServiceID" Type="Int32" Nullable="false" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Client" Relationship="VSborkeBaseModel.FK_ClientService_Client" FromRole="ClientService" ToRole="Client" />
-          <NavigationProperty Name="Service" Relationship="VSborkeBaseModel.FK_ClientService_Service" FromRole="ClientService" ToRole="Service" />
-          <NavigationProperty Name="DocumentByService" Relationship="VSborkeBaseModel.FK_DocumentByService_ClientService" FromRole="ClientService" ToRole="DocumentByService" />
-          <NavigationProperty Name="ProductSale" Relationship="VSborkeBaseModel.FK_ProductSale_ClientService" FromRole="ClientService" ToRole="ProductSale" />
         </EntityType>
         <EntityType Name="ColorRGB">
           <Key>
@@ -2045,15 +1653,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_CoolerInside" FromRole="CoolerInside" ToRole="ComputerCase" />
         </EntityType>
-        <EntityType Name="DocumentByService">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ClientServiceID" Type="Int32" Nullable="false" />
-          <Property Name="DocumentPath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ClientService" Relationship="VSborkeBaseModel.FK_DocumentByService_ClientService" FromRole="DocumentByService" ToRole="ClientService" />
-        </EntityType>
         <EntityType Name="Favourite">
           <Key>
             <PropertyRef Name="Id" />
@@ -2146,7 +1745,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_Manufacturer" FromRole="Manufacturer" ToRole="ComputerCase" />
-          <NavigationProperty Name="Product" Relationship="VSborkeBaseModel.FK_Product_Manufacturer" FromRole="Manufacturer" ToRole="Product" />
         </EntityType>
         <EntityType Name="MaterialSet">
           <Key>
@@ -2170,7 +1768,7 @@
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
           <Property Name="IsReject" Type="Boolean" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <Property Name="CommentOrder" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CommentOrder" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="ReasonReject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
@@ -2211,44 +1809,6 @@
           <Property Name="HEXCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_PrimaryColor" FromRole="PrimaryColor" ToRole="ComputerCase" />
         </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <Property Name="ManufacturerID" Type="Int32" />
-          <NavigationProperty Name="Manufacturer" Relationship="VSborkeBaseModel.FK_Product_Manufacturer" FromRole="Product" ToRole="Manufacturer" />
-          <NavigationProperty Name="ProductPhoto" Relationship="VSborkeBaseModel.FK_ProductPhoto_Product" FromRole="Product" ToRole="ProductPhoto" />
-          <NavigationProperty Name="ProductSale" Relationship="VSborkeBaseModel.FK_ProductSale_Product" FromRole="Product" ToRole="ProductSale" />
-          <NavigationProperty Name="Product1" Relationship="VSborkeBaseModel.AttachedProduct" FromRole="Product" ToRole="Product1" />
-          <NavigationProperty Name="Product2" Relationship="VSborkeBaseModel.AttachedProduct" FromRole="Product1" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="ProductPhoto">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Product" Relationship="VSborkeBaseModel.FK_ProductPhoto_Product" FromRole="ProductPhoto" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="ProductSale">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SaleDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ProductID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="ClientServiceID" Type="Int32" />
-          <NavigationProperty Name="ClientService" Relationship="VSborkeBaseModel.FK_ProductSale_ClientService" FromRole="ProductSale" ToRole="ClientService" />
-          <NavigationProperty Name="Product" Relationship="VSborkeBaseModel.FK_ProductSale_Product" FromRole="ProductSale" ToRole="Product" />
-        </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
@@ -2265,31 +1825,6 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="HEXCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_SecondColor" FromRole="SecondColor" ToRole="ComputerCase" />
-        </EntityType>
-        <EntityType Name="Service">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Cost" Type="Int32" Nullable="false" />
-          <Property Name="DurationInSeconds" Type="Int32" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Discount" Type="Double" />
-          <Property Name="MainImagePath" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-          <Property Name="Logo" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="IsDelete" Type="Boolean" />
-          <NavigationProperty Name="ClientService" Relationship="VSborkeBaseModel.FK_ClientService_Service" FromRole="Service" ToRole="ClientService" />
-          <NavigationProperty Name="ServicePhoto" Relationship="VSborkeBaseModel.FK_ServicePhoto_Service" FromRole="Service" ToRole="ServicePhoto" />
-        </EntityType>
-        <EntityType Name="ServicePhoto">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceID" Type="Int32" Nullable="false" />
-          <Property Name="PhotoPath" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="Service" Relationship="VSborkeBaseModel.FK_ServicePhoto_Service" FromRole="ServicePhoto" ToRole="Service" />
         </EntityType>
         <EntityType Name="SideLiquidCooling">
           <Key>
@@ -2397,15 +1932,6 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Tag">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Color" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Client" Relationship="VSborkeBaseModel.TagOfClient" FromRole="Tag" ToRole="Client" />
         </EntityType>
         <EntityType Name="TopLiquidCooling">
           <Key>
@@ -2524,54 +2050,6 @@
             </Principal>
             <Dependent Role="ComputerCase">
               <PropertyRef Name="BottomLiquidCoolingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientService_Client">
-          <End Type="VSborkeBaseModel.Client" Role="Client" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.ClientService" Role="ClientService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Client">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ClientService">
-              <PropertyRef Name="ClientID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ClientService_Service">
-          <End Type="VSborkeBaseModel.Service" Role="Service" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.ClientService" Role="ClientService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ClientService">
-              <PropertyRef Name="ServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DocumentByService_ClientService">
-          <End Type="VSborkeBaseModel.ClientService" Role="ClientService" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.DocumentByService" Role="DocumentByService" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="DocumentByService">
-              <PropertyRef Name="ClientServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductSale_ClientService">
-          <End Type="VSborkeBaseModel.ClientService" Role="ClientService" Multiplicity="0..1" />
-          <End Type="VSborkeBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ClientService">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductSale">
-              <PropertyRef Name="ClientServiceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3055,18 +2533,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Product_Manufacturer">
-          <End Type="VSborkeBaseModel.Manufacturer" Role="Manufacturer" Multiplicity="0..1" />
-          <End Type="VSborkeBaseModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Manufacturer">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ManufacturerID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Order_Status">
           <End Type="VSborkeBaseModel.Status" Role="Status" Multiplicity="1" />
           <End Type="VSborkeBaseModel.Order" Role="Order" Multiplicity="*" />
@@ -3091,30 +2557,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductPhoto_Product">
-          <End Type="VSborkeBaseModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.ProductPhoto" Role="ProductPhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductPhoto">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductSale_Product">
-          <End Type="VSborkeBaseModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.ProductSale" Role="ProductSale" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProductSale">
-              <PropertyRef Name="ProductID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_User_Role">
           <End Type="VSborkeBaseModel.Role" Role="Role" Multiplicity="1" />
           <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="*" />
@@ -3126,26 +2568,6 @@
               <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ServicePhoto_Service">
-          <End Type="VSborkeBaseModel.Service" Role="Service" Multiplicity="1" />
-          <End Type="VSborkeBaseModel.ServicePhoto" Role="ServicePhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ServicePhoto">
-              <PropertyRef Name="ServiceID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="AttachedProduct">
-          <End Type="VSborkeBaseModel.Product" Role="Product" Multiplicity="*" />
-          <End Type="VSborkeBaseModel.Product" Role="Product1" Multiplicity="*" />
-        </Association>
-        <Association Name="TagOfClient">
-          <End Type="VSborkeBaseModel.Client" Role="Client" Multiplicity="*" />
-          <End Type="VSborkeBaseModel.Tag" Role="Tag" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -3183,33 +2605,6 @@
               <MappingFragment StoreEntitySet="BottomLiquidCooling">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Client">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.Client">
-              <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-                <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="RegistrationDate" ColumnName="RegistrationDate" />
-                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ClientService">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.ClientService">
-              <MappingFragment StoreEntitySet="ClientService">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3312,15 +2707,6 @@
               <MappingFragment StoreEntitySet="CoolerInside">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DocumentByService">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.DocumentByService">
-              <MappingFragment StoreEntitySet="DocumentByService">
-                <ScalarProperty Name="DocumentPath" ColumnName="DocumentPath" />
-                <ScalarProperty Name="ClientServiceID" ColumnName="ClientServiceID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3476,39 +2862,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Product">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-                <ScalarProperty Name="MainImagePath" ColumnName="MainImagePath" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductPhoto">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.ProductPhoto">
-              <MappingFragment StoreEntitySet="ProductPhoto">
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductSale">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.ProductSale">
-              <MappingFragment StoreEntitySet="ProductSale">
-                <ScalarProperty Name="ClientServiceID" ColumnName="ClientServiceID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="VSborkeBaseModel.Role">
               <MappingFragment StoreEntitySet="Role">
@@ -3523,30 +2876,6 @@
                 <ScalarProperty Name="HEXCode" ColumnName="HEXCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Service">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.Service">
-              <MappingFragment StoreEntitySet="Service">
-                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
-                <ScalarProperty Name="Logo" ColumnName="Logo" />
-                <ScalarProperty Name="MainImagePath" ColumnName="MainImagePath" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="DurationInSeconds" ColumnName="DurationInSeconds" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ServicePhoto">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.ServicePhoto">
-              <MappingFragment StoreEntitySet="ServicePhoto">
-                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
-                <ScalarProperty Name="ServiceID" ColumnName="ServiceID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3658,15 +2987,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Tag">
-            <EntityTypeMapping TypeName="VSborkeBaseModel.Tag">
-              <MappingFragment StoreEntitySet="Tag">
-                <ScalarProperty Name="Color" ColumnName="Color" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="TopLiquidCooling">
             <EntityTypeMapping TypeName="VSborkeBaseModel.TopLiquidCooling">
               <MappingFragment StoreEntitySet="TopLiquidCooling">
@@ -3734,22 +3054,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="AttachedProduct" TypeName="VSborkeBaseModel.AttachedProduct" StoreEntitySet="AttachedProduct">
-            <EndProperty Name="Product1">
-              <ScalarProperty Name="ID" ColumnName="AttachedProductID" />
-            </EndProperty>
-            <EndProperty Name="Product">
-              <ScalarProperty Name="ID" ColumnName="MainProductID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="TagOfClient" TypeName="VSborkeBaseModel.TagOfClient" StoreEntitySet="TagOfClient">
-            <EndProperty Name="Tag">
-              <ScalarProperty Name="ID" ColumnName="TagID" />
-            </EndProperty>
-            <EndProperty Name="Client">
-              <ScalarProperty Name="ID" ColumnName="ClientID" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

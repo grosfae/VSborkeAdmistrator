@@ -37,5 +37,18 @@ namespace VSborkeAdmistrator.Windows
         {
             this.Close();
         }
+
+        private void BackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void CancelOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            contextOrder.IsReject= true;
+            contextOrder.StatusId = 7;
+            App.DB.SaveChanges();
+            this.Close();
+        }
     }
 }

@@ -29,13 +29,10 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<AlignmentPowerBlock> AlignmentPowerBlock { get; set; }
         public virtual DbSet<BackLiquidCooling> BackLiquidCooling { get; set; }
         public virtual DbSet<BottomLiquidCooling> BottomLiquidCooling { get; set; }
-        public virtual DbSet<Client> Client { get; set; }
-        public virtual DbSet<ClientService> ClientService { get; set; }
         public virtual DbSet<ColorRGB> ColorRGB { get; set; }
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
         public virtual DbSet<ConnectorRGB> ConnectorRGB { get; set; }
         public virtual DbSet<CoolerInside> CoolerInside { get; set; }
-        public virtual DbSet<DocumentByService> DocumentByService { get; set; }
         public virtual DbSet<Favourite> Favourite { get; set; }
         public virtual DbSet<FeedBack> FeedBack { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }
@@ -52,13 +49,8 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<PowerBlockStandartSupport> PowerBlockStandartSupport { get; set; }
         public virtual DbSet<PriceHistory> PriceHistory { get; set; }
         public virtual DbSet<PrimaryColor> PrimaryColor { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<ProductPhoto> ProductPhoto { get; set; }
-        public virtual DbSet<ProductSale> ProductSale { get; set; }
         public virtual DbSet<Role> Role { get; set; }
         public virtual DbSet<SecondColor> SecondColor { get; set; }
-        public virtual DbSet<Service> Service { get; set; }
-        public virtual DbSet<ServicePhoto> ServicePhoto { get; set; }
         public virtual DbSet<SideLiquidCooling> SideLiquidCooling { get; set; }
         public virtual DbSet<SidePanelFixation> SidePanelFixation { get; set; }
         public virtual DbSet<SlotHDD> SlotHDD { get; set; }
@@ -72,7 +64,6 @@ namespace VSborkeAdmistrator.Components
         public virtual DbSet<SupportSideCooler> SupportSideCooler { get; set; }
         public virtual DbSet<SupportTopCooler> SupportTopCooler { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<Tag> Tag { get; set; }
         public virtual DbSet<TopLiquidCooling> TopLiquidCooling { get; set; }
         public virtual DbSet<TypeManagmentRGB> TypeManagmentRGB { get; set; }
         public virtual DbSet<TypeRGB> TypeRGB { get; set; }

@@ -91,12 +91,6 @@
     <Compile Include="Components\BottomLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\Client.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ClientService.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\ColorRGB.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -107,9 +101,6 @@
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\CoolerInside.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\DocumentByService.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\Favourite.cs">
@@ -164,25 +155,10 @@
     <Compile Include="Components\PrimaryColor.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\Product.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ProductPhoto.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ProductSale.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\Role.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SecondColor.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\Service.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Components\ServicePhoto.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Components\SideLiquidCooling.cs">
@@ -224,9 +200,6 @@
     <Compile Include="Components\sysdiagrams.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\Tag.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\TopLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
@@ -259,6 +232,9 @@
     </Compile>
     <Compile Include="Pages\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderView.xaml.cs">
+      <DependentUpon>OrderView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\PriceGraphMiniPage.xaml.cs">
       <DependentUpon>PriceGraphMiniPage.xaml</DependentUpon>
@@ -332,6 +308,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\OrdersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
