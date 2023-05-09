@@ -230,6 +230,9 @@
     <Compile Include="Pages\FeedbackAddEdit.xaml.cs">
       <DependentUpon>FeedbackAddEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\OrderOfferPage.xaml.cs">
+      <DependentUpon>OrderOfferPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\OrdersPage.xaml.cs">
       <DependentUpon>OrdersPage.xaml</DependentUpon>
     </Compile>
@@ -307,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\MenuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\OrderOfferPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

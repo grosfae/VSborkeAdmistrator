@@ -246,7 +246,10 @@ namespace VSborkeAdmistrator.Pages
 
         private void AcceptBtnSt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            var selectedOrder = (sender as StackPanel).DataContext as Order;
+            selectedOrder.StatusId = 2;
+            App.DB.SaveChanges();
+            Refresh();
         }
 
         private void RejectBtnSt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
