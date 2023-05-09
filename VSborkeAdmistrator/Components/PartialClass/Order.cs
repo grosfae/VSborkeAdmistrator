@@ -93,6 +93,21 @@ namespace VSborkeAdmistrator.Components
                 }
             }
         }
+        public Visibility VisibilityReasonCancelBtn
+        {
+            get
+            {
+                if (Status.Id == 7 & ReasonReject != null)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
         public Visibility VisibilityComment
         {
             get

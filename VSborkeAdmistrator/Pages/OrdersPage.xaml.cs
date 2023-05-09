@@ -382,12 +382,6 @@ namespace VSborkeAdmistrator.Pages
             }
         }
 
-        private void LinkOrderView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var selectedOrder = (sender as TextBlock).DataContext as Order;
-            NavigationService.Navigate(new OrderView(selectedOrder));
-        }
-
         private void TbLinkName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var selectedOrder = (sender as TextBlock).DataContext as Order;
@@ -398,6 +392,20 @@ namespace VSborkeAdmistrator.Pages
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
             NavigationService.Navigate(new ProfilePage(selectedOrder.User));
+        }
+
+        private void CommentViewBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedOrder = (sender as TextBlock).DataContext as Order;
+            var dialog = new OrderCommentWindow(selectedOrder);
+            dialog.ShowDialog();
+        }
+
+        private void ReasonViewBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            var selectedOrder = (sender as StackPanel).DataContext as Order;
+            var dialog = new RejectOrderWindow(selectedOrder);
+            dialog.ShowDialog();
         }
     }
 }

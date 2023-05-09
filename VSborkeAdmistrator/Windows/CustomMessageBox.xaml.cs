@@ -70,6 +70,8 @@ namespace VSborkeAdmistrator.Windows
                 case CustomMessageBoxTitle.Предупреждение:
                     customMessageBox.iconMsg.Visibility = Visibility.Collapsed;
                     customMessageBox.CancelBtn.Visibility = Visibility.Collapsed;
+                    customMessageBox.txtMessage.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+                    customMessageBox.txtMessage.SetValue(Grid.ColumnProperty, 0);
                     customMessageBox.txtMessage.SetValue(Grid.ColumnSpanProperty, 2);
                     customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
                     break;

@@ -254,6 +254,9 @@
     <Compile Include="Windows\CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\OrderCommentWindow.xaml.cs">
+      <DependentUpon>OrderCommentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PriceChartsWindow.xaml.cs">
       <DependentUpon>PriceChartsWindow.xaml</DependentUpon>
     </Compile>
@@ -336,6 +339,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\OrderCommentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -30,7 +30,7 @@
         </StackPanel>
         <StackPanel Background="#FF3881EF" Height="2" Margin="0 33 0 0"/>
         <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Height="36" Width="auto">
-            <Polygon Fill="#FF3881EF" Points="180,0,250,50, 250,0, 0,0"/>
+            <Polygon Fill="#FF3881EF" Points="180,0,250,50, 250,0, 0,0" HorizontalAlignment="Right"/>
             <Image x:Name="CloseButton" Height="15" Width="15" Margin="220 0 0 5" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
                 <Image.Style>
                     <Style TargetType="{x:Type Image}">
