@@ -384,7 +384,8 @@ namespace VSborkeAdmistrator.Pages
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            NavigationService.Navigate(new OrderOfferPage(selectedCase));
         }
 
         private void NotificBtn_Click(object sender, RoutedEventArgs e)

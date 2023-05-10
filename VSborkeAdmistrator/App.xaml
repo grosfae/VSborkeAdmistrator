@@ -305,6 +305,40 @@
             </Setter>
         </Style>
 
+        <!--TextBox PlaceHolderForText-->
+
+        <Style x:Key="placeHolderForText" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource"
+                                 Background="Transparent" BorderThickness="0"
+                                 Panel.ZIndex="2" MaxLength="{TemplateBinding MaxLength}" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="BorderBrush" Value="#FFEEF0F2"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="#FF757575"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!--TextBlocks & CheckBox Styles-->
 
         <Style TargetType="TextBlock" x:Key="TbToggle">
@@ -729,7 +763,7 @@
             <Setter Property="FontSize" Value="25"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="BorderBrush" Value="#FF3881EF"/>
             <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
             <Setter Property="Background" Value="#FF3881EF"/>
@@ -1168,8 +1202,7 @@
                             VerticalAlignment="Center" 
                             Margin="3,3,23,3"
                             Focusable="True" 
-                            Background="#FF3F3F3F"
-                            Foreground="Green"
+                            Foreground="Black"
                             Visibility="Hidden"
                             IsReadOnly="{TemplateBinding IsReadOnly}"/>
                             <Popup 
