@@ -48,6 +48,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Description" Type="varchar(max)" Nullable="false" />
+          <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
           <Property Name="Discount" Type="int" Nullable="false" />
           <Property Name="FormFactorId" Type="int" Nullable="false" />
@@ -236,6 +237,15 @@
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="CommentOrder" Type="varchar" MaxLength="1000" />
           <Property Name="ReasonReject" Type="varchar" MaxLength="500" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="20" />
+          <Property Name="Address" Type="varchar" MaxLength="100" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="5" />
+          <Property Name="PrivateHome" Type="bit" />
+          <Property Name="UpToFloor" Type="bit" />
+          <Property Name="Floor" Type="varchar" MaxLength="2" />
+          <Property Name="DateDelivery" Type="date" />
+          <Property Name="TimeDelivery" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="OrientationMotherboard">
           <Key>
@@ -1526,6 +1536,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" Nullable="false" />
           <Property Name="Discount" Type="Int32" Nullable="false" />
           <Property Name="FormFactorId" Type="Int32" Nullable="false" />
@@ -1770,6 +1781,15 @@
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="CommentOrder" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="ReasonReject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PrivateHome" Type="Boolean" />
+          <Property Name="UpToFloor" Type="Boolean" />
+          <Property Name="Floor" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DateDelivery" Type="DateTime" Precision="0" />
+          <Property Name="TimeDelivery" Type="Time" Precision="7" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="Order" ToRole="User" />
@@ -2688,6 +2708,7 @@
                 <ScalarProperty Name="FormFactorId" ColumnName="FormFactorId" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -2812,6 +2833,15 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="VSborkeBaseModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
+                <ScalarProperty Name="DateDelivery" ColumnName="DateDelivery" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="UpToFloor" ColumnName="UpToFloor" />
+                <ScalarProperty Name="PrivateHome" ColumnName="PrivateHome" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="ReasonReject" ColumnName="ReasonReject" />
                 <ScalarProperty Name="CommentOrder" ColumnName="CommentOrder" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />

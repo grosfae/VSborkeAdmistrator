@@ -28,30 +28,31 @@
                             <TextBlock x:Name="TbCaseCode" Style="{StaticResource OrderList}" FontSize="15" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto" Margin="5 0 0 0"/>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0">
-                            <TextBlock Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" Width="450" Margin="0 0 0 10"/>
+                            <TextBlock Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding NameForWindows}" TextWrapping="Wrap" Height="50" Width="450" Margin="0 0 0 10"/>
                             <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Left" FontSize="18" Text="Количество корпусов" FontWeight="SemiBold" TextWrapping="Wrap" Height="30" Margin="0 20 0 0"/>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Style="{StaticResource UnicodeSymbols}" Text="&#xf056;" FontSize="20" VerticalAlignment="Center" Margin="0 0 5 0" Foreground="#FFFF5A5A" Cursor="Hand"/>
+                                <TextBlock x:Name="CountMinusBtn" Style="{StaticResource UnicodeSymbols}" Text="&#xf056;" FontSize="20" VerticalAlignment="Center" Margin="0 0 5 0" Foreground="#FFFF5A5A" Cursor="Hand" MouseLeftButtonDown="CountMinusBtn_MouseLeftButtonDown"/>
                                 <Border CornerRadius="10" Background="White" Width="70" BorderBrush="Black" Height="40">
-                                    <TextBlock Text="1" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Sans}" x:Name="TbCountCase"/>
+                                    <TextBox Text="1" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Resources/Fonts/#PT Sans" Width="50" BorderThickness="0" TextAlignment="Center" x:Name="TbCountCase" MaxLength="3" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbCountCase_LostFocus"/>
                                     <Border.Effect>
                                         <DropShadowEffect Color="Black" BlurRadius="5" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
                                     </Border.Effect>
                                 </Border>
-                                <TextBlock Style="{StaticResource UnicodeSymbols}" Text="&#xf055;" FontSize="20" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FF5ED266" Cursor="Hand"/>
+                                <TextBlock x:Name="CountPlusBtn" Style="{StaticResource UnicodeSymbols}" Text="&#xf055;" FontSize="20" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FF5ED266" Cursor="Hand" MouseLeftButtonDown="CountPlusBtn_MouseLeftButtonDown"/>
+                                <TextBlock x:Name="TbCountToConstruct" Text="" Style="{StaticResource Sans}" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0" Visibility="Collapsed"/>
                             </StackPanel>
                         </StackPanel>
                         
                         <Grid Margin="10 0 0 0" Width="405">
-                            <StackPanel HorizontalAlignment="Right">
+                            <StackPanel HorizontalAlignment="Right" Width="400">
                                 <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Right" FontSize="18" Text="Цена заказа" FontWeight="SemiBold" TextWrapping="Wrap" Height="30" Margin="0 20 0 0" VerticalAlignment="Top"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                    <TextBlock Text="1 шт. x" FontSize="20"/>
-                                    <TextBlock Text="5343 ₽" FontSize="20" Margin="5 0 0 0" TextDecorations="Strikethrough"/>
-                                    <TextBlock Text="4643 ₽" FontSize="20" Margin="5 0 0 0"/>
+                                    <TextBlock x:Name="TbCountUnit" Text="1 шт. x" FontSize="20"/>
+                                    <TextBlock x:Name="TbPricePerUnit" FontSize="20" Margin="5 0 0 0" TextDecorations="Strikethrough" Visibility="Collapsed"/>
+                                    <TextBlock x:Name="TbPricePerUnitDiscount" Text="4643 ₽" FontSize="20" Margin="5 0 0 0"/>
                                 </StackPanel>
-                                <TextBlock Text="Скидка за количество: 5%" FontSize="16" Margin="5 10 0 0"/>
-                                <TextBlock Text="ИТОГО: 12340 Р" FontSize="15" Margin="5 10 0 0" Style="{StaticResource Sans}" FontWeight="SemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+                                <TextBlock x:Name="TbDiscount" Text="Скидка за количество: 5%" FontSize="16" Margin="5 10 0 0" HorizontalAlignment="Right" Visibility="Collapsed"/>
+                                <TextBlock x:Name="TbFinallyPrice" Text="ИТОГО: 12340 Р" FontSize="15" Margin="5 10 0 0" Style="{StaticResource Sans}" FontWeight="SemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </Grid>
                         
@@ -134,7 +135,7 @@
                                     </Grid>
                                 </Border>
                             </StackPanel>
-                            <StackPanel Grid.Row="1">
+                            <StackPanel Grid.Row="1" Margin="10 0 0 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Доставка" FontWeight="DemiBold" FontSize="20" Margin="0 12 0 0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60">
@@ -169,7 +170,7 @@
                                 </Border>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="2">
+                            <StackPanel Grid.Row="2" Margin="10 0 0 0">
                                 <TextBlock Style="{StaticResource ProfileInfo}" Text="Оплата заказа" FontWeight="DemiBold" FontSize="20" Margin="0 12 0 0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60">

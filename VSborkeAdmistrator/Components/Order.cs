@@ -26,6 +26,15 @@ namespace VSborkeAdmistrator.Components
         public int StatusId { get; set; }
         public string CommentOrder { get; set; }
         public string ReasonReject { get; set; }
+        public string Phone { get; set; }
+        public string Email { get; set; }
+        public string Address { get; set; }
+        public string FlatNumber { get; set; }
+        public Nullable<bool> PrivateHome { get; set; }
+        public Nullable<bool> UpToFloor { get; set; }
+        public string Floor { get; set; }
+        public Nullable<System.DateTime> DateDelivery { get; set; }
+        public Nullable<System.TimeSpan> TimeDelivery { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }
         public virtual Status Status { get; set; }
