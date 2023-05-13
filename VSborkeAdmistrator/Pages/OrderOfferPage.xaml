@@ -28,18 +28,19 @@
                             <TextBlock x:Name="TbCaseCode" Style="{StaticResource OrderList}" FontSize="15" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto" Margin="5 0 0 0"/>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0">
-                            <TextBlock Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding NameForWindows}" TextWrapping="Wrap" Height="50" Width="450" Margin="0 0 0 10"/>
+                            <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Left" FontSize="20" Text="{Binding NameForWindows}" TextWrapping="Wrap" Height="50" Width="450" Margin="0 0 0 10"/>
+                            <TextBlock x:Name="TbDelivery" Style="{StaticResource Sans}" HorizontalAlignment="Left" FontSize="20" Height="30" Width="auto" />
                             <TextBlock Style="{StaticResource ProfileInfo}" HorizontalAlignment="Left" FontSize="18" Text="Количество корпусов" FontWeight="SemiBold" TextWrapping="Wrap" Height="30" Margin="0 20 0 0"/>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock x:Name="CountMinusBtn" Style="{StaticResource UnicodeSymbols}" Text="&#xf056;" FontSize="20" VerticalAlignment="Center" Margin="0 0 5 0" Foreground="#FFFF5A5A" Cursor="Hand" MouseLeftButtonDown="CountMinusBtn_MouseLeftButtonDown"/>
                                 <Border CornerRadius="10" Background="White" Width="70" BorderBrush="Black" Height="40">
-                                    <TextBox Text="1" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Resources/Fonts/#PT Sans" Width="50" BorderThickness="0" TextAlignment="Center" x:Name="TbCountCase" MaxLength="3" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbCountCase_LostFocus"/>
+                                    <TextBox Text="1" FontSize="26" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="/Resources/Fonts/#PT Sans" Width="50" BorderThickness="0" TextAlignment="Center" x:Name="TbCountCase" MaxLength="3" PreviewTextInput="Numbers_PreviewTextInput" LostFocus="TbCountCase_LostFocus" PreviewKeyDown="ForSpaces_PreviewKeyDown"/>
                                     <Border.Effect>
                                         <DropShadowEffect Color="Black" BlurRadius="5" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
                                     </Border.Effect>
                                 </Border>
                                 <TextBlock x:Name="CountPlusBtn" Style="{StaticResource UnicodeSymbols}" Text="&#xf055;" FontSize="20" VerticalAlignment="Center" Margin="5 0 0 0" Foreground="#FF5ED266" Cursor="Hand" MouseLeftButtonDown="CountPlusBtn_MouseLeftButtonDown"/>
-                                <TextBlock x:Name="TbCountToConstruct" Text="" Style="{StaticResource Sans}" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0" Visibility="Collapsed"/>
+                                <TextBlock x:Name="TbCountToConstruct" Text="" Style="{StaticResource Sans}" FontSize="20" VerticalAlignment="Center" Margin="20 0 0 0" />
                             </StackPanel>
                         </StackPanel>
                         
@@ -51,7 +52,7 @@
                                     <TextBlock x:Name="TbPricePerUnit" FontSize="20" Margin="5 0 0 0" TextDecorations="Strikethrough" Visibility="Collapsed"/>
                                     <TextBlock x:Name="TbPricePerUnitDiscount" Text="4643 ₽" FontSize="20" Margin="5 0 0 0"/>
                                 </StackPanel>
-                                <TextBlock x:Name="TbDiscount" Text="Скидка за количество: 5%" FontSize="16" Margin="5 10 0 0" HorizontalAlignment="Right" Visibility="Collapsed"/>
+                                <TextBlock x:Name="TbDiscount" FontSize="16" Margin="5 10 0 0" HorizontalAlignment="Right" Visibility="Collapsed"/>
                                 <TextBlock x:Name="TbFinallyPrice" Text="ИТОГО: 12340 Р" FontSize="15" Margin="5 10 0 0" Style="{StaticResource Sans}" FontWeight="SemiBold" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
                             </StackPanel>
                         </Grid>
@@ -62,18 +63,18 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70"/>
                             <ColumnDefinition/>
-                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="280"/>
                         </Grid.ColumnDefinitions>
 
                         <StackPanel Margin="0 10 0 0">
                             <StackPanel>
-                                <Border CornerRadius="100" Background="#FF3881EF" Width="40" x:Name="BorderFirstStage">
-                                    <TextBlock Text="1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Sans}" Foreground="White" x:Name="TbFirstStage"/>
+                                <Border CornerRadius="100" Background="White" Width="40" x:Name="BorderFirstStage">
+                                    <TextBlock Text="1" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource Sans}" Foreground="#FF3881EF" x:Name="TbFirstStage"/>
                                     <Border.Effect>
                                         <DropShadowEffect Color="Black" BlurRadius="15" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
                                     </Border.Effect>
                                 </Border>
-                                <ProgressBar Width="155" Height="3" BorderThickness="0" x:Name="PbFirst" Value="20" Style="{StaticResource ForReview}">
+                                <ProgressBar Width="155" Height="3" BorderThickness="0" x:Name="PbFirst" Style="{StaticResource ForReview}">
                                     <ProgressBar.LayoutTransform>
                                         <RotateTransform Angle="90"/>
                                     </ProgressBar.LayoutTransform>
@@ -120,18 +121,18 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60">
                                         <Grid>
-                                            <TextBox x:Name="TbPhone" Style="{StaticResource placeHolderForText}"  Tag="Номер телефона" Height="30" FontSize="18" Width="335" MaxLength="11" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbPhone_TextChanged"/>
+                                            <TextBox x:Name="TbPhone" Style="{StaticResource placeHolderForText}"  Tag="Номер телефона" Height="30" FontSize="18" Width="335" MaxLength="11" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbPhone_TextChanged" PreviewKeyDown="ForSpaces_PreviewKeyDown"/>
                                         </Grid>
                                     </Border>
                                     <Border CornerRadius="10" BorderThickness="1" Margin="20 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60">
                                         <Grid>
-                                            <TextBox x:Name="TbEmail" Style="{StaticResource placeHolderForText}" Tag="Email (необязательно)" Height="30" FontSize="18" Width="335" MaxLength="20" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbPhone_TextChanged"/>
+                                            <TextBox x:Name="TbEmail" Style="{StaticResource placeHolderForText}" Tag="Email (необязательно)" Height="30" FontSize="18" Width="335" MaxLength="20" Background="Transparent"  Margin="5" BorderThickness="0" PreviewKeyDown="ForSpaces_PreviewKeyDown"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="80">
                                     <Grid>
-                                        <TextBox x:Name="TbCommentOrder"  Style="{StaticResource placeHolder}" Tag="Комментарий к заказу (необязательно)" Height="70" TextWrapping="Wrap" FontSize="18" Width="700" MaxLength="1000" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbPhone_TextChanged"/>
+                                        <TextBox x:Name="TbCommentOrder"  Style="{StaticResource placeHolder}" Tag="Комментарий к заказу (необязательно)" Height="70" TextWrapping="Wrap" FontSize="18" Width="700" MaxLength="1000" Background="Transparent"  Margin="5" BorderThickness="0"/>
                                     </Grid>
                                 </Border>
                             </StackPanel>
@@ -145,7 +146,7 @@
                                     </Border>
                                     <Border CornerRadius="10" BorderThickness="1" Margin="20 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60">
                                         <Grid>
-                                            <TextBox x:Name="TbApartment"  Style="{StaticResource placeHolderForText}" Tag="№ квартиры" Height="30" FontSize="18" MaxLength="4" Width="130" TextWrapping="Wrap" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbApartment_TextChanged"/>
+                                            <TextBox x:Name="TbApartment"  Style="{StaticResource placeHolderForText}" Tag="№ квартиры" Height="30" FontSize="18" MaxLength="4" Width="130" TextWrapping="Wrap" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbApartment_TextChanged" PreviewKeyDown="ForSpaces_PreviewKeyDown"/>
                                         </Grid>
                                     </Border>
                                     <Border CornerRadius="10" BorderThickness="1" Margin="20 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60" Width="160">
