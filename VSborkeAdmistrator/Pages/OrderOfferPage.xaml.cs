@@ -56,20 +56,7 @@ namespace VSborkeAdmistrator.Pages
         int finallyPrice;
         int delivery;
 
-        private void TbPhone_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TbAdress_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void TbApartment_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
+        int deliveryProgress = 0;
 
         private void CountMinusBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -203,6 +190,120 @@ namespace VSborkeAdmistrator.Pages
             }
             
             
+        }
+
+        private void TbPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int progress = 0;
+            if (TbPhone.Text.Length > 0)
+            {
+                BorderFirstStage.Background = new SolidColorBrush(Color.FromRgb(56,129,239));
+                TbFirstStage.Foreground = Brushes.White;
+                progress = 100;
+            }
+            if (TbPhone.Text.Length == 0)
+            {
+                BorderFirstStage.Background = Brushes.White;
+                TbFirstStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                progress = 0;
+            }
+            PbFirst.Value = progress;
+
+        }
+
+        private void DeliveryProgress()
+        {
+            int progress = 0;
+            if (TbAddress.Text.Length > 0)
+            {
+                progress += 25;
+            }
+            else if (TbAddress.Text.Length == 0)
+            {
+                progress -= 25;
+            }
+            if (TbApartment.Text.Length > 0)
+            {                
+                progress += 25;
+            }
+            else if (TbApartment.Text.Length == 0)
+            {              
+                progress -= 25;
+            }
+            if(CbDate.SelectedItem != null)
+            {
+                progress += 25;
+            }
+            else if (CbDate.SelectedItem == null)
+            {
+                progress -= 25;
+            }
+            if(CbTime.SelectedItem != null)
+            {
+                progress += 25;
+            }
+            else if (CbTime.SelectedItem == null)
+            {
+                progress -= 25;
+            }
+            if (progress >= 25)
+            {
+                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbSecondStage.Foreground = Brushes.White;
+            }
+            else
+            {
+                BorderSecondStage.Background = Brushes.White;
+                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+            }
+            PbSecond.Value = progress;
+        }
+
+        private void TbAddress_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int progress = 0;
+            if (TbAddress.Text.Length > 0 & TbAddress.Text.Length < 2)
+            {
+                progress += 25;
+            }
+            else if(TbAddress.Text.Length == 0)
+            {
+                progress -= 25;
+            }
+            if (progress >= 25)
+            {
+                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbSecondStage.Foreground = Brushes.White;
+            }
+            else
+            {
+                BorderSecondStage.Background = Brushes.White;
+                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+            }
+            PbSecond.Value += progress;
+        }
+
+        private void TbApartment_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TbApartment.Text.Length > 0)
+            {
+                deliveryProgress += 25;
+            }
+            else if (TbApartment.Text.Length == 0)
+            {
+                deliveryProgress -= 25;
+            }
+            if (deliveryProgress >= 25)
+            {
+                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbSecondStage.Foreground = Brushes.White;
+            }
+            else
+            {
+                BorderSecondStage.Background = Brushes.White;
+                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+            }
+            PbSecond.Value = deliveryProgress;
         }
     }
 }
