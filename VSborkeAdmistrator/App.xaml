@@ -426,6 +426,7 @@
 
         <!--Buttons Style-->
 
+        
         <Style TargetType="Button" x:Key="MenuBtn">
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="FontFamily" Value="Resources/Fonts/#Agency FB Cyrillic"/>
@@ -445,7 +446,37 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
+        <!--Toggle Button-->
+        <Style TargetType="ToggleButton" x:Key="BlueToggleBtnStyle">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="FontFamily" Value="Resources/Fonts/#Raleway"/>
+            <Setter Property="Background" Value="#FFF2F2F2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="#FF3881EF" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="BorderBrush" Value="#FF6297E8"/>
+                    <Setter Property="Background" Value="#FF3881EF" />
+                    <Setter Property="Foreground" Value="White" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
         <!--Default Button-->
         <Style TargetType="Button" x:Key="BorderBtn">
             <Setter Property="FontSize" Value="25"/>
