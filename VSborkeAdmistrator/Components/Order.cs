@@ -34,7 +34,7 @@ namespace VSborkeAdmistrator.Components
         public Nullable<bool> UpToFloor { get; set; }
         public string Floor { get; set; }
         public Nullable<System.DateTime> DateDelivery { get; set; }
-        public Nullable<System.TimeSpan> TimeDelivery { get; set; }
+        public string TimeDelivery { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }
         public virtual Status Status { get; set; }

@@ -245,7 +245,7 @@
           <Property Name="UpToFloor" Type="bit" />
           <Property Name="Floor" Type="varchar" MaxLength="2" />
           <Property Name="DateDelivery" Type="date" />
-          <Property Name="TimeDelivery" Type="time" Precision="7" />
+          <Property Name="TimeDelivery" Type="varchar" MaxLength="40" />
         </EntityType>
         <EntityType Name="OrientationMotherboard">
           <Key>
@@ -1789,7 +1789,7 @@
           <Property Name="UpToFloor" Type="Boolean" />
           <Property Name="Floor" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="DateDelivery" Type="DateTime" Precision="0" />
-          <Property Name="TimeDelivery" Type="Time" Precision="7" />
+          <Property Name="TimeDelivery" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="Order" ToRole="User" />

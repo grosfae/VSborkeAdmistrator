@@ -54,8 +54,14 @@ namespace VSborkeAdmistrator.Pages
 
             for (int i = 0; i < 7; i++)
             {
-                
+                CbDate.Items.Add(DateTime.Now.AddDays(14 + i).Date.ToString("d"));
             }
+
+            CbTime.Items.Add("10:00 - 13:00");
+            CbTime.Items.Add("14:00 - 16:00");
+            CbTime.Items.Add("16:00 - 18:00");
+            CbTime.Items.Add("18:00 - 20:00");
+
 
         }
         int countCase;
@@ -88,6 +94,7 @@ namespace VSborkeAdmistrator.Pages
             
         }
 
+       
         private void RefreshCount()
         {
             
