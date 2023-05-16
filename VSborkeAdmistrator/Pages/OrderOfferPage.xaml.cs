@@ -73,10 +73,12 @@ namespace VSborkeAdmistrator.Pages
         int finallyPrice;
         int delivery;
 
-        
 
+       
         bool secondAddress = false;
         bool secondApartment = false;
+        bool dateSelected = false;
+        bool timeSelected = false;
 
         private void CountMinusBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -137,6 +139,12 @@ namespace VSborkeAdmistrator.Pages
                 delivery = 1;
                 TbDelivery.Text = String.Format("Сроки доставки: {0} месяц", delivery);
                 TbCountToConstruct.Text = String.Format("+{0} корпусов к изготовлению", countToConstruct);
+                CbDate.Items.Clear();
+                for (int i = 0; i < 7; i++)
+                {
+                    CbDate.Items.Add(DateTime.Now.AddDays(31 + i).Date.ToString("d"));
+                }
+
             }
             else
             {
@@ -144,9 +152,25 @@ namespace VSborkeAdmistrator.Pages
                 delivery = 2;
                 TbDelivery.Text = String.Format("Сроки доставки: {0} недели", delivery);
                 TbCountToConstruct.Text = String.Empty;
+                CbDate.Items.Clear();
+                for (int i = 0; i < 7; i++)
+                {
+                    CbDate.Items.Add(DateTime.Now.AddDays(14 + i).Date.ToString("d"));
+                }
             }
 
-            
+            if (CbDate.SelectedItem != null & dateSelected != true)
+            {
+                dateSelected = true;
+                deliveryProgress += 25;
+            }
+            else if (CbDate.SelectedItem == null & dateSelected == true)
+            {
+                dateSelected = false;
+                deliveryProgress -= 25;
+            }
+
+
             TbCountCase.Text = countCase.ToString();
             TbCountUnit.Text = $"{countCase} шт. x";
 
@@ -157,6 +181,7 @@ namespace VSborkeAdmistrator.Pages
 
             finallyPrice = countCase * pricePerUnitDiscount;
             TbFinallyPrice.Text = String.Format("ИТОГО: {0} ₽", finallyPrice);
+
 
             if(DiscountForCount == 0)
             {
@@ -232,53 +257,7 @@ namespace VSborkeAdmistrator.Pages
 
         }
 
-        private void DeliveryProgress()
-        {
-            int progress = 0;
-            if (TbAddress.Text.Length > 0)
-            {
-                progress += 25;
-            }
-            else if (TbAddress.Text.Length == 0)
-            {
-                progress -= 25;
-            }
-            if (TbApartment.Text.Length > 0)
-            {                
-                progress += 25;
-            }
-            else if (TbApartment.Text.Length == 0)
-            {              
-                progress -= 25;
-            }
-            if(CbDate.SelectedItem != null)
-            {
-                progress += 25;
-            }
-            else if (CbDate.SelectedItem == null)
-            {
-                progress -= 25;
-            }
-            if(CbTime.SelectedItem != null)
-            {
-                progress += 25;
-            }
-            else if (CbTime.SelectedItem == null)
-            {
-                progress -= 25;
-            }
-            if (progress >= 25)
-            {
-                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
-                TbSecondStage.Foreground = Brushes.White;
-            }
-            else
-            {
-                BorderSecondStage.Background = Brushes.White;
-                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
-            }
-            PbSecond.Value = progress;
-        }
+        
 
         private void TbAddress_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -303,6 +282,19 @@ namespace VSborkeAdmistrator.Pages
                 TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
             }
             PbSecond.Value = deliveryProgress;
+
+            if (deliveryProgress == 100)
+            {
+                BorderThirdStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbThirdStage.Foreground = Brushes.White;
+                PbThird.Value = 100;
+            }
+            else
+            {
+                BorderThirdStage.Background = Brushes.White;
+                TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                PbThird.Value = 0;
+            }        
         }
 
         private void TbApartment_TextChanged(object sender, TextChangedEventArgs e)
@@ -328,60 +320,18 @@ namespace VSborkeAdmistrator.Pages
                 TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
             }
             PbSecond.Value = deliveryProgress;
-        }
-
-        private void TbAddress_LostFocus(object sender, RoutedEventArgs e)
-        {
-            int progress = 0;
-            if (TbAddress.Text.Length > 0 & secondAddress!= true)
+            if (deliveryProgress == 100)
             {
-                secondAddress = true;
-                progress += 25;
-                PbSecond.Value += progress;
-            }
-            else if (TbAddress.Text.Length == 0)
-            {
-                secondAddress = false;
-                progress -= 25;
-                PbSecond.Value -= progress;
-            }
-            if (progress >= 25)
-            {
-                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
-                TbSecondStage.Foreground = Brushes.White;
+                BorderThirdStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbThirdStage.Foreground = Brushes.White;
+                PbThird.Value = 100;
             }
             else
             {
-                BorderSecondStage.Background = Brushes.White;
-                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                BorderThirdStage.Background = Brushes.White;
+                TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                PbThird.Value = 0;
             }
-            
-        }
-
-        private void TbApartment_LostFocus(object sender, RoutedEventArgs e)
-        {
-            int progress = 0;
-            if (TbApartment.Text.Length > 0)
-            {
-                progress += 25;
-                PbSecond.Value += progress;
-            }
-            else if (TbApartment.Text.Length == 0)
-            {
-                progress -= 25;
-                PbSecond.Value -= progress;
-            }
-            if (progress >= 25)
-            {
-                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
-                TbSecondStage.Foreground = Brushes.White;
-            }
-            else
-            {
-                BorderSecondStage.Background = Brushes.White;
-                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
-            }
-            
         }
 
         private void CbUpToFloor_Checked(object sender, RoutedEventArgs e)
@@ -393,6 +343,80 @@ namespace VSborkeAdmistrator.Pages
         {
             CbFloors.Visibility = Visibility.Collapsed;
             CbFloors.SelectedItem= null;
+        }
+
+        private void CbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbDate.SelectedItem != null & dateSelected != true)
+            {
+                dateSelected = true;
+                deliveryProgress += 25;
+            }
+            else if (CbDate.SelectedItem == null & dateSelected == true)
+            {
+                dateSelected = false;
+                deliveryProgress -= 25;
+            }
+            if (deliveryProgress >= 25)
+            {
+                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbSecondStage.Foreground = Brushes.White;
+            }
+            else
+            {
+                BorderSecondStage.Background = Brushes.White;
+                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+            }
+            PbSecond.Value = deliveryProgress;
+            if (deliveryProgress == 100)
+            {
+                BorderThirdStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbThirdStage.Foreground = Brushes.White;
+                PbThird.Value = 100;
+            }
+            else
+            {
+                BorderThirdStage.Background = Brushes.White;
+                TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                PbThird.Value = 0;
+            }
+        }
+
+        private void CbTime_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (CbTime.SelectedItem != null & timeSelected != true)
+            {
+                timeSelected = true;
+                deliveryProgress += 25;
+            }
+            else if(CbTime.SelectedItem == null & timeSelected == true)
+            {
+                timeSelected= false;
+                deliveryProgress -= 25;
+            }
+            if (deliveryProgress >= 25)
+            {
+                BorderSecondStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbSecondStage.Foreground = Brushes.White;
+            }
+            else
+            {
+                BorderSecondStage.Background = Brushes.White;
+                TbSecondStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+            }
+            PbSecond.Value = deliveryProgress;
+            if (deliveryProgress == 100)
+            {
+                BorderThirdStage.Background = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                TbThirdStage.Foreground = Brushes.White;
+                PbThird.Value = 100;
+            }
+            else
+            {
+                BorderThirdStage.Background = Brushes.White;
+                TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
+                PbThird.Value = 0;
+            }
         }
     }
 }
