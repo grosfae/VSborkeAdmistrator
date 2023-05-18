@@ -110,6 +110,7 @@ namespace VSborkeAdmistrator.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ProfileInfoProgress();
+            LvOrders.ItemsSource = App.DB.Order.Where(x => x.UserId == contextUser.Id).ToList();
         }
 
         private void StBtnDeleteFromHistory_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)

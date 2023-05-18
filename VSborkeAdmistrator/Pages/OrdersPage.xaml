@@ -181,8 +181,8 @@
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding Count, StringFormat=' {0} шт. x '}" Height="30"/>
-                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Visibility="{Binding VisibilityDiscount}" Text="{Binding ComputerCase.Price, StringFormat='{}{0:#,#} ₽'}" Height="30" Margin="0 0 5 0" TextDecorations="Strikethrough"/>
-                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PriceDiscountOfCount, StringFormat='{}{0:#,#} ₽'}" Height="30" />
+                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Visibility="{Binding VisibilityDiscount}" Text="{Binding ComputerCase.PriceDiscount, StringFormat='{}{0:#,#} ₽'}" Height="30" Margin="0 0 5 0" TextDecorations="Strikethrough"/>
+                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PricePerUnit, StringFormat='{}{0:#,#} ₽'}" Height="30" />
                                                         </StackPanel>
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>
                                                         <Grid Width="200">

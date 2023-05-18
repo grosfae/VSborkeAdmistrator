@@ -16,6 +16,7 @@ namespace VSborkeAdmistrator
     {
         public static VSborkeBaseEntities DB = new VSborkeBaseEntities();
         public static User LoggedUser;
+        public static bool RejectOrder;
 
     }
 }

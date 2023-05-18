@@ -189,10 +189,12 @@ namespace VSborkeAdmistrator.Pages
             TbPricePerUnitDiscount.Text = String.Format("{0:#,#} ₽", pricePerUnitDiscount);
 
 
+            DeliveryCostRefresh();
             finallyPrice = countCase * pricePerUnitDiscount;
+            finallyPrice += deliveryCost;
             TbFinallyPrice.Text = String.Format("ИТОГО: {0} ₽", finallyPrice);
 
-            DeliveryCostRefresh();
+            
 
             if(DiscountForCount == 0)
             {
@@ -204,8 +206,6 @@ namespace VSborkeAdmistrator.Pages
                 TbDiscount.Visibility = Visibility.Visible;
                 TbPricePerUnit.Visibility = Visibility.Visible;
             }
-
-            finallyPrice += deliveryCost;
         }
         private void CountPlusBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -505,9 +505,9 @@ namespace VSborkeAdmistrator.Pages
 
             App.DB.Order.Add(new Order()
             {
-                Phone= TbPhone.Text,
-                Address= TbAddress.Text,
-                CommentOrder=TbCommentOrder.Text,
+                Phone = TbPhone.Text,
+                Address = TbAddress.Text,
+                CommentOrder = TbCommentOrder.Text,
                 ComputerCaseId = contextComputerCase.Id,
                 Count = countCase,
                 PricePerUnit = pricePerUnitDiscount,
@@ -519,7 +519,8 @@ namespace VSborkeAdmistrator.Pages
                 TimeDelivery = CbTime.SelectedItem.ToString(),
                 FlatNumber = TbApartment.Text,
                 UpToFloor = UpFloor,
-                PrivateHome = privateHouse
+                PrivateHome = privateHouse,
+                DeliveryPrice = deliveryCost
 
 
             });
@@ -532,16 +533,19 @@ namespace VSborkeAdmistrator.Pages
         private void CbLift_Checked(object sender, RoutedEventArgs e)
         {
             DeliveryCostRefresh();
+            RefreshCount();
         }
 
         private void CbLift_Unchecked(object sender, RoutedEventArgs e)
         {
             DeliveryCostRefresh();
+            RefreshCount();
         }
 
         private void CbFloors_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DeliveryCostRefresh();
+            RefreshCount();
         }
     }
 }

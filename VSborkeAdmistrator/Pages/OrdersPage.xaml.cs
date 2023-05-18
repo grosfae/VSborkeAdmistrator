@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using VSborkeAdmistrator.Components;
 using VSborkeAdmistrator.Windows;
 
@@ -27,7 +28,34 @@ namespace VSborkeAdmistrator.Pages
         public OrdersPage()
         {
             InitializeComponent();
+            var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
+            dispatcherTimer.Start();
+
+            var TimerForReject = new System.Windows.Threading.DispatcherTimer();
+            TimerForReject.Tick += new EventHandler(TimerForReject_Tick);
+            TimerForReject.Interval = new TimeSpan(0, 0, 1);
+            TimerForReject.Start();
         }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            // Updating the Label which displays the current second
+
+               Refresh();
+
+        }
+        private void TimerForReject_Tick(object sender, EventArgs e)
+        {
+            // Updating the Label which displays the current second
+            if (App.RejectOrder == true)
+            {
+                Refresh();
+                App.RejectOrder = false;
+            }
+
+        }
+
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             maxPage = App.DB.Order.Count(x => x.IsReject == true);

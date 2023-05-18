@@ -125,7 +125,7 @@
                             <Button x:Name="AcceptedOrderBtn" Width="170" Height="35" Style="{StaticResource StatusGreenBtn}" Content="Выкупленные" Margin="5 0 0 0"/>
                             <Button x:Name="CanceledOrderBtn" Width="150" Height="35" Style="{StaticResource StatusRedBtn}" Content="Отмененные" Margin="5 0 0 0"/>
                         </StackPanel>
-                        <ListView Height="500" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView x:Name="LvOrders" Height="500" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Width="1090" Margin="6 5 0 5" Orientation="Vertical" Background="White">

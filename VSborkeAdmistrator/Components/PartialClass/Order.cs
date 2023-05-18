@@ -14,19 +14,19 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
-                if (Status.Id == 1)
+                if (StatusId == 1)
                     return "#FFF9C201";
-                if (Status.Id == 2)
+                if (StatusId == 2)
                     return "#FF09AB04";
-                if (Status.Id == 3)
+                if (StatusId == 3)
                     return "#FF00A7FF";
-                if (Status.Id == 4)
+                if (StatusId == 4)
                     return "#FF0B847C";
-                if (Status.Id == 5)
+                if (StatusId == 5)
                     return "#FF009BC3";
-                if (Status.Id == 6)
+                if (StatusId == 6)
                     return "#FF9304AB";
-                if (Status.Id == 7)
+                if (StatusId == 7)
                     return "#FFCC0606";
                 else
                     return "";
@@ -68,7 +68,7 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
-                if (Status.Id == 1)
+                if (StatusId == 1)
                 {
                     return Visibility.Visible;
                 }
@@ -83,7 +83,7 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
-                if (Status.Id == 7)
+                if (StatusId == 7)
                 {
                     return Visibility.Collapsed;
                 }
@@ -97,7 +97,7 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
-                if (Status.Id == 7 & ReasonReject != null)
+                if (StatusId == 7 & ReasonReject != null)
                 {
                     return Visibility.Visible;
                 }

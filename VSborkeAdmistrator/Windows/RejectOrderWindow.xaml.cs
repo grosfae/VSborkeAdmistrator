@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
+using VSborkeAdmistrator.Pages;
 
 namespace VSborkeAdmistrator.Windows
 {
@@ -48,6 +49,7 @@ namespace VSborkeAdmistrator.Windows
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+
         }
 
         private void CancelOrderBtn_Click(object sender, RoutedEventArgs e)
@@ -64,6 +66,8 @@ namespace VSborkeAdmistrator.Windows
                 contextOrder.StatusId = 7;
                 App.DB.SaveChanges();
                 CustomMessageBox.Show("Заказ отменен!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+
+                App.RejectOrder = true;
                 this.Close();
             }
         }
