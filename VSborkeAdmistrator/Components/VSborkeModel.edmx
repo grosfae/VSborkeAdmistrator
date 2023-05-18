@@ -232,6 +232,7 @@
           <Property Name="Count" Type="int" Nullable="false" />
           <Property Name="PricePerUnit" Type="int" Nullable="false" />
           <Property Name="Discount" Type="int" Nullable="false" />
+          <Property Name="DeliveryPrice" Type="int" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
           <Property Name="IsReject" Type="bit" />
           <Property Name="StatusId" Type="int" Nullable="false" />
@@ -244,6 +245,7 @@
           <Property Name="PrivateHome" Type="bit" />
           <Property Name="UpToFloor" Type="bit" />
           <Property Name="Floor" Type="varchar" MaxLength="2" />
+          <Property Name="LiftForFullOrder" Type="bit" />
           <Property Name="DateDelivery" Type="date" />
           <Property Name="TimeDelivery" Type="varchar" MaxLength="40" />
         </EntityType>
@@ -1776,6 +1778,7 @@
           <Property Name="Count" Type="Int32" Nullable="false" />
           <Property Name="PricePerUnit" Type="Int32" Nullable="false" />
           <Property Name="Discount" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryPrice" Type="Int32" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
           <Property Name="IsReject" Type="Boolean" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
@@ -1788,6 +1791,7 @@
           <Property Name="PrivateHome" Type="Boolean" />
           <Property Name="UpToFloor" Type="Boolean" />
           <Property Name="Floor" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="LiftForFullOrder" Type="Boolean" />
           <Property Name="DateDelivery" Type="DateTime" Precision="0" />
           <Property Name="TimeDelivery" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
@@ -2835,6 +2839,7 @@
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
                 <ScalarProperty Name="DateDelivery" ColumnName="DateDelivery" />
+                <ScalarProperty Name="LiftForFullOrder" ColumnName="LiftForFullOrder" />
                 <ScalarProperty Name="Floor" ColumnName="Floor" />
                 <ScalarProperty Name="UpToFloor" ColumnName="UpToFloor" />
                 <ScalarProperty Name="PrivateHome" ColumnName="PrivateHome" />
@@ -2847,6 +2852,7 @@
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
                 <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
+                <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
                 <ScalarProperty Name="Count" ColumnName="Count" />

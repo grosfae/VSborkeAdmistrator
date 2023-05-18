@@ -21,6 +21,7 @@ namespace VSborkeAdmistrator.Components
         public int Count { get; set; }
         public int PricePerUnit { get; set; }
         public int Discount { get; set; }
+        public Nullable<int> DeliveryPrice { get; set; }
         public int ComputerCaseId { get; set; }
         public Nullable<bool> IsReject { get; set; }
         public int StatusId { get; set; }
@@ -33,6 +34,7 @@ namespace VSborkeAdmistrator.Components
         public Nullable<bool> PrivateHome { get; set; }
         public Nullable<bool> UpToFloor { get; set; }
         public string Floor { get; set; }
+        public Nullable<bool> LiftForFullOrder { get; set; }
         public Nullable<System.DateTime> DateDelivery { get; set; }
         public string TimeDelivery { get; set; }
     

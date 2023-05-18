@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VSborkeAdmistrator.Components;
+using VSborkeAdmistrator.Windows;
 
 namespace VSborkeAdmistrator.Pages
 {
@@ -41,11 +42,14 @@ namespace VSborkeAdmistrator.Pages
             pricePerUnitDiscount = contextComputerCase.PriceDiscount;
             TbPricePerUnitDiscount.Text = String.Format("{0:#,#} ₽", pricePerUnitDiscount);
 
-            finallyPrice = countCase * pricePerUnitDiscount;
-            TbFinallyPrice.Text = String.Format("ИТОГО: {0} ₽", finallyPrice);
-
             delivery = 2;
             TbDelivery.Text = String.Format("Сроки доставки: {0} недели", delivery);
+
+            DeliveryCostRefresh();
+            finallyPrice = countCase * pricePerUnitDiscount + deliveryCost;
+            TbFinallyPrice.Text = String.Format("ИТОГО: {0} ₽", finallyPrice);
+
+            
 
             for(int i = 1; i< 100; i++)
             {
@@ -62,6 +66,7 @@ namespace VSborkeAdmistrator.Pages
             CbTime.Items.Add("16:00 - 18:00");
             CbTime.Items.Add("18:00 - 20:00");
 
+            
 
         }
         int countCase;
@@ -73,12 +78,16 @@ namespace VSborkeAdmistrator.Pages
         int finallyPrice;
         int delivery;
 
+        int deliveryCost;
+
 
        
         bool secondAddress = false;
         bool secondApartment = false;
         bool dateSelected = false;
         bool timeSelected = false;
+        bool UpFloor = false;
+        bool privateHouse = false;
 
         private void CountMinusBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -159,6 +168,7 @@ namespace VSborkeAdmistrator.Pages
                 }
             }
 
+
             if (CbDate.SelectedItem != null & dateSelected != true)
             {
                 dateSelected = true;
@@ -182,6 +192,7 @@ namespace VSborkeAdmistrator.Pages
             finallyPrice = countCase * pricePerUnitDiscount;
             TbFinallyPrice.Text = String.Format("ИТОГО: {0} ₽", finallyPrice);
 
+            DeliveryCostRefresh();
 
             if(DiscountForCount == 0)
             {
@@ -193,6 +204,8 @@ namespace VSborkeAdmistrator.Pages
                 TbDiscount.Visibility = Visibility.Visible;
                 TbPricePerUnit.Visibility = Visibility.Visible;
             }
+
+            finallyPrice += deliveryCost;
         }
         private void CountPlusBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -205,6 +218,38 @@ namespace VSborkeAdmistrator.Pages
                 return;
             }
             RefreshCount();
+
+        }
+        private void DeliveryCostRefresh()
+        {
+            deliveryCost = 0;
+            int floors = 0;
+            if (CbFloors.SelectedItem != null)
+            {
+                floors = int.Parse(CbFloors.SelectedItem.ToString());
+            }
+            int floorsSumm = 0;
+            int deliverySumm = 0;
+            if (delivery == 2)
+            {
+                deliverySumm += 200;
+            }
+            if (delivery == 1)
+            {
+                deliverySumm += 400;
+            }
+            if(floors >= 6)
+            {
+                floorsSumm = floors * 50 - 250;
+                deliverySumm += floorsSumm;
+            }
+            if (CbLift.IsChecked == true)
+            {
+                deliverySumm -= floorsSumm;
+            }
+            deliveryCost = deliverySumm;
+            TbDeliveryPrice.Text = String.Format("Стоимость доставки: {0} ₽", deliveryCost);
+
 
         }
 
@@ -294,7 +339,8 @@ namespace VSborkeAdmistrator.Pages
                 BorderThirdStage.Background = Brushes.White;
                 TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
                 PbThird.Value = 0;
-            }        
+            }
+            DeliveryCostRefresh();
         }
 
         private void TbApartment_TextChanged(object sender, TextChangedEventArgs e)
@@ -332,17 +378,20 @@ namespace VSborkeAdmistrator.Pages
                 TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
                 PbThird.Value = 0;
             }
+            DeliveryCostRefresh();
         }
 
         private void CbUpToFloor_Checked(object sender, RoutedEventArgs e)
         {
             CbFloors.Visibility= Visibility.Visible;
+            DeliveryCostRefresh();
         }
 
         private void CbUpToFloor_Unchecked(object sender, RoutedEventArgs e)
         {
             CbFloors.Visibility = Visibility.Collapsed;
             CbFloors.SelectedItem= null;
+            DeliveryCostRefresh();
         }
 
         private void CbDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -417,6 +466,82 @@ namespace VSborkeAdmistrator.Pages
                 TbThirdStage.Foreground = new SolidColorBrush(Color.FromRgb(56, 129, 239));
                 PbThird.Value = 0;
             }
+        }
+
+        private void CancelOrder_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
+        private void DealOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string errorMessage = "";
+            if (string.IsNullOrWhiteSpace(TbPhone.Text))
+            {
+                errorMessage += "Заполните номер телефона\n";
+            }
+            if (string.IsNullOrWhiteSpace(TbAddress.Text))
+            {
+                errorMessage += "Заполните адрес для доставки\n";
+            }
+            if (string.IsNullOrWhiteSpace(TbApartment.Text))
+            {
+                errorMessage += "Заполните номер помещения\n";
+            }
+            if (CbDate.SelectedItem == null)
+            {
+                errorMessage += "Выберите дату доставки\n";
+            }
+            if (CbTime.SelectedItem == null)
+            {
+                errorMessage += "Выберите время доставки\n";
+            }
+
+            if (string.IsNullOrWhiteSpace(errorMessage) == false)
+            {
+                CustomMessageBox.Show(errorMessage, CustomMessageBox.CustomMessageBoxTitle.Предупреждение, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                return;
+            }
+
+            App.DB.Order.Add(new Order()
+            {
+                Phone= TbPhone.Text,
+                Address= TbAddress.Text,
+                CommentOrder=TbCommentOrder.Text,
+                ComputerCaseId = contextComputerCase.Id,
+                Count = countCase,
+                PricePerUnit = pricePerUnitDiscount,
+                FinallyPrice = finallyPrice,
+                Discount = DiscountForCount,
+                UserId = App.LoggedUser.Id,
+                OrderDate = DateTime.Parse(CbDate.SelectedItem.ToString()),
+                StatusId = 1,
+                TimeDelivery = CbTime.SelectedItem.ToString(),
+                FlatNumber = TbApartment.Text,
+                UpToFloor = UpFloor,
+                PrivateHome = privateHouse
+
+
+            });
+
+            App.DB.SaveChanges();
+            CustomMessageBox.Show("Отзыв сохранен!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+            NavigationService.GoBack();
+        }
+
+        private void CbLift_Checked(object sender, RoutedEventArgs e)
+        {
+            DeliveryCostRefresh();
+        }
+
+        private void CbLift_Unchecked(object sender, RoutedEventArgs e)
+        {
+            DeliveryCostRefresh();
+        }
+
+        private void CbFloors_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DeliveryCostRefresh();
         }
     }
 }
