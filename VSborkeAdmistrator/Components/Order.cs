@@ -19,6 +19,7 @@ namespace VSborkeAdmistrator.Components
         public System.DateTime OrderDate { get; set; }
         public int FinallyPrice { get; set; }
         public int Count { get; set; }
+        public Nullable<int> CountForCreate { get; set; }
         public int PricePerUnit { get; set; }
         public int Discount { get; set; }
         public Nullable<int> DeliveryPrice { get; set; }

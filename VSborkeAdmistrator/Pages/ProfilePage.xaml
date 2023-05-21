@@ -125,31 +125,36 @@
                             <Button x:Name="AcceptedOrderBtn" Width="170" Height="35" Style="{StaticResource StatusGreenBtn}" Content="Выкупленные" Margin="5 0 0 0"/>
                             <Button x:Name="CanceledOrderBtn" Width="150" Height="35" Style="{StaticResource StatusRedBtn}" Content="Отмененные" Margin="5 0 0 0"/>
                         </StackPanel>
-                        <ListView x:Name="LvOrders" Height="500" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView x:Name="LvOrders" Height="550" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Width="1090" Margin="6 5 0 5" Orientation="Vertical" Background="White">
-                                        <StackPanel Orientation="Horizontal" Height="40" Margin="10 10 0 0">
-                                            <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource Sans}" FontSize="26" />
-                                            <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
-                                            <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
-                                            <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
-                                                <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" Height="40" Margin="10 10 0 0">
+                                                <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource Sans}" FontSize="26" />
+                                                <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
+                                                <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
+                                                <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
+                                                    <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                </StackPanel>
                                             </StackPanel>
-                                            <StackPanel Margin="570 0 0 0" x:Name="StBtnDeleteFromHistory" MouseLeftButtonDown="StBtnDeleteFromHistory_MouseLeftButtonDown">
-                                                <TextBlock  Text="Удалить из истории" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" />
+                                            <StackPanel Width="200" Margin="0 10 10 0" x:Name="StBtnDeleteFromHistory" MouseLeftButtonDown="StBtnDeleteFromHistory_MouseLeftButtonDown" HorizontalAlignment="Right">
+                                                <TextBlock  Text="Удалить из истории" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center" />
                                                 <Separator Background="#FFCA0000" Height="1" />
                                             </StackPanel>
                                             
-                                        </StackPanel>
+                                        </Grid>
                                         <Separator  Background="#FF3881EF" Margin="0 5 0 15"/>
                                         <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
-                                            <Image Source="{Binding ComputerCase.MainImage}" RenderOptions.BitmapScalingMode="Fant" Height="160" Width="160" Margin="10 0 0 0"/>
+                                            <StackPanel Width="165">
+                                                <Image Source="{Binding ComputerCase.MainImage}" RenderOptions.BitmapScalingMode="Fant" Height="160" Width="160" Margin="5 0 0 0"/>
+                                                <TextBlock Style="{StaticResource OrderList}" FontSize="15" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto" Margin="5 0 0 0"/>
+                                            </StackPanel>
                                             <StackPanel Margin="15 0 0 0" Width="670">
                                                 <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10"/>
-                                                <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto"/>
                                                 <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350" Margin="0 5 0 0"/>
-                                                <TextBlock x:Name="TbLinkReview" Style="{StaticResource LinkReviewBtn}" FontSize="17" Text="Оставить отзыв" Height="auto" MouseLeftButtonDown="TbLinkReview_MouseLeftButtonDown"/>
+                                                <TextBlock x:Name="CommentViewBtn" Margin="0 5 10 0"  Text="У заказа есть комментарий" FontSize="18" Height="auto" Style="{StaticResource ProfileInfo}" Cursor="Hand" Foreground="#FF3881EF" Visibility="{Binding VisibilityComment}" ToolTip="Нажмите для просмотра комментария" MouseLeftButtonDown="CommentViewBtn_MouseLeftButtonDown"/>
+                                                <TextBlock x:Name="TbLinkReview" Margin="0 10 0 0" Style="{StaticResource LinkReviewBtn}" FontSize="17" Text="Оставить отзыв" Height="auto" MouseLeftButtonDown="TbLinkReview_MouseLeftButtonDown"/>
                                             </StackPanel>
                                             <StackPanel Width="215">
                                                 <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
@@ -159,6 +164,7 @@
                                                     <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PriceDiscountOfCount, StringFormat='{}{0:#,#} ₽'}" Height="30" />
                                                 </StackPanel>
                                                 <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>
+                                                <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DeliveryPrice, StringFormat='Стоимость доставки: {0:#,#} ₽'}" Height="30"/>
                                             </StackPanel>
                                         </StackPanel>
                                     </StackPanel>

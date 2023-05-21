@@ -42,37 +42,37 @@ namespace VSborkeAdmistrator.Pages
             var user = App.DB.User.FirstOrDefault(x => x.Email == TbEmail.Text);
             if (TbEmail.Text == String.Empty & PbPassword.Password == String.Empty)
             {
-                DialogResult result = CustomMessageBox.Show("Все поля должны быть заполнены", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Все поля должны быть заполнены", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (TbEmail.Text == String.Empty)
             {
-                DialogResult result = CustomMessageBox.Show("Электронная почта должна быть заполена", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Электронная почта должна быть заполена", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (PbPassword.Password == String.Empty)
             {
-                DialogResult result = CustomMessageBox.Show("Пароль должен быть заполнен", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Пароль должен быть заполнен", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user == null)
             {
-                DialogResult result = CustomMessageBox.Show("Такого пользователя не существует", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Такого пользователя не существует", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user.Role.Name != "Администратор")
             {
-                DialogResult result = CustomMessageBox.Show("Вы входите не под учетной записью администратора", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Вы входите не под учетной записью администратора", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user.Password != PbPassword.Password)
             {
-                DialogResult result = CustomMessageBox.Show("Пароль неверный", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Пароль неверный", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user.IsBanned == true)
             {
-                DialogResult result = CustomMessageBox.Show("Пользователь заблокирован", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Пользователь заблокирован", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (SaveCb.IsChecked == true)

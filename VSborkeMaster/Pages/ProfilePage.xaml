@@ -1,0 +1,178 @@
+﻿<Page x:Class="VSborkeMaster.Pages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="2000" d:DesignWidth="1230"
+      Title="ProfilePage"
+      Loaded="Page_Loaded">
+
+    <Grid Background="#FFEEF0F2">
+        <ScrollViewer>
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Профиль пользователя" FontSize="46" Margin="50 15 0 20"/>
+                        <Line X1="430" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal" Height="400" Background="White" Width="1130" Grid.Row="1">
+                        <StackPanel Width="300">
+                            <Border CornerRadius="150" Width="200" Height="200" Margin="0 30 0 0">
+                                <Border.Background>
+                                    <ImageBrush Stretch="Fill" ImageSource="{Binding ProfileImage}"/>
+                                </Border.Background>
+                            </Border>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30"/>
+                                <TextBlock Text="{Binding Surname}" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="10 0 0 0"/>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Patronymic}" Style="{StaticResource ProfileInfo}" FontWeight="SemiBold" FontSize="30" Margin="0 10 0 0" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <Line X1="0" Y1="400" X2="0" Y2="0" Stroke="#FFEEF0F2" StrokeThickness="3"/>
+                        <StackPanel Width="730">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="129*"/>
+                                    <ColumnDefinition Width="236*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="90"/>
+                                    <RowDefinition Height="90"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Margin="10 30 0 0" Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Пол: "/>
+                                    <TextBlock Text="{Binding Gender.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 30 0 0" Orientation="Horizontal" Grid.Column="1">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Адрес: "/>
+                                    <TextBlock Text="{Binding Address}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold" TextWrapping="Wrap" Width="340"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 30 0 0" Grid.Row="1">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Электронная почта: "/>
+                                    <TextBlock Text="{Binding Email}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 10 0 0" Orientation="Vertical" Grid.Row="2">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Номер телефона: "/>
+                                    <TextBlock Text="{Binding Phone}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                </StackPanel>
+                                <StackPanel Margin="10 30 0 0" Orientation="Vertical" Grid.Column="1" Grid.Row="1">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Должность: "/>
+                                    <TextBlock Text="{Binding Role.Name}" Style="{StaticResource ProfileInfo}" FontSize="20" FontWeight="SemiBold"/>
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Orientation="Horizontal" Margin="10 0 0 0" Height="100">
+                                <Button x:Name="ProfileEditBtn" Width="230" Height="35" Style="{StaticResource BorderBtn}" Content="Изменить профиль" Click="ProfileEditBtn_Click"/>
+                                <StackPanel Margin="70 0 0 0" Height="50" Visibility="{Binding BannedTextVisibility}">
+                                    <TextBlock Text="Пользователь заблокирован" Style="{StaticResource Header}" Foreground="Red" FontSize="40"/>
+                                </StackPanel>
+                                <StackPanel Margin="70 0 0 0" Visibility="{Binding PbVisibility}">
+                                    <TextBlock Style="{StaticResource ProfileInfo}" FontSize="20" Text="Заполнение профиля:"/>
+                                    <Grid Height="35" Margin="0 10 0 0">
+                                        <ProgressBar Width="400" x:Name="PbProfileProgress" Background="#FFAFAFAF" Foreground="#FF3881EF" HorizontalAlignment="Left"/>
+                                        <TextBlock x:Name="TbCountProgress" Style="{StaticResource Header}" Foreground="White" HorizontalAlignment="Center" FontSize="30" Text="0%"/>
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Личные заказы" FontSize="46" Margin="50 15 0 20"/>
+                        <Line X1="320" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                    </Grid>
+                    <StackPanel Grid.Row="1" Width="1130">
+                        <StackPanel Orientation="Horizontal" Margin="0 0 0 20" Background="White" Height="80">
+                            <Grid Margin="10 0 0 0" Background="#FFEEF0F2" Height="40">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="500"/>
+                                    <ColumnDefinition Width="40"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="TbSearch" Style="{StaticResource placeHolder}" Tag="Введите название товара или номер заказа" FontSize="24" VerticalContentAlignment="Center"  Width="500" Height="35" Background="Transparent"/>
+                                <Image Height="30" Width="30" Grid.Column="1" x:Name="SearchIcon" MouseLeftButtonDown="SearchIcon_MouseLeftButtonDown" Cursor="Hand">
+                                    <Image.Style>
+                                        <Style TargetType="{x:Type Image}">
+                                            <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchMood.ico"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=SearchIcon}" Value="True">
+                                                    <Setter Property="Source" Value="/Resources/TextBoxIcons/SearchBlue.ico"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Grid>
+                            <StackPanel Margin="300 0 0 0" Orientation="Horizontal">
+                                <Viewbox Height="40">
+                                    <DatePicker x:Name="StartDate" FontSize="17"/>
+                                </Viewbox>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0 0 0 10">
+                            <Button x:Name="AllOrderBtn" Width="100" Height="35" Style="{StaticResource BorderBtn}" Content="Все" BorderThickness="1" FontSize="29"/>
+                            <Button x:Name="OpenedOrderBtn" Width="140" Height="35" Style="{StaticResource StatusYellowBtn}" Content="Открытые" Margin="5 0 0 0"/>
+                            <Button x:Name="AcceptedOrderBtn" Width="170" Height="35" Style="{StaticResource StatusGreenBtn}" Content="Выкупленные" Margin="5 0 0 0"/>
+                            <Button x:Name="CanceledOrderBtn" Width="150" Height="35" Style="{StaticResource StatusRedBtn}" Content="Отмененные" Margin="5 0 0 0"/>
+                        </StackPanel>
+                        <ListView x:Name="LvOrders" Height="550" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Width="1090" Margin="6 5 0 5" Orientation="Vertical" Background="White">
+                                        <Grid>
+                                            <StackPanel Orientation="Horizontal" Height="40" Margin="10 10 0 0">
+                                                <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}" Style="{StaticResource Sans}" FontSize="26" />
+                                                <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
+                                                <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
+                                                <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
+                                                    <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                            <StackPanel Width="200" Margin="0 10 10 0" x:Name="StBtnDeleteFromHistory" MouseLeftButtonDown="StBtnDeleteFromHistory_MouseLeftButtonDown" HorizontalAlignment="Right">
+                                                <TextBlock  Text="Удалить из истории" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center" />
+                                                <Separator Background="#FFCA0000" Height="1" />
+                                            </StackPanel>
+                                            
+                                        </Grid>
+                                        <Separator  Background="#FF3881EF" Margin="0 5 0 15"/>
+                                        <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                                            <StackPanel Width="165">
+                                                <Image Source="{Binding ComputerCase.MainImage}" RenderOptions.BitmapScalingMode="Fant" Height="160" Width="160" Margin="5 0 0 0"/>
+                                                <TextBlock Style="{StaticResource OrderList}" FontSize="15" Text="{Binding ComputerCaseId, StringFormat='Код товара: {0}'}" Height="auto" Margin="5 0 0 0"/>
+                                            </StackPanel>
+                                            <StackPanel Margin="15 0 0 0" Width="670">
+                                                <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10"/>
+                                                <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350" Margin="0 5 0 0"/>
+                                                <TextBlock x:Name="CommentViewBtn" Margin="0 5 10 0"  Text="У заказа есть комментарий" FontSize="18" Height="auto" Style="{StaticResource ProfileInfo}" Cursor="Hand" Foreground="#FF3881EF" Visibility="{Binding VisibilityComment}" ToolTip="Нажмите для просмотра комментария" MouseLeftButtonDown="CommentViewBtn_MouseLeftButtonDown"/>
+                                                <TextBlock x:Name="TbLinkReview" Margin="0 10 0 0" Style="{StaticResource LinkReviewBtn}" FontSize="17" Text="Оставить отзыв" Height="auto" MouseLeftButtonDown="TbLinkReview_MouseLeftButtonDown"/>
+                                            </StackPanel>
+                                            <StackPanel Width="215">
+                                                <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding Count, StringFormat=' {0} шт. x '}" Height="30"/>
+                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Visibility="{Binding VisibilityDiscount}" Text="{Binding ComputerCase.Price, StringFormat='{}{0:#,#} ₽'}" Height="30" Margin="0 0 5 0" TextDecorations="Strikethrough"/>
+                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PriceDiscountOfCount, StringFormat='{}{0:#,#} ₽'}" Height="30" />
+                                                </StackPanel>
+                                                <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>
+                                                <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DeliveryPrice, StringFormat='Стоимость доставки: {0:#,#} ₽'}" Height="30"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

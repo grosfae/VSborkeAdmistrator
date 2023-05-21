@@ -150,7 +150,7 @@
                                                         <TextBlock Text="{Binding Id,StringFormat='Заказ {0}'}"  FontSize="23" Margin="0 1.5 0 0" Cursor="Hand"/>
                                                         <TextBlock Text="от" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
                                                         <TextBlock Text="{Binding OrderDate, StringFormat='dd.MM.yy'}" Style="{StaticResource Sans}" FontSize="20" Margin="5 6 0 0"/>
-                                                        <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35">
+                                                        <StackPanel Margin="20 0 0 0" VerticalAlignment="Center" Background="{Binding StatusColor}" Height="35" Cursor="">
                                                             <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
                                                         </StackPanel>
                                                     </StackPanel>
@@ -185,6 +185,8 @@
                                                             <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PricePerUnit, StringFormat='{}{0:#,#} ₽'}" Height="30" />
                                                         </StackPanel>
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>
+                                                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DeliveryPrice, StringFormat='Стоимость доставки: {0:#,#} ₽'}" Height="30"/>
+
                                                         <Grid Width="200">
                                                             <StackPanel  x:Name="AcceptBtnSt" MouseLeftButtonDown="AcceptBtnSt_MouseLeftButtonDown" Visibility="{Binding VisibilityAcceptBtn}" HorizontalAlignment="Left" Cursor="Hand">
                                                                 <TextBlock  Text="Принять" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF05A000" HorizontalAlignment="Center"/>

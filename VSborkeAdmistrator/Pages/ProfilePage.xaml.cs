@@ -122,5 +122,10 @@ namespace VSborkeAdmistrator.Pages
         {
 
         }
+
+        private void CommentViewBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

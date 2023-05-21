@@ -30,7 +30,7 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" x:Name="Head" Background="White">
             <Image Source="/Resources/Logo.png" Width="50" Height="50" Margin="10 0 0 0"/>
-            <TextBlock Text="V Sborke - версия для администратора" Style="{StaticResource Header}" FontSize="40" Height="40" FontWeight="Medium" Margin="20 0 0 10"/>
+            <TextBlock Text="V Sborke - версия для администратора" Style="{StaticResource Header}" FontSize="40" Height="50" FontWeight="Medium" Margin="20 10 0 10"/>
         </StackPanel>
         <Line X1="0" Y1="70" X2="1300" Y2="70" Stroke="#FF3881EF" StrokeThickness="3"/>
         <Grid HorizontalAlignment="Right" Width="250">

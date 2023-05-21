@@ -127,7 +127,7 @@
                                     </Border>
                                     <Border CornerRadius="10" BorderThickness="1" Margin="20 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60">
                                         <Grid>
-                                            <TextBox x:Name="TbEmail" Style="{StaticResource placeHolderForText}" Tag="Email (необязательно)" Height="30" FontSize="18" Width="335" MaxLength="20" Background="Transparent"  Margin="5" BorderThickness="0" PreviewKeyDown="ForSpaces_PreviewKeyDown"/>
+                                            <TextBox x:Name="TbEmail" Style="{StaticResource placeHolderForText}" Tag="Email (необязательно)" Height="30" FontSize="18" Width="335" MaxLength="20" Background="Transparent"  Margin="5" BorderThickness="0" PreviewKeyDown="ForSpaces_PreviewKeyDown" IsEnabled="False"/>
                                         </Grid>
                                     </Border>
                                 </StackPanel>
@@ -150,7 +150,7 @@
                                             <TextBox x:Name="TbApartment"  Style="{StaticResource placeHolderForText}" Tag="№ квартиры" Height="30" FontSize="18" MaxLength="4" Width="130" TextWrapping="Wrap" Background="Transparent"  Margin="5" BorderThickness="0" TextChanged="TbApartment_TextChanged" PreviewTextInput="Numbers_PreviewTextInput" PreviewKeyDown="ForSpaces_PreviewKeyDown"/>
                                         </Grid>
                                     </Border>
-                                    <ToggleButton x:Name="CbHouse" Style="{StaticResource BlueToggleBtnStyle}" Height="60" FontSize="18" Width="160" Content="Частный дом"  Margin="20 10 0 0"/>
+                                    <ToggleButton x:Name="CbHouse" Style="{StaticResource BlueToggleBtnStyle}" Height="60" FontSize="18" Width="160" Content="Частный дом"  Margin="20 10 0 0" Checked="CbHouse_Checked" Unchecked="CbHouse_Unchecked"/>
                                 </StackPanel>
                                 <Border CornerRadius="10" BorderThickness="1" Margin="0 10 0 0" Background="#FFF2F2F2" HorizontalAlignment="Left" Height="60" Width="auto" >
                                     <StackPanel Orientation="Horizontal">

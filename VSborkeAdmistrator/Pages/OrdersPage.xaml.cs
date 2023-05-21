@@ -59,10 +59,13 @@ namespace VSborkeAdmistrator.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             maxPage = App.DB.Order.Count(x => x.IsReject == true);
-            TbStartPrice.Tag = $"от {App.DB.Order.Min(x => x.FinallyPrice)}";
-            TbEndPrice.Tag = $"до {App.DB.Order.Max(x => x.FinallyPrice)}";
-            TbStartCount.Tag = $"от {App.DB.Order.Min(x => x.Count)}";
-            TbEndCount.Tag = $"до {App.DB.Order.Max(x => x.Count)}";
+            if (App.DB.Order.Count() != 0)
+            {
+                TbStartPrice.Tag = $"от {App.DB.Order.Min(x => x.FinallyPrice)}";
+                TbEndPrice.Tag = $"до {App.DB.Order.Max(x => x.FinallyPrice)}";
+                TbStartCount.Tag = $"от {App.DB.Order.Min(x => x.Count)}";
+                TbEndCount.Tag = $"до {App.DB.Order.Max(x => x.Count)}";
+            }
             Refresh();
 
         }

@@ -230,6 +230,7 @@
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="FinallyPrice" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="CountForCreate" Type="int" />
           <Property Name="PricePerUnit" Type="int" Nullable="false" />
           <Property Name="Discount" Type="int" Nullable="false" />
           <Property Name="DeliveryPrice" Type="int" />
@@ -1776,6 +1777,7 @@
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FinallyPrice" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" Nullable="false" />
+          <Property Name="CountForCreate" Type="Int32" />
           <Property Name="PricePerUnit" Type="Int32" Nullable="false" />
           <Property Name="Discount" Type="Int32" Nullable="false" />
           <Property Name="DeliveryPrice" Type="Int32" />
@@ -2855,6 +2857,7 @@
                 <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+                <ScalarProperty Name="CountForCreate" ColumnName="CountForCreate" />
                 <ScalarProperty Name="Count" ColumnName="Count" />
                 <ScalarProperty Name="FinallyPrice" ColumnName="FinallyPrice" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
