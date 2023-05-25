@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace VSborkeAdmistrator.Components
+namespace VSborkeMaster.Components
 {
     public partial class ComputerCase
     {

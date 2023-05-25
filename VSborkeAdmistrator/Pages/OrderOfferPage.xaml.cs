@@ -544,29 +544,30 @@ namespace VSborkeAdmistrator.Pages
 
             App.DB.Order.Add(new Order()
             {
-                Phone = TbPhone.Text,
-                Address = TbAddress.Text,
-                CommentOrder = comment,
-                ComputerCaseId = contextComputerCase.Id,
-                Count = countCase,
-                PricePerUnit = pricePerUnitDiscount,
-                FinallyPrice = finallyPrice,
-                Discount = DiscountForCount,
                 UserId = App.LoggedUser.Id,
                 OrderDate = DateTime.Now,
-                StatusId = 1,
-                TimeDelivery = CbTime.SelectedItem.ToString(),
-                FlatNumber = TbApartment.Text,
-                UpToFloor = UpFloor,
-                PrivateHome = privateHouse,
-                DeliveryPrice = deliveryCost,
-                LiftForFullOrder = liftForOrder,
+                FinallyPrice = finallyPrice,
+                GeneralCount = countCase,
+                CountInAccessable = countCase - countToConstruct,
                 CountForCreate = countToConstruct,
+                PricePerUnit = pricePerUnitDiscount,
+                PricePerUnitStock = contextComputerCase.PriceDiscount,
+                Discount = DiscountForCount,
+                DeliveryPrice = deliveryCost,
+                ComputerCaseId = contextComputerCase.Id,
+                Status = App.DB.Status.FirstOrDefault(x => x.Id == 1),
+                CommentOrder = comment,
+                Phone = TbPhone.Text,
+                Email = TbEmail.Text,
+                Address = TbAddress.Text,
+                FlatNumber = TbApartment.Text,
+                PrivateHome = privateHouse,
+                UpToFloor = UpFloor,
+                Floor = floorNumber,
+                LiftForFullOrder = liftForOrder,
                 DateDelivery = DateTime.Parse(CbDate.SelectedItem.ToString()),
-                Floor = floorNumber
-
-
-            });
+                TimeDelivery = CbTime.SelectedItem.ToString()
+        });
 
             App.DB.SaveChanges();
             CustomMessageBox.Show("Заказ оформлен!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);

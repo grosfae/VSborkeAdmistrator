@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using VSborkeMaster.Components;
 using VSborkeMaster.Windows;
 
+
 namespace VSborkeMaster.Pages
 {
     /// <summary>
@@ -63,8 +64,8 @@ namespace VSborkeMaster.Pages
             {
                 TbStartPrice.Tag = $"от {App.DB.Order.Min(x => x.FinallyPrice)}";
                 TbEndPrice.Tag = $"до {App.DB.Order.Max(x => x.FinallyPrice)}";
-                TbStartCount.Tag = $"от {App.DB.Order.Min(x => x.Count)}";
-                TbEndCount.Tag = $"до {App.DB.Order.Max(x => x.Count)}";
+                TbStartCount.Tag = $"от {App.DB.Order.Min(x => x.GeneralCount)}";
+                TbEndCount.Tag = $"до {App.DB.Order.Max(x => x.GeneralCount)}";
             }
             Refresh();
 
@@ -120,7 +121,8 @@ namespace VSborkeMaster.Pages
         }
         private void Refresh()
         {
-            IEnumerable<Order> filterOrder = App.DB.Order;
+            App.DB = new VSborkeBaseEntities();
+            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.IsAcceptedOperator == true);
             if (CbSort.SelectedIndex == 0)
             {
                 filterOrder = filterOrder.OrderBy(x => x.FinallyPrice).ToList();
@@ -278,7 +280,8 @@ namespace VSborkeMaster.Pages
         private void AcceptBtnSt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
-            selectedOrder.StatusId = 2;
+            selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 2);
+            selectedOrder.IsAcceptedMaster = true;
             App.DB.SaveChanges();
             Refresh();
         }
@@ -369,22 +372,22 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbStartCount.Text);
-            if (value < App.DB.Order.Min(x => x.Count))
+            if (value < App.DB.Order.Min(x => x.GeneralCount))
             {
-                value = App.DB.Order.Min(x => x.Count);
+                value = App.DB.Order.Min(x => x.GeneralCount);
                 TbStartCount.Text = value.ToString();
             }
-            if (value > App.DB.Order.Max(x => x.Count))
+            if (value > App.DB.Order.Max(x => x.GeneralCount))
             {
-                value = App.DB.Order.Max(x => x.Count);
+                value = App.DB.Order.Max(x => x.GeneralCount);
                 TbStartCount.Text = value.ToString();
             }
             if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
             {
                 if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
                 {
-                    TbEndCount.Text = App.DB.Order.Max(x => x.Count).ToString();
-                    TbStartCount.Text = App.DB.Order.Min(x => x.Count).ToString();
+                    TbEndCount.Text = App.DB.Order.Max(x => x.GeneralCount).ToString();
+                    TbStartCount.Text = App.DB.Order.Min(x => x.GeneralCount).ToString();
                 }
             }
         }
@@ -396,22 +399,22 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbEndCount.Text);
-            if (value < App.DB.Order.Min(x => x.Count))
+            if (value < App.DB.Order.Min(x => x.GeneralCount))
             {
-                value = App.DB.Order.Min(x => x.Count);
+                value = App.DB.Order.Min(x => x.GeneralCount);
                 TbEndCount.Text = value.ToString();
             }
-            if (value > App.DB.Order.Max(x => x.Count))
+            if (value > App.DB.Order.Max(x => x.GeneralCount))
             {
-                value = App.DB.Order.Max(x => x.Count);
+                value = App.DB.Order.Max(x => x.GeneralCount);
                 TbEndCount.Text = value.ToString();
             }
             if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
             {
                 if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
                 {
-                    TbEndCount.Text = App.DB.Order.Max(x => x.Count).ToString();
-                    TbStartCount.Text = App.DB.Order.Min(x => x.Count).ToString();
+                    TbEndCount.Text = App.DB.Order.Max(x => x.GeneralCount).ToString();
+                    TbStartCount.Text = App.DB.Order.Min(x => x.GeneralCount).ToString();
                 }
             }
         }

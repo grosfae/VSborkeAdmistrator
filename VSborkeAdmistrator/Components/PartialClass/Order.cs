@@ -34,6 +34,8 @@ namespace VSborkeAdmistrator.Components
             }
         }
 
+       
+
         public int PriceDiscountOfCount
         {
             get
@@ -70,7 +72,14 @@ namespace VSborkeAdmistrator.Components
             {
                 if (StatusId == 1)
                 {
-                    return Visibility.Visible;
+                    if (IsAcceptedOperator == true)
+                    {
+                        return Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        return Visibility.Visible;
+                    }
                 }
                 else
                 {

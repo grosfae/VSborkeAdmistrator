@@ -602,7 +602,6 @@
 
                             <StackPanel Height="auto" Background="White" Margin="0 0 0 20" Width="811" x:Name="SpOwnReview" Visibility="Collapsed">
                                 <StackPanel Margin="20 0 20 0">
-
                                     <StackPanel>
                                         <TextBlock Text="Мой отзыв" FontWeight="SemiBold" Style="{StaticResource ProfileInfo}" FontSize="25" Margin="0 10 0 0"/>
                                         <ListBox x:Name="LbOwnReview" d:ItemsSource="{d:SampleData ItemCount=1}" BorderBrush="Transparent" IsEnabled="False" BorderThickness="0">

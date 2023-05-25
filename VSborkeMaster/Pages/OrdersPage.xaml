@@ -153,13 +153,14 @@
                                                             <TextBlock Margin="10 8 10 0"  Text="{Binding Status.Name}" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
                                                         </StackPanel>
                                                     </StackPanel>
-                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 5 10 0" x:Name="StUser"  MouseLeftButtonDown="StUser_MouseLeftButtonDown">
-                                                        <TextBlock Text="{Binding User.ReviewName}" Style="{StaticResource ListLink}" FontFamily="/Resources/Fonts/#Raleway" FontSize="17" Margin="0 10 10 0" Grid.Column="1"/>
-                                                        <Border CornerRadius="150" Width="40" Height="40" Margin="0 0 0 0">
-                                                            <Border.Background>
-                                                                <ImageBrush Stretch="Fill" ImageSource="{Binding User.ProfileImage}" RenderOptions.BitmapScalingMode="Fant"/>
-                                                            </Border.Background>
-                                                        </Border>
+
+                                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FF9055CE" Height="35" HorizontalAlignment="Right" Visibility="{Binding AcceptedByOperator}">
+                                                            <TextBlock Margin="10 8 10 0"  Text="Принято оператором" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                        </StackPanel>
+                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FFCE7655" Height="35" HorizontalAlignment="Right" Visibility="{Binding RejectByMaster}">
+                                                            <TextBlock Margin="10 8 10 0"  Text="Отклонено мастером" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                        </StackPanel>
                                                     </StackPanel>
                                                 </Grid>
                                                 <Separator  Background="#FF3881EF" Margin="0 5 0 15"/>
@@ -171,20 +172,16 @@
                                                     <StackPanel Margin="10 0 0 0" Width="440">
                                                         <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
 
-                                                        <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding User.Address, StringFormat='Доставка на адрес: {0}'}" HorizontalAlignment="Left" Height="50" TextWrapping="Wrap" MaxWidth="350" Margin="0 15 0 0"/>
+                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding CountInAccessable, StringFormat='В наличии: {0} шт.'}" Height="30"/>
+                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding CountForCreate, StringFormat='Необходимо изготовить: {0} шт.'}" Height="30"/>
+
 
                                                         <TextBlock x:Name="CommentViewBtn" Margin="0 10 10 0"  Text="У заказа есть комментарий" FontSize="18" Height="auto" Style="{StaticResource ProfileInfo}" Cursor="Hand" Foreground="#FF3881EF" Visibility="{Binding VisibilityComment}" ToolTip="Нажмите для просмотра комментария" MouseLeftButtonDown="CommentViewBtn_MouseLeftButtonDown"/>
 
                                                     </StackPanel>
                                                     <StackPanel Width="215">
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
-                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding Count, StringFormat=' {0} шт. x '}" Height="30"/>
-                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Visibility="{Binding VisibilityDiscount}" Text="{Binding ComputerCase.PriceDiscount, StringFormat='{}{0:#,#} ₽'}" Height="30" Margin="0 0 5 0" TextDecorations="Strikethrough"/>
-                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PricePerUnit, StringFormat='{}{0:#,#} ₽'}" Height="30" />
-                                                        </StackPanel>
-                                                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>
-                                                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DeliveryPrice, StringFormat='Стоимость доставки: {0:#,#} ₽'}" Height="30"/>
+                                                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding GeneralCount, StringFormat='Всего: {0} шт.'}" Height="30"/>
 
                                                         <Grid Width="200">
                                                             <StackPanel  x:Name="AcceptBtnSt" MouseLeftButtonDown="AcceptBtnSt_MouseLeftButtonDown" Visibility="{Binding VisibilityAcceptBtn}" HorizontalAlignment="Left" Cursor="Hand">

@@ -60,6 +60,11 @@ namespace VSborkeAdmistrator.Pages
             }
             TbCountProgress.Text = $"{progress}%";
             PbProfileProgress.Value = progress;
+
+            var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 30);
+            dispatcherTimer.Start();
         }
 
         private void ProfileEditBtn_Click(object sender, RoutedEventArgs e)
@@ -126,6 +131,60 @@ namespace VSborkeAdmistrator.Pages
         private void CommentViewBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            // Updating the Label which displays the current second
+
+            Refresh();
+
+        }
+
+        private void Refresh()
+        {
+            IEnumerable<Order> filterOrder = contextUser.Order;
+            if(OpenedOrderBtn.IsChecked == true)
+            {
+                filterOrder = filterOrder.Where(x => x.StatusId >= 1 & x.StatusId < 6 );
+            }
+            if (FinishedOrderBtn.IsChecked == true)
+            {
+                filterOrder = filterOrder.Where(x => x.StatusId == 6);
+            }
+            if (CanceledOrderBtn.IsChecked == true)
+            {
+                filterOrder = filterOrder.Where(x => x.StatusId == 7);
+            }
+            LvOrders.ItemsSource = filterOrder;
+        }
+
+        private void OpenedOrderBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            FinishedOrderBtn.IsChecked = false;
+            CanceledOrderBtn.IsChecked = false;
+            Refresh();
+        }
+
+        private void AcceptedOrderBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            OpenedOrderBtn.IsChecked = false;
+            CanceledOrderBtn.IsChecked = false;
+            Refresh();
+        }
+
+        private void CanceledOrderBtn_Checked(object sender, RoutedEventArgs e)
+        {
+            FinishedOrderBtn.IsChecked = false;
+            OpenedOrderBtn.IsChecked = false;
+            Refresh();
+        }
+
+        private void AllOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FinishedOrderBtn.IsChecked = false;
+            OpenedOrderBtn.IsChecked = false;
+            CanceledOrderBtn.IsChecked = false;
+            Refresh();
         }
     }
 }

@@ -61,9 +61,9 @@ namespace VSborkeMaster.Pages
                 CustomMessageBox.Show("Такого пользователя не существует", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
-            if (user.Role.Name != "Администратор")
+            if (user.Role.Name != "Главный конструктор")
             {
-                CustomMessageBox.Show("Вы входите не под учетной записью администратора", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
+                CustomMessageBox.Show("Вы входите не под учетной записью главного конструктора", CustomMessageBox.CustomMessageBoxTitle.Warning, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
                 return;
             }
             if (user.Password != PbPassword.Password)

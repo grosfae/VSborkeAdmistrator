@@ -56,16 +56,16 @@ namespace VSborkeMaster.Windows
             switch (title)
             {
                 case CustomMessageBoxTitle.Error:
-                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/AlertMessage.png"));
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeMaster;component/Resources/MessageBoxImages/AlertMessage.png"));
                     break;
 
                 case CustomMessageBoxTitle.Warning:
-                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/WarningMessage.png"));
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeMaster;component/Resources/MessageBoxImages/WarningMessage.png"));
                     customMessageBox.CancelBtn.Visibility = Visibility.Collapsed;
                     customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
                     break;
                 case CustomMessageBoxTitle.Подтверждение:
-                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/QuestionMessage.png"));
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeMaster;component/Resources/MessageBoxImages/QuestionMessage.png"));
                     break;
                 case CustomMessageBoxTitle.Предупреждение:
                     customMessageBox.iconMsg.Visibility = Visibility.Collapsed;
@@ -76,7 +76,7 @@ namespace VSborkeMaster.Windows
                     customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
                     break;
                 case CustomMessageBoxTitle.Успешно:
-                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeAdmistrator;component/Resources/MessageBoxImages/SuccessMessage.png"));
+                    customMessageBox.iconMsg.Source = new BitmapImage(new Uri("pack://application:,,,/VSborkeMaster;component/Resources/MessageBoxImages/SuccessMessage.png"));
                     customMessageBox.CancelBtn.Visibility = Visibility.Collapsed;
                     customMessageBox.OkBtn.SetValue(Grid.ColumnSpanProperty, 2);
                     break;

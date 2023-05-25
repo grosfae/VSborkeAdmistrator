@@ -63,6 +63,7 @@ namespace VSborkeAdmistrator.Windows
             if (quest == System.Windows.Forms.DialogResult.Yes)
             {
                 contextOrder.IsReject = true;
+                contextOrder.IsRejectedOperator = true;
                 contextOrder.StatusId = 7;
                 App.DB.SaveChanges();
                 CustomMessageBox.Show("Заказ отменен!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);

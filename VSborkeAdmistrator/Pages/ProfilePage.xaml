@@ -120,10 +120,10 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0 0 0 10">
-                            <Button x:Name="AllOrderBtn" Width="100" Height="35" Style="{StaticResource BorderBtn}" Content="Все" BorderThickness="1" FontSize="29"/>
-                            <Button x:Name="OpenedOrderBtn" Width="140" Height="35" Style="{StaticResource StatusYellowBtn}" Content="Открытые" Margin="5 0 0 0"/>
-                            <Button x:Name="AcceptedOrderBtn" Width="170" Height="35" Style="{StaticResource StatusGreenBtn}" Content="Выкупленные" Margin="5 0 0 0"/>
-                            <Button x:Name="CanceledOrderBtn" Width="150" Height="35" Style="{StaticResource StatusRedBtn}" Content="Отмененные" Margin="5 0 0 0"/>
+                            <Button x:Name="AllOrderBtn" Width="100" Height="35" Style="{StaticResource BorderBtn}" Content="Все" BorderThickness="1" FontSize="29" Click="AllOrderBtn_Click"/>
+                            <ToggleButton x:Name="OpenedOrderBtn" Width="140" Height="35" Style="{StaticResource StatusYellowBtn}" Content="Открытые" Margin="5 0 0 0" Cursor="Hand" Checked="OpenedOrderBtn_Checked"/>
+                            <ToggleButton x:Name="FinishedOrderBtn" Width="170" Height="35" Style="{StaticResource StatusGreenBtn}" Content="Выкупленные" Margin="5 0 0 0" Checked="AcceptedOrderBtn_Checked"/>
+                            <ToggleButton x:Name="CanceledOrderBtn" Width="150" Height="35" Style="{StaticResource StatusRedBtn}" Content="Отмененные" Margin="5 0 0 0" Checked="CanceledOrderBtn_Checked"/>
                         </StackPanel>
                         <ListView x:Name="LvOrders" Height="550" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
                             <ListView.ItemTemplate>
@@ -159,8 +159,8 @@
                                             <StackPanel Width="215">
                                                 <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding Count, StringFormat=' {0} шт. x '}" Height="30"/>
-                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Visibility="{Binding VisibilityDiscount}" Text="{Binding ComputerCase.Price, StringFormat='{}{0:#,#} ₽'}" Height="30" Margin="0 0 5 0" TextDecorations="Strikethrough"/>
+                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding GeneralCount, StringFormat=' {0} шт. x '}" Height="30"/>
+                                                    <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Visibility="{Binding VisibilityDiscount}" Text="{Binding PricePerUnitStock, StringFormat='{}{0:#,#} ₽'}" Height="30" Margin="0 0 5 0" TextDecorations="Strikethrough"/>
                                                     <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding PriceDiscountOfCount, StringFormat='{}{0:#,#} ₽'}" Height="30" />
                                                 </StackPanel>
                                                 <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" Visibility="{Binding VisibilityDiscount}" FontSize="17" Text="{Binding Discount, StringFormat='Скидка за кол-во: {0}%'}" Height="30"/>

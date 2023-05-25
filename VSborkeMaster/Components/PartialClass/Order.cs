@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace VSborkeAdmistrator.Components
+namespace VSborkeMaster.Components
 {
     public partial class Order
     {
@@ -60,6 +60,36 @@ namespace VSborkeAdmistrator.Components
                 else
                 {
                     return Visibility.Visible;
+                }
+            }
+        }
+
+        public Visibility AcceptedByOperator
+        {
+            get
+            {
+                if (IsAcceptedOperator == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
+        public Visibility RejectByMaster
+        {
+            get
+            {
+                if (IsRejectedMaster == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
                 }
             }
         }

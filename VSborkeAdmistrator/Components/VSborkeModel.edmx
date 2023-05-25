@@ -229,26 +229,32 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="OrderDate" Type="date" Nullable="false" />
           <Property Name="FinallyPrice" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
-          <Property Name="CountForCreate" Type="int" />
+          <Property Name="GeneralCount" Type="int" Nullable="false" />
+          <Property Name="CountInAccessable" Type="int" Nullable="false" />
+          <Property Name="CountForCreate" Type="int" Nullable="false" />
+          <Property Name="PricePerUnitStock" Type="int" Nullable="false" />
           <Property Name="PricePerUnit" Type="int" Nullable="false" />
           <Property Name="Discount" Type="int" Nullable="false" />
-          <Property Name="DeliveryPrice" Type="int" />
+          <Property Name="DeliveryPrice" Type="int" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
-          <Property Name="IsReject" Type="bit" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="CommentOrder" Type="varchar" MaxLength="1000" />
           <Property Name="ReasonReject" Type="varchar" MaxLength="500" />
           <Property Name="Phone" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="varchar" MaxLength="20" />
-          <Property Name="Address" Type="varchar" MaxLength="100" />
-          <Property Name="FlatNumber" Type="varchar" MaxLength="5" />
+          <Property Name="Address" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="PrivateHome" Type="bit" />
           <Property Name="UpToFloor" Type="bit" />
           <Property Name="Floor" Type="varchar" MaxLength="2" />
           <Property Name="LiftForFullOrder" Type="bit" />
-          <Property Name="DateDelivery" Type="date" />
-          <Property Name="TimeDelivery" Type="varchar" MaxLength="40" />
+          <Property Name="DateDelivery" Type="date" Nullable="false" />
+          <Property Name="TimeDelivery" Type="varchar" MaxLength="40" Nullable="false" />
+          <Property Name="IsAcceptedOperator" Type="bit" />
+          <Property Name="IsAcceptedMaster" Type="bit" />
+          <Property Name="IsRejectedOperator" Type="bit" />
+          <Property Name="IsRejectedMaster" Type="bit" />
+          <Property Name="IsReject" Type="bit" />
         </EntityType>
         <EntityType Name="OrientationMotherboard">
           <Key>
@@ -1776,26 +1782,32 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="FinallyPrice" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="CountForCreate" Type="Int32" />
+          <Property Name="GeneralCount" Type="Int32" Nullable="false" />
+          <Property Name="CountInAccessable" Type="Int32" Nullable="false" />
+          <Property Name="CountForCreate" Type="Int32" Nullable="false" />
+          <Property Name="PricePerUnitStock" Type="Int32" Nullable="false" />
           <Property Name="PricePerUnit" Type="Int32" Nullable="false" />
           <Property Name="Discount" Type="Int32" Nullable="false" />
-          <Property Name="DeliveryPrice" Type="Int32" />
+          <Property Name="DeliveryPrice" Type="Int32" Nullable="false" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
-          <Property Name="IsReject" Type="Boolean" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="CommentOrder" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="ReasonReject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FlatNumber" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FlatNumber" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="PrivateHome" Type="Boolean" />
           <Property Name="UpToFloor" Type="Boolean" />
           <Property Name="Floor" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="LiftForFullOrder" Type="Boolean" />
-          <Property Name="DateDelivery" Type="DateTime" Precision="0" />
-          <Property Name="TimeDelivery" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="DateDelivery" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeDelivery" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Name="IsAcceptedOperator" Type="Boolean" />
+          <Property Name="IsAcceptedMaster" Type="Boolean" />
+          <Property Name="IsRejectedOperator" Type="Boolean" />
+          <Property Name="IsRejectedMaster" Type="Boolean" />
+          <Property Name="IsReject" Type="Boolean" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="Order" ToRole="User" />
@@ -2839,6 +2851,11 @@
           <EntitySetMapping Name="Order">
             <EntityTypeMapping TypeName="VSborkeBaseModel.Order">
               <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="IsRejectedMaster" ColumnName="IsRejectedMaster" />
+                <ScalarProperty Name="IsRejectedOperator" ColumnName="IsRejectedOperator" />
+                <ScalarProperty Name="IsAcceptedMaster" ColumnName="IsAcceptedMaster" />
+                <ScalarProperty Name="IsAcceptedOperator" ColumnName="IsAcceptedOperator" />
                 <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
                 <ScalarProperty Name="DateDelivery" ColumnName="DateDelivery" />
                 <ScalarProperty Name="LiftForFullOrder" ColumnName="LiftForFullOrder" />
@@ -2852,13 +2869,14 @@
                 <ScalarProperty Name="ReasonReject" ColumnName="ReasonReject" />
                 <ScalarProperty Name="CommentOrder" ColumnName="CommentOrder" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="IsReject" ColumnName="IsReject" />
                 <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
                 <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
+                <ScalarProperty Name="PricePerUnitStock" ColumnName="PricePerUnitStock" />
                 <ScalarProperty Name="CountForCreate" ColumnName="CountForCreate" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="CountInAccessable" ColumnName="CountInAccessable" />
+                <ScalarProperty Name="GeneralCount" ColumnName="GeneralCount" />
                 <ScalarProperty Name="FinallyPrice" ColumnName="FinallyPrice" />
                 <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />

@@ -52,5 +52,10 @@ namespace VSborkeMaster.Pages
         {
 
         }
+
+        private void ComputerListBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

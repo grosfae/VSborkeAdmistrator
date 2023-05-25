@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VSborkeAdmistrator.Components
+namespace VSborkeMaster.Components
 {
     public partial class User
     {
