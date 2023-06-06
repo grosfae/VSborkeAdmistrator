@@ -62,7 +62,7 @@
                                     </Expander.Header>
                                     <StackPanel>
                                         <StackPanel Margin="0 5 0 0">
-                                            <Viewbox Height="85" HorizontalAlignment="Left">
+                                            <Viewbox Height="110" HorizontalAlignment="Left">
                                                 <StackPanel Margin="5 0 0 0" HorizontalAlignment="Left" x:Name="ChecksumStatus_Collection">
 
                                                     <CheckBox Template="{DynamicResource CbsSorts}" x:Name="CbInProcessing" FontSize="12" Style="{StaticResource CbFilter}" Content="В обработке"/>
@@ -70,6 +70,8 @@
                                                     <CheckBox x:Name="CbInAccept" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Принят" />
 
                                                     <CheckBox x:Name="CbInProgress" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="В процессе" />
+                                                    
+                                                    <CheckBox x:Name="CbReject" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Отменен" />
                                                 </StackPanel>
                                             </Viewbox>
                                         </StackPanel>

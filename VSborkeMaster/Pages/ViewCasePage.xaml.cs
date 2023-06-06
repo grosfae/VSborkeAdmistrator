@@ -257,29 +257,6 @@ namespace VSborkeMaster.Pages
             }
         }
 
-
-        private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var favourite = App.DB.Favourite.SingleOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == contextComputerCase.Id);
-            App.DB.Favourite.Remove(favourite);
-            App.DB.SaveChanges();
-            DeFavouriteBtn.Visibility = Visibility.Collapsed;
-            FavouriteBtn.Visibility = Visibility.Visible;
-        }
-
-        private void FavouriteBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-            App.DB.Favourite.Add(new Favourite()
-            {
-                ComputerCaseId = contextComputerCase.Id,
-                UserId = App.LoggedUser.Id
-            });
-            App.DB.SaveChanges();
-            FavouriteBtn.Visibility = Visibility.Collapsed;
-            DeFavouriteBtn.Visibility = Visibility.Visible;
-        }
-
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
 

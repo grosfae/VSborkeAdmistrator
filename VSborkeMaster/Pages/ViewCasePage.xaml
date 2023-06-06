@@ -76,17 +76,13 @@
                                     <DropShadowEffect Color="Black" BlurRadius="15" Direction="0" RenderingBias="Performance" ShadowDepth="1" Opacity="0.3" />
                                 </Border.Effect>
                                 <Grid Height="140" Width="550" >
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition Width="250"/>
-                                    </Grid.ColumnDefinitions>
                                     <Rectangle Width="50" Height="30" Fill="#FFFF5C52" Visibility="{Binding VisibilityDiscount}" VerticalAlignment="Top" RadiusX="15" RadiusY="15" Margin="160 12 0 5" HorizontalAlignment="Left"/>
                                     <TextBlock Text="{Binding Discount, StringFormat='-{0}%'}" Width="40" HorizontalAlignment="Left" TextAlignment="Center" Visibility="{Binding VisibilityDiscount}" Foreground="White" Style="{StaticResource OrderList}" FontSize="18" Margin="165 15 0 8" VerticalAlignment="Top"/>
                                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="12 15 0 0" Height="30" VerticalAlignment="Top">
                                         <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="24" Width="auto" TextAlignment="Left" />
                                         <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="14" Margin="10 0 10 0" TextAlignment="Left" />
                                     </StackPanel>
-                                    <TextBlock x:Name="PriceGraphBtn" Text="&#xf05a;" Style="{StaticResource TbBlueInfo}" FontSize="40" VerticalAlignment="Top" Margin="0 14 0 0" TextAlignment="Center" Height="40" Width="40" HorizontalAlignment="Right" MouseLeftButtonDown="PriceGraphBtn_MouseLeftButtonDown" Cursor="Hand"/>
+                                    <TextBlock x:Name="PriceGraphBtn" Text="&#xf05a;" Style="{StaticResource TbBlueInfo}" FontSize="40" VerticalAlignment="Top" Margin="0 14 20 0" TextAlignment="Center" Height="40" Width="40" HorizontalAlignment="Right" MouseLeftButtonDown="PriceGraphBtn_MouseLeftButtonDown" Cursor="Hand"/>
                                     <Rectangle Fill="#FFF2F2F2" Height="40" Width="160" VerticalAlignment="Bottom" Visibility="{Binding VisibilityNoneAccessable}" HorizontalAlignment="Left" Margin="10 0 0 40" RadiusY="5" RadiusX="5"/>
                                     <TextBlock Text="Корпус недоступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityNoneAccessable}" Margin="32 0 0 52" FontSize="13"/>
                                     
@@ -94,14 +90,9 @@
                                     <TextBlock Text="Корпус доступен" VerticalAlignment="Bottom" HorizontalAlignment="Left" Visibility="{Binding VisibilityAccessable}" Foreground="#FF3881EF" Margin="35 0 0 52" FontSize="13"/>
                                     
                                     <TextBlock x:Name="TbId" Text="{Binding Id, StringFormat='Код товара: {0}'}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="10 0 0 10" FontSize="18" Foreground="#4e4e4e"/>
-                                    <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="20 10 0 0" Grid.Column="1" Height="50" VerticalAlignment="Top">
-                                        <Button x:Name="FavouriteBtn" Visibility="{Binding VisibilityAdd}" Width="45" Height="45" Style="{StaticResource FavBtn}" Content="♥️" BorderThickness="1" FontSize="28" Click="FavouriteBtn_Click" />
-                                        <Button x:Name="DeFavouriteBtn" Visibility="{Binding VisibilityRemove}" Width="45" Height="45" Style="{StaticResource UnFavBtn}" Content="💔" BorderThickness="1" FontSize="28" Click="DeFavouriteBtn_Click" />
-                                        <Button x:Name="BuyBtn" Visibility="{Binding VisibilityBtnOrder}" Width="160" Height="45" Style="{StaticResource BlueNoBorderBtn}" Content="Заказать" BorderThickness="1" FontSize="30"  Click="BuyBtn_Click" Margin="10 0 0 0"/>
-                                        <Button x:Name="NotificBtn" Visibility="{Binding VisibilityBtnNortific}" Width="160" Height="45" Style="{StaticResource BorderBtn}" Content="Уведомить" BorderThickness="1" FontSize="30" Click="NotificBtn_Click" Margin="10 0 0 0"/>
-                                    </StackPanel>
-                                    <Rectangle Fill="#FFAB0A00" Height="40" Width="160" Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding VisibilityRecoverCaseBtn}" HorizontalAlignment="Left" Margin="75 0 0 20" RadiusY="5" RadiusX="5"/>
-                                    <TextBlock Text="Корпус удален" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Left" Visibility="{Binding VisibilityRecoverCaseBtn}" Foreground="White" Margin="100 0 0 30" FontSize="16"/>
+
+                                    <Rectangle Fill="#FFAB0A00" Height="40" Width="160" Grid.Column="1" VerticalAlignment="Bottom" Visibility="{Binding VisibilityRecoverCaseBtn}" HorizontalAlignment="Right" Margin="0 0 20 20" RadiusY="5" RadiusX="5"/>
+                                    <TextBlock Text="Корпус удален" VerticalAlignment="Bottom" Grid.Column="1" HorizontalAlignment="Right" Visibility="{Binding VisibilityRecoverCaseBtn}" Foreground="White" Margin="0 0 45 30" FontSize="16"/>
                                 </Grid>
                             </Border>
                             <TextBlock Text="Аналоги" FontSize="26" Style="{StaticResource ProfileInfo}" Margin="10 10 0 0"/>
@@ -121,7 +112,6 @@
                                         <Border CornerRadius="10" Background="#FFEEF0F2">
                                             <Grid  Height="120" Width="260">
                                                 <TextBlock x:Name="TbNameLink" Style="{StaticResource ListLink}" Text="{Binding Name, StringFormat='Корпус {0}'}" MouseLeftButtonDown="TbNameLink_MouseLeftButtonDown" Margin="10 5 0 0" FontSize="15" TextWrapping="Wrap" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160"/>
-                                                <Button x:Name="ButAnalogueBtn" Style="{StaticResource AnalogueBtn}"  Height="30" Width="80" Content="Заказать" FontSize="14" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="15 0 0 15"  Click="ButAnalogueBtn_Click"/>
                                                 <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="12" Margin="0 0 50 25" VerticalAlignment="Bottom"  HorizontalAlignment="Right" TextAlignment="Right" />
                                                 <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="16" Margin="0 0 95 20" Width="auto" VerticalAlignment="Bottom" HorizontalAlignment="Right" TextAlignment="Right" />
                                                 <StackPanel Margin="0 15 15 0" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White">
@@ -148,7 +138,6 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <TextBlock Text="{Binding Name, StringFormat='Корпус {0}'}" Margin="10 10 0 0" FontSize="17" TextWrapping="Wrap" Height="43" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160"/>
-                            <Button x:Name="ButAnalogueBtn" Style="{StaticResource AnalogueBtn}"  Height="30" Width="80" Content="Заказать" FontSize="14" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0 80 15 0"  Click="ButAnalogueBtn_Click"/>
                             <TextBlock Text="{Binding Price, StringFormat='{}{0:#,#}'}" Visibility="{Binding VisibilityDiscount}" Foreground="#FF7F7E7D" FontWeight="SemiBold" TextDecorations="Strikethrough" FontSize="12" Margin="75 75 0 0" VerticalAlignment="Top"  HorizontalAlignment="Left" TextAlignment="Right" />
                             <TextBlock Text="{Binding PriceDiscount, StringFormat='{}{0:#,#} ₽'}" FontWeight="SemiBold" Foreground="{Binding ForegroundColor}" FontSize="16" Margin="15 85 0 0" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Left" TextAlignment="Right" />
                             <StackPanel Margin="0 10 15 0" VerticalAlignment="Top" HorizontalAlignment="Right" Background="White">

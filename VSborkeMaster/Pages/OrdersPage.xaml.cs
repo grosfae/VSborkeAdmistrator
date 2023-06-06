@@ -43,8 +43,18 @@ namespace VSborkeMaster.Pages
         {
             // Updating the Label which displays the current second
 
-               Refresh();
+            Refresh();
 
+            var expiredOrder = App.DB.Order.FirstOrDefault(x => (x.DateDelivery - TimeSpan.FromDays(10)) < DateTime.Now & x.StatusId <= 3);
+
+            if (expiredOrder != null)
+            {
+                expiredOrder.IsReject = true;
+                expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
+                expiredOrder.ReasonReject = $"Необходимо было изготовить к {expiredOrder.DateReady}.\nЗаказ отменен за истечением срока изготовления.";
+                App.DB.SaveChanges();
+
+            }
         }
         private void TimerForReject_Tick(object sender, EventArgs e)
         {
@@ -59,7 +69,7 @@ namespace VSborkeMaster.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.Order.Count(x => x.IsReject == true);
+            maxPage = App.DB.Order.Count();
             if (App.DB.Order.Count() != 0)
             {
                 TbStartPrice.Tag = $"от {App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice)}";
@@ -122,7 +132,7 @@ namespace VSborkeMaster.Pages
         private void Refresh()
         {
             App.DB = new VSborkeBaseEntities();
-            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.IsAcceptedOperator == true);
+            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 );
             if (CbSort.SelectedIndex == 0)
             {
                 filterOrder = filterOrder.OrderBy(x => x.FinallyPrice).ToList();
@@ -141,11 +151,7 @@ namespace VSborkeMaster.Pages
                         filterOrder = filterOrder.Where(x =>
                         x.StatusId == 1 && CbInProcessing.IsChecked == true ||
                         x.StatusId == 2 && CbInAccept.IsChecked == true ||
-                        x.StatusId == 3 && CbInProgress.IsChecked == true ||
-                        x.StatusId == 4 && CbInStorage.IsChecked == true ||
-                        x.StatusId == 5 && CbInDelivery.IsChecked == true ||
-                        x.StatusId == 6 && CbInFinal.IsChecked == true ||
-                        x.StatusId == 7 && CbInReject.IsChecked == true).ToList();
+                        x.StatusId == 3 && CbInProgress.IsChecked == true).ToList();
                     }
                 }
             }

@@ -57,8 +57,8 @@ namespace VSborkeMaster.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.Order.Count(x => x.IsReject == true);
-            if (App.DB.Order.Count() != 0)
+            maxPage = App.DB.Order.Count();
+            if (App.DB.Order.Where(x => x.StatusId == 3).Count() != 0)
             {
                 TbStartPrice.Tag = $"от {App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice)}";
                 TbEndPrice.Tag = $"до {App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice)}";

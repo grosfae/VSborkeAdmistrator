@@ -60,7 +60,7 @@ namespace VSborkeAdmistrator.Pages
         {
             
             
-            maxPage = App.DB.Order.Count(x => x.IsReject == true);
+            maxPage = App.DB.Order.Count();
             if (App.DB.Order.Count() != 0)
             {
                 TbStartPrice.Tag = $"от {App.DB.Order.Min(x => x.FinallyPrice)}";
@@ -257,7 +257,13 @@ namespace VSborkeAdmistrator.Pages
             CbSort.SelectedIndex = 0;
             TbSearch.Text = String.Empty;
 
-
+            CbInProcessing.IsChecked = false;
+            CbInAccept.IsChecked = false;
+            CbInProgress.IsChecked = false;
+            CbInStorage.IsChecked = false;
+            CbInDelivery.IsChecked = false;
+            CbInFinal.IsChecked = false;
+            CbInReject.IsChecked = false;
 
             TbStartPrice.Text = String.Empty;
             TbEndPrice.Text = String.Empty;
@@ -282,7 +288,6 @@ namespace VSborkeAdmistrator.Pages
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
             selectedOrder.IsAcceptedOperator = true;
-            selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 2);
             App.DB.SaveChanges();
             Refresh();
         }
