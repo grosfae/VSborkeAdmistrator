@@ -1,11 +1,11 @@
-﻿<Page x:Class="VSborkeMaster.Pages.OrdersPage"
+﻿<Page x:Class="VSborkeMaster.Pages.OrdersInProgressPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="2000" d:DesignWidth="1230" Loaded="Page_Loaded"
-      Title="OrdersPage">
+      Title="OrdersInProgressPage">
 
     <Grid Background="#FFEEF0F2">
         <ScrollViewer>
@@ -16,8 +16,8 @@
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Список заказов" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="350" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Заказы в процессе" FontSize="46" Margin="50 15 0 20"/>
+                        <Line X1="390" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
                     <StackPanel Grid.Row="1" Width="1130" Height="auto" Margin="0 0 0 20" Background="White">
                         <StackPanel Orientation="Horizontal" Background="White">
@@ -56,27 +56,7 @@
                                 <ColumnDefinition Width="880"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Width="250">
-                                <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20" IsExpanded="True">
-                                    <Expander.Header>
-                                        <TextBlock Text="Статус заказа" TextWrapping="Wrap" Width="225" FontSize="20"/>
-                                    </Expander.Header>
-                                    <StackPanel>
-                                        <StackPanel Margin="0 5 0 0">
-                                            <Viewbox Height="85" HorizontalAlignment="Left">
-                                                <StackPanel Margin="5 0 0 0" HorizontalAlignment="Left" x:Name="ChecksumStatus_Collection">
-
-                                                    <CheckBox Template="{DynamicResource CbsSorts}" x:Name="CbInProcessing" FontSize="12" Style="{StaticResource CbFilter}" Content="В обработке"/>
-
-                                                    <CheckBox x:Name="CbInAccept" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="Принят" />
-
-                                                    <CheckBox x:Name="CbInProgress" Template="{DynamicResource CbsSorts}" FontSize="12" Style="{StaticResource CbFilter}" Content="В процессе" />
-                                                </StackPanel>
-                                            </Viewbox>
-                                        </StackPanel>
-                                    </StackPanel>
-                                </Expander>
-                                <Separator/>
-
+                                
                                 <Expander Template="{DynamicResource ExpanderTemplate}" Width="250" FontSize="20">
                                     <Expander.Header>
                                         <TextBlock Text="Период заказа" TextWrapping="Wrap" Width="225" FontSize="20"/>
@@ -89,7 +69,7 @@
                                                         <TextBlock Style="{StaticResource ProfileInfo}" Text="От:"/>
                                                         <DatePicker x:Name="StartDate" FontSize="17" Width="140"/>
                                                     </StackPanel>
-                                                    <StackPanel Margin="0 5 0 0"> 
+                                                    <StackPanel Margin="0 5 0 0">
                                                         <TextBlock Style="{StaticResource ProfileInfo}" Text="До:"/>
                                                         <DatePicker x:Name="EndDate" FontSize="17" Width="140"/>
                                                     </StackPanel>
@@ -147,11 +127,8 @@
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FF9055CE" Height="35" HorizontalAlignment="Right" Visibility="{Binding AcceptedByOperator}">
-                                                            <TextBlock Margin="10 8 10 0"  Text="Принято оператором" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
-                                                        </StackPanel>
-                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FFCE7655" Height="35" HorizontalAlignment="Right" Visibility="{Binding RejectByMaster}">
-                                                            <TextBlock Margin="10 8 10 0"  Text="Отклонено мастером" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FFFF5050" Height="35" HorizontalAlignment="Right" Visibility="{Binding NotReadyStatus}">
+                                                            <TextBlock Margin="10 8 10 0"  Text="Необходимо завершить производство" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
                                                         </StackPanel>
                                                     </StackPanel>
                                                 </Grid>
@@ -175,21 +152,14 @@
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding GeneralCount, StringFormat='Всего: {0} шт.'}" Height="30"/>
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DateReady, StringFormat='Изготовить к {0}'}" Height="30"/>
-
-                                                        <Grid Width="200">
-                                                            <StackPanel  x:Name="AcceptBtnSt" MouseLeftButtonDown="AcceptBtnSt_MouseLeftButtonDown" Visibility="{Binding VisibilityAcceptBtn}" HorizontalAlignment="Left" Cursor="Hand">
-                                                                <TextBlock  Text="Принять" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF05A000" HorizontalAlignment="Center"/>
-                                                                <Separator Background="#FF05A000" Height="1" Width="80"/>
+                                                        <Grid Width="210">
+                                                            <StackPanel  x:Name="AcceptBtnSt" MouseLeftButtonDown="AcceptBtnSt_MouseLeftButtonDown" Visibility="{Binding NotReadyStatus}" HorizontalAlignment="Left" Cursor="Hand">
+                                                                <TextBlock  Text="Завершить" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF05A000" HorizontalAlignment="Center"/>
+                                                                <Separator Background="#FF05A000" Height="1" Width="100"/>
                                                             </StackPanel>
                                                             <StackPanel  x:Name="RejectBtnSt" MouseLeftButtonDown="RejectBtnSt_MouseLeftButtonDown" HorizontalAlignment="Right" Cursor="Hand" Visibility="{Binding VisibilityCancelBtn}">
                                                                 <TextBlock  Text="Отменить" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center"/>
                                                                 <Separator Background="#FFCA0000" Height="1" Width="90"/>
-                                                            </StackPanel>
-                                                        </Grid>
-                                                        <Grid Margin="0 10 0 0">
-                                                            <StackPanel  x:Name="ReasonViewBtn" HorizontalAlignment="Right" Cursor="Hand" Visibility="{Binding VisibilityReasonCancelBtn}" MouseLeftButtonDown="ReasonViewBtn_MouseLeftButtonDown">
-                                                                <TextBlock  Text="Причина отмены" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFFF625B" HorizontalAlignment="Center"/>
-                                                                <Separator Background="#FFFF625B" Height="1" Width="160"/>
                                                             </StackPanel>
                                                         </Grid>
                                                     </StackPanel>

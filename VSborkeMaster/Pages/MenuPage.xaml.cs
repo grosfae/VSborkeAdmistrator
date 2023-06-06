@@ -50,7 +50,7 @@ namespace VSborkeMaster.Pages
 
         private void ConstructBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new OrdersInProgressPage());
         }
 
         private void ComputerListBtn_Click(object sender, RoutedEventArgs e)

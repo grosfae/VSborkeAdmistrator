@@ -79,6 +79,21 @@ namespace VSborkeMaster.Components
             }
         }
 
+        public Visibility NotReadyStatus
+        {
+            get
+            {
+                if (IsReadyMaster == null || IsReadyMaster == false)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
         public Visibility RejectByMaster
         {
             get
@@ -150,6 +165,13 @@ namespace VSborkeMaster.Components
                 {
                     return Visibility.Collapsed;
                 }
+            }
+        }
+        public string DateReady
+        {
+            get
+            {
+                return (DateDelivery - TimeSpan.FromDays(10)).ToString("d");
             }
         }
 

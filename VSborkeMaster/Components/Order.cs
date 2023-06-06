@@ -72,6 +72,8 @@ public partial class Order
 
     public Nullable<bool> IsAcceptedMaster { get; set; }
 
+    public Nullable<bool> IsReadyMaster { get; set; }
+
     public Nullable<bool> IsRejectedOperator { get; set; }
 
     public Nullable<bool> IsRejectedMaster { get; set; }

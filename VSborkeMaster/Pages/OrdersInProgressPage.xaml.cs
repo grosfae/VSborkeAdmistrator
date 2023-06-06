@@ -13,20 +13,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 using VSborkeMaster.Components;
 using VSborkeMaster.Windows;
-
 
 namespace VSborkeMaster.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для OrdersPage.xaml
+    /// Логика взаимодействия для OrdersInProgressPage.xaml
     /// </summary>
-    public partial class OrdersPage : Page
+    public partial class OrdersInProgressPage : Page
     {
         int maxPage = 0;
-        public OrdersPage()
+        public OrdersInProgressPage()
         {
             InitializeComponent();
             var dispatcherTimer = new System.Windows.Threading.DispatcherTimer();
@@ -43,7 +41,7 @@ namespace VSborkeMaster.Pages
         {
             // Updating the Label which displays the current second
 
-               Refresh();
+            Refresh();
 
         }
         private void TimerForReject_Tick(object sender, EventArgs e)
@@ -62,10 +60,10 @@ namespace VSborkeMaster.Pages
             maxPage = App.DB.Order.Count(x => x.IsReject == true);
             if (App.DB.Order.Count() != 0)
             {
-                TbStartPrice.Tag = $"от {App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice)}";
-                TbEndPrice.Tag = $"до {App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice)}";
-                TbStartCount.Tag = $"от {App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount)}";
-                TbEndCount.Tag = $"до {App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount)}";
+                TbStartPrice.Tag = $"от {App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice)}";
+                TbEndPrice.Tag = $"до {App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice)}";
+                TbStartCount.Tag = $"от {App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount)}";
+                TbEndCount.Tag = $"до {App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount)}";
             }
             Refresh();
 
@@ -122,7 +120,7 @@ namespace VSborkeMaster.Pages
         private void Refresh()
         {
             App.DB = new VSborkeBaseEntities();
-            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.IsAcceptedOperator == true);
+            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3);
             if (CbSort.SelectedIndex == 0)
             {
                 filterOrder = filterOrder.OrderBy(x => x.FinallyPrice).ToList();
@@ -130,24 +128,6 @@ namespace VSborkeMaster.Pages
             else if (CbSort.SelectedIndex == 1)
             {
                 filterOrder = filterOrder.OrderByDescending(x => x.FinallyPrice).ToList();
-            }
-            foreach (var child in ChecksumStatus_Collection.Children)
-            {
-                var check = child as CheckBox;
-                if (check.IsChecked == true)
-                {
-                    foreach (Order pc in filterOrder)
-                    {
-                        filterOrder = filterOrder.Where(x =>
-                        x.StatusId == 1 && CbInProcessing.IsChecked == true ||
-                        x.StatusId == 2 && CbInAccept.IsChecked == true ||
-                        x.StatusId == 3 && CbInProgress.IsChecked == true ||
-                        x.StatusId == 4 && CbInStorage.IsChecked == true ||
-                        x.StatusId == 5 && CbInDelivery.IsChecked == true ||
-                        x.StatusId == 6 && CbInFinal.IsChecked == true ||
-                        x.StatusId == 7 && CbInReject.IsChecked == true).ToList();
-                    }
-                }
             }
             if (StartDate.Text.Length > 0)
             {
@@ -256,8 +236,6 @@ namespace VSborkeMaster.Pages
             CbSort.SelectedIndex = 0;
             TbSearch.Text = String.Empty;
 
-
-
             TbStartPrice.Text = String.Empty;
             TbEndPrice.Text = String.Empty;
 
@@ -280,8 +258,8 @@ namespace VSborkeMaster.Pages
         private void AcceptBtnSt_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
-            selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 3);
-            selectedOrder.IsAcceptedMaster = true;
+            selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 4);
+            selectedOrder.IsReadyMaster = true;
             App.DB.SaveChanges();
             Refresh();
         }
@@ -300,22 +278,22 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbStartPrice.Text);
-            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice))
+            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice);
                 TbStartPrice.Text = value.ToString();
             }
-            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice))
+            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice);
                 TbStartPrice.Text = value.ToString();
             }
             if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
             {
                 if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
                 {
-                    TbEndPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice).ToString();
-                    TbStartPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice).ToString();
+                    TbEndPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice).ToString();
+                    TbStartPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice).ToString();
                 }
             }
         }
@@ -327,22 +305,22 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbEndPrice.Text);
-            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice))
+            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice);
                 TbEndPrice.Text = value.ToString();
             }
-            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice))
+            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice);
                 TbEndPrice.Text = value.ToString();
             }
             if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
             {
                 if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
                 {
-                    TbEndPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.FinallyPrice).ToString();
-                    TbStartPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.FinallyPrice).ToString();
+                    TbEndPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.FinallyPrice).ToString();
+                    TbStartPrice.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.FinallyPrice).ToString();
                 }
             }
 
@@ -372,22 +350,22 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbStartCount.Text);
-            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount))
+            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount);
                 TbStartCount.Text = value.ToString();
             }
-            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount))
+            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount);
                 TbStartCount.Text = value.ToString();
             }
             if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
             {
                 if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
                 {
-                    TbEndCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount).ToString();
-                    TbStartCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount).ToString();
+                    TbEndCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount).ToString();
+                    TbStartCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount).ToString();
                 }
             }
         }
@@ -399,22 +377,22 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbEndCount.Text);
-            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount))
+            if (value < App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount);
                 TbEndCount.Text = value.ToString();
             }
-            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount))
+            if (value > App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount))
             {
-                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount);
+                value = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount);
                 TbEndCount.Text = value.ToString();
             }
             if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
             {
                 if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
                 {
-                    TbEndCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Max(x => x.GeneralCount).ToString();
-                    TbStartCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true).Min(x => x.GeneralCount).ToString();
+                    TbEndCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Max(x => x.GeneralCount).ToString();
+                    TbStartCount.Text = App.DB.Order.Where(x => x.IsAcceptedOperator == true & x.StatusId == 3).Min(x => x.GeneralCount).ToString();
                 }
             }
         }
@@ -438,11 +416,5 @@ namespace VSborkeMaster.Pages
             dialog.ShowDialog();
         }
 
-        private void ReasonViewBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            var selectedOrder = (sender as StackPanel).DataContext as Order;
-            var dialog = new RejectOrderWindow(selectedOrder);
-            dialog.ShowDialog();
-        }
     }
 }

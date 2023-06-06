@@ -282,6 +282,7 @@ namespace VSborkeAdmistrator.Pages
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
             selectedOrder.IsAcceptedOperator = true;
+            selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 2);
             App.DB.SaveChanges();
             Refresh();
         }

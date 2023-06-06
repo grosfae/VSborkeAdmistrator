@@ -493,5 +493,28 @@ namespace VSborkeAdmistrator.Pages
             caseImagesList = caseImagesList.Skip(count * numberPage).Take(count);
             LvAdditionImages.ItemsSource = caseImagesList;
         }
+
+        private void TbCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int count = int.Parse(TbCount.Text);
+            if(count > 100)
+            {
+                count = 100;
+            }
+            if(count > 0)
+            {
+                CbIsAccessable.IsChecked = true;
+            }
+            contextComputerCase.Count = count;
+            TbCount.Text = count.ToString();
+            
+        }
+
+        private void CbIsAccessable_Unchecked(object sender, RoutedEventArgs e)
+        {
+            contextComputerCase.Count = 0;
+            TbCount.Text = contextComputerCase.Count.ToString();
+
+        }
     }
 }

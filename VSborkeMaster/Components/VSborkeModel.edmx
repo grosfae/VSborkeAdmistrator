@@ -252,6 +252,7 @@
           <Property Name="TimeDelivery" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="IsAcceptedOperator" Type="bit" />
           <Property Name="IsAcceptedMaster" Type="bit" />
+          <Property Name="IsReadyMaster" Type="bit" />
           <Property Name="IsRejectedOperator" Type="bit" />
           <Property Name="IsRejectedMaster" Type="bit" />
           <Property Name="IsReject" Type="bit" />
@@ -1805,6 +1806,7 @@
           <Property Name="TimeDelivery" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="IsAcceptedOperator" Type="Boolean" />
           <Property Name="IsAcceptedMaster" Type="Boolean" />
+          <Property Name="IsReadyMaster" Type="Boolean" />
           <Property Name="IsRejectedOperator" Type="Boolean" />
           <Property Name="IsRejectedMaster" Type="Boolean" />
           <Property Name="IsReject" Type="Boolean" />
@@ -2854,6 +2856,7 @@
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
                 <ScalarProperty Name="IsRejectedMaster" ColumnName="IsRejectedMaster" />
                 <ScalarProperty Name="IsRejectedOperator" ColumnName="IsRejectedOperator" />
+                <ScalarProperty Name="IsReadyMaster" ColumnName="IsReadyMaster" />
                 <ScalarProperty Name="IsAcceptedMaster" ColumnName="IsAcceptedMaster" />
                 <ScalarProperty Name="IsAcceptedOperator" ColumnName="IsAcceptedOperator" />
                 <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
