@@ -45,13 +45,13 @@ namespace VSborkeMaster.Pages
 
             Refresh();
 
-            var expiredOrder = App.DB.Order.FirstOrDefault(x => (x.DateDelivery - TimeSpan.FromDays(10)) < DateTime.Now & x.StatusId <= 3);
+            var expiredOrder = App.DB.Order.FirstOrDefault(x => x.DateForConstruct < DateTime.Now & x.StatusId <= 3 & x.IsAcceptedOperator == true);
 
             if (expiredOrder != null)
             {
                 expiredOrder.IsReject = true;
                 expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
-                expiredOrder.ReasonReject = $"Необходимо было изготовить к {expiredOrder.DateReady}.\nЗаказ отменен за истечением срока изготовления.";
+                expiredOrder.ReasonReject = $"Необходимо было изготовить к {expiredOrder.DateForConstruct}.\nЗаказ отменен за истечением срока изготовления.";
                 App.DB.SaveChanges();
 
             }

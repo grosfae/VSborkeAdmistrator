@@ -288,6 +288,14 @@ namespace VSborkeAdmistrator.Pages
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
             selectedOrder.IsAcceptedOperator = true;
+            if(selectedOrder.CountForCreate != 0)
+            {
+                selectedOrder.IsForMaster = true;
+            }
+            else
+            {
+                selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 3);
+            }
             App.DB.SaveChanges();
             Refresh();
         }

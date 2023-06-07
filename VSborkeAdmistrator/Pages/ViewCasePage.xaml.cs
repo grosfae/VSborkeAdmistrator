@@ -296,17 +296,14 @@ namespace VSborkeAdmistrator.Pages
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new OrderOfferPage(contextComputerCase));
         }
 
-        private void NotificBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void ButAnalogueBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var selectedCase = (sender as Button).DataContext as ComputerCase;
+            NavigationService.Navigate(new OrderOfferPage(selectedCase));
         }
 
         private void LvAdditionImages_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -471,6 +468,11 @@ namespace VSborkeAdmistrator.Pages
             CbSortReview.SelectedIndex= 0;
             RbAll.IsChecked = true;
             TbSearch.Clear();
+        }
+
+        private void PriceGraphOrderBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new OrderOfferPage(contextComputerCase));
         }
     }
 

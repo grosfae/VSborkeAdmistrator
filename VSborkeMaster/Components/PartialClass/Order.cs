@@ -157,21 +157,14 @@ namespace VSborkeMaster.Components
         {
             get
             {
-                if (CommentOrder != null)
-                {
-                    return Visibility.Visible;
-                }
-                else
+                if (string.IsNullOrWhiteSpace(CommentOrder))
                 {
                     return Visibility.Collapsed;
                 }
-            }
-        }
-        public string DateReady
-        {
-            get
-            {
-                return (DateDelivery - TimeSpan.FromDays(10)).ToString("d");
+                else
+                {
+                    return Visibility.Visible;
+                }
             }
         }
 

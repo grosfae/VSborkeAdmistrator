@@ -68,9 +68,15 @@ public partial class Order
 
     public string TimeDelivery { get; set; }
 
+    public Nullable<System.DateTime> DateForConstruct { get; set; }
+
     public Nullable<bool> IsAcceptedOperator { get; set; }
 
     public Nullable<bool> IsAcceptedMaster { get; set; }
+
+    public Nullable<bool> IsForMaster { get; set; }
+
+    public Nullable<bool> IsReadyMaster { get; set; }
 
     public Nullable<bool> IsRejectedOperator { get; set; }
 

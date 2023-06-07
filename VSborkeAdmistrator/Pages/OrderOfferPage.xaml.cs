@@ -540,7 +540,15 @@ namespace VSborkeAdmistrator.Pages
             {
                 floorNumber = CbFloors.SelectedItem.ToString();
             }
-
+            DateTime dateForConstruct;
+            if (countToConstruct != 0)
+            {
+                dateForConstruct = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(10);
+            }
+            else
+            {
+                dateForConstruct = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(3);
+            }
 
             App.DB.Order.Add(new Order()
             {
@@ -566,8 +574,11 @@ namespace VSborkeAdmistrator.Pages
                 Floor = floorNumber,
                 LiftForFullOrder = liftForOrder,
                 DateDelivery = DateTime.Parse(CbDate.SelectedItem.ToString()),
-                TimeDelivery = CbTime.SelectedItem.ToString()
-        });
+                TimeDelivery = CbTime.SelectedItem.ToString(),
+                DateForConstruct = dateForConstruct
+
+
+            });
 
             App.DB.SaveChanges();
             CustomMessageBox.Show("Заказ оформлен!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);

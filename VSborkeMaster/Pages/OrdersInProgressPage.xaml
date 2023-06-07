@@ -151,7 +151,9 @@
                                                     <StackPanel Width="215">
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="20" Text="{Binding FinallyPrice, StringFormat='{}{0:#,#} ₽'}" Height="30"/>
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding GeneralCount, StringFormat='Всего: {0} шт.'}" Height="30"/>
-                                                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DateReady, StringFormat='Изготовить к {0}'}" Height="30"/>
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DateForConstruct, StringFormat='Изготовить к {0}'}" Height="30"/>
+                                                        </StackPanel>
                                                         <Grid Width="210">
                                                             <StackPanel  x:Name="AcceptBtnSt" MouseLeftButtonDown="AcceptBtnSt_MouseLeftButtonDown" Visibility="{Binding NotReadyStatus}" HorizontalAlignment="Left" Cursor="Hand">
                                                                 <TextBlock  Text="Завершить" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF05A000" HorizontalAlignment="Center"/>

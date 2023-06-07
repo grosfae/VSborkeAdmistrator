@@ -121,13 +121,13 @@ namespace VSborkeAdmistrator.Components
         {
             get
             {
-                if (CommentOrder != null)
+                if (string.IsNullOrWhiteSpace(CommentOrder))
                 {
-                    return Visibility.Visible;
+                    return Visibility.Collapsed;
                 }
                 else
                 {
-                    return Visibility.Collapsed;
+                    return Visibility.Visible;
                 }
             }
         }
