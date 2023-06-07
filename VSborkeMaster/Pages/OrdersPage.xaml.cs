@@ -53,7 +53,6 @@ namespace VSborkeMaster.Pages
                 expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
                 expiredOrder.ReasonReject = $"Необходимо было изготовить к {expiredOrder.DateForConstruct}.\nЗаказ отменен за истечением срока изготовления.";
                 App.DB.SaveChanges();
-
             }
         }
         private void TimerForReject_Tick(object sender, EventArgs e)
@@ -263,7 +262,10 @@ namespace VSborkeMaster.Pages
             CbSort.SelectedIndex = 0;
             TbSearch.Text = String.Empty;
 
-
+            CbInProcessing.IsChecked = false;
+            CbInProgress.IsChecked = false;
+            CbInAccept.IsChecked = false;
+            CbReject.IsChecked = false;
 
             TbStartPrice.Text = String.Empty;
             TbEndPrice.Text = String.Empty;
@@ -307,22 +309,26 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbStartPrice.Text);
-            if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice))
+            if (App.DB.Order.Count(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true) != 0)
             {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice);
-                TbStartPrice.Text = value.ToString();
-            }
-            if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice))
-            {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice);
-                TbStartPrice.Text = value.ToString();
-            }
-            if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
-            {
-                if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
+                if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice))
                 {
-                    TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice).ToString();
-                    TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice).ToString();
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice);
+                    TbStartPrice.Text = value.ToString();
+                }
+                if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice))
+                {
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice);
+                    TbStartPrice.Text = value.ToString();
+                }
+                if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
+                {
+                    if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
+                    {
+                        TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice).ToString();
+                        TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice).ToString();
+                    }
+
                 }
             }
         }
@@ -334,22 +340,25 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbEndPrice.Text);
-            if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice))
+            if (App.DB.Order.Count(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true) != 0)
             {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice);
-                TbEndPrice.Text = value.ToString();
-            }
-            if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice))
-            {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice);
-                TbEndPrice.Text = value.ToString();
-            }
-            if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
-            {
-                if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
+                if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice))
                 {
-                    TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice).ToString();
-                    TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice).ToString();
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice);
+                    TbEndPrice.Text = value.ToString();
+                }
+                if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice))
+                {
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice);
+                    TbEndPrice.Text = value.ToString();
+                }
+                if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
+                {
+                    if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
+                    {
+                        TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.FinallyPrice).ToString();
+                        TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.FinallyPrice).ToString();
+                    }
                 }
             }
 
@@ -379,22 +388,25 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbStartCount.Text);
-            if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount))
+            if (App.DB.Order.Count(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true) != 0)
             {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount);
-                TbStartCount.Text = value.ToString();
-            }
-            if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount))
-            {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount);
-                TbStartCount.Text = value.ToString();
-            }
-            if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
-            {
-                if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
+                if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount))
                 {
-                    TbEndCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount).ToString();
-                    TbStartCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount).ToString();
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount);
+                    TbStartCount.Text = value.ToString();
+                }
+                if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount))
+                {
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount);
+                    TbStartCount.Text = value.ToString();
+                }
+                if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
+                {
+                    if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
+                    {
+                        TbEndCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount).ToString();
+                        TbStartCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount).ToString();
+                    }
                 }
             }
         }
@@ -406,22 +418,25 @@ namespace VSborkeMaster.Pages
                 return;
             }
             int value = int.Parse(TbEndCount.Text);
-            if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount))
+            if (App.DB.Order.Count(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true) != 0)
             {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount);
-                TbEndCount.Text = value.ToString();
-            }
-            if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount))
-            {
-                value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount);
-                TbEndCount.Text = value.ToString();
-            }
-            if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
-            {
-                if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
+                if (value < App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount))
                 {
-                    TbEndCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount).ToString();
-                    TbStartCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount).ToString();
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount);
+                    TbEndCount.Text = value.ToString();
+                }
+                if (value > App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount))
+                {
+                    value = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount);
+                    TbEndCount.Text = value.ToString();
+                }
+                if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
+                {
+                    if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
+                    {
+                        TbEndCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Max(x => x.GeneralCount).ToString();
+                        TbStartCount.Text = App.DB.Order.Where(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true).Min(x => x.GeneralCount).ToString();
+                    }
                 }
             }
         }

@@ -42,7 +42,17 @@ namespace VSborkeAdmistrator.Pages
         {
             // Updating the Label which displays the current second
 
-               Refresh();
+            Refresh();
+
+            var expiredOrder = App.DB.Order.FirstOrDefault(x => x.DateForConstruct < DateTime.Now & x.StatusId <= 3);
+
+            if (expiredOrder != null)
+            {
+                expiredOrder.IsReject = true;
+                expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
+                expiredOrder.ReasonReject = $"Необходимо было изготовить к {expiredOrder.DateForConstruct}.\nЗаказ отменен за истечением срока изготовления.";
+                App.DB.SaveChanges();
+            }
 
         }
         private void TimerForReject_Tick(object sender, EventArgs e)

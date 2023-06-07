@@ -17,7 +17,7 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <TextBlock Style="{StaticResource Header}" Foreground="Black" Text="Список заказов" FontSize="46" Margin="50 15 0 20"/>
-                        <Line X1="350" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
+                        <Line X1="330" Y1="45" X2="1170" Y2="45" Stroke="#FF3881EF" StrokeThickness="2"/>
                     </Grid>
                     <StackPanel Grid.Row="1" Width="1130" Height="auto" Margin="0 0 0 20" Background="White">
                         <StackPanel Orientation="Horizontal" Background="White">
@@ -178,7 +178,7 @@
                                                         <TextBlock HorizontalAlignment="Right" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding GeneralCount, StringFormat='Всего: {0} шт.'}" Height="30"/>
                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                                             <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="Изготовить к " Height="30"/>
-                                                            <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DateForConstruct, StringFormat='dd.MM.yy'}" Height="30"/>
+                                                            <TextBlock Style="{StaticResource OrderList}" FontSize="17" Text="{Binding DateForConstruct, StringFormat='dd.MM.yyyy'}" Height="30"/>
                                                         </StackPanel>
                                                         
                                                         <Grid Width="200">
