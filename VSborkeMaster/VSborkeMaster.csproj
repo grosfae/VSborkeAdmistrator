@@ -388,18 +388,6 @@
     <Resource Include="Resources\MenuIcons\Accounts\AccountsWhite.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MenuIcons\ComputerList\ComputerActive.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\ComputerList\ComputerWhite.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Config\ConfigActive.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Config\ConfigWhite.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\MenuIcons\Exit\ExitActive.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -473,10 +461,10 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
-    <Resource Include="Resources\MenuIcons\Construct\ConstructBlue.png" />
-    <Resource Include="Resources\MenuIcons\Construct\ConstructWhite.png" />
     <Resource Include="Resources\MenuIcons\Orders\OrdersBlue.png" />
     <Resource Include="Resources\MenuIcons\Orders\OrdersWhite.png" />
+    <Resource Include="Resources\MenuIcons\Construct\ConstructWhite.png" />
+    <Resource Include="Resources\MenuIcons\Construct\ConstructBlue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

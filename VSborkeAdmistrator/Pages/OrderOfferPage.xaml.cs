@@ -540,14 +540,17 @@ namespace VSborkeAdmistrator.Pages
             {
                 floorNumber = CbFloors.SelectedItem.ToString();
             }
+            DateTime dateForPocket;
             DateTime dateForConstruct;
             if (countToConstruct != 0)
             {
                 dateForConstruct = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(10);
+                dateForPocket = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(8);
             }
             else
             {
-                dateForConstruct = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(3);
+                dateForConstruct = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(6);
+                dateForPocket = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(5);
             }
 
             App.DB.Order.Add(new Order()
@@ -575,7 +578,8 @@ namespace VSborkeAdmistrator.Pages
                 LiftForFullOrder = liftForOrder,
                 DateDelivery = DateTime.Parse(CbDate.SelectedItem.ToString()),
                 TimeDelivery = CbTime.SelectedItem.ToString(),
-                DateForConstruct = dateForConstruct
+                DateForConstruct = dateForConstruct,
+                DateForPocket = dateForPocket
 
 
             });

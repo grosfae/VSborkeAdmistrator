@@ -70,17 +70,29 @@ public partial class Order
 
     public Nullable<System.DateTime> DateForConstruct { get; set; }
 
+    public Nullable<System.DateTime> DateForPocket { get; set; }
+
     public Nullable<bool> IsAcceptedOperator { get; set; }
 
     public Nullable<bool> IsAcceptedMaster { get; set; }
 
     public Nullable<bool> IsForMaster { get; set; }
 
+    public Nullable<bool> IsForStorager { get; set; }
+
+    public Nullable<bool> IsForDeliveler { get; set; }
+
     public Nullable<bool> IsReadyMaster { get; set; }
 
     public Nullable<bool> IsRejectedOperator { get; set; }
 
     public Nullable<bool> IsRejectedMaster { get; set; }
+
+    public Nullable<bool> IsRejectedStorager { get; set; }
+
+    public Nullable<bool> IsPocketed { get; set; }
+
+    public Nullable<bool> IsStoraged { get; set; }
 
     public Nullable<bool> IsReject { get; set; }
 

@@ -305,6 +305,7 @@ namespace VSborkeAdmistrator.Pages
             else
             {
                 selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 3);
+                selectedOrder.IsForStorager = true;
             }
             App.DB.SaveChanges();
             Refresh();

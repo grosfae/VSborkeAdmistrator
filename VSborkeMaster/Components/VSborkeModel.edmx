@@ -251,12 +251,18 @@
           <Property Name="DateDelivery" Type="date" Nullable="false" />
           <Property Name="TimeDelivery" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="DateForConstruct" Type="date" />
+          <Property Name="DateForPocket" Type="date" />
           <Property Name="IsAcceptedOperator" Type="bit" />
           <Property Name="IsAcceptedMaster" Type="bit" />
           <Property Name="IsForMaster" Type="bit" />
+          <Property Name="IsForStorager" Type="bit" />
+          <Property Name="IsForDeliveler" Type="bit" />
           <Property Name="IsReadyMaster" Type="bit" />
           <Property Name="IsRejectedOperator" Type="bit" />
           <Property Name="IsRejectedMaster" Type="bit" />
+          <Property Name="IsRejectedStorager" Type="bit" />
+          <Property Name="IsPocketed" Type="bit" />
+          <Property Name="IsStoraged" Type="bit" />
           <Property Name="IsReject" Type="bit" />
         </EntityType>
         <EntityType Name="OrientationMotherboard">
@@ -1807,12 +1813,18 @@
           <Property Name="DateDelivery" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="TimeDelivery" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="DateForConstruct" Type="DateTime" Precision="0" />
+          <Property Name="DateForPocket" Type="DateTime" Precision="0" />
           <Property Name="IsAcceptedOperator" Type="Boolean" />
           <Property Name="IsAcceptedMaster" Type="Boolean" />
           <Property Name="IsForMaster" Type="Boolean" />
+          <Property Name="IsForStorager" Type="Boolean" />
+          <Property Name="IsForDeliveler" Type="Boolean" />
           <Property Name="IsReadyMaster" Type="Boolean" />
           <Property Name="IsRejectedOperator" Type="Boolean" />
           <Property Name="IsRejectedMaster" Type="Boolean" />
+          <Property Name="IsRejectedStorager" Type="Boolean" />
+          <Property Name="IsPocketed" Type="Boolean" />
+          <Property Name="IsStoraged" Type="Boolean" />
           <Property Name="IsReject" Type="Boolean" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
@@ -2858,12 +2870,18 @@
             <EntityTypeMapping TypeName="VSborkeBaseModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="IsStoraged" ColumnName="IsStoraged" />
+                <ScalarProperty Name="IsPocketed" ColumnName="IsPocketed" />
+                <ScalarProperty Name="IsRejectedStorager" ColumnName="IsRejectedStorager" />
                 <ScalarProperty Name="IsRejectedMaster" ColumnName="IsRejectedMaster" />
                 <ScalarProperty Name="IsRejectedOperator" ColumnName="IsRejectedOperator" />
                 <ScalarProperty Name="IsReadyMaster" ColumnName="IsReadyMaster" />
+                <ScalarProperty Name="IsForDeliveler" ColumnName="IsForDeliveler" />
+                <ScalarProperty Name="IsForStorager" ColumnName="IsForStorager" />
                 <ScalarProperty Name="IsForMaster" ColumnName="IsForMaster" />
                 <ScalarProperty Name="IsAcceptedMaster" ColumnName="IsAcceptedMaster" />
                 <ScalarProperty Name="IsAcceptedOperator" ColumnName="IsAcceptedOperator" />
+                <ScalarProperty Name="DateForPocket" ColumnName="DateForPocket" />
                 <ScalarProperty Name="DateForConstruct" ColumnName="DateForConstruct" />
                 <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
                 <ScalarProperty Name="DateDelivery" ColumnName="DateDelivery" />

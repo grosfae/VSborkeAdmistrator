@@ -51,7 +51,7 @@
                 <ColumnDefinition Width="19*"/>
                 <ColumnDefinition Width="55*"/>
             </Grid.ColumnDefinitions>
-            <Image x:Name="iconMsg" Source="/Resources/MessageBoxImages/AlertMessage.png" Height="60" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <Image x:Name="iconMsg" Source="/Resources/MessageBoxImages/AlertMessage.png" Height="60" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"/>
             <TextBlock x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14" Margin="10 5 10 0"/>
         </Grid>
         <Grid Grid.Row="2" HorizontalAlignment="Center" Width="140" >

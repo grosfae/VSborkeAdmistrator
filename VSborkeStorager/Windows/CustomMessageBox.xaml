@@ -1,0 +1,66 @@
+﻿<Window x:Class="VSborkeStorager.Windows.CustomMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="CustomMessageBox" Height="auto" MinHeight="170" Width="300" SizeToContent="WidthAndHeight"
+        
+        BorderThickness="2"
+        BorderBrush="#FF3881EF"
+        
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        
+        ResizeMode="NoResize"
+        
+        WindowStartupLocation="CenterScreen"
+        >
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" x:Name="Header" Background="White" Grid.Row="0">
+            <TextBlock x:Name="txtTitle" Text="Сообщение" Style="{StaticResource Header}" FontSize="24" Height="30" FontWeight="Medium" Margin="10 0 0 0"/>
+        </StackPanel>
+        <StackPanel Background="#FF3881EF" Height="2" Margin="0 33 0 0"/>
+        <Grid HorizontalAlignment="Right" VerticalAlignment="Center" Height="36" Width="auto">
+            <Polygon Fill="#FF3881EF" Points="180,0,250,50, 250,0, 0,0" HorizontalAlignment="Right"/>
+            <Image x:Name="CloseButton" Height="15" Width="15" Margin="220 0 0 5" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="/Resources/Header/NoneActiveCross.png"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}" Value="True">
+                                <Setter Property="Source" Value="/Resources/Header/ActiveCross.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.Effect>
+                    <BlurEffect Radius="1"/>
+                </Image.Effect>
+            </Image>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="55*"/>
+            </Grid.ColumnDefinitions>
+            <Image x:Name="iconMsg" Source="/Resources/MessageBoxImages/AlertMessage.png" Height="60" Width="60" VerticalAlignment="Center" HorizontalAlignment="Center" RenderOptions.BitmapScalingMode="Fant"/>
+            <TextBlock x:Name="txtMessage" Grid.Column="1" Text="Внимание! Ошибка в приложении" VerticalAlignment="Center" TextWrapping="Wrap" FontSize="14" Margin="10 5 10 0"/>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Width="140" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="OkBtn" Style="{StaticResource MessageOkBtn}" Content="Ok" FontSize="20" Width="60" Height="30" Click="OkBtn_Click" Grid.Column="0" Margin="5"/>
+            <Button x:Name="CancelBtn" Style="{StaticResource MessageCancelBtn}" Content="Отмена" FontSize="20" Width="60" Height="30" Click="CancelBtn_Click" Grid.Column="1" Margin="5"/>
+        </Grid>
+    </Grid>
+</Window>

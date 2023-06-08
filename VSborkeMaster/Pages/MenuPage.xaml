@@ -30,23 +30,6 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="ComputerListBtn" Style="{StaticResource MenuBtn}" Click="ComputerListBtn_Click" Height="60">
-                <StackPanel>
-                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerWhite.ico"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=ComputerListBtn}" Value="True">
-                                        <Setter Property="Source" Value="/Resources/MenuIcons/ComputerList/ComputerActive.ico"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
-                </StackPanel>
-            </Button>
-
             <Button x:Name="OrdersBtn" Style="{StaticResource MenuBtn}" Click="OrdersBtn_Click" Height="60">
                 <StackPanel>
                     <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant"> 
