@@ -14,6 +14,12 @@ namespace VSborkeStorager.Components
     
     public partial class Order
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Order()
+        {
+            this.DeliverManOrder = new HashSet<DeliverManOrder>();
+        }
+    
         public int Id { get; set; }
         public int UserId { get; set; }
         public System.DateTime OrderDate { get; set; }
@@ -25,6 +31,7 @@ namespace VSborkeStorager.Components
         public int PricePerUnit { get; set; }
         public int Discount { get; set; }
         public int DeliveryPrice { get; set; }
+        public float TotalWeight { get; set; }
         public int ComputerCaseId { get; set; }
         public int StatusId { get; set; }
         public string CommentOrder { get; set; }
@@ -52,9 +59,12 @@ namespace VSborkeStorager.Components
         public Nullable<bool> IsRejectedStorager { get; set; }
         public Nullable<bool> IsPocketed { get; set; }
         public Nullable<bool> IsStoraged { get; set; }
+        public Nullable<bool> IsTakeForDelivery { get; set; }
         public Nullable<bool> IsReject { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DeliverManOrder> DeliverManOrder { get; set; }
         public virtual Status Status { get; set; }
         public virtual User User { get; set; }
     }

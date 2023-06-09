@@ -244,7 +244,7 @@
                                 <Button x:Name="ResetBtn" Width="180" Height="45" Style="{StaticResource SortReset}" Content="Сбросить" BorderThickness="1" FontSize="28" Margin="0 10 0 20" Click="ResetBtn_Click"/>
                             </StackPanel>
                             <StackPanel Width="880" Grid.Column="1">
-                                <ListView x:Name="LvCases" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="1940" d:ItemsSource="{d:SampleData ItemCount=10}">
+                                <ListView x:Name="LvCases" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="1940" ScrollViewer.CanContentScroll="False" d:ItemsSource="{d:SampleData ItemCount=10}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Height="180" Background="White" Width="855" Margin="0 3 0 2">

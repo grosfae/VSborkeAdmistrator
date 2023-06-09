@@ -553,6 +553,8 @@ namespace VSborkeAdmistrator.Pages
                 dateForPocket = DateTime.Parse(CbDate.SelectedItem.ToString()) - TimeSpan.FromDays(5);
             }
 
+            float totalWeight = contextComputerCase.Weight * countCase;
+
             App.DB.Order.Add(new Order()
             {
                 UserId = App.LoggedUser.Id,
@@ -565,6 +567,7 @@ namespace VSborkeAdmistrator.Pages
                 PricePerUnitStock = contextComputerCase.PriceDiscount,
                 Discount = DiscountForCount,
                 DeliveryPrice = deliveryCost,
+                TotalWeight = totalWeight,
                 ComputerCaseId = contextComputerCase.Id,
                 Status = App.DB.Status.FirstOrDefault(x => x.Id == 1),
                 CommentOrder = comment,

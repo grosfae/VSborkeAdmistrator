@@ -213,5 +213,65 @@ namespace VSborkeStorager.Components
             }
         }
 
+
+        public Visibility CountForStatusStorage
+        {
+            get
+            {
+                if (StatusId == 4)
+                {
+                    return Visibility.Collapsed;
+                }
+                else
+                {
+                    return Visibility.Visible;
+                }
+            }
+        }
+
+        public Visibility GeneralCountStorage
+        {
+            get
+            {
+                if (StatusId == 4)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
+        public Visibility NeedTakeToDelivery
+        {
+            get
+            {
+                if (IsForDeliveler != true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
+        public Visibility TookToDelivery
+        {
+            get
+            {
+                if (IsForDeliveler == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
     }
 }

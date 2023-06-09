@@ -125,7 +125,7 @@
                             <ToggleButton x:Name="FinishedOrderBtn" Width="170" Height="35" Style="{StaticResource StatusGreenBtn}" Content="Выкупленные" Margin="5 0 0 0" Checked="AcceptedOrderBtn_Checked"/>
                             <ToggleButton x:Name="CanceledOrderBtn" Width="150" Height="35" Style="{StaticResource StatusRedBtn}" Content="Отмененные" Margin="5 0 0 0" Checked="CanceledOrderBtn_Checked"/>
                         </StackPanel>
-                        <ListView x:Name="LvOrders" Height="550" Margin="0 0 0 20" BorderBrush="Transparent" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListView x:Name="LvOrders" Height="550" Margin="0 0 0 20" BorderBrush="Transparent"  ScrollViewer.CanContentScroll="False" d:ItemsSource="{d:SampleData ItemCount=5}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Width="1090" Margin="6 5 0 5" Orientation="Vertical" Background="White">

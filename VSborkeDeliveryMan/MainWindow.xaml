@@ -1,0 +1,72 @@
+﻿<Window x:Class="VSborkeDeliveryMan.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="V Sborke Delivery" Height="850" Width="1300"
+        
+        BorderThickness="2"
+        BorderBrush="#FF3881EF"
+        
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        
+        WindowStartupLocation="CenterScreen"
+        
+        Icon="Resources/Logo.png"
+        >
+    <Window.Clip>
+        <RectangleGeometry Rect="0, 0, 1300, 850"/>
+    </Window.Clip>
+
+    <Grid Background="White" ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="43*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" x:Name="Head" Background="White">
+            <Image Source="/Resources/Logo.png" Width="50" Height="50" Margin="10 0 0 0"/>
+            <TextBlock Text="V Sborke - версия для службы доставки" Style="{StaticResource Header}" FontSize="40" Height="50" FontWeight="Medium" Margin="20 10 0 10"/>
+        </StackPanel>
+        <Line X1="0" Y1="70" X2="1300" Y2="70" Stroke="#FF3881EF" StrokeThickness="3"/>
+        <Grid HorizontalAlignment="Right" Width="250">
+            <Polygon Fill="#FF3881EF" Points="140,0, 170,50, 250,50, 250,0"/>
+            <Image x:Name="MinButton" Height="20" Width="20" Margin="120 0 0 20" MouseLeftButtonDown="MinButton_MouseLeftButtonDown" Cursor="Hand">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="Resources/Header/NoneActiveBar.png"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinButton}" Value="True">
+                                <Setter Property="Source" Value="Resources/Header/ActiveBar.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.Effect>
+                    <BlurEffect Radius="1"/>
+                </Image.Effect>
+            </Image>
+            <Image x:Name="CloseButton" Height="20" Width="20" Margin="200 0 0 15" MouseLeftButtonDown="CloseButton_MouseLeftButtonDown" Cursor="Hand">
+                <Image.Style>
+                    <Style TargetType="{x:Type Image}">
+                        <Setter Property="Source" Value="Resources/Header/NoneActiveCross.png"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseButton}" Value="True">
+                                <Setter Property="Source" Value="Resources/Header/ActiveCross.png"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+                <Image.Effect>
+                    <BlurEffect Radius="1"/>
+                </Image.Effect>
+            </Image>
+        </Grid>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Grid.Row="1">
+
+        </Frame>
+    </Grid>
+</Window>

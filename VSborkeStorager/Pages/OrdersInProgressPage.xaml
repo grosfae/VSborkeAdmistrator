@@ -112,7 +112,7 @@
 
                             </StackPanel>
                             <StackPanel Width="880" Grid.Column="1">
-                                <ListView x:Name="LvOrders" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="860" d:ItemsSource="{d:SampleData ItemCount=6}">
+                                <ListView x:Name="LvOrders" BorderBrush="Transparent" ScrollViewer.CanContentScroll="False" Background="#FFEEF0F2" MaxHeight="860" d:ItemsSource="{d:SampleData ItemCount=6}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="848" Margin="0 5 0 5" Orientation="Vertical" Background="White">
@@ -127,8 +127,11 @@
                                                     </StackPanel>
 
                                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FF00AD13" Height="35" HorizontalAlignment="Right">
+                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FF00AD13" Height="35" HorizontalAlignment="Right" Visibility="{Binding NeedTakeToDelivery}">
                                                             <TextBlock Margin="10 8 10 0"  Text="Необходимо передать в доставку" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
+                                                        </StackPanel>
+                                                        <StackPanel Margin="10 0 10 0" VerticalAlignment="Center" Background="#FFE69E00" Height="35" HorizontalAlignment="Right" Visibility="{Binding TookToDelivery}">
+                                                            <TextBlock Margin="10 8 10 0"  Text="Ожидает принятия в доставку" FontSize="16" FontWeight="Bold" Height="auto" Style="{StaticResource ProfileInfo}" Foreground="White" />
                                                         </StackPanel>
                                                     </StackPanel>
                                                 </Grid>
@@ -153,7 +156,7 @@
                                                         </StackPanel>
 
                                                         <Grid Width="210">
-                                                            <StackPanel  x:Name="InDeliveryBtn" MouseLeftButtonDown="InDeliveryBtn_MouseLeftButtonDown" HorizontalAlignment="Left" Cursor="Hand">
+                                                            <StackPanel  x:Name="InDeliveryBtn" MouseLeftButtonDown="InDeliveryBtn_MouseLeftButtonDown" HorizontalAlignment="Left" Cursor="Hand" Visibility="{Binding NeedTakeToDelivery}">
                                                                 <TextBlock  Text="В доставку" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FF00AD13" HorizontalAlignment="Center"/>
                                                                 <Separator Background="#FF00AD13" Height="1" Width="100"/>
                                                             </StackPanel>

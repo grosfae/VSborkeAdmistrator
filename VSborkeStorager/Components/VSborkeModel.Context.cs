@@ -33,6 +33,8 @@ namespace VSborkeStorager.Components
         public virtual DbSet<ComputerCase> ComputerCase { get; set; }
         public virtual DbSet<ConnectorRGB> ConnectorRGB { get; set; }
         public virtual DbSet<CoolerInside> CoolerInside { get; set; }
+        public virtual DbSet<DeliverManOrder> DeliverManOrder { get; set; }
+        public virtual DbSet<DeliveryStatus> DeliveryStatus { get; set; }
         public virtual DbSet<Favourite> Favourite { get; set; }
         public virtual DbSet<FeedBack> FeedBack { get; set; }
         public virtual DbSet<FormFactor> FormFactor { get; set; }

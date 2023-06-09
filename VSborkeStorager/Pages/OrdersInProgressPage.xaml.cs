@@ -441,7 +441,6 @@ namespace VSborkeStorager.Pages
         private void InDeliveryBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var selectedOrder = (sender as StackPanel).DataContext as Order;
-            selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 5);
             selectedOrder.IsForDeliveler = true;
             App.DB.SaveChanges();
             Refresh();

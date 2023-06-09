@@ -136,7 +136,7 @@
 
                             </StackPanel>
                             <StackPanel Width="880" Grid.Column="1">
-                                <ListView x:Name="LvOrders" BorderBrush="Transparent" Background="#FFEEF0F2" MaxHeight="860" d:ItemsSource="{d:SampleData ItemCount=6}">
+                                <ListView x:Name="LvOrders" BorderBrush="Transparent" ScrollViewer.CanContentScroll="False" Background="#FFEEF0F2" MaxHeight="860" d:ItemsSource="{d:SampleData ItemCount=6}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Width="848" Margin="0 5 0 5" Orientation="Vertical" Background="White">
@@ -168,8 +168,11 @@
                                                     <StackPanel Margin="10 0 0 0" Width="440">
                                                         <TextBlock x:Name="TbLinkName" Style="{StaticResource ListLink}" HorizontalAlignment="Left" FontSize="20" Text="{Binding ComputerCase.NameForWindows}" TextWrapping="Wrap" Height="50" MaxWidth="350" Margin="0 0 0 10" MouseLeftButtonDown="TbLinkName_MouseLeftButtonDown"/>
 
-                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding CountInAccessable, StringFormat='На складе: {0} шт.'}" Height="30"/>
-                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding CountForCreate, StringFormat='Изготовлено: {0} шт.'}" Height="30"/>
+                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" Visibility="{Binding CountForStatusStorage}" FontSize="17" Text="{Binding CountInAccessable, StringFormat='На складе: {0} шт.'}" Height="30"/>
+                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" Visibility="{Binding CountForStatusStorage}" FontSize="17" Text="{Binding CountForCreate, StringFormat='Изготовлено: {0} шт.'}" Height="30"/>
+                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" FontSize="17" Text="{Binding TotalWeight, StringFormat='Итоговый вес: {0} кг.'}" Height="30"/>
+
+                                                        <TextBlock HorizontalAlignment="Left" Style="{StaticResource OrderList}" Visibility="{Binding GeneralCountStorage}" FontSize="17" Text="{Binding GeneralCount, StringFormat='На складе: {0} шт.'}" Height="30"/>
 
 
                                                         <TextBlock x:Name="CommentViewBtn" Margin="0 10 10 0"  Text="У заказа есть комментарий" FontSize="18" Height="auto" Style="{StaticResource ProfileInfo}" Cursor="Hand" Foreground="#FF3881EF" Visibility="{Binding VisibilityComment}" ToolTip="Нажмите для просмотра комментария" MouseLeftButtonDown="CommentViewBtn_MouseLeftButtonDown"/>

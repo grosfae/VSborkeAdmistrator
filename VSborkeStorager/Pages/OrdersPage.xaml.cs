@@ -45,7 +45,7 @@ namespace VSborkeStorager.Pages
 
             Refresh();
 
-            var expiredOrder = App.DB.Order.FirstOrDefault(x => x.DateForConstruct < DateTime.Now & x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true);
+            var expiredOrder = App.DB.Order.FirstOrDefault(x => x.DateForConstruct < DateTime.Now & x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true);
 
             if (expiredOrder != null)
             {
@@ -69,13 +69,13 @@ namespace VSborkeStorager.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            maxPage = App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true);
-            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true) != 0)
+            maxPage = App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true);
+            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true ) != 0)
             {
-                TbStartPrice.Tag = $"от {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice)}";
-                TbEndPrice.Tag = $"до {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice)}";
-                TbStartCount.Tag = $"от {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount)}";
-                TbEndCount.Tag = $"до {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount)}";
+                TbStartPrice.Tag = $"от {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice)}";
+                TbEndPrice.Tag = $"до {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice)}";
+                TbStartCount.Tag = $"от {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount)}";
+                TbEndCount.Tag = $"до {App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount)}";
             }
             Refresh();
 
@@ -132,7 +132,7 @@ namespace VSborkeStorager.Pages
         private void Refresh()
         {
             App.DB = new VSborkeBaseEntities();
-            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true);
+            IEnumerable<Order> filterOrder = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true);
             if (CbSort.SelectedIndex == 0)
             {
                 filterOrder = filterOrder.OrderBy(x => x.FinallyPrice).ToList();
@@ -312,24 +312,24 @@ namespace VSborkeStorager.Pages
                 return;
             }
             int value = int.Parse(TbStartPrice.Text);
-            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true) != 0)
+            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true) != 0)
             {
-                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice))
+                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice);
                     TbStartPrice.Text = value.ToString();
                 }
-                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice))
+                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice);
                     TbStartPrice.Text = value.ToString();
                 }
                 if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
                 {
                     if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
                     {
-                        TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice).ToString();
-                        TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice).ToString();
+                        TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice).ToString();
+                        TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice).ToString();
                     }
 
                 }
@@ -343,24 +343,24 @@ namespace VSborkeStorager.Pages
                 return;
             }
             int value = int.Parse(TbEndPrice.Text);
-            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true) != 0)
+            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true) != 0)
             {
-                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice))
+                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice);
                     TbEndPrice.Text = value.ToString();
                 }
-                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice))
+                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice);
                     TbEndPrice.Text = value.ToString();
                 }
                 if (TbEndPrice.Text != String.Empty & TbStartPrice.Text != String.Empty)
                 {
                     if (int.Parse(TbEndPrice.Text) < int.Parse(TbStartPrice.Text))
                     {
-                        TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.FinallyPrice).ToString();
-                        TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.FinallyPrice).ToString();
+                        TbEndPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.FinallyPrice).ToString();
+                        TbStartPrice.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.FinallyPrice).ToString();
                     }
                 }
             }
@@ -391,24 +391,24 @@ namespace VSborkeStorager.Pages
                 return;
             }
             int value = int.Parse(TbStartCount.Text);
-            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true) != 0)
+            if (App.DB.Order.Count(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true) != 0)
             {
-                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount))
+                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount);
                     TbStartCount.Text = value.ToString();
                 }
-                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount))
+                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount);
                     TbStartCount.Text = value.ToString();
                 }
                 if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
                 {
                     if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
                     {
-                        TbEndCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount).ToString();
-                        TbStartCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount).ToString();
+                        TbEndCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount).ToString();
+                        TbStartCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount).ToString();
                     }
                 }
             }
@@ -421,24 +421,24 @@ namespace VSborkeStorager.Pages
                 return;
             }
             int value = int.Parse(TbEndCount.Text);
-            if (App.DB.Order.Count(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true) != 0)
+            if (App.DB.Order.Count(x => x.StatusId != 4 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForMaster == true & x.IsForDeliveler != true) != 0)
             {
-                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount))
+                if (value < App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount);
                     TbEndCount.Text = value.ToString();
                 }
-                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount))
+                if (value > App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount))
                 {
-                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount);
+                    value = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount);
                     TbEndCount.Text = value.ToString();
                 }
                 if (TbEndCount.Text != String.Empty & TbStartCount.Text != String.Empty)
                 {
                     if (int.Parse(TbEndCount.Text) < int.Parse(TbStartCount.Text))
                     {
-                        TbEndCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Max(x => x.GeneralCount).ToString();
-                        TbStartCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true).Min(x => x.GeneralCount).ToString();
+                        TbEndCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Max(x => x.GeneralCount).ToString();
+                        TbStartCount.Text = App.DB.Order.Where(x => x.StatusId >= 3 & x.StatusId != 5 & x.StatusId != 6 & x.IsAcceptedOperator == true & x.IsForStorager == true & x.IsForDeliveler != true).Min(x => x.GeneralCount).ToString();
                     }
                 }
             }

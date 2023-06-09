@@ -24,6 +24,8 @@ public partial class User
 
         this.ComputerCase = new HashSet<ComputerCase>();
 
+        this.DeliverManOrder = new HashSet<DeliverManOrder>();
+
         this.Favourite = new HashSet<Favourite>();
 
         this.FeedBack = new HashSet<FeedBack>();
@@ -64,6 +66,10 @@ public partial class User
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ComputerCase> ComputerCase { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<DeliverManOrder> DeliverManOrder { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
