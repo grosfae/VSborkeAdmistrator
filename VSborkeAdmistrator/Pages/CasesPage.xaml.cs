@@ -39,10 +39,14 @@ namespace VSborkeAdmistrator.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            TbStartPrice.Tag = $"от {App.DB.ComputerCase.Min(x => x.Price)}";
-            TbEndPrice.Tag = $"до {App.DB.ComputerCase.Max(x => x.Price)}";
-            TbCpuHeightStart.Tag = $"от {App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler)}";
-            TbCpuHeightEnd.Tag = $"до {App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler)}";
+            if (App.DB.ComputerCase.Count() != 0)
+            {
+                TbStartPrice.Tag = $"от {App.DB.ComputerCase.Min(x => x.Price)}";
+                TbEndPrice.Tag = $"до {App.DB.ComputerCase.Max(x => x.Price)}";
+                TbCpuHeightStart.Tag = $"от {App.DB.ComputerCase.Min(x => x.MaxHeightCPUCooler)}";
+                TbCpuHeightEnd.Tag = $"до {App.DB.ComputerCase.Max(x => x.MaxHeightCPUCooler)}";
+            }
+
             Refresh();
         }
         int numberPage = 0;

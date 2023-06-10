@@ -39,10 +39,13 @@ namespace VSborkeUser.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            TbStartPrice.Tag = $"от {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Min(x => x.ComputerCase.Price)}";
-            TbEndPrice.Tag = $"до {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Max(x => x.ComputerCase.Price)}";
-            TbCpuHeightStart.Tag = $"от {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Min(x => x.ComputerCase.MaxHeightCPUCooler)}";
-            TbCpuHeightEnd.Tag = $"до {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Max(x => x.ComputerCase.MaxHeightCPUCooler)}";
+            if (App.DB.Favourite.Count(x => x.UserId == App.LoggedUser.Id) != 0)
+            {
+                TbStartPrice.Tag = $"от {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Min(x => x.ComputerCase.Price)}";
+                TbEndPrice.Tag = $"до {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Max(x => x.ComputerCase.Price)}";
+                TbCpuHeightStart.Tag = $"от {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Min(x => x.ComputerCase.MaxHeightCPUCooler)}";
+                TbCpuHeightEnd.Tag = $"до {App.DB.Favourite.Where(x => x.UserId == App.LoggedUser.Id).Max(x => x.ComputerCase.MaxHeightCPUCooler)}";
+            }
             Refresh();
         }
         int numberPage = 0;
