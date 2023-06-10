@@ -554,6 +554,16 @@ namespace VSborkeUser.Pages
             }
 
             float totalWeight = contextComputerCase.Weight * countCase;
+            
+            
+            if(contextComputerCase.Count - countCase <= 0)
+            {
+                contextComputerCase.Count = 0;
+            }
+            else
+            {
+                contextComputerCase.Count = contextComputerCase.Count - countCase;
+            }
 
             App.DB.Order.Add(new Order()
             {

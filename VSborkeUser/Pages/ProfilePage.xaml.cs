@@ -76,7 +76,7 @@ namespace VSborkeUser.Pages
 
         private void SearchIcon_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
+            Refresh();
         }
 
         public void ProfileInfoProgress()
@@ -122,9 +122,10 @@ namespace VSborkeUser.Pages
 
         private void StBtnDeleteFromHistory_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var selectedOrder = (sender as TextBlock).DataContext as Order;
+            var selectedOrder = (sender as StackPanel).DataContext as Order;
             selectedOrder.DeleteFromHistory = true;
             App.DB.SaveChanges();
+            Refresh();
         }
 
         private void TbLinkReview_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -161,6 +162,14 @@ namespace VSborkeUser.Pages
             if (CanceledOrderBtn.IsChecked == true)
             {
                 filterOrder = filterOrder.Where(x => x.StatusId == 7);
+            }
+            if (StartDate.Text != String.Empty)
+            {
+                filterOrder = filterOrder.Where(x => x.OrderDate == StartDate.SelectedDate);
+            }
+            if (TbSearch.Text.Length > 0)
+            {
+                filterOrder = filterOrder.Where(x => x.ComputerCase.FullName.ToLower().Contains(TbSearch.Text.ToLower()));
             }
             LvOrders.ItemsSource = filterOrder;
         }
@@ -205,6 +214,7 @@ namespace VSborkeUser.Pages
                 selectedOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
                 selectedOrder.IsReject = true;
                 selectedOrder.ReasonReject = $"Заказ отменен пользователем {DateTime.Now}.";
+                selectedOrder.ComputerCase.Count += selectedOrder.GeneralCount;
                 CustomMessageBox.Show("Заказ успешно отменен", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Да, CustomMessageBox.CustomMessageBoxButton.Нет);
                 App.DB.SaveChanges();
                 Refresh();

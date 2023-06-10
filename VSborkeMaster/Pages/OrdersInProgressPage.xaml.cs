@@ -49,6 +49,7 @@ namespace VSborkeMaster.Pages
             {
                 expiredOrder.IsReject = true;
                 expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
+                expiredOrder.ComputerCase.Count += expiredOrder.GeneralCount;
                 expiredOrder.ReasonReject = $"Необходимо было изготовить к {expiredOrder.DateForConstruct}.\nЗаказ отменен за истечением срока изготовления.";
                 App.DB.SaveChanges();
             }

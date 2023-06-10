@@ -132,5 +132,35 @@ namespace VSborkeUser.Components
             }
         }
 
+        public Visibility VisibilityRejectBtn
+        {
+            get
+            {
+                if (IsReject != true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
+        public Visibility VisibilityHistoryBtn
+        {
+            get
+            {
+                if (IsReject == true)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
     }
 }

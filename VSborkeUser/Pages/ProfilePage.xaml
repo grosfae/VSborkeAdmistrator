@@ -139,11 +139,11 @@
                                                 </StackPanel>
                                             </StackPanel>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                <StackPanel Width="200" Margin="0 10 10 0" x:Name="StBtnDeleteFromHistory" MouseLeftButtonDown="StBtnDeleteFromHistory_MouseLeftButtonDown" HorizontalAlignment="Right">
+                                                <StackPanel Width="200" Margin="0 10 10 0" x:Name="StBtnDeleteFromHistory" MouseLeftButtonDown="StBtnDeleteFromHistory_MouseLeftButtonDown" HorizontalAlignment="Right" Visibility="{Binding VisibilityHistoryBtn}">
                                                     <TextBlock  Text="Удалить из истории" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center" />
                                                     <Separator Background="#FFCA0000" Height="1" />
                                                 </StackPanel>
-                                                <StackPanel Width="100" Margin="0 10 10 0" x:Name="StBtnReject" MouseLeftButtonDown="StBtnReject_MouseLeftButtonDown" HorizontalAlignment="Right">
+                                                <StackPanel Width="100" Margin="0 10 10 0" x:Name="StBtnReject" MouseLeftButtonDown="StBtnReject_MouseLeftButtonDown" HorizontalAlignment="Right" Visibility="{Binding VisibilityRejectBtn}">
                                                     <TextBlock  Text="Отменить" Style="{StaticResource ProfileInfo}" FontSize="20" Foreground="#FFCA0000" HorizontalAlignment="Center" />
                                                     <Separator Background="#FFCA0000" Height="1" />
                                                 </StackPanel>

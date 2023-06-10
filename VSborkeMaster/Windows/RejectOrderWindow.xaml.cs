@@ -65,6 +65,7 @@ namespace VSborkeMaster.Windows
                 contextOrder.IsReject = true;
                 contextOrder.IsRejectedMaster = true;
                 contextOrder.StatusId = 7;
+                contextOrder.ComputerCase.Count += contextOrder.GeneralCount;
                 App.DB.SaveChanges();
                 CustomMessageBox.Show("Заказ отменен!", CustomMessageBox.CustomMessageBoxTitle.Успешно, CustomMessageBox.CustomMessageBoxButton.Ok, CustomMessageBox.CustomMessageBoxButton.Нет);
 

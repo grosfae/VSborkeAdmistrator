@@ -91,5 +91,9 @@ namespace VSborkeUser.Pages
             NavigationService.Navigate(new MenuPage());
         }
 
+        private void RegBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new RegPage());
+        }
     }
 }

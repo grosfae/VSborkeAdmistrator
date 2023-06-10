@@ -30,7 +30,7 @@ namespace VSborkeDeliveryMan.Pages
             DataContext = contextUser;
 
             int progress = 0;
-            if(contextUser.Name != String.Empty)
+            if (contextUser.Name != String.Empty)
             {
                 progress += 17;
             }
@@ -110,22 +110,8 @@ namespace VSborkeDeliveryMan.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ProfileInfoProgress();
-            LvOrders.ItemsSource = App.DB.Order.Where(x => x.UserId == contextUser.Id).ToList();
         }
 
-        private void StBtnDeleteFromHistory_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
 
-        }
-
-        private void TbLinkReview_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void CommentViewBtn_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
     }
 }

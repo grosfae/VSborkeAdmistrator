@@ -59,7 +59,7 @@ namespace VSborkeUser.Pages
 
         private void FavouriteListBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MainFrame.Navigate(new FavouriteCaseList());
         }
     }
 }

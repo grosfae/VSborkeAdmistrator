@@ -37,6 +37,7 @@ namespace VSborkeUser.Components
         public string Address { get; set; }
         public int RoleId { get; set; }
         public Nullable<bool> IsBanned { get; set; }
+        public bool IsLogged { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ComputerCase> ComputerCase { get; set; }

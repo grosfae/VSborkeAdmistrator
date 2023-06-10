@@ -52,6 +52,7 @@ namespace VSborkeStorager.Pages
                 expiredOrder.IsRejectedStorager = true;
                 expiredOrder.IsReject = true;
                 expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
+                expiredOrder.ComputerCase.Count += expiredOrder.GeneralCount;
                 expiredOrder.ReasonReject = $"Необходимо было собрать заказ к {expiredOrder.DateForPocket}.\nЗаказ отменен за истечением срока сборки заказа на складе.";
                 App.DB.SaveChanges();
             }

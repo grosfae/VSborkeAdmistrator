@@ -233,6 +233,9 @@
     <Compile Include="Pages\CasesPage.xaml.cs">
       <DependentUpon>CasesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\FavouriteCaseList.xaml.cs">
+      <DependentUpon>FavouriteCaseList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\FeedbackAddEdit.xaml.cs">
       <DependentUpon>FeedbackAddEdit.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,9 @@
     </Compile>
     <Compile Include="Pages\ProfilePage.xaml.cs">
       <DependentUpon>ProfilePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\RegPage.xaml.cs">
+      <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ViewCasePage.xaml.cs">
       <DependentUpon>ViewCasePage.xaml</DependentUpon>
@@ -289,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Pages\FavouriteCaseList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\FeedbackAddEdit.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -316,6 +326,10 @@
     <Page Include="Pages\ProfilePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\RegPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\ViewCasePage.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -395,22 +409,10 @@
     <Resource Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Accounts\AccountsActive.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Accounts\AccountsWhite.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\MenuIcons\ComputerList\ComputerActive.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\MenuIcons\ComputerList\ComputerWhite.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Config\ConfigActive.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\MenuIcons\Config\ConfigWhite.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\MenuIcons\Exit\ExitActive.ico" />
@@ -486,6 +488,8 @@
       <DependentUpon>VSborkeModel.edmx</DependentUpon>
       <LastGenOutput>VSborkeModel.cs</LastGenOutput>
     </Content>
+    <Resource Include="Resources\MenuIcons\FavouriteList\HeartBlue.png" />
+    <Resource Include="Resources\MenuIcons\FavouriteList\HeartWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

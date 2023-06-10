@@ -465,6 +465,7 @@
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsBanned" Type="bit" />
+          <Property Name="IsLogged" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VerticalAddonSlot">
           <Key>
@@ -2141,6 +2142,7 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsBanned" Type="Boolean" />
+          <Property Name="IsLogged" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="User" ToRole="ComputerCase" />
           <NavigationProperty Name="DeliverManOrder" Relationship="VSborkeBaseModel.FK_DeliverManOrder_User" FromRole="User" ToRole="DeliverManOrder" />
           <NavigationProperty Name="Favourite" Relationship="VSborkeBaseModel.FK_Favourite_User" FromRole="User" ToRole="Favourite" />
@@ -2773,7 +2775,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -3269,6 +3271,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="VSborkeBaseModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsLogged" ColumnName="IsLogged" />
                 <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

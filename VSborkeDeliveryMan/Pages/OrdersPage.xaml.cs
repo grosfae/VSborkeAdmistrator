@@ -52,6 +52,7 @@ namespace VSborkeDeliveryMan.Pages
                 expiredOrder.IsRejectDelivery = true;
                 expiredOrder.IsReject = true;
                 expiredOrder.Status = App.DB.Status.FirstOrDefault(x => x.Id == 7);
+                expiredOrder.ComputerCase.Count += expiredOrder.GeneralCount;
                 expiredOrder.ReasonReject = $"Необходимо было доставить заказ к {expiredOrder.DateDelivery}.\nЗаказ отменен за истечением срока доставки заказа.";
                 App.DB.SaveChanges();
             }
