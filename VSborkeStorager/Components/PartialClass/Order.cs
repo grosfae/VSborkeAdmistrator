@@ -202,7 +202,7 @@ namespace VSborkeStorager.Components
         {
             get
             {
-                if (IsForStorager == true & IsPocketed != true)
+                if (IsForStorager == true & IsPocketed != true & IsReject != true)
                 {
                     return Visibility.Visible;
                 }
