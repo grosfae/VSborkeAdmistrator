@@ -379,21 +379,20 @@ namespace VSborkeUser.Pages
 
         private void TbLinkName_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var selectedCase = (sender as TextBlock).DataContext as ComputerCase;
-            NavigationService.Navigate(new ViewCasePage(selectedCase));
+            var selectedCase = (sender as TextBlock).DataContext as Favourite;
+            NavigationService.Navigate(new ViewCasePage(selectedCase.ComputerCase));
         }
 
         private void BuyBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedCase = (sender as Button).DataContext as ComputerCase;
-            NavigationService.Navigate(new OrderOfferPage(selectedCase));
+            var selectedCase = (sender as Button).DataContext as Favourite;
+            NavigationService.Navigate(new OrderOfferPage(selectedCase.ComputerCase));
         }
 
         private void DeFavouriteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var selectedCase = (sender as Button).DataContext as ComputerCase;
-            var favourite = App.DB.Favourite.SingleOrDefault(x => x.UserId == App.LoggedUser.Id & x.ComputerCaseId == selectedCase.Id);
-            App.DB.Favourite.Remove(favourite);
+            var selectedCase = (sender as Button).DataContext as Favourite;
+            App.DB.Favourite.Remove(selectedCase);
             App.DB.SaveChanges();
             Refresh();
         }
