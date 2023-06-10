@@ -197,9 +197,6 @@
     <Compile Include="Components\SupportTopCooler.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Components\sysdiagrams.cs">
-      <DependentUpon>VSborkeModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Components\TopLiquidCooling.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>

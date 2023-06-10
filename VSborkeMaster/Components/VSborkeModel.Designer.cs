@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "C:\Users\grosf\OneDrive\Рабочий стол\Комлпекс приложений V Sborke\Apps\VSborkeAdmistrator\VSborkeMaster\Components\VSborkeModel.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\262010\Source\Repos\VSborkeAdmistrator\VSborkeMaster\Components\VSborkeModel.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.

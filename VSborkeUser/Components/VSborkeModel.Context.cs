@@ -65,7 +65,6 @@ namespace VSborkeUser.Components
         public virtual DbSet<SupportFrontCooler> SupportFrontCooler { get; set; }
         public virtual DbSet<SupportSideCooler> SupportSideCooler { get; set; }
         public virtual DbSet<SupportTopCooler> SupportTopCooler { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TopLiquidCooling> TopLiquidCooling { get; set; }
         public virtual DbSet<TypeManagmentRGB> TypeManagmentRGB { get; set; }
         public virtual DbSet<TypeRGB> TypeRGB { get; set; }
