@@ -18,6 +18,15 @@ using System;
 public partial class Order
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Order()
+    {
+
+        this.DeliverManOrder = new HashSet<DeliverManOrder>();
+
+    }
+
+
     public int Id { get; set; }
 
     public int UserId { get; set; }
@@ -39,6 +48,8 @@ public partial class Order
     public int Discount { get; set; }
 
     public int DeliveryPrice { get; set; }
+
+    public float TotalWeight { get; set; }
 
     public int ComputerCaseId { get; set; }
 
@@ -72,6 +83,8 @@ public partial class Order
 
     public Nullable<System.DateTime> DateForPocket { get; set; }
 
+    public Nullable<bool> DeleteFromHistory { get; set; }
+
     public Nullable<bool> IsAcceptedOperator { get; set; }
 
     public Nullable<bool> IsAcceptedMaster { get; set; }
@@ -94,11 +107,19 @@ public partial class Order
 
     public Nullable<bool> IsStoraged { get; set; }
 
+    public Nullable<bool> IsTakeForDelivery { get; set; }
+
+    public Nullable<bool> IsRejectDelivery { get; set; }
+
     public Nullable<bool> IsReject { get; set; }
 
 
 
     public virtual ComputerCase ComputerCase { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<DeliverManOrder> DeliverManOrder { get; set; }
 
     public virtual Status Status { get; set; }
 

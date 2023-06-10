@@ -270,6 +270,7 @@
           <Property Name="TimeDelivery" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="DateForConstruct" Type="date" />
           <Property Name="DateForPocket" Type="date" />
+          <Property Name="DeleteFromHistory" Type="bit" />
           <Property Name="IsAcceptedOperator" Type="bit" />
           <Property Name="IsAcceptedMaster" Type="bit" />
           <Property Name="IsForMaster" Type="bit" />
@@ -464,6 +465,7 @@
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsBanned" Type="bit" />
+          <Property Name="IsLogged" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VerticalAddonSlot">
           <Key>
@@ -1920,6 +1922,7 @@
           <Property Name="TimeDelivery" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="DateForConstruct" Type="DateTime" Precision="0" />
           <Property Name="DateForPocket" Type="DateTime" Precision="0" />
+          <Property Name="DeleteFromHistory" Type="Boolean" />
           <Property Name="IsAcceptedOperator" Type="Boolean" />
           <Property Name="IsAcceptedMaster" Type="Boolean" />
           <Property Name="IsForMaster" Type="Boolean" />
@@ -2139,6 +2142,7 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsBanned" Type="Boolean" />
+          <Property Name="IsLogged" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="User" ToRole="ComputerCase" />
           <NavigationProperty Name="DeliverManOrder" Relationship="VSborkeBaseModel.FK_DeliverManOrder_User" FromRole="User" ToRole="DeliverManOrder" />
           <NavigationProperty Name="Favourite" Relationship="VSborkeBaseModel.FK_Favourite_User" FromRole="User" ToRole="Favourite" />
@@ -3048,6 +3052,7 @@
                 <ScalarProperty Name="IsForMaster" ColumnName="IsForMaster" />
                 <ScalarProperty Name="IsAcceptedMaster" ColumnName="IsAcceptedMaster" />
                 <ScalarProperty Name="IsAcceptedOperator" ColumnName="IsAcceptedOperator" />
+                <ScalarProperty Name="DeleteFromHistory" ColumnName="DeleteFromHistory" />
                 <ScalarProperty Name="DateForPocket" ColumnName="DateForPocket" />
                 <ScalarProperty Name="DateForConstruct" ColumnName="DateForConstruct" />
                 <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
@@ -3266,6 +3271,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="VSborkeBaseModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsLogged" ColumnName="IsLogged" />
                 <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

@@ -48,6 +48,10 @@ public partial class VSborkeBaseEntities : DbContext
 
     public virtual DbSet<CoolerInside> CoolerInside { get; set; }
 
+    public virtual DbSet<DeliverManOrder> DeliverManOrder { get; set; }
+
+    public virtual DbSet<DeliveryStatus> DeliveryStatus { get; set; }
+
     public virtual DbSet<Favourite> Favourite { get; set; }
 
     public virtual DbSet<FeedBack> FeedBack { get; set; }

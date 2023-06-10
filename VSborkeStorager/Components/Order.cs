@@ -48,6 +48,7 @@ namespace VSborkeStorager.Components
         public string TimeDelivery { get; set; }
         public Nullable<System.DateTime> DateForConstruct { get; set; }
         public Nullable<System.DateTime> DateForPocket { get; set; }
+        public Nullable<bool> DeleteFromHistory { get; set; }
         public Nullable<bool> IsAcceptedOperator { get; set; }
         public Nullable<bool> IsAcceptedMaster { get; set; }
         public Nullable<bool> IsForMaster { get; set; }
@@ -60,6 +61,7 @@ namespace VSborkeStorager.Components
         public Nullable<bool> IsPocketed { get; set; }
         public Nullable<bool> IsStoraged { get; set; }
         public Nullable<bool> IsTakeForDelivery { get; set; }
+        public Nullable<bool> IsRejectDelivery { get; set; }
         public Nullable<bool> IsReject { get; set; }
     
         public virtual ComputerCase ComputerCase { get; set; }

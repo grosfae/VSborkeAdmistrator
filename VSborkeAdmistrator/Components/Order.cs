@@ -83,6 +83,8 @@ public partial class Order
 
     public Nullable<System.DateTime> DateForPocket { get; set; }
 
+    public Nullable<bool> DeleteFromHistory { get; set; }
+
     public Nullable<bool> IsAcceptedOperator { get; set; }
 
     public Nullable<bool> IsAcceptedMaster { get; set; }
@@ -106,6 +108,8 @@ public partial class Order
     public Nullable<bool> IsStoraged { get; set; }
 
     public Nullable<bool> IsTakeForDelivery { get; set; }
+
+    public Nullable<bool> IsRejectDelivery { get; set; }
 
     public Nullable<bool> IsReject { get; set; }
 

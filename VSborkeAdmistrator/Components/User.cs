@@ -61,6 +61,8 @@ public partial class User
 
     public Nullable<bool> IsBanned { get; set; }
 
+    public bool IsLogged { get; set; }
+
 
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -133,6 +133,23 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
+        <EntityType Name="DeliverManOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="DateStart" Type="date" Nullable="false" />
+          <Property Name="DeliveryStatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DeliveryStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="Favourite">
           <Key>
             <PropertyRef Name="Id" />
@@ -236,6 +253,7 @@
           <Property Name="PricePerUnit" Type="int" Nullable="false" />
           <Property Name="Discount" Type="int" Nullable="false" />
           <Property Name="DeliveryPrice" Type="int" Nullable="false" />
+          <Property Name="TotalWeight" Type="real" Nullable="false" />
           <Property Name="ComputerCaseId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
           <Property Name="CommentOrder" Type="varchar" MaxLength="1000" />
@@ -252,6 +270,7 @@
           <Property Name="TimeDelivery" Type="varchar" MaxLength="40" Nullable="false" />
           <Property Name="DateForConstruct" Type="date" />
           <Property Name="DateForPocket" Type="date" />
+          <Property Name="DeleteFromHistory" Type="bit" />
           <Property Name="IsAcceptedOperator" Type="bit" />
           <Property Name="IsAcceptedMaster" Type="bit" />
           <Property Name="IsForMaster" Type="bit" />
@@ -263,6 +282,8 @@
           <Property Name="IsRejectedStorager" Type="bit" />
           <Property Name="IsPocketed" Type="bit" />
           <Property Name="IsStoraged" Type="bit" />
+          <Property Name="IsTakeForDelivery" Type="bit" />
+          <Property Name="IsRejectDelivery" Type="bit" />
           <Property Name="IsReject" Type="bit" />
         </EntityType>
         <EntityType Name="OrientationMotherboard">
@@ -444,6 +465,7 @@
           <Property Name="Address" Type="varchar" MaxLength="100" />
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsBanned" Type="bit" />
+          <Property Name="IsLogged" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="VerticalAddonSlot">
           <Key>
@@ -910,6 +932,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DeliverManOrder_DeliveryStatus">
+          <End Role="DeliveryStatus" Type="Self.DeliveryStatus" Multiplicity="1" />
+          <End Role="DeliverManOrder" Type="Self.DeliverManOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverManOrder">
+              <PropertyRef Name="DeliveryStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliverManOrder_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="DeliverManOrder" Type="Self.DeliverManOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverManOrder">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliverManOrder_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="DeliverManOrder" Type="Self.DeliverManOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverManOrder">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Favourite_ComputerCase">
           <End Role="ComputerCase" Type="Self.ComputerCase" Multiplicity="1" />
           <End Role="Favourite" Type="Self.Favourite" Multiplicity="*" />
@@ -1039,6 +1097,8 @@
           <EntitySet Name="ComputerCase" EntityType="Self.ComputerCase" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConnectorRGB" EntityType="Self.ConnectorRGB" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CoolerInside" EntityType="Self.CoolerInside" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliverManOrder" EntityType="Self.DeliverManOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeliveryStatus" EntityType="Self.DeliveryStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Favourite" EntityType="Self.Favourite" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FeedBack" EntityType="Self.FeedBack" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FormFactor" EntityType="Self.FormFactor" Schema="dbo" store:Type="Tables" />
@@ -1225,6 +1285,18 @@
             <End Role="WindowMaterial" EntitySet="WindowMaterial" />
             <End Role="ComputerCase" EntitySet="ComputerCase" />
           </AssociationSet>
+          <AssociationSet Name="FK_DeliverManOrder_DeliveryStatus" Association="Self.FK_DeliverManOrder_DeliveryStatus">
+            <End Role="DeliveryStatus" EntitySet="DeliveryStatus" />
+            <End Role="DeliverManOrder" EntitySet="DeliverManOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliverManOrder_Order" Association="Self.FK_DeliverManOrder_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="DeliverManOrder" EntitySet="DeliverManOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliverManOrder_User" Association="Self.FK_DeliverManOrder_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="DeliverManOrder" EntitySet="DeliverManOrder" />
+          </AssociationSet>
           <AssociationSet Name="FK_Favourite_ComputerCase" Association="Self.FK_Favourite_ComputerCase">
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="Favourite" EntitySet="Favourite" />
@@ -1279,6 +1351,8 @@
           <EntitySet Name="ComputerCase" EntityType="VSborkeBaseModel.ComputerCase" />
           <EntitySet Name="ConnectorRGB" EntityType="VSborkeBaseModel.ConnectorRGB" />
           <EntitySet Name="CoolerInside" EntityType="VSborkeBaseModel.CoolerInside" />
+          <EntitySet Name="DeliverManOrder" EntityType="VSborkeBaseModel.DeliverManOrder" />
+          <EntitySet Name="DeliveryStatus" EntityType="VSborkeBaseModel.DeliveryStatus" />
           <EntitySet Name="Favourite" EntityType="VSborkeBaseModel.Favourite" />
           <EntitySet Name="FeedBack" EntityType="VSborkeBaseModel.FeedBack" />
           <EntitySet Name="FormFactor" EntityType="VSborkeBaseModel.FormFactor" />
@@ -1481,6 +1555,18 @@
             <End Role="ComputerCase" EntitySet="ComputerCase" />
             <End Role="PriceHistory" EntitySet="PriceHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK_DeliverManOrder_DeliveryStatus" Association="VSborkeBaseModel.FK_DeliverManOrder_DeliveryStatus">
+            <End Role="DeliveryStatus" EntitySet="DeliveryStatus" />
+            <End Role="DeliverManOrder" EntitySet="DeliverManOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliverManOrder_Order" Association="VSborkeBaseModel.FK_DeliverManOrder_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="DeliverManOrder" EntitySet="DeliverManOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DeliverManOrder_User" Association="VSborkeBaseModel.FK_DeliverManOrder_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="DeliverManOrder" EntitySet="DeliverManOrder" />
+          </AssociationSet>
           <AssociationSet Name="FK_Favourite_User" Association="VSborkeBaseModel.FK_Favourite_User">
             <End Role="User" EntitySet="User" />
             <End Role="Favourite" EntitySet="Favourite" />
@@ -1682,6 +1768,27 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_CoolerInside" FromRole="CoolerInside" ToRole="ComputerCase" />
         </EntityType>
+        <EntityType Name="DeliverManOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderId" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="DateStart" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeliveryStatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DeliveryStatus" Relationship="VSborkeBaseModel.FK_DeliverManOrder_DeliveryStatus" FromRole="DeliverManOrder" ToRole="DeliveryStatus" />
+          <NavigationProperty Name="Order" Relationship="VSborkeBaseModel.FK_DeliverManOrder_Order" FromRole="DeliverManOrder" ToRole="Order" />
+          <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_DeliverManOrder_User" FromRole="DeliverManOrder" ToRole="User" />
+        </EntityType>
+        <EntityType Name="DeliveryStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DeliverManOrder" Relationship="VSborkeBaseModel.FK_DeliverManOrder_DeliveryStatus" FromRole="DeliveryStatus" ToRole="DeliverManOrder" />
+        </EntityType>
         <EntityType Name="Favourite">
           <Key>
             <PropertyRef Name="Id" />
@@ -1798,6 +1905,7 @@
           <Property Name="PricePerUnit" Type="Int32" Nullable="false" />
           <Property Name="Discount" Type="Int32" Nullable="false" />
           <Property Name="DeliveryPrice" Type="Int32" Nullable="false" />
+          <Property Name="TotalWeight" Type="Single" Nullable="false" />
           <Property Name="ComputerCaseId" Type="Int32" Nullable="false" />
           <Property Name="StatusId" Type="Int32" Nullable="false" />
           <Property Name="CommentOrder" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
@@ -1814,6 +1922,7 @@
           <Property Name="TimeDelivery" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Name="DateForConstruct" Type="DateTime" Precision="0" />
           <Property Name="DateForPocket" Type="DateTime" Precision="0" />
+          <Property Name="DeleteFromHistory" Type="Boolean" />
           <Property Name="IsAcceptedOperator" Type="Boolean" />
           <Property Name="IsAcceptedMaster" Type="Boolean" />
           <Property Name="IsForMaster" Type="Boolean" />
@@ -1825,8 +1934,11 @@
           <Property Name="IsRejectedStorager" Type="Boolean" />
           <Property Name="IsPocketed" Type="Boolean" />
           <Property Name="IsStoraged" Type="Boolean" />
+          <Property Name="IsTakeForDelivery" Type="Boolean" />
+          <Property Name="IsRejectDelivery" Type="Boolean" />
           <Property Name="IsReject" Type="Boolean" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_Order_ComputerCase" FromRole="Order" ToRole="ComputerCase" />
+          <NavigationProperty Name="DeliverManOrder" Relationship="VSborkeBaseModel.FK_DeliverManOrder_Order" FromRole="Order" ToRole="DeliverManOrder" />
           <NavigationProperty Name="Status" Relationship="VSborkeBaseModel.FK_Order_Status" FromRole="Order" ToRole="Status" />
           <NavigationProperty Name="User" Relationship="VSborkeBaseModel.FK_Order_User" FromRole="Order" ToRole="User" />
         </EntityType>
@@ -2030,7 +2142,9 @@
           <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
           <Property Name="IsBanned" Type="Boolean" />
+          <Property Name="IsLogged" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ComputerCase" Relationship="VSborkeBaseModel.FK_ComputerCase_User" FromRole="User" ToRole="ComputerCase" />
+          <NavigationProperty Name="DeliverManOrder" Relationship="VSborkeBaseModel.FK_DeliverManOrder_User" FromRole="User" ToRole="DeliverManOrder" />
           <NavigationProperty Name="Favourite" Relationship="VSborkeBaseModel.FK_Favourite_User" FromRole="User" ToRole="Favourite" />
           <NavigationProperty Name="FeedBack" Relationship="VSborkeBaseModel.FK_FeedBack_User" FromRole="User" ToRole="FeedBack" />
           <NavigationProperty Name="Gender" Relationship="VSborkeBaseModel.FK_User_Gender" FromRole="User" ToRole="Gender" />
@@ -2553,6 +2667,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DeliverManOrder_DeliveryStatus">
+          <End Type="VSborkeBaseModel.DeliveryStatus" Role="DeliveryStatus" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.DeliverManOrder" Role="DeliverManOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverManOrder">
+              <PropertyRef Name="DeliveryStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliverManOrder_Order">
+          <End Type="VSborkeBaseModel.Order" Role="Order" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.DeliverManOrder" Role="DeliverManOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverManOrder">
+              <PropertyRef Name="OrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DeliverManOrder_User">
+          <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="1" />
+          <End Type="VSborkeBaseModel.DeliverManOrder" Role="DeliverManOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeliverManOrder">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Favourite_User">
           <End Type="VSborkeBaseModel.User" Role="User" Multiplicity="1" />
           <End Type="VSborkeBaseModel.Favourite" Role="Favourite" Multiplicity="*" />
@@ -2767,6 +2917,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="DeliverManOrder">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.DeliverManOrder">
+              <MappingFragment StoreEntitySet="DeliverManOrder">
+                <ScalarProperty Name="DeliveryStatusId" ColumnName="DeliveryStatusId" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeliveryStatus">
+            <EntityTypeMapping TypeName="VSborkeBaseModel.DeliveryStatus">
+              <MappingFragment StoreEntitySet="DeliveryStatus">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Favourite">
             <EntityTypeMapping TypeName="VSborkeBaseModel.Favourite">
               <MappingFragment StoreEntitySet="Favourite">
@@ -2870,6 +3039,8 @@
             <EntityTypeMapping TypeName="VSborkeBaseModel.Order">
               <MappingFragment StoreEntitySet="Order">
                 <ScalarProperty Name="IsReject" ColumnName="IsReject" />
+                <ScalarProperty Name="IsRejectDelivery" ColumnName="IsRejectDelivery" />
+                <ScalarProperty Name="IsTakeForDelivery" ColumnName="IsTakeForDelivery" />
                 <ScalarProperty Name="IsStoraged" ColumnName="IsStoraged" />
                 <ScalarProperty Name="IsPocketed" ColumnName="IsPocketed" />
                 <ScalarProperty Name="IsRejectedStorager" ColumnName="IsRejectedStorager" />
@@ -2881,6 +3052,7 @@
                 <ScalarProperty Name="IsForMaster" ColumnName="IsForMaster" />
                 <ScalarProperty Name="IsAcceptedMaster" ColumnName="IsAcceptedMaster" />
                 <ScalarProperty Name="IsAcceptedOperator" ColumnName="IsAcceptedOperator" />
+                <ScalarProperty Name="DeleteFromHistory" ColumnName="DeleteFromHistory" />
                 <ScalarProperty Name="DateForPocket" ColumnName="DateForPocket" />
                 <ScalarProperty Name="DateForConstruct" ColumnName="DateForConstruct" />
                 <ScalarProperty Name="TimeDelivery" ColumnName="TimeDelivery" />
@@ -2897,6 +3069,7 @@
                 <ScalarProperty Name="CommentOrder" ColumnName="CommentOrder" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="ComputerCaseId" ColumnName="ComputerCaseId" />
+                <ScalarProperty Name="TotalWeight" ColumnName="TotalWeight" />
                 <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
                 <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="PricePerUnit" ColumnName="PricePerUnit" />
@@ -3098,6 +3271,7 @@
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="VSborkeBaseModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="IsLogged" ColumnName="IsLogged" />
                 <ScalarProperty Name="IsBanned" ColumnName="IsBanned" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

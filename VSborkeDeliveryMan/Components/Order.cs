@@ -48,6 +48,7 @@ namespace VSborkeDeliveryMan.Components
         public string TimeDelivery { get; set; }
         public Nullable<System.DateTime> DateForConstruct { get; set; }
         public Nullable<System.DateTime> DateForPocket { get; set; }
+        public Nullable<bool> DeleteFromHistory { get; set; }
         public Nullable<bool> IsAcceptedOperator { get; set; }
         public Nullable<bool> IsAcceptedMaster { get; set; }
         public Nullable<bool> IsForMaster { get; set; }

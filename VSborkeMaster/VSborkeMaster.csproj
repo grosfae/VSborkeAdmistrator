@@ -95,6 +95,12 @@
     <Compile Include="Components\CoolerInside.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Components\DeliverManOrder.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DeliveryStatus.cs">
+      <DependentUpon>VSborkeModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Components\Favourite.cs">
       <DependentUpon>VSborkeModel.tt</DependentUpon>
     </Compile>
