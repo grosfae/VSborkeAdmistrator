@@ -31,7 +31,7 @@
                     <TextBlock Text="Пол*" Style="{StaticResource Header}" FontSize="30"/>
                     <ComboBox x:Name="CbGender" Height="35" FontSize="25" DisplayMemberPath="Name"/>
                     <TextBlock Text="Номер телефона" Style="{StaticResource Header}" FontSize="30" Margin="0 10 0 0"/>
-                    <TextBox x:Name="TbPhone" Height="35" FontSize="25" />
+                    <TextBox x:Name="TbPhone" Height="35" FontSize="25" MaxLength="11"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0 20 0 0" HorizontalAlignment="Center">
