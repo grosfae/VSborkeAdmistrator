@@ -82,23 +82,6 @@
                 </StackPanel>
             </Button>
 
-            <Button x:Name="InfoShowBtn" Style="{StaticResource MenuBtn}" Click="InfoShowBtn_Click" Height="60">
-                <StackPanel>
-                    <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
-                        <Image.Style>
-                            <Style TargetType="{x:Type Image}">
-                                <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoWhite.ico"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsMouseOver, ElementName=InfoShowBtn}" Value="True">
-                                        <Setter Property="Source" Value="/Resources/MenuIcons/Info/InfoActive.ico"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Image.Style>
-                    </Image>
-                </StackPanel>
-            </Button>
-
             <Button x:Name="ExitBtn" Style="{StaticResource MenuBtn}"  Click="ExitBtn_Click" Height="60">
                 <StackPanel>
                     <Image Height="50" Width="50" RenderOptions.BitmapScalingMode="Fant">
